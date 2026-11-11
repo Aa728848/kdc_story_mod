@@ -1,0 +1,212 @@
+trait_gray_origin = {
+	cost = 0
+	sorting_priority = 30
+	initial = no
+	randomized = no
+
+	species_potential_add = { always = no }
+	species_possible_remove = { always = no }
+	species_possible_merge_add = { always = no }
+	species_possible_merge_remove = { 
+		FROM = { has_country_flag = gray_ascension_finish }
+		has_trait = gray_trait_species_gray
+	}
+	icon = "gfx/interface/icons/traits/wg_gray.dds"
+	modifier = {
+		pop_environment_tolerance = 0.75
+		leader_lifespan_add = 20
+	}
+}
+
+gray_trait_species_gray = {
+	cost=0
+	improves_leaders = yes
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL SHENHAI STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	species_potential_add = { always = no }
+	species_possible_remove = { always = no }
+	species_possible_merge_add = {
+		FROM = { has_country_flag = gray_ascension_finish }
+		OR = {
+			has_trait = wsg_trait_warshipgirls
+			has_trait = wsg_trait_warshipgirls1
+			has_trait = sh_trait_shenhai
+			has_trait = sh_trait_shenhai1
+			has_trait = trait_dragon_lineage
+			has_trait = trait_dimension_life
+			has_trait = swg_trait_starshipgirls
+		} 
+	}
+	species_possible_merge_remove = { 
+		always = no
+	}
+	sorting_priority = 30
+	immortal_leaders = yes
+	icon="gfx/interface/icons/traits/wg_gray.dds"
+	custom_tooltip = TRAIT_GRAY_SPECIES_EFFECT
+	modifier = {
+		pop_environment_tolerance = 2
+		pop_demotion_time_mult = -1.0
+		planet_jobs_produces_mult = 0.3
+		pop_resettlement_cost_mult = -0.5
+		pop_category_slave_food_upkeep_mult = -1
+		pop_category_workers_food_upkeep_mult = -1
+		pop_category_specialists_food_upkeep_mult = -1
+		pop_category_rulers_food_upkeep_mult = -1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		pop_growth_speed = 1
+	}
+}
+
+gray_trait_nano_assembly = {
+	cost = 3
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	species_potential_add = {
+		always = no
+		has_trait = gray_trait_species_gray
+	}
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL SHENHAI STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	icon="gfx/interface/icons/traits/gray_trait_nano_assembly.dds"
+	prerequisites = { "tech_gray_genetic_resequencing" }
+	custom_tooltip = TRAIT_GRAY_NANO_ASSEMBLY_EFFECT
+	modifier = {
+		logistic_growth_mult = 0.4
+		bonus_pop_growth_mult = 0.4
+	}
+	opposites = { "wsg_trait_neo" "wsg_trait_mass_assembly" }
+}
+
+gray_trait_production_module = {
+	cost = 4
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	species_potential_add = {
+		always = no
+		has_trait = gray_trait_species_gray
+	}
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL SHENHAI STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	opposites = { "wsg_trait_overtime" "sh_trait_gear" }
+	icon = "gfx/interface/icons/traits/gray_trait_production_module.dds"
+	custom_tooltip = TRAIT_GRAY_PRODUCTION_MODULE_EFFECT
+	prerequisites = { "tech_gray_genetic_resequencing" }
+	modifier = {
+		planet_jobs_produces_mult = 0.45
+		pop_category_rulers_nanites_upkeep_add = 1
+		pop_category_specialists_nanites_upkeep_add = 1
+		pop_category_workers_nanites_upkeep_add = 1
+		pop_category_slave_nanites_upkeep_add = 1
+	}
+}
+
+gray_trait_building_module = {
+	cost = 4
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	species_potential_add = {
+		always = no
+		has_trait = gray_trait_species_gray
+	}
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL SHENHAI UNITED_FLEET STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	icon = "gfx/interface/icons/traits/gray_trait_building_module.dds"
+	prerequisites = { "tech_gray_genetic_resequencing" }
+	custom_tooltip = TRAIT_GRAY_BUILDING_MODULE_EFFECT
+	modifier = {
+		pop_category_rulers_nanites_upkeep_add = 0.8
+		pop_category_specialists_nanites_upkeep_add = 0.8
+		pop_category_workers_nanites_upkeep_add = 0.8
+		pop_category_slave_nanites_upkeep_add = 0.8
+	}
+}
+
+gray_trait_research_module = {
+	cost = 4
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	species_potential_add = {
+		always = no
+		has_trait = gray_trait_species_gray
+	}
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL SHENHAI UNITED_FLEET STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	opposites = { "wsg_trait_knowledgeable" "sh_trait_talent" }
+	icon = "gfx/interface/icons/traits/gray_trait_research_module.dds"
+	prerequisites = { "tech_gray_genetic_resequencing" }
+	custom_tooltip = TRAIT_GRAY_RESEARCH_MODULE_EFFECT
+	modifier = {
+		planet_jobs_engineering_research_produces_mult = 0.5
+		planet_jobs_physics_research_produces_mult = 0.5
+		planet_jobs_society_research_produces_mult = 0.5
+		species_leader_exp_gain = 1.0
+		leader_skill_levels = 3
+		pop_category_rulers_nanites_upkeep_add = 1
+		pop_category_specialists_nanites_upkeep_add = 1
+		pop_category_workers_nanites_upkeep_add = 1
+		pop_category_slave_nanites_upkeep_add = 1
+	}
+}
+
+gray_trait_nanite_producer = {
+	cost = 2
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	icon = "gfx/interface/icons/traits/gray_trait_nanite_producer.dds"
+	prerequisites = { "tech_gray_genetic_resequencing" }
+	custom_tooltip = TRAIT_GRAY_NANITES_PRODUCER_EFFECT
+	species_potential_add = {
+		always = no
+		has_trait = gray_trait_species_gray
+	}
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL UNITED_FLEET SHENHAI STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	modifier = {
+		
+	}
+}
+
+gray_trait_raw_material_producer = {
+	cost = 3
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	icon = "gfx/interface/icons/traits/gray_trait_raw_material_producer.dds"
+	prerequisites = { "tech_gray_genetic_resequencing" }
+	species_potential_add = {
+		always = no
+		has_trait = gray_trait_species_gray
+	}
+	allowed_archetypes = {
+		NANITES_CROP WARSHIPGIRL SHENHAI UNITED_FLEET STARSHIPGIRLS KANMUSU KANSEN TOUHOUGIRLS NYTO Dolls KZ_VOY_TERRAN_DESCENDANT
+	}
+	custom_tooltip = TRAIT_GRAY_RAW_MATERIAL_PRODUCER_EFFECT
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.3
+		planet_jobs_minerals_produces_mult = 0.3
+		planet_jobs_food_produces_mult = 0.3
+		pop_category_rulers_nanites_upkeep_add = 0.3
+		pop_category_specialists_nanites_upkeep_add = 0.3
+		pop_category_workers_nanites_upkeep_add = 0.3
+		pop_category_slave_nanites_upkeep_add = 0.3
+	}
+	opposites = {
+		"wsg_trait_agrarian" "wsg_trait_ingenious" "wsg_trait_industrious" "sh_trait_worker"
+	}
+}

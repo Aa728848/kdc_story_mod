@@ -1,0 +1,515 @@
+guiTypes = {
+	### ENCLAVE CARAVANEER EVENT OPTION ###
+
+	containerWindowType = {
+		name = "wg_major_project_category_option"
+		position = { x=0 y=0 }
+		size = { width = 156 height = 75 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_wg_major_project_category_button_169_60" 
+			position = { x=0 y=0 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+
+	containerWindowType = {
+		name = "wg_major_project_category_option_highlighted"
+		position = { x=0 y=0 }
+		size = { width = 156 height = 75 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_wg_major_project_category_button_highlight_169_60" 
+			position = { x=0 y=0 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+			alwaysTransparent = yes
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+
+	### ENCLAVE CARAVANEER EVENT WINDOW ###
+
+	containerWindowType = {
+		name = "wg_major_project_window"
+		orientation = center
+		origo = center
+		moveable = yes
+		size = { width = 1468 height = 673 }
+		
+		background = {
+			name = "background"
+			spriteType = "GFX_wg_major_project_bg" 
+			orientation = center
+			position = { x = 0 y = 0 }
+		}
+		
+		buttonType = {
+			name = "alien_message_background"
+			size = { x = 272 y = 240 }
+			Orientation = "UPPER_LEFT"
+			position = { x = 35 y = 368 }
+			quadTextureSprite = "GFX_wg_major_project_desc"
+			alwaysTransparent = no
+		}
+
+		instantTextBoxType = {
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = 40 y = 373 }
+			maxWidth = 262
+			maxHeight = 230
+			format = left
+			scrollbartype = "standardtext_slider"
+		}
+
+		buttonType = {
+			name = "confirm_button"
+			quadTextureSprite = "GFX_wg_intro_button_354_45"
+			position = { x = 1100 y = 700 }
+			Orientation = "UPPER_LEFT"
+			font = "cg_16b"
+			text = "MESSAGE_OK"
+			clicksound = "confirmation"
+		}
+
+		instantTextBoxType = {
+			name = "heading"
+			font = "malgun_goth_24"
+			text = "DIPLOMACY"
+			position = { x = 20 y = 10 }
+			maxWidth = 543
+			maxHeight = 22
+			fixedSize = yes
+			alwaysTransparent = yes
+		}
+
+		buttonType = {
+			name = "close"
+			quadTextureSprite = "GFX_wg_intro_button_close"
+			position = { x= -45 y = 10 }
+			Orientation = "UPPER_RIGHT"
+			shortcut = "ESCAPE"
+			clicksound = "back_click"
+		}
+
+		# 副官立绘
+		iconType = {
+			name = "wg_intro_main_background"
+			spriteType = "GFX_wg_major_project_illustration" 
+			Orientation = "UPPER_LEFT"
+			position = { x = 35 y = 70 }
+			alwaysTransparent = yes
+		}
+
+		# 上一页
+		effectButtonType = {
+			name = "wg_major_project_last_page"
+			quadTextureSprite = "GFX_wg_major_project_last_page"
+			orientation = "UPPER_LEFT"
+			position = { x = 1250 y = 550 }
+			effect = "wg_major_project_last_page_effect"
+		}
+
+		# 下一页
+		effectButtonType = {
+			name = "wg_major_project_next_page"
+			quadTextureSprite = "GFX_wg_major_project_next_page"
+			orientation = "UPPER_LEFT"
+			position = { x = 1363 y = 550 }
+			effect = "wg_major_project_next_page_effect"
+		}
+
+#   	############################################################
+		#  主界面项目（动态刷新）
+#		############################################################
+
+		@main_button_x = 327
+		@main_button_1_y = 70
+		@main_button_2_y = 210 #+140
+		@main_button_3_y = 350 #+140
+		@main_button_4_y = 490 #+140
+		effectButtonType = {
+			name = "wg_major_project_main_button_1"
+			quadTextureSprite = "GFX_wg_major_project_main_button_901_117"
+			orientation = "UPPER_LEFT"
+			position = { x = @main_button_x y = @main_button_1_y }
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_1_option_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_main_button_2"
+			quadTextureSprite = "GFX_wg_major_project_main_button_901_117"
+			orientation = "UPPER_LEFT"
+			position = { x = @main_button_x y = @main_button_2_y }
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_2_option_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_main_button_3"
+			quadTextureSprite = "GFX_wg_major_project_main_button_901_117"
+			orientation = "UPPER_LEFT"
+			position = { x = @main_button_x y = @main_button_3_y }
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_3_option_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_main_button_4"
+			quadTextureSprite = "GFX_wg_major_project_main_button_901_117"
+			orientation = "UPPER_LEFT"
+			position = { x = @main_button_x y = @main_button_4_y }
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_4_option_effect"
+		}
+
+#   	############################################################
+		#  主界面项目进度条
+#		############################################################
+		# effectButtonType = {
+		# 	name = "wg_major_project_step_1_progress_bar_1"
+		# 	quadTextureSprite = "GFX_wg_major_project_main_button_901_117"
+		# 	orientation = "UPPER_LEFT"
+		# 	position = { x = @main_button_x y = @main_button_1_y }
+		# 	alwaysTransparent = yes
+		# 	effect = "wg_major_project_step_1_option_effect"
+		# }
+#   	############################################################
+		#  主界面副按钮（动态刷新）
+#		############################################################
+		@sub_button_1_x = 589 #+151
+		@sub_button_2_x = 740 #+151
+		@sub_button_3_x = 891 #+151
+		@sub_button_4_x = 1042 #+151
+		@sub_button_1_y = 75
+		@sub_button_2_y = 215 #+140
+		@sub_button_3_y = 355 #+140
+		@sub_button_4_y = 495 #+140
+		effectButtonType = {
+			name = "wg_major_project_sub_button_1_1"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_physics"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_1_x y = @sub_button_1_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_1_physics_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_2_1"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_society"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_2_x y = @sub_button_1_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_1_society_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_3_1"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_engineering"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_3_x y = @sub_button_1_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_1_engineering_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_4_1"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_4_x y = @sub_button_1_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_1_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_1_2"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_physics"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_1_x y = @sub_button_2_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_2_physics_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_2_2"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_society"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_2_x y = @sub_button_2_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_2_society_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_3_2"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_engineering"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_3_x y = @sub_button_2_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_2_engineering_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_4_2"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_4_x y = @sub_button_2_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_2_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_1_3"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_physics"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_1_x y = @sub_button_3_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_3_physics_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_2_3"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_society"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_2_x y = @sub_button_3_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_3_society_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_3_3"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_engineering"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_3_x y = @sub_button_3_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_3_engineering_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_4_3"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_4_x y = @sub_button_3_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_3_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_1_4"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_physics"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_1_x y = @sub_button_4_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_4_physics_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_2_4"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_society"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_2_x y = @sub_button_4_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_4_society_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_3_4"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42_engineering"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_3_x y = @sub_button_4_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_4_engineering_research_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_sub_button_4_4"
+			quadTextureSprite = "GFX_wg_major_project_sub_button_156_42"
+			orientation = "UPPER_LEFT"
+			position = { x = @sub_button_4_x y = @sub_button_4_y }
+			font = "malgun_goth_24" 
+			format = center
+			text = "wg_major_project_start_research"
+			effect = "wg_major_project_step_4_research_effect"
+		}
+#   	############################################################
+		#  主界面任务文字（项目1）
+#		############################################################
+		@mpj_steps_title_x = 310
+		@mpj_step_1_title_y = -12
+		@mpj_step_2_title_y = 128
+		@mpj_step_3_title_y = 268
+		@mpj_step_4_title_y = 408
+		effectButtonType = {
+			name = "wg_major_project_step_1_title"
+			quadTextureSprite = ""
+			orientation = "UPPER_LEFT"
+			position = { x = @mpj_steps_title_x y = @mpj_step_1_title_y }
+			font = "malgun_goth_24"
+			text = "wg_major_project_1_step_1_name"
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_1_option_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_step_2_title"
+			quadTextureSprite = ""
+			orientation = "UPPER_LEFT"
+			position = { x = @mpj_steps_title_x y = @mpj_step_2_title_y }
+			font = "malgun_goth_24"
+			text = "wg_major_project_1_step_1_name"
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_2_option_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_step_3_title"
+			quadTextureSprite = ""
+			orientation = "UPPER_LEFT"
+			position = { x = @mpj_steps_title_x y = @mpj_step_3_title_y }
+			font = "malgun_goth_24"
+			text = "wg_major_project_1_step_1_name"
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_3_option_effect"
+		}
+		effectButtonType = {
+			name = "wg_major_project_step_4_title"
+			quadTextureSprite = ""
+			orientation = "UPPER_LEFT"
+			position = { x = @mpj_steps_title_x y = @mpj_step_4_title_y }
+			font = "malgun_goth_24"
+			text = "wg_major_project_1_step_1_name"
+			alwaysTransparent = yes
+			effect = "wg_major_project_step_4_option_effect"
+		}
+#   	############################################################
+		#  主界面任务文字（项目1）
+#		############################################################
+		@mpj_steps_desc_x = 580
+		@mpj_step_1_desc_y = 108
+		@mpj_step_2_desc_y = 248
+		@mpj_step_3_desc_y = 388
+		@mpj_step_4_desc_y = 528
+		# effectButtonType = {
+		# 	name = "wg_major_project_step_1_desc"
+		# 	spriteType = "GFX_wg_major_project_steps_desc_area"
+		# 	orientation = "UPPER_LEFT"
+		# 	position = { x = @mpj_steps_desc_x y = @mpj_step_1_desc_y }
+		# 	font = "malgun_goth_24"
+		# 	buttonText = "wg_major_project_1_step_1_desc"
+		# 	format = left
+		# 	effect = "wg_major_project_step_1_option_effect"
+		# }
+		# effectButtonType = {
+		# 	name = "wg_major_project_step_2_desc"
+		# 	quadTextureSprite = ""
+		# 	orientation = "UPPER_LEFT"
+		# 	position = { x = @mpj_steps_desc_x y = @mpj_step_2_desc_y }
+		# 	font = "cg_16b"
+		# 	text = "wg_major_project_1_step_1_desc"
+		# 	effect = "wg_default_effect"
+		# }
+		# effectButtonType = {
+		# 	name = "wg_major_project_step_3_desc"
+		# 	quadTextureSprite = ""
+		# 	orientation = "UPPER_LEFT"
+		# 	position = { x = @mpj_steps_desc_x y = @mpj_step_3_desc_y }
+		# 	font = "cg_16b"
+		# 	text = "wg_major_project_1_step_1_desc"
+		# 	effect = "wg_default_effect"
+		# }
+		# effectButtonType = {
+		# 	name = "wg_major_project_step_4_desc"
+		# 	quadTextureSprite = ""
+		# 	orientation = "UPPER_LEFT"
+		# 	position = { x = @mpj_steps_desc_x y = @mpj_step_4_desc_y }
+		# 	font = "cg_16b"
+		# 	text = "wg_major_project_1_step_1_desc"
+		# 	effect = "wg_default_effect"
+		# }
+		### EVENT DIPLO ###
+		
+		containerWindowType = {
+			name = "EVENT_DIPLO"
+			position = { x = 1250 y = 70 }
+			size = { width = 176 height = 450 }
+			moveable = no
+			
+			instantTextBoxType={ name = "action_title" font = "malgun_goth_24" position = { x = -1453 y = -12450 } } # hidden
+			instantTextBoxType={ name = "action_desc" font = "malgun_goth_24" position = { x = -1453 y = -12450 } } # hidden
+			
+			listboxType = {
+				name = "option_list"
+				position = { x = 0 y = 0 }
+				backGround=""
+				size = { x = 176 y = 450 }
+				spacing = 20
+				scrollbartype = "standardlistbox_slider"
+				borderSize = { x = 0 y = 0 }
+				Orientation = "UPPER_LEFT"
+			}
+		}
+		############################################
+		### ALL OF THIS IS HIDDEN OR DISPLACED ! ###
+#		############################################
+		iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long_caravaneer" position = { x = -1453 y = -12450 } }
+		buttonType = { name = "focus_button" position = { x = -1453 y = -12450 } spriteType = "GFX_fleetview_focus" }
+		containerWindowType = {
+			name = "portrait"
+			position = { x = -1453 y = -12450 }
+			size = { width = 0 height = 0 } # hide portrait window
+			iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask"  } # hidden
+			iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" } # hidden
+			iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" } # hidden
+			iconType = { name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" } # hidden 
+		instantTextBoxType={ name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" } # hidden
+		OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1453 y = -12450 } } # hidden
+		iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1453 y = -12450 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1453 y = -12450 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1453 y = -12450 }
+			size = { width = 0 height = 0 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}	
+	}
+}

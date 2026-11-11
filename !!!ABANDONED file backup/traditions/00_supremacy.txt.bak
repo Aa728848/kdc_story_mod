@@ -1,0 +1,415 @@
+tr_supremacy_adopt = {
+	modifier = {
+		country_starbase_capacity_add = 2
+		army_damage_mult = 0.20
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_adopt_machine
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+		modifier = {
+			country_starbase_capacity_add = 2
+			army_damage_mult = 0.20
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_adopt_hive
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+		modifier = {
+			country_starbase_capacity_add = 2
+			army_damage_mult = 0.20
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_wg_milltary_adopt
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+		modifier = {
+			country_starbase_capacity_add = 3
+			army_damage_mult = 0.25
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 2
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				AND = {
+					has_tradition = tr_diplomacy_adopt
+					NOT = { has_tradition = tr_diplomacy_finish }
+				}
+				AND = {
+					has_tradition = tr_discovery_adopt
+					NOT = { has_tradition = tr_discovery_finish }
+				}
+				AND = {
+					has_tradition = tr_domination_adopt
+					NOT = { has_tradition = tr_domination_finish }
+				}
+				AND = {
+					has_tradition = tr_expansion_adopt
+					NOT = { has_tradition = tr_expansion_finish }
+				}
+				AND = {
+					has_tradition = tr_harmony_adopt
+					NOT = { has_tradition = tr_harmony_finish }
+				}
+				AND = {
+					has_tradition = tr_prosperity_adopt
+					NOT = { has_tradition = tr_prosperity_finish }
+				}
+			}
+		}
+	}
+}
+
+tr_supremacy_finish = {
+	modifier = {
+		ascension_perks_add = 1
+	}
+	tradition_swap = {
+		name = tr_wg_milltary_finish
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+		modifier = {
+			ascension_perks_add = 1
+			country_war_exhaustion_mult = -0.2
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+}
+# 1
+tr_supremacy_fleet_logistical_corps = {
+	modifier = {
+		ships_upkeep_mult = -0.10
+		country_naval_cap_mult = 0.20
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_fleet_logistical_corps_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_fleet_logistical_corps_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# 大舰巨炮主义
+	tradition_swap = {
+		name = tr_wg_milltary_dreadnoughtism
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+
+		modifier = {
+			ship_weapon_damage = 0.1
+			ship_hull_mult = 0.1
+			ship_orbital_bombardment_mult = 0.1
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+# 2
+tr_supremacy_master_shipwrights = {
+	modifier = {
+		starbase_shipyard_build_speed_mult = 0.25
+		starbase_shipyard_build_cost_mult = -0.10
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_master_shipwrights_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_master_shipwrights_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# 闪击战
+	tradition_swap = {
+		name = tr_wg_milltary_lightning_war
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+
+		modifier = {
+			ship_speed_mult = 0.1
+			ship_fire_rate_mult = 0.1
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+# 3
+tr_supremacy_war_games = {
+	possible = {
+		has_tradition = tr_supremacy_master_shipwrights
+		has_tradition = tr_supremacy_fleet_logistical_corps
+	}
+	modifier = {
+		country_command_limit_add = 20
+		admiral_skill_levels = 2
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_war_games_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_war_games_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# 庞大舰队
+	tradition_swap = {
+		name = tr_wg_milltary_great_fleet
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+		modifier = {
+			country_command_limit_add = 20
+			admiral_skill_levels = 2
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+# 4
+tr_supremacy_overwhelming_force = {
+
+	modifier = {
+		ship_orbital_bombardment_mult = 0.20
+		ship_fire_rate_mult = 0.10
+	}
+
+	# 后勤优化
+	tradition_swap = {
+		name = tr_wg_milltary_enhanced_logistics
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+		modifier = {
+			ships_upkeep_mult = -0.1
+			country_naval_cap_mult = 0.2
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+# 5
+tr_supremacy_great_game = {
+	possible = {
+		has_tradition = tr_supremacy_overwhelming_force
+	}
+
+	modifier = {
+		shipclass_starbase_damage_mult = 0.20
+		starbase_upgrade_cost_mult = -0.33
+		ship_military_station_small_cost_mult = -0.33
+	}
+
+	#implementation in the "should_apply_neighbor_rival_modifier" game rule
+
+	tradition_swap = {
+		name = tr_supremacy_great_game_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_supremacy_great_game_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			has_valid_civic = civic_machine_terminator
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# 妖精船坞劳工
+	tradition_swap = {
+		name = tr_wg_milltary_fairy_shipyard_workers
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_wg_empire = yes
+		}
+		modifier = {
+			shipclass_military_build_cost_mult = -0.1
+			shipclass_colonizer_build_cost_mult = -0.1
+			shipclass_constructor_build_cost_mult = -0.1
+			shipclass_science_ship_build_cost_mult = -0.1
+			shipclass_military_build_speed_mult = -0.3
+			shipclass_colonizer_build_speed_mult = -0.3
+			shipclass_constructor_build_speed_mult = -0.3
+			shipclass_science_ship_build_speed_mult = -0.3
+		}
+
+		weight = {
+			weight = 99
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

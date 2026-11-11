@@ -1,0 +1,176 @@
+gray_origin_transform_unlock_trigger = {
+	OR = {
+		NOT = { has_country_flag = origin_gray_country }
+		AND = {
+			has_country_flag = origin_gray_country
+			has_country_flag = finish_nanite_planet_terraform
+		}
+	}
+}	
+is_default_country_wg = {
+	OR = {
+		is_country_type = default
+		is_country_type = default_ev
+	}
+}
+gray_country_trigger = {
+	OR = {
+		has_country_flag = origin_gray_country
+		has_technology = tech_TMR_nanite_productor
+	}
+}
+gray_origin_ascension_perk_trigger = {
+	if = {
+		limit = {
+			has_country_flag = origin_gray_country
+		}
+		has_technology = tech_TMR_nanite_productor
+	} else = {
+		hidden_trigger = { NOT = { has_country_flag = refuse_gray_storyline }}
+	}
+}
+gray_origin_tech_trigger = {
+	OR = {
+		AND = {
+			NOT = { has_country_flag = origin_gray_country }
+			has_technology = tech_TMR_nanite_productor
+		}
+		AND = {
+			has_country_flag = origin_gray_country
+			has_country_flag = activate_gray_research
+		}
+	}
+}
+gray_origin_advance_tech_trigger = {
+	OR = {
+		NOT = { has_country_flag = origin_gray_country }
+		AND = {
+			has_country_flag = origin_gray_country
+			has_country_flag = finish_gray_storyline
+		}
+	}
+	has_ascension_perk = ap_become_the_gray
+}
+can_trigger_lgate_gal_with_gray = {
+	OR = {
+		NOT = { has_country_flag = refuse_gray_storyline }
+		AND = {
+			has_country_flag = refuse_storyline_talk_to_gray
+			NOT = { has_country_flag = gray_leave }
+		}
+	}
+}
+
+
+is_wg_empire = {
+	OR = {
+		has_authority = auth_warshipgirls
+		has_authority = auth_shenhai
+	}
+}
+# 此类船只无法交易或变成雇佣兵
+is_wg_event_limit_ships = {
+	OR = {
+		is_ship_size = ufs_beacon
+		is_ship_size = uf_mobile_portal
+		is_ship_size = wg_think_tank
+		is_ship_size = uf_star_eater
+		is_ship_size = uf_glory_o
+		is_ship_size = uf_star_fortress
+		is_ship_size = uf_star_fortress_2
+		is_ship_size = wsg_lady_warship_imdesignable
+		is_ship_size = wsg_lady_juggernaut
+		is_ship_size = wsg_lady_warship
+		is_ship_size = uf_navigator
+		is_ship_size = star_eater
+		is_ship_size = gray_nano_construct_core
+		is_ship_size = nanitecrop_gate
+		is_ship_size = r_gate_entity
+		is_ship_size = r_gate_entity2
+		fleet = { has_fleet_flag = wg_event_limit_fleet }
+	}
+}
+default_gray_research_allow_trigger = {
+	# 检测研究槽数量是否超过正在研究的科技数量
+	custom_tooltip = {
+		fail_text = "gray_research_slot_overload"
+		count_situation = {
+			limit = { OR = {
+				is_situation_type = gray_research_situation_days
+				is_situation_type = gray_research_situation
+			}}
+			count < root.num_gray_research_slot
+		}
+	}
+	# 检测是否正在研究当前查看的科技
+	custom_tooltip = {
+		fail_text = "already_reseaching_gray_tech"
+		NOT = { any_situation = {
+			OR = {
+				is_situation_type = gray_research_situation_days
+				is_situation_type = gray_research_situation
+			}
+			check_variable = { which = gray_tech_id value = root.gray_tech_id }
+		}}
+	}
+}
+gray_tech_comfirm_window_check_trigger = {
+	custom_tooltip = {
+		fail_text = "opened_gray_tech_comfirm_window"
+		NOT = { has_country_flag = open_gray_research_comfirm_window }
+	}
+}
+is_vanilla_species_class = {
+	OR = {
+		is_species_class = HUM
+		is_species_class = MAM
+		is_species_class = REP
+		is_species_class = AVI
+		is_species_class = ART
+		is_species_class = MOL
+		is_species_class = FUN
+		is_species_class = PLANT
+		is_species_class = LITHOID
+		is_species_class = NECROID
+		is_species_class = AQUATIC
+		is_species_class = ROBOT
+		is_species_class = MACHINE
+		is_species_class = TOX
+		is_species_class = NANITESCROP_BIO
+		is_species_class = NANITESCROP_MACHINE
+	}
+}
+has_nanite_upkeep_trait = {
+	OR = {
+		has_trait = gray_trait_species_gray 
+		has_trait = gray_trait_production_module 
+		has_trait = gray_trait_building_module 
+		has_trait = gray_trait_research_module 
+		has_trait = gray_trait_raw_material_producer 
+	}
+}
+has_wsg_genemodding_tech = {
+	OR = {
+		has_technology = tech_wsg_genetic_resequencing
+		has_technology = tech_wsg_genetic_resequencing_s
+		has_technology = tech_sh_genetic_resequencing
+		has_technology = tech_sh_genetic_resequencing2
+		has_technology = tech_uf_genetic_resequencing
+		has_technology = tech_gray_genetic_resequencing
+	}
+}
+# this = planet
+pop_with_trait_has_job = {
+	any_owned_pop_group = {
+		has_trait = $TRAIT$
+		prev = {
+			any_owned_pop_job = {
+				has_job_type = $JOB$
+				num_pops_assigned_to_job = {
+					pop_group = prevprev
+					value > 0
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,860 @@
+#建门者核心#
+namespace = gatebuildercore
+
+country_event = {
+	id = gatebuildercore.1
+	title = ""
+	desc = gatebuildercore.1.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	trigger = {
+		# has_megastructure = TMR_gatebuilder_core4
+	}
+
+	immediate = {
+		set_country_flag = triggered_gatebuilder_menu
+	}
+	after = {
+		remove_country_flag = triggered_gatebuilder_menu
+	}
+
+	custom_gui = gatebuilder_core_menu
+	custom_gui_option = gatebuilder_core_menu_option
+	
+	
+	option = {#灰蛊侵袭——摧毁舰队+摧毁星基
+		name = gatebuildercore.1.a
+		custom_tooltip = start_core1_desc
+		allow = {
+			resource_stockpile_compare = { resource = nanites value >= 10000 }
+			from = { can_detonate_tmr_core_system = yes }
+		}
+		add_resource = { nanites = -10000 }
+		country_event = { id = gatebuildercore.2 scopes = { from = root.from }}
+	}
+	option = {#重型灰蛊风暴——消灭人口+变纳米球+摧毁舰队
+		name = gatebuildercore.1.b
+		custom_tooltip = start_core2_desc
+		allow = {
+			resource_stockpile_compare = { resource = nanites value >= 35000 }
+			from = { can_detonate_tmr_core_system = yes }
+		}
+		add_resource = { nanites = -35000 }
+		country_event = { id = gatebuildercore.3 days = 15 scopes = { from = root.from }}
+	}
+	option = {#摧毁星系——消灭恒星，删除航路
+		name = gatebuildercore.1.c
+		custom_tooltip = start_core3_desc
+		allow = {
+			resource_stockpile_compare = { resource = nanites value >= 50000 }
+			from = { 
+				can_detonate_tmr_core_system = yes 
+			}
+		}
+		add_resource = { nanites = -50000 }
+		country_event = { id = gatebuildercore.4 days = 30 scopes = { from = root.from }}
+	}
+	option = {
+		name = CANCEL
+		default_hide_option = yes
+		event_target:tmr_core_fleet = {
+			set_event_locked = no
+		}
+	}
+}
+
+######################################################################################################################
+
+#灰蛊侵袭——摧毁舰队+摧毁星基
+country_event = {
+	id = gatebuildercore.2
+	title = gatebuildercore.2.name
+	desc = gatebuildercore.2.desc
+	picture = GFX_evt_no_video_feed_room
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		# has_megastructure = TMR_gatebuilder_core4
+	}
+	immediate = {
+		from = {
+			set_star_flag = nanite_space_storm
+			star = {
+				create_ambient_object = {
+					type = "space_storm_1"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = space_storm_object
+					set_location = {
+						target = prev
+						distance = 0
+						angle = random
+					}
+				}
+			add_modifier = { modifier = space_storm }
+			}
+		}
+		country_event = { id = gatebuildercore.150 days = 60 }
+		from = {
+			every_system_planet = {
+				limit = {
+					exists = orbital_station
+				}
+				orbital_station = { dismantle = yes }
+			}
+			every_ship_in_system = { destroy_ship = this }
+			every_neighbor_system = {
+				set_star_flag = nanite_space_storm
+					star = {
+						create_ambient_object = {
+							type = "space_storm_1"
+							location = this
+							}
+						last_created_ambient_object = {
+						set_ambient_object_flag = space_storm_object
+						set_location = {
+						target = prev
+						distance = 0
+						angle = random
+						}
+					}
+					add_modifier = { modifier = space_storm }
+				}
+				every_system_planet = {
+					limit = {
+						exists = orbital_station
+					}
+					orbital_station = { dismantle = yes }
+				}
+			every_ship_in_system = { destroy_ship = this }
+			}
+		}
+		clear_global_event_target = tmr_core_fleet
+	}
+	option = {
+		name = gatebuildercore.2.a
+	}
+}
+
+##########################################################################################################################
+
+#重型灰蛊风暴——消灭人口+变纳米球+摧毁舰队+摧毁星基
+country_event = {
+	id = gatebuildercore.3
+	title = gatebuildercore.3.name
+	desc = gatebuildercore.3.desc
+	picture = GFX_evt_no_video_feed_room
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			set_star_flag = nanite_space_storm
+			star = {
+				create_ambient_object = {
+					type = "space_storm_1"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = space_storm_object
+					set_location = {
+						target = prev
+						distance = 0
+						angle = random
+					}
+				}
+			add_modifier = { modifier = space_storm }
+			}
+		}
+		country_event = { id = gatebuildercore.150 days = 60 }
+		from = {
+			every_system_planet = {
+				limit = {
+					exists = orbital_station
+				}
+				orbital_station = { dismantle = yes }
+			}
+			wg_destroy_system_fleet_effect = yes
+			every_ship_in_system = { destroy_ship = this }
+			every_neighbor_system = {
+				set_star_flag = nanite_space_storm
+					star = {
+						create_ambient_object = {
+							type = "space_storm_1"
+							location = this
+							}
+						last_created_ambient_object = {
+						set_ambient_object_flag = space_storm_object
+						set_location = {
+						target = prev
+						distance = 0
+						angle = random
+						}
+					}
+					add_modifier = { modifier = space_storm }
+				}
+				every_system_planet = {
+					limit = {
+						exists = orbital_station
+					}
+					orbital_station = { dismantle = yes }
+					}
+					wg_destroy_system_fleet_effect = yes
+					every_ship_in_system = { destroy_ship = this }
+			}
+		}
+
+		from = {
+			every_system_planet = {
+				limit = {
+					exists = orbital_station
+				}
+				orbital_station = { dismantle = yes }
+			}
+			# 摧毁所有星球
+			every_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOR = {
+						is_planet_class = pc_ringworld_habitable_damaged
+						is_planet_class = pc_ringworld_tech_damaged
+						is_planet_class = pc_ringworld_seam_damaged
+					}
+				}
+				if = {
+					limit = { has_owner = yes }
+					planet_event = { id = gatebuildercore.10000 scopes = { from = event_target:tmr_core_fleet }}
+				}
+				change_pc = pc_gray_goo
+			}
+			every_system_planet = {
+				if = {
+					limit = { is_ringworld = yes }
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_habitable_damaged
+				}
+				else_if = {
+					limit = { is_planet_class = pc_ringworld_tech }
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_tech_damaged
+				}
+				else_if = {
+					limit = { is_planet_class = pc_ringworld_seam }
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_seam_damaged
+				}
+			}
+			every_system_megastructure = {
+				if = {
+					limit = {
+						OR = {
+							is_megastructure_type = ring_world_restored
+							is_megastructure_type = ring_world_ruined
+							is_megastructure_type = ring_world_2
+						}
+					}
+					solar_system = {
+						spawn_planet = {
+							class = "pc_ringworld_tech_damaged"
+							location = prev
+							orbit_angle_offset = 30
+						}
+						spawn_planet = {
+							class = "pc_ringworld_seam_damaged"
+							location = prev
+						}
+						spawn_planet = {
+							class = "pc_ringworld_habitable_damaged"
+							location = prev
+							orbit_angle_offset = -30
+						}
+					}
+					remove_megastructure = this
+				}
+			}
+			solar_system.system_star = {
+				create_ambient_object = {
+					type = "destroyed_system"
+					location = this
+					entity_offset = 0
+					entity_offset_angle = 0
+					entity_offset_height = 0
+					entity_face_object = FROM
+					use_3d_location = yes
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = destroyed_system_effect
+				}
+			}
+			every_ship_in_system = { destroy_ship = this }
+		}
+		wg_destroy_system_fleet_effect = yes
+		clear_global_event_target = tmr_core_fleet
+	}
+
+	option = {
+		name = gatebuildercore.2.b
+	}
+}
+
+#########################################################################################################################
+
+##摧毁星系——消灭恒星，删除航路
+country_event = {
+	id = gatebuildercore.4
+	title = gatebuildercore.4.name
+	desc = gatebuildercore.4.desc
+	picture = GFX_evt_no_video_feed_room
+	show_sound = event_default
+	is_triggered_only = yes
+	
+	immediate = {
+		from = {
+			set_star_flag = nanite_space_storm
+			star = {
+				create_ambient_object = {
+					type = "space_storm_1"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = space_storm_object
+					set_location = {
+						target = prev
+						distance = 0
+						angle = random
+					}
+				}
+			add_modifier = { modifier = space_storm }
+			}
+		}
+		country_event = { id = gatebuildercore.150 days = 60 }
+		from = {
+			every_system_planet = {
+				limit = {
+					exists = orbital_station
+				}
+				orbital_station = { dismantle = yes }
+			}
+			every_neighbor_system = {
+				set_star_flag = nanite_space_storm
+					star = {
+						create_ambient_object = {
+							type = "space_storm_1"
+							location = this
+							}
+						last_created_ambient_object = {
+						set_ambient_object_flag = space_storm_object
+						set_location = {
+						target = prev
+						distance = 0
+						angle = random
+						}
+					}
+					add_modifier = { modifier = space_storm }
+				}
+				every_system_planet = {
+					limit = {
+						exists = orbital_station
+					}
+					orbital_station = { dismantle = yes }
+				}
+				wg_destroy_system_fleet_effect = yes
+			}
+			system_star = {
+				planet_event = { id = gatebuildercore.10001 
+					scopes = { from = event_target:tmr_core_fleet }
+				}
+			}
+			wg_destroy_system_fleet_effect = yes
+		}
+		clear_global_event_target = tmr_core_fleet
+	}
+
+	option = {
+		name = gatebuildercore.2.c
+	}
+}
+
+# 巨构——升级建造核心
+country_event = {
+	id = gatebuildercore.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_megastructure_type = TMR_gatebuilder_core4_build_core }
+	}
+
+	immediate = {
+		from = {
+			create_fleet = {
+				name = "NAME_TMR_core"
+				effect = {
+					set_owner = root
+					set_location = prev
+					create_ship = {
+						name = "NAME_TMR_core"
+						design = "NAME_nanite_core"
+					}
+					save_global_event_target_as = tmr_core_fleet
+				}
+				settings = {
+					ai_ignore_strength = yes
+					spawn_debris = no
+					can_change_leader = no
+					can_change_composition = no
+					can_upgrade = no
+				}
+			}
+			# 还原成4级
+			remove_megastructure = this
+			from = {
+				spawn_megastructure = {
+					type = TMR_gatebuilder_core4
+					owner = root
+					planet = system_star
+				}
+			}
+		}
+	}
+}
+# 巨构——引爆核心
+country_event = {
+	id = gatebuildercore.1001
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_megastructure_type = TMR_gatebuilder_core4_detonate_core }
+	}
+
+	immediate = {
+		event_target:tmr_core_fleet = {
+			root = { country_event = { id = gatebuildercore.1 scopes = { from = prev.solar_system }}}
+			set_event_locked = yes
+			clear_fleet_actions = this
+		}
+		from = {
+			# 还原成4级
+			remove_megastructure = this
+			from = {
+				spawn_megastructure = {
+					type = TMR_gatebuilder_core4
+					owner = root
+					planet = system_star
+				}
+			}
+		}
+	}
+}
+# 解散舰队，触发引爆核心
+country_event = {
+	id = gatebuildercore.1002
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_same_value = event_target:tmr_core_fleet }
+	}
+
+	immediate = {
+		from = {
+			create_fleet = {
+				name = "NAME_TMR_core"
+				effect = {
+					set_owner = root
+					set_location = prev
+					create_ship = {
+						name = "NAME_TMR_core"
+						design = "NAME_nanite_core"
+					}
+					save_global_event_target_as = tmr_core_fleet
+					set_event_locked = yes
+					root = { country_event = { id = gatebuildercore.1 scopes = { from = prev.solar_system }}}
+				}
+				settings = {
+					ai_ignore_strength = yes
+					spawn_debris = no
+					can_change_leader = no
+					can_change_composition = no
+					can_upgrade = no
+				}
+			}
+		}
+	}
+}
+# 舰队被摧毁，触发1级摧毁效果
+country_event = {
+	id = gatebuildercore.1003
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = { OR = {
+			is_ship_size = TMR_core
+			fleet = { is_same_value = event_target:tmr_core_fleet }
+		}}
+	}
+
+	immediate = {
+		fromfrom = {
+			solar_system = {
+				save_event_target_as = TMR_core_system
+			}
+		}
+		country_event = { id = gatebuildercore.2 scopes = { from = event_target:TMR_core_system }}
+	}
+}
+
+#太空纳米风暴结束#
+country_event = {
+	id = gatebuildercore.150
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			every_system = {
+				limit = { has_star_flag = nanite_space_storm }
+				random_system_ambient_object = {
+					limit = { has_ambient_object_flag = space_storm_object }
+					destroy_ambient_object = this
+				}
+				remove_star_flag = storm_system
+				remove_modifier = space_storm
+			}
+		}
+	}
+}
+
+
+# 纳米灾疫巨像效果
+# from = 发射的舰队
+planet_event = {
+	id = gatebuildercore.10000
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# 炸球后摧毁国家
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_country_type = default_ev }
+					NOT = {
+						any_owned_planet = {
+							NOT = { is_same_value = root }
+						}
+					}
+				}
+			}
+			# empire destruction menace reward
+			from.owner = { 
+				if = {
+					limit = { has_ascension_perk = ap_become_the_crisis }
+					complete_crisis_objective = crisobj_destroy_empires
+				}
+				if = {
+					limit = { has_ascension_perk = ap_wg_crisis }
+					add_wg_crisis_points = { POINTS = 300 }
+				}
+			}
+			owner = { destroy_country = yes }
+		}
+
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2043 }
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			if = {
+				limit = {
+					is_colony = yes
+				}
+				add_threat = { who = from.owner amount = 3 }
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+								}
+							}
+						}
+					}
+					if = {
+						limit = { root = { is_colony = no } }
+						add_opinion_modifier = {
+							modifier = opinion_cracked_an_uninhabited_world
+							who = from.owner
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							modifier = opinion_cracked_my_uninhabited_world
+							who = from.owner
+						}
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+			}
+			# modifiers for victim
+			owner = {
+				if = {
+					limit = { root = { is_colony = no } }
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						modifier = opinion_cracked_my_uninhabited_world
+						who = from.owner
+					}
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+		}
+		if = {
+			limit = { exists = owner }
+			owner = {
+				if = {
+					limit = { #isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+		}
+		every_owned_pop_group = {
+			kill_pop_group = { pop_group = this percentage = 1 }
+		}	
+		
+		if = {
+			limit = { OR = {
+				is_ringworld = yes
+				is_habitat_wg = yes
+			}}
+			spawn_habitat_cracker_effect = yes
+			remove_planet = yes
+		}	
+		else = {
+			change_pc = pc_gray_goo
+			clear_deposits = yes
+		}
+	}
+}
+
+
+# 纳米灾疫（星系）巨像效果
+# from = 发射的舰队
+planet_event = {
+	id = gatebuildercore.10001
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				solar_system = { any_system_planet = {
+					has_owner = yes
+				}}
+			}
+			solar_system = { random_system_planet = {
+				limit = { has_owner = yes }
+				save_event_target_as = destroyed_colony
+				owner = { save_event_target_as = colony_pre_owner }
+			}}
+		}
+		if = {
+			limit = {
+				exists = space_owner
+				space_owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by robots
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						AND = {
+							has_federation = yes
+							is_in_federation_with = root.owner
+						}
+						has_ai_personality = awakened_fallen_empire_spiritualist
+						AND = {
+							is_country_type = default
+							OR = {
+								is_egalitarian = yes
+								is_spiritualist = yes
+							}
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_destroyed_a_system
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			space_owner = {
+				add_opinion_modifier = {
+					modifier = opinion_destroyed_my_system
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			} 
+		}	
+		solar_system = {
+			set_star_flag = ring_world_built
+			every_system_planet = {
+				limit = { exists = owner }
+				owner = {
+					if = {
+						limit = { #isn't the case when the crisis bombards planets, for instance
+							is_at_war_with = root.from.fleet.owner
+						}
+						add_static_war_exhaustion = {
+							attacker = root.from.fleet.owner
+							location = root
+							value_for_planet_destruction = 1.0
+						}
+					}
+				}
+			}
+			destroy_system_nanite = yes
+			remove_star_flag = ring_world_built
+		}
+		# 补充摧毁国家触发
+		event_target:colony_pre_owner = {
+			if = {
+				limit = { NOT = { any_owned_planet = {
+					NOT = { is_same_value = event_target:destroyed_colony }
+				}}}
+				# empire destruction menace reward
+				event_target:sun_killer = {
+					if = {
+						limit = { has_ascension_perk = ap_become_the_crisis }
+						complete_crisis_objective = crisobj_destroy_empires
+					}
+					if = {
+						limit = { has_ascension_perk = ap_wg_crisis }
+						add_wg_crisis_points = { POINTS = 300 }
+					}
+				}
+				destroy_country = yes
+			}
+		}
+	}
+}

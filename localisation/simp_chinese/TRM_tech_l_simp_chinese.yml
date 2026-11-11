@@ -1,0 +1,97 @@
+﻿l_simp_chinese:
+ tech_nanotheory_evolution: "纳米理论革命"
+TECH_NANOTHEORY_EVOLUTION_TITLE: "纳米理论革命"
+TECH_NANOTHEORY_EVOLUTION_DESC: "通过对微观物理的基础探索与研究，我们已经掌握了制造微观复杂构造的理论基础。" 
+tech_nanotheory_evolution_desc: "通过对微观物理的基础探索与研究，我们已经掌握了制造微观复杂构造的理论基础。"
+
+tech_micromechanics: "微观力学"
+TECH_MICROMECHANICS_TITLE: "微观力学"
+TECH_MICROMECHANICS_DESC: "令人震惊的研究成果！我们的科学家终于打开了新微观世界的力学大门！这将极大改进我们科研的方式。"
+tech_micromechanics_desc: "令人震惊的研究成果！我们的科学家终于打开了新微观世界的力学大门！这将极大改进我们科研的方式。"
+
+tech_nanite_energy_reaction: "纳米能量反应"
+TECH_NANITE_ENERGY_REACTION_TITLE: "纳米能量反应"
+TECH_NANITE_ENERGY_REACTION_DESC: "我们的科学家发现了一些微小结构能够产生巨大的能量反应，这将为我们的纳米结构提供能量"
+tech_nanite_energy_reaction_desc: "我们已经拥有制造纳米机械所需的一切理论和工具了。利用人工零点能量场，我们可以让纳米机械自发地从人工真空吸取能量，并激发自身的粒子反应，使其在微观上自发地构成我们想要的物质。而通过纳米自动机，我们可以不断地向其投入基本粒子以让其自我复制，从而在宏观层面上将任意物质重塑成我们想要的物质。"
+
+tech_stargate_drive: "星门折跃器"
+TECH_STARGATE_DRIVE_TITLE: "星门折跃器"
+TECH_STARGATE_DRIVE_DESC: "这种折跃器是古代的跨银河文明留下的精密构造，能够跨越天文数字的距离"
+tech_stargate_drive_desc: "这种折跃器是古代的跨银河文明留下的精密构造，能够跨越天文数字的距离"
+
+tech_gatebuilder_reactor: "建门者能源核心"
+TECH_GATEBUILDER_REACTOR_TITLE: "建门者能源核心"
+TECH_GATEBUILDER_REACTOR_DESC: "这种复杂结构的能源系统貌似只能适用于纳米设计的舰船"
+tech_gatebuilder_reactor_desc: "这种复杂结构的能源系统貌似只能适用于纳米设计的舰船"
+
+tech_distar_sensor: "远星传感器"
+TECH_DISTAR_SENSOR_TITLE: "远星传感器"
+TECH_DISTAR_SENSOR_DESC: "可以一次性释放大量的纳米侦测机器人，跨越繁星的距离进行探测"
+tech_distar_sensor_desc: "可以一次性释放大量的纳米侦s测机器人，跨越繁星的距离进行探测"
+tech_nanostructure_engineering: "纳米结构工程"
+TECH_NANOSTRUCTURE_ENGINEERING_TITLE: "纳米结构工程"
+TECH_NANOSTRUCTURE_ENGINEERING_DESC: "在掌握了充足的理论基础后，我们开始制造物理可行的精巧纳米结构"
+tech_nanostructure_engineering_desc: "在掌握了充足的理论基础后，我们开始制造物理可行的精巧纳米结构"
+
+tech_quantum_field_nanocybernetics: "量子场纳米控制论"
+tech_quantum_field_nanocybernetics_desc: "量子场论使我们理解到基本粒子是如何产生和湮灭的，但粒子与粒子的交互作用与影响我们到目前也只能预测，而很少能实际操控并引导至我们想要的结果。这一理论的出现或许能够填补这一空白，并让我们能够从量子场论的基础上构建纳米粒子甚至纳米机械。"
+tech_artificial_zero_point_energy_field: "人工零点能量场"
+tech_artificial_zero_point_energy_field_desc: "现在我们使用的大型设备已经可以从真空中提取大量的零点震动能量，但如何将其小型化依然是一个问题。或许我们可以换一个思路，使用量子场控制论制造一个人工的真空零点能量场，然后人为地诱发产生粒子，并使用某种微型设备捕获这一过程中激发的能量。"
+ 
+tech_vonneumann_nano_automata: "冯诺依曼纳米自动机"
+tech_vonneumann_nano_automata_desc: "早在计算机发明之初，我们就曾畅想过一种能够像生物一样自我繁殖或复制的机器，如今纳米机械的出现，将让这种接近科幻一般的科技得以实现。"
+
+tech_elementary_particle_reconstruction: "基本粒子重构"
+tech_elementary_particle_reconstruction_desc: "通过对量子场论和纳米控制论的进一步完善，结合两者之后，我们可以让基本粒子结合成我们想要的任意物质，这将是量子力学发展以来最伟大的应用发明！"
+
+tech_gatebuilder_thruster: "建门者推进器"
+tech_gatebuilder_thruster_desc: "根据对建门者的图纸的逆向工程，我们制造出了为纳米舰船专门打造的推进装置"
+TECH_GATEBUILDER_THRUSTER_TITLE: "建门者推进器"
+TECH_GATEBUILDER_THRUSTER_DESC: "根据对建门者的图纸的逆向工程，我们制造出了为纳米舰船专门打造的推进装置"
+
+tech_nanite_battle_computer: "纳米作战电脑"
+TECH_NANITE_BATTLE_COMPUTER_TITLE: "纳米作战电脑"
+TECH_NANITE_BATTLE_COMPUTER_DESC: "这种电脑适用于控制成群的纳米机器"
+tech_nanite_battle_computer_desc: "这种电脑适用于控制成群的纳米机器"
+
+tech_nanite_cluster_aura: "光环·纳米集群"
+TECH_NANITE_CLUSTER_AURA_TITLE: "光环·纳米集群"
+TECH_NANITE_CLUSTER_AURA_DESC: "围绕在我们舰船周围的游离纳米机器人，对我们和敌方舰船都会产生巨大的影响"
+tech_nanite_cluster_aura_desc: "围绕在我们舰船周围的游离纳米机器人，对我们和敌方舰船都会产生巨大的影响"
+
+tech_nanite_storm_aura: "光环·纳米风暴"
+TECH_NANITE_STORM_AURA_TITLE: "光环·纳米风暴"
+TECH_NANITE_STORM_AURA_DESC: "一个极其复杂的纳米控制系统，是古代建门者系统的衍生，用于操控星域内庞大数量的纳米机群"
+tech_nanite_storm_aura_desc: "一个极其复杂的纳米控制系统，是古代建门者系统的衍生，用于操控星域内庞大数量的纳米机群"
+
+tech_R_gateway: "R星门"
+tech_R_gateway_effect: "§H解锁舰船：§!R型星门"
+tech_R_gateway_desc: "我们现在掌握的技术，已经可以让我们建造这种梦幻般的移动式星门了，但目前它只能在特别的船坞中被组建。"
+gray_tech_1073_tooltip: "£engineering_research£$tech_R_gateway$\n\n$tech_R_gateway_effect$"
+
+tech_A_gateway: "0号星门"
+TECH_AGATE_TITLE: "0号星门"
+TECH_AGATE_DESC: "古代建门者残存的技术，这种星门直到建门者文明消失时还是未完成的状态，所以在建门者留下的档案中被称为0号星门，而如今的我们的文明已经具备了将它制造出来的能力"
+tech_A_gateway_desc: "古代建门者残存的技术，这种星门直到建门者文明消失时还是未完成的状态，所以在建门者留下的档案中被称为0号星门，而如今的我们的文明已经具备了将它制造出来的能力"
+
+tech_TMR_gatebuilder_core: "建门者工程核心"
+TECH_TMRCORE_TITLE: "§H解锁巨构：§!建门者工程核心"
+TECH_TMRCORE_DESC: "过去用来调度纳米工程机械的巨大核心的先进设计，据说可以轻而易举的建设整个银河，遥远的的L星团说不定也是由这台巨大的神秘设备调度和建设，如今，我们的文明也只能复原其本身很少的一点功能，那就是拆解和毁灭"
+tech_TMR_gatebuilder_core_desc: "过去用来调度纳米工程机械的巨大核心的先进设计，据说可以轻而易举的建设整个银河，遥远的的L星团说不定也是由这台巨大的神秘设备调度和建设，如今，我们的文明也只能复原其本身很少的一点功能，那就是拆解和毁灭"
+tech_TMR_gatebuilder_core_effect: "$TECH_TMRCORE_TITLE$"
+gray_tech_1072_tooltip: "£engineering_research£$tech_TMR_gatebuilder_core$\n\n$TECH_TMRCORE_TITLE$"
+
+tech_TMR_nanite_factory: "行星纳米工厂"
+TECH_TMRFAC_TITLE: "§H解锁巨构：§E行星纳米工厂§!\n§H解锁恒星基地建筑：§!['starbase_building:nanite_star_shipyard', $sm_nanite_star_shipyard$]"
+TECH_TMRFAC_DESC: "古代建门者封存的技术之一，在久远的上古时期，这些曾机器一刻不停地发出轰鸣声，用于制造跨越难以想象距离的巨大星门构造，如今，根据解析的技术，我们可以用它来制造古代的哨兵战舰和R型星门"
+tech_TMR_nanite_factory_desc: "古代建门者封存的技术之一，在久远的上古时期，这些曾机器一刻不停地发出轰鸣声，用于制造跨越难以想象距离的巨大星门构造，如今，根据解析的技术，我们可以用它来制造古代的哨兵战舰和R型星门"
+tech_TMR_nanite_factory_effect: "$TECH_TMRFAC_TITLE$"
+gray_tech_1071_tooltip: "£engineering_research£$tech_TMR_nanite_factory$\n\n$TECH_TMRFAC_TITLE$"
+
+
+tech_TMR_gatebuilder_army: "建门者军队"
+TECH_TMR_GATEBUILDER_ARMY_TITLE: "建门者军队"
+TECH_TMR_GATEBUILDER_ARMY_DESC: "微械组成的军队可以在星球表面迅速铺开，对星球进行占领和打击"
+tech_TMR_gatebuilder_army_desc: "微械组成的军队可以在星球表面迅速铺开，对星球进行占领和打击"
+TMR_gatebuilder_grey_army: "建门者军队"
+TMR_gatebuilder_grey_army_desc: "微械组成的军队可以在星球表面迅速铺开，对星球进行占领和打击"

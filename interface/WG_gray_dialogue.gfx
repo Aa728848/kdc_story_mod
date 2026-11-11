@@ -1,0 +1,301 @@
+
+spriteTypes = {
+	spriteType = {
+		name = "GFX_wg_dialogue_window_bg"
+		texturefile = "gfx/interface/wg_dialogue/bg.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_above_elements"
+		texturefile = "gfx/interface/wg_dialogue/wg_dialogue_above_elements.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_above_elements_no_option"
+		texturefile = "gfx/interface/wg_dialogue/wg_dialogue_above_elements_no_option.dds"
+	}
+
+	# title
+	spriteType = {
+		name = "GFX_wg_dialogue_title_kdc_distant_star"
+		texturefile = "gfx/interface/wg_dialogue/icon_title/kdc_distant_star.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_title_kdc_mod_group"
+		texturefile = "gfx/interface/wg_dialogue/icon_title/kdc_title.dds"
+		alwaysTransparent = yes
+	}
+	# bg
+
+	# 按钮
+	spriteType = {
+		name = "GFX_wg_dialogue_button_log"
+		texturefile = "gfx/interface/wg_dialogue/button_log.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_button_skip"
+		texturefile = "gfx/interface/wg_dialogue/button_skip.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_click_any_option"
+		texturefile = "gfx/interface/wg_dialogue/click_any_option.dds"
+		# masking_texture = "gfx/interface/wg_dialogue/click_any_option_mask.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_button_460_56"
+		texturefile = "gfx/interface/wg_dialogue/wg_button_460.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/wg_dialogue/wg_button_460_animation_mask.dds"
+			animationtexturefile = "gfx/interface/wg_dialogue/wg_button_460_animated_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 40.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"       #add, multiply, overlay
+			animationtype = "scrolling"      #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	# 立绘
+	# 灰风
+	spriteType = {
+		name = "GFX_wg_dialogue_gray_portrait"
+		texturefile = "gfx/interface/wg_leader_diplo/gray/gray_04_portrait.dds"
+		alwaysTransparent = yes
+	}
+	# 灰风立绘
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_1"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray1.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_2"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray2.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_3"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray3.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_4"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray4.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_5"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray5.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_6"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray6.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_7"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray7.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_8"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray8.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_9"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray9.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_10"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray10.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_11"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray11.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_12"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray12.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_13"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray13.dds"
+		alwaysTransparent = yes
+	}
+	# spriteType = {
+	# 	name = "GFX_wg_gray_portrait_diff_14"
+	# 	texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray14.dds"
+	# 	alwaysTransparent = yes
+	# }
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_15"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray15.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_1_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_01_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_2_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_02_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_3_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_03_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_4_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_04_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_5_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_05_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_6_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_06_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_7_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_07_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_8_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_08_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_9_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_09_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_10_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_10_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_11_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_11_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_12_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_12_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_13_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_13_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+	# spriteType = {
+	# 	name = "GFX_wg_gray_portrait_diff_14_lost_focus"
+	# 	texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_14_lost_focus.dds"
+	# 	alwaysTransparent = yes
+	# }
+	spriteType = {
+		name = "GFX_wg_gray_portrait_diff_15_lost_focus"
+		texturefile = "gfx/interface/wg_dialogue/portrait_gray/gray_15_lost_focus.dds"
+		alwaysTransparent = yes
+	}
+
+	# bg
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_alien_city"
+		texturefile = "gfx/interface/wg_dialogue/bg/alien_city.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_capital_city"
+		texturefile = "gfx/interface/wg_dialogue/bg/capital_city.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_gray_signal"
+		texturefile = "gfx/interface/wg_dialogue/bg/gray_signal.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_rural_area"
+		texturefile = "gfx/interface/wg_dialogue/bg/rural_area.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_command_center"
+		texturefile = "gfx/interface/wg_dialogue/bg/command_center.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_ruler_office"
+		texturefile = "gfx/interface/wg_dialogue/bg/ruler_office.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_gray_ancient_factory"
+		texturefile = "gfx/interface/wg_dialogue/bg/gray_ancient_factory.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_port_city"
+		texturefile = "gfx/interface/wg_dialogue/bg/port_city.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_stage_clover"
+		texturefile = "gfx/interface/wg_dialogue/bg/stage_clover.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_gray_isolation_lab"
+		texturefile = "gfx/interface/wg_dialogue/bg/gray_isolation_lab.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_ruler_room"
+		texturefile = "gfx/interface/wg_dialogue/bg/ruler_room.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_wg_dialogue_bg_data_center"
+		texturefile = "gfx/interface/wg_dialogue/bg/data_center.dds"
+		masking_texture = "gfx/interface/wg_dialogue/gal_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+}

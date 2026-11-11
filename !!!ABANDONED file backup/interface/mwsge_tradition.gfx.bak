@@ -1,0 +1,92 @@
+
+spriteTypes = {
+	# 军事
+	spriteType = {
+		name = "GFX_tr_wg_milltary_lightning_war"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_milltary_lightning_war.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_milltary_dreadnoughtism"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_milltary_dreadnoughtism.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_milltary_great_fleet"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_milltary_great_fleet.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_milltary_enhanced_logistics"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_milltary_enhanced_logistics.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_milltary_fairy_shipyard_workers"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_milltary_fairy_shipyard_workers.dds"
+	}
+	# 支配
+	spriteType = {
+		name = "GFX_tr_wg_domination_vertical_management"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_domination_vertical_management.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_domination_warshipgirls_council"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_domination_warshipgirls_council.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_domination_peoples_police_officer"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_domination_supervisory_committee.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_domination_supervisory_committee"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_domination_supervisory_committee.dds"
+	}
+	# 科教
+	spriteType = {
+		name = "GFX_tr_wg_science_to_boldly_go"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_science_to_boldly_go.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_science_fairy_researchers"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_science_fairy_researchers.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_science_superpower_of_eduction"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_science_superpower_of_eduction.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_science_university"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_science_university.dds"
+	}
+	# 繁荣
+	spriteType = {
+		name = "GFX_tr_wg_prosperity_interstellar_trading"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_prosperity_interstellar_trading.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_prosperity_industrial_upgrading"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_prosperity_industrial_upgrading.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_prosperity_fairy_construction_group"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_prosperity_fairy_construction_group.dds"
+	}
+	# 扩张
+	spriteType = {
+		name = "GFX_tr_wg_expansion_new_age"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_expansion_new_age.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_expansion_living_space_adjustment"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_expansion_living_space_adjustment.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_expansion_fairy_space_construction_unit"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_expansion_fairy_space_construction_unit.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_expansion_overexpanding"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_expansion_overexpanding.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_wg_expansion_oribital_fairy_duty_officer"
+		textureFile = "gfx/interface/icons/traditions/tr_wg_expansion_oribital_fairy_duty_officer.dds"
+	}
+}

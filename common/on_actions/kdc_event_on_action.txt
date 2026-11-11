@@ -1,0 +1,240 @@
+# called during empire initialization when starting a new game
+# scope: country
+on_game_start_country = {
+	events = {
+		kdc_event.1
+
+		# mwsge_major_project.20001
+		kdc_event.9990
+	}
+}
+
+on_game_start = {
+	events = {
+		gray_tech.99
+	}
+}
+
+# A country has increased the level of a tech, use last_increased_tech trigger to check tech and level.
+# This = Country
+on_tech_increased = {
+	events = {
+		gray_origin.2010
+	}
+}
+
+# Triggers event when ship enters a system
+# Scope = Ship
+# From = System
+# FromFrom = Country
+on_entering_system = {
+	events = {
+		gray_origin.20
+		gray_origin.25
+		gray_origin.62
+		gray_origin.64
+		gray_origin.66
+		gray_origin.68
+		gray_origin.70
+	}
+}
+# A fleet has entered a system | See also: on_fleet_auto_move_arrival
+# Scope = Fleet
+# From = System
+on_entering_system_fleet = {
+	events = {
+		
+	}
+}
+
+# This = owner of fleet 1 (combatant)
+# From = owner of fleet 2 (destroyed)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_fleet_destroyed_perp = {
+	events = {
+		gray_origin.21
+	}
+}
+
+# A country has gained a surveyed status on a planet. Happens after "on_survey" if a science ship surveyed a planet.
+# Root = Planet
+# From = Country
+# FromFrom = Fleet of the science ship that surveyed it, if any
+on_planet_surveyed = {
+	events = {
+		gray_origin.23
+	}
+}
+
+# # No scope, like on_game_start
+# VOP_on_monthly_pulse = {
+# 	events = {
+# 		# gray_origin.999
+# 	}
+# 	# random_events = {
+# 	# 	1 = kdc_event.3
+# 	# 	3 = 0
+# 	# }
+# }
+
+VOP_on_monthly_pulse_country = {
+	events = {
+		gray_tech.1
+		gray_origin.204
+		# PR_job_mod.1
+	}
+}
+
+# This = owner of fleet 1
+# From = owner of fleet 2
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_entering_battle = {
+	events = {
+	}
+}
+
+# This = country
+# From = opponent war leader
+on_entering_war = {
+	events = {
+	}
+}
+
+# Triggered when two empires discover each other
+# This = Empire 1
+# From = Empire 2
+# Fromfromfrom = System where contact occurred
+on_first_contact = {
+	events = {
+	}
+}
+
+# A country has gained a surveyed status on a planet. Happens after "on_survey" if a science ship surveyed a planet.
+# Root = Country
+# From = system
+# FromFrom = Fleet of the science ship that surveyed it, if any
+on_system_survey = {
+	events = {
+		gray_origin.45
+	}
+}
+
+# a new leader is generated for an empire, to be available for recruitment
+# scope: country, from: leader
+on_leader_spawned = {
+	events = {
+		gray_origin.1001
+	}
+}
+
+# Executed when the ruler is ousted and goes back to their pre-ruler class
+# From = Previous Ruler, already has the new class
+# This = Country
+on_ruler_back_to_pre_ruler_class = {
+	events = {
+		gray_origin.1002
+	}
+}
+
+on_ruler_set = {
+	events = {
+		gray_origin.1007
+	}
+}
+
+# Triggers when a Special Project to apply a species modification template has completed.
+# Note that this will trigger once for each combination of planet & original species.
+#
+# This = Country
+# From = Species ( Post Modification )
+on_modification_complete = {
+	events = {
+		gray_origin.1003
+		gray_origin.1004
+	}
+}
+
+# A ship has been built
+# Root = Ship
+# From = Planet
+on_ship_built = {
+	events = {
+		gray_mega.1
+	}
+}
+
+# This = owner of fleet
+# From = disbanded fleet
+on_fleet_disbanded = {
+	events = {
+		gray_mega.3 # 先检测有没有重复操作
+		gray_mega.2
+	}
+}
+
+# A Megastructure has been upgraded
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+on_megastructure_upgraded = {
+	events = {
+		gray_mega.4
+		gray_mega.100
+		gray_mega.101
+		gray_mega.102
+		gray_mega.103
+	}
+}
+
+# No scope, like on_game_start
+# Does not run when loading MP saves due to OOS concerns
+on_single_player_save_game_load = {
+	events = {
+		gray_mega.1000
+		gray_origin.201
+		gray_origin.301
+		gray_tech.99
+	}
+}
+
+# Planet has been terraformed
+# This = Planet
+# From = Terraforming country
+on_terraforming_complete = {
+	events = {
+		gray_origin.2000
+	}
+}
+
+# This = Planet scope
+# From = Country
+# FromFrom = Pop
+on_pop_purged = {
+	events = {
+		gray_origin.1100
+	}
+}
+
+# A leader leveled up.
+# Scope = Country
+# From = Leader
+on_leader_level_up = {
+	events = {
+		gray_origin.300
+	}
+}
+
+# A planet has been colonized.
+# Scope = Planet
+on_colonized = {
+	events = {
+	}
+}
+
+on_single_player_save_game_load = {
+	events = {
+		gray_origin.999
+	}
+}

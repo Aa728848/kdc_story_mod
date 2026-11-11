@@ -1,0 +1,27 @@
+base_buildtime = @zone_buildtime
+potential = { # planet scope
+    exists = owner
+    owner = {
+        is_wilderness_empire = no
+        gray_country_trigger = yes
+    }
+}
+
+resources = {
+    category = planet_zones
+    cost = {
+        nanites = @gray_zone_nanites_cost
+    }
+}
+
+zone_sets = {
+    urban
+    habitat_urban
+    arcology
+    ring_world
+}
+
+planet_modifier = {
+    zone_building_slots_add = 3
+}
+

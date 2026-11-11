@@ -1,0 +1,51 @@
+
+spriteTypes = {	
+	spriteType = {
+		name = "GFX_evt_kdc_mod_construction"
+		texturefile = "gfx/event_pictures/kdc_mod_construction.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_kdc_mod_hurricane"
+		texturefile = "gfx/event_pictures/kdc_mod_hurricane.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_wsg_gray"
+		texturefile = "gfx/event_pictures/wsg_gray.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_wg_command_center"
+		texturefile = "gfx/event_pictures/wg_command_center.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_wg_gray_signal"
+		texturefile = "gfx/event_pictures/gray_signal.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_wsg_no_video"
+		texturefile = "gfx/event_pictures/wsg_no_video.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_gray"
+		texturefile = "gfx/event_pictures/origins/origin_gray.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_gray_species_debug_explain"
+		texturefile = "gfx/event_pictures/gray_species_debug_explain.dds"
+		alwaystransparent = yes
+	}
+}
+
+

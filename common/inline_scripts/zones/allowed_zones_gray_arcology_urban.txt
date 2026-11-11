@@ -1,0 +1,11 @@
+include = {
+    zone_trade
+    zone_gray_arcology_urban_nanites
+
+    zone_gray_industrial
+    zone_gray_factory
+    zone_gray_foundry
+    zone_gray_research
+    zone_gray_unity
+    zone_gray_soldier
+}

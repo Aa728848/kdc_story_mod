@@ -1,0 +1,304 @@
+namespace = wg_lady
+
+country_event = {
+	id = wg_lady.998
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_lady.52
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+country_event = {
+	id = wg_lady.50
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_old_leader_diplo
+
+country_event = {
+	id = wg_old_leader_diplo.2006
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_old_leader_diplo.4000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_old_leader_diplo.3000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_old_leader_diplo.5000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_old_leader_diplo.6000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+namespace = wsg
+
+country_event = {
+	id = wsg.9990
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wsg.9992
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wsg.9997
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wsg.12007
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_worm
+
+country_event = {
+	id = wg_worm.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_astesia
+
+country_event = {
+	id = wg_astesia.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_crisis
+
+country_event = {
+	id = wg_crisis.64
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_crisis.23
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = AOW_mega_notification_vanilla
+
+country_event = {
+	id = AOW_mega_notification_vanilla.5
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = AOW_mega_notification
+
+country_event = {
+	id = AOW_mega_notification.1013
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_affection
+
+country_event = {
+	id = wg_affection.8
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+country_event = {
+	id = wg_affection.16
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = ap_wg_crisis
+
+country_event = {
+	id = ap_wg_crisis.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_aft
+
+country_event = {
+	id = wg_aft.30000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = PR_job_mod_KDC
+
+country_event = {
+	id = PR_job_mod_KDC.10
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wg_coffee
+
+country_event = {
+	id = wg_coffee.16
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = ap_wg_crisis
+
+country_event = {
+	id = ap_wg_crisis.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}
+
+namespace = wsgranking
+
+country_event = {
+	id = wsgranking.1001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		always = no
+	}
+	immediate = {
+	}
+}

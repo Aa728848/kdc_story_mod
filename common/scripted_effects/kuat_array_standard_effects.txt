@@ -1,0 +1,255 @@
+# METHODS 函数表
+# 警告：所有变量必须处于同一个值域（SCOPE），否则以下脚本方法将不能读取数据
+
+####################################################################################
+# kuat_new_array = { ARRAY, SIZE, i0~i9 }
+# 
+# creates a new array 创建一个新数组
+# input: 
+# ARRAY -  # 数组名
+# SIZE -  # 数组大小
+# i0 to i9 -  # 数组内的数值
+
+####################################################################################
+# kuat_add_array = { ARRAY, VALUE }
+# 
+# 在数组最后添加一个变量，数值可以为另外一个变量名
+# input: ARRAY, VALUE # 数组名及要添加的数值
+# 数组最大索引为9999
+
+####################################################################################
+# kuat_set_array = { ARRAY, VALUE, INDEX }
+# 
+# 更改数组内指定索引储存的数值
+# input: ARRAY, VALUE, INDEX # 数组名，数值，索引
+
+####################################################################################
+# kuat_set_array_variable = { ARRAY, VALUE, VARIABLE }
+# 
+# 根据输入变量的值，更改数组内[输入变量对应的索引]里储存的数值
+# input: ARRAY, VALUE, VARIABLE # 数组名，数值，索引（需要为一个变量）
+
+####################################################################################
+# kuat_get_digits = { ARRAY, VARIABLE }
+# 
+# 将变量值转换成一个数列 （个位数，10位数，百位数，千位数），用于函数读取变量值
+# INPUT: VARIABLE # 需要转换的变量
+# OUTPUT: ARRAY, can be same as VARIABLE # 转换成的数列名，可与VARIABLE 重复
+
+####################################################################################
+# kuat_get_array = { ARRAY, INDEX, OUT }
+# 
+# 将数组内指定索引的值复制到指定的变量中
+# input: ARRAY 数组名, INDEX 索引（整数）
+# output: OUT(variable name)# 变量名(输出)
+
+####################################################################################
+# kuat_get_array_variable = { ARRAY, VARIABLE, OUT }
+# 
+# 将数组内指定索引（数值为一个变量）储存的值复制到指定的变量中
+# input: ARRAY 数组名, VARIABLE(variable name of a index) # 索引（需要为一个变量）
+# output: OUT(variable name) # 变量名(输出)
+
+####################################################################################
+# kuat_clear_array_variable = { ARRAY, VARIABLE }
+# 
+# 根据某一个变量的值，清除数组内指定索引的值
+# input: ARRAY, VARIABLE # 数组名，索引（需要为一个变量）
+
+####################################################################################
+# kuat_clear_array_variable_at_index = { ARRAY, INDEX }
+# 
+# 清除数组内指定索引的值
+# input: ARRAY, INDEX # 数组名，索引（整数）
+
+#设施一个数组，使其具备0-9的变量内容，并设置其规格 ARRAY:数组名 SIZE:数组规格 i0~i9:数组内的数值
+kuat_new_array = {
+	optimize_memory
+	set_variable = {
+		which = $ARRAY$
+		value = $SIZE$
+	}
+	[[i0] set_variable = { which = $ARRAY$_0 value = $i0$ }]
+	[[i1] set_variable = { which = $ARRAY$_1 value = $i1$ }]
+	[[i2] set_variable = { which = $ARRAY$_2 value = $i2$ }]
+	[[i3] set_variable = { which = $ARRAY$_3 value = $i3$ }]
+	[[i4] set_variable = { which = $ARRAY$_4 value = $i4$ }]
+	[[i5] set_variable = { which = $ARRAY$_5 value = $i5$ }]
+	[[i6] set_variable = { which = $ARRAY$_6 value = $i6$ }]
+	[[i7] set_variable = { which = $ARRAY$_7 value = $i7$ }]
+	[[i8] set_variable = { which = $ARRAY$_8 value = $i8$ }]
+	[[i9] set_variable = { which = $ARRAY$_9 value = $i9$ }]
+}
+
+# 在数组最后添加一个变量
+# add a number to the end of an array
+# input: ARRAY, VALUE # 数组名及要添加的数值
+# 数组最大索引为9999
+# maximum index: 9999
+kuat_add_array = {
+	optimize_memory
+	inline_script = { 
+        script = kuat_reasearch_event/kuat_add_array_variable_Configs/kuat_add_array_variable_Config 
+        ARRAY = $ARRAY$ VALUE = $VALUE$
+    }
+}
+
+# set the variable when the index has four digits ( 1000~9999 )
+# kuat_add_array_set_variable = {
+# 	optimize_memory
+# 	set_variable = { which = $ARRAY$_$INDEX$ value = $VALUE$ }
+# 	clear_variable = $ARRAY$_DIGIT_1
+# 	clear_variable = $ARRAY$_DIGIT_2
+# 	clear_variable = $ARRAY$_DIGIT_3
+# 	clear_variable = $ARRAY$_DIGIT_4
+# 	clear_variable = $ARRAY$_DIGITS
+# 	clear_variable = $ARRAY$_AT_DIGIT
+# 	clear_variable = $ARRAY$_TEMP_INT
+# 	clear_variable = $ARRAY$_TEMP
+# }
+
+# 更改数组内指定索引的数值
+# set the value in an array at the given index
+# input: ARRAY, VALUE, INDEX # 数组名，数值，索引
+# kuat_set_array = {
+# 	optimize_memory
+# 	set_variable = {
+# 		which = $ARRAY$_$INDEX$
+# 		value = $VALUE$
+# 	}
+# }
+
+# 根据某一个变量的值，更改数组内指定索引的数值
+# input: ARRAY, VALUE, VARIABLE # 数组名，数值，索引（需要为一个变量）
+# output: variable ($ARRAY$_(variable value), $value$)
+kuat_set_array_variable = {
+	optimize_memory
+	inline_script = { 
+        script = kuat_reasearch_event/kuat_set_array_variable_Configs/kuat_set_array_variable_Config 
+        ARRAY = $ARRAY$ VALUE = $VALUE$ VARIABLE = $VARIABLE$
+    }
+}
+
+# convert variable value into readable digits in form of arrays
+# will generate a country flag named $ARRAY$_negative if the input value is negative
+# INPUT: VARIABLE
+# OUTPUT: ARRAY
+kuat_get_digits = {
+	optimize_memory
+	remove_array_variables = { ARRAY = $ARRAY$ }
+	set_variable = { which = $ARRAY$_TEMP value = $VARIABLE$ }
+	if = {
+		limit = { check_variable = { which = $ARRAY$_TEMP value < 0 }}
+		set_country_flag = $ARRAY$_negative
+		multiply_variable = { which = $ARRAY$_TEMP value = -1 }
+	}
+	set_variable = { which = $ARRAY$_DIGITS value = 1 }
+	
+	while = { # push the number to decimals until first digit is at the single digit (123 -> 1.23)
+		limit = { check_variable = { which = $ARRAY$_TEMP value >= 10 }}
+		divide_variable = { which = $ARRAY$_TEMP value = 10 }
+		change_variable = { which = $ARRAY$_DIGITS value = 1 }
+	}
+
+	if = {
+		limit = { NOT = { check_variable = { which = $VARIABLE$ value = 0 }}}
+		while = {
+			count = $ARRAY$_DIGITS #3
+			set_variable = { which = $ARRAY$_TEMP_INT value = $ARRAY$_TEMP }
+			floor_variable = $ARRAY$_TEMP_INT
+			change_variable = { which = $ARRAY$_AT_DIGIT value = 1 }
+			subtract_variable = { which = $ARRAY$_TEMP value = $ARRAY$_TEMP_INT }
+
+			if = { # save the digit number to another variable
+				limit = { check_variable = { which = $ARRAY$_AT_DIGIT value = 1 }}
+				set_variable = { which = $ARRAY$_DIGIT_1 value = $ARRAY$_TEMP_INT }
+			} 
+			else_if = {
+				limit = { check_variable = { which = $ARRAY$_AT_DIGIT value = 2 }}
+				set_variable = { which = $ARRAY$_DIGIT_2 value = $ARRAY$_TEMP_INT }
+			} 
+			else_if = {
+				limit = { check_variable = { which = $ARRAY$_AT_DIGIT value = 3 }}
+				set_variable = { which = $ARRAY$_DIGIT_3 value = $ARRAY$_TEMP_INT }
+			} 
+			else_if = {
+				limit = { check_variable = { which = $ARRAY$_AT_DIGIT value = 4 }}
+				set_variable = { which = $ARRAY$_DIGIT_4 value = $ARRAY$_TEMP_INT }
+			}
+
+			multiply_variable = { which = $ARRAY$_TEMP value = 10 }
+		}
+	}
+	clear_variable = $ARRAY$_TEMP
+	clear_variable = $ARRAY$_AT_DIGIT
+	clear_variable = $ARRAY$_TEMP_INT
+}
+
+# 将数组内指定索引的值复制到指定的变量中
+# copy the value in an array at the given index to the specific variable
+# input: ARRAY 数组名, INDEX 索引
+# output: OUT(variable name)# 变量名(输出)
+# kuat_get_array = {
+# 	optimize_memory
+# 	set_variable = { which = $OUT$ value = $ARRAY$_$INDEX$ }
+# }
+
+# 将数组内指定索引（值为一个变量）的值复制到指定的变量中
+# copy the value in an array at the given index (referred to an variable) to the specific variable
+# input: ARRAY 数组名, VARIABLE(variable name) # 变量名(输入)
+# output: OUT(variable name) # 变量名(输出)
+kuat_get_array_variable = {
+	optimize_memory
+	inline_script = { 
+        script = kuat_reasearch_event/kuat_get_array_variable_Configs/kuat_get_array_variable_Config 
+        ARRAY = $ARRAY$ OUT = $OUT$ VARIABLE = $VARIABLE$
+    }
+}
+
+remove_array_variables = {
+	optimize_memory
+	clear_variable = $ARRAY$_DIGIT_1 
+	clear_variable = $ARRAY$_DIGIT_2 
+	clear_variable = $ARRAY$_DIGIT_3 
+	clear_variable = $ARRAY$_DIGIT_4 
+	clear_variable = $ARRAY$_DIGITS 
+	clear_variable = $ARRAY$_AT_DIGIT 
+	clear_variable = $ARRAY$_TEMP_INT 
+	clear_variable = $ARRAY$_TEMP 
+	remove_country_flag = $ARRAY$_negative
+}
+
+# 从数列中寻找与指定变量相等的项
+# input: ARRAY 数组名, VALUE 需要对比的值
+# output: OUT(variable name)# 变量名(输出) 
+# 输出值：找到的索引
+kuat_find_array_variable = {
+	inline_script = { 
+        script = kuat_reasearch_event/kuat_get_array_variable_Configs/kuat_find_array_variable_Config 
+        ARRAY = $ARRAY$ OUT = $OUT$ VALUE = $VALUE$
+    }
+}
+
+# 根据某一个变量的值，清除数组内指定索引的值
+# clear variable in an array at the given index, which the index is a integer of a variable in game
+# input: ARRAY, VARIABLE # 数组名，变量名
+kuat_clear_array_variable = {
+	optimize_memory
+	inline_script = { 
+        script = kuat_reasearch_event/kuat_clear_array_variable_Configs/kuat_clear_array_variable_Config 
+        ARRAY = $ARRAY$ VARIABLE = $VARIABLE$
+    }
+}
+
+# kuat_clear_array_variable_at_index = {
+# 	optimize_memory
+# 	clear_variable = $ARRAY$_$INDEX$
+# 	clear_variable = $ARRAY$_DIGIT_1
+# 	clear_variable = $ARRAY$_DIGIT_2
+# 	clear_variable = $ARRAY$_DIGIT_3
+# 	clear_variable = $ARRAY$_DIGIT_4
+# 	clear_variable = $ARRAY$_DIGITS
+# 	clear_variable = $ARRAY$_AT_DIGIT
+# 	clear_variable = $ARRAY$_TEMP_INT
+# 	clear_variable = $ARRAY$_TEMP
+# }

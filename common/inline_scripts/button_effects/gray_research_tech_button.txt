@@ -1,0 +1,16 @@
+potential = {
+    from = { check_variable = { which = gray_research_category_show value = $CAT$ }}
+}
+allow = {
+    default_gray_tech_button_allow_trigger = {
+        ID = $ID$
+    }
+}
+effect = {
+    default_gray_research_button_effect = {
+        ID = $ID$
+        research_use_days = $research_use_days$
+        tech_points = $tech_points$
+        req_days = $req_days$
+    }
+}

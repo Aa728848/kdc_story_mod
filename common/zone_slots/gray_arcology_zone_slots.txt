@@ -1,0 +1,74 @@
+slot_gray_arcology_urban_01 = {
+    inline_script = zones/excluded_zones_gray_arcology
+
+    included_zone_sets = {
+        arcology
+    }
+    excluded_zone_sets = {
+        minerals
+    }
+
+    unlock = { # planet scope
+        uses_district_set = pc_wg_graygoo
+    }
+}
+
+slot_gray_arcology_urban_02 = {
+    inline_script = zones/excluded_zones_gray_arcology
+
+    included_zone_sets = {
+        arcology
+    }
+    excluded_zone_sets = {
+        minerals
+    }
+
+    unlock = { # planet scope
+        uses_district_set = pc_wg_graygoo
+    }
+}
+
+slot_gray_arcology_rural_01 = {
+    include = {
+        zone_gray_arcology_nanites
+    }
+    inline_script = zones/excluded_zones_gray_arcology_rural
+
+    included_zone_sets = {
+        arcology
+    }
+
+    unlock = { # planet scope
+        uses_district_set = pc_wg_graygoo
+    }
+}
+
+slot_gray_arcology_rural_02 = {
+    include = {
+        zone_gray_arcology_nanites
+    }
+    inline_script = zones/excluded_zones_gray_arcology_rural
+
+    included_zone_sets = {
+        arcology
+    }
+
+    unlock = { # planet scope
+        uses_district_set = pc_wg_graygoo
+    }
+}
+
+slot_gray_arcology_rural_03 = {
+    include = {
+        zone_gray_arcology_nanites
+    }
+    inline_script = zones/excluded_zones_gray_arcology_rural
+
+    included_zone_sets = {
+        arcology
+    }
+
+    unlock = { # planet scope
+        uses_district_set = pc_wg_graygoo
+    }
+}

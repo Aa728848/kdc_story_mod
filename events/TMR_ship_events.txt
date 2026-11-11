@@ -1,0 +1,187 @@
+namespace = naniteship
+
+country_event = {
+	id = naniteship.1000
+	title = naniteship.1000.name
+	desc = naniteship.1000.desc
+	picture = GFX_evt_gray_goo_ships
+	is_triggered_only = yes
+
+	trigger = {
+		always = no
+		last_increased_tech = tech_gatebuilder_ships
+	}
+
+	option = {
+		name = naniteship.1000.a
+		capital_scope = { enable_special_project = {
+			name = gatebuilder_ships_graphical_culture
+			location = this
+			owner = root
+		}}
+	}
+
+	option = {
+		name = NOTIME
+	}
+
+}
+
+country_event = {
+	id = naniteship.1001
+	title = naniteship.1000.name
+	desc = naniteship.1001.desc
+	picture = GFX_evt_gray_goo_ships
+	is_triggered_only = yes
+
+	immediate = {
+		set_graphical_culture = gatebuilder_02
+		every_controlled_fleet = {
+			if = {
+				limit = { exists = leader }
+				leader = { save_event_target_as = fleet_leader }
+				set_fleet_flag = has_leader
+				unassign_leader = this
+			}
+			every_owned_ship = {
+				limit = { OR = {
+					is_ship_size = corvette
+					is_ship_size = destroyer
+					is_ship_size = cruiser
+					is_ship_size = battleship
+					is_ship_size = titan
+				}}
+				switch = {
+					trigger = is_ship_size
+					corvette = { PREV = { create_ship = {
+						random_existing_design = corvette
+						graphical_culture = gatebuilder_02
+					}}}
+					destroyer = { PREV = { create_ship = {
+						random_existing_design = destroyer
+						graphical_culture = gatebuilder_02
+					}}}
+					cruiser = { PREV = { create_ship = {
+						random_existing_design = cruiser
+						graphical_culture = gatebuilder_02
+					}}}
+					battleship = { PREV = { create_ship = {
+						random_existing_design = battleship
+						graphical_culture = gatebuilder_02
+					}}}
+					titan = { PREV = { create_ship = {
+						random_existing_design = titan
+						graphical_culture = gatebuilder_02
+					}}}
+				}
+				
+			}
+			if = {
+				limit = { has_fleet_flag = has_leader }
+				set_leader = event_target:fleet_leader 
+			}
+		}
+		random_owned_ship = {
+			limit = { 
+				is_ship_size = colossus 
+				fleet = { is_fleet_idle = yes }
+			}
+			create_fleet = {
+				name = random
+				effect = {
+					set_owner = root
+					create_ship = {
+						name = random
+						random_existing_design = colossus
+						graphical_culture = gatebuilder_02
+					}
+					set_location = prev
+				}
+			}
+			delete_ship = this
+		}
+		every_owned_ship = {
+			limit = { is_ship_size = constructor }
+			create_fleet = {
+				effect = {
+					set_owner = root
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+						graphical_culture = gatebuilder_02
+					}
+					set_fleet_stance = evasive
+					set_location = prev
+				}
+			}
+			delete_ship = this
+		}
+		every_owned_ship = {
+			limit = { is_ship_size = science }
+			if = {
+				limit = { exists = leader }
+				leader = { save_event_target_as = science_leader }
+				fleet = { unassign_leader = this }
+			}
+			create_fleet = {
+				effect = {
+					set_owner = root
+					create_ship = {
+						name = random
+						random_existing_design = science
+						graphical_culture = gatebuilder_02
+					}
+					set_fleet_stance = evasive
+					set_location = prev.fleet
+					set_leader = event_target:science_leader
+				}
+			}
+			delete_ship = this
+		}
+		every_owned_ship = {
+			limit = { is_ship_size = juggernaut }
+			create_fleet = {
+				effect = {
+					set_owner = root
+					create_ship = {
+						name = random
+						random_existing_design = juggernaut
+						graphical_culture = gatebuilder_02
+					}
+					set_location = prev.fleet
+				}
+			}
+			delete_ship = this
+		}
+		every_planet_within_border = {
+			limit = { exists = orbital_station }
+			if = {
+				limit = { has_mining_station = yes }
+				orbital_station = { dismantle = yes }
+				create_mining_station = { owner = ROOT }
+			} else_if = {
+				limit = { has_research_station = yes }
+				orbital_station = { dismantle = yes }
+				create_research_station = { owner = ROOT }
+			}
+		}
+	}
+
+	option = {
+		name = naniteship.1001.a
+	}
+}
+# 当减少灰蛊哨兵挂掉时，减少计数
+country_event = {
+	id = naniteship.10000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = { is_ship_size = nanitecrop_sentry }
+	}
+
+	immediate = {
+		change_variable = { which = num_nanitecrop_sentry value = -1 }
+	}
+}

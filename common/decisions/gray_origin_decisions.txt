@@ -1,0 +1,275 @@
+decision_nano_buildings_basic_sr = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	
+	resources = {
+		category = decisions
+	}	
+	potential = {
+		has_active_building = building_gray_nano_rare_resource_factory
+		NOT = { check_variable = { which = nano_building_rare_resouces_produce_type value = 0 }}
+	}
+	
+	allow = {
+		
+	}
+	
+	effect = {
+		custom_tooltip = decision_nano_buildings_basic_sr_desc
+		hidden_effect = { set_variable = { which = nano_building_rare_resouces_produce_type value = 0 }}
+	}
+}
+decision_nano_buildings_advance_sr = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	
+	resources = {
+		category = decisions
+	}	
+	potential = {
+		has_active_building = building_gray_nano_rare_resource_factory
+		NOT = { check_variable = { which = nano_building_rare_resouces_produce_type value = 1 }}
+		# owner = { 
+		# 	has_technology = tech_mine_dark_matter 
+		# 	has_technology = tech_mine_zro
+		# }
+	}
+	
+	allow = {
+		
+	}
+	
+	effect = {
+		custom_tooltip = decision_nano_buildings_advance_sr_desc
+		hidden_effect = { set_variable = { which = nano_building_rare_resouces_produce_type value = 1 }}
+	}
+}
+decision_nano_buildings_wg_resource = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	
+	resources = {
+		category = decisions
+	}	
+	potential = {
+		has_global_flag = has_wsg_mod
+		has_active_building = building_gray_nano_rare_resource_factory
+		NOT = { check_variable = { which = nano_building_rare_resouces_produce_type value = 2 }}
+		owner = { 
+			is_wg_empire = yes
+			has_technology = tech_wsg_pantsu 
+		}
+	}
+	
+	allow = {
+		
+	}
+	
+	effect = {
+		custom_tooltip = decision_nano_buildings_wg_resource_desc
+		hidden_effect = { set_variable = { which = nano_building_rare_resouces_produce_type value = 2 }}
+	}
+}
+decision_nano_buildings_swgs_resource = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	
+	resources = {
+		category = decisions
+	}	
+	potential = {
+		has_global_flag = has_swgs_mod
+		has_active_building = building_gray_nano_rare_resource_factory
+		NOT = { check_variable = { which = nano_building_rare_resouces_produce_type value = 3 }}
+		owner = {
+			has_authority = auth_starshipgirls
+			has_technology = swgs_tech_building_kyber
+			has_technology = swgs_building_tibanna
+		}
+	}
+	
+	allow = {
+		owner = { 
+			has_technology = tech_wsg_pantsu 
+		}
+	}
+	
+	effect = {
+		custom_tooltip = decision_nano_buildings_swgs_resource_desc
+		hidden_effect = { set_variable = { which = nano_building_rare_resouces_produce_type value = 3 }}
+	}
+}
+
+decision_advance_graygoo_planet = {
+	owned_planets_only = yes
+
+	enactment_time = 2400
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			nanites = 12000
+		}
+	}
+	
+	potential = {
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_wsg_port
+			is_planet_class = pc_wg_graygoo
+			is_planet_class = pc_swim
+			is_ringworld = yes
+			is_planet_class = pc_habitat
+			is_planet_class = pc_relic
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+		}
+		habitable_structure = no
+		exists = owner
+		owner = {
+			is_wilderness_empire = no
+			has_ascension_perk = ap_graygoo_arcology
+		}
+	}
+	
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+		}
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_graygoo_planet_transform_effects
+		hidden_effect = {		
+			gray_relic_world_get_variable_effect = {
+				DISTRICT = district_city  VARIABLE = num_district_city
+			}
+			save_deposits = yes
+			set_variable = { which = capital_tier value = trigger:capital_tier }
+
+			# 改变后触发
+			change_pc = pc_wg_graygoo
+			remove_all_districts = yes
+			clear_deposits = yes
+			prevent_anomaly = yes
+			while = { count = num_district_city
+				add_district = district_arcology_graygoo_housing
+			}
+			gray_arcology_set_capital_lv_effect = yes
+			restore_saved_deposits = yes
+			set_planet_entity = {
+				entity = "wg_gray_goo_planet_01_entity"
+			}
+			owner = {
+				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			planet_event = { id = action.68 }
+			planet_event = { id = gray_origin.2000 }
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_advance_graygoo_planet_relic = {
+	owned_planets_only = yes
+	icon = decision_advance_graygoo_planet
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			nanites = 12000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_relic
+		habitable_structure = no
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_wilderness_empire = no
+			has_ascension_perk = ap_graygoo_arcology
+		}
+	}
+
+	allow = {
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_graygoo_planet_transform_effects
+		hidden_effect = {
+			set_variable = { which = capital_tier value = trigger:capital_tier }
+			gray_relic_world_get_variable_effect = {
+				DISTRICT = district_city  VARIABLE = num_district_city
+			}
+			save_deposits = yes
+
+			# 改变后触发
+			change_pc = pc_wg_graygoo
+			remove_all_districts = yes
+			clear_deposits = yes
+			while = { count = num_district_city
+				add_district = district_arcology_graygoo_housing
+			}
+			gray_arcology_set_capital_lv_effect = yes
+			restore_saved_deposits = yes
+			set_planet_entity = {
+				entity = "wg_gray_goo_planet_01_entity"
+			}
+			planet_event = { id = action.68 }
+			planet_event = { id = gray_origin.2000 }
+			while = {
+				count = 4
+				solar_system = {
+					random_system_ambient_object = {
+						limit = { has_ambient_object_flag = relic_world_debris }
+						destroy_ambient_object = this
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

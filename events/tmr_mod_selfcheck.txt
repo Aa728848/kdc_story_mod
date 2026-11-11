@@ -1,0 +1,44 @@
+namespace = tmr_check
+# 微械革命mod自检机制
+# 在微械革命mod里使用on action触发tmr_check.2事件，添加flag
+# 接着在此mod开局/载入触发tmr_check.3，如果tmr_check.2没有被触发则该提示事件会被成功触发
+event = {
+	id = tmr_check.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = { id = tmr_check.3 days = 1 }
+		}
+	}
+}
+event = {
+	id = tmr_check.2
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_timed_global_flag = { flag = tmr_mod_check_flag days = 2 }
+	}
+}
+# 没有安装mod的提醒事件
+country_event = {
+	id = tmr_check.3
+	title = tmr_check.3.title
+	desc = tmr_check.3.desc
+	picture = GFX_evt_wsg_no_video
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = tmr_mod_check_flag }
+		OR = {
+			has_origin = origin_gray
+			has_ascension_perk = ap_become_the_gray
+		}
+	}
+
+	option = {
+		name = OK
+	}
+}

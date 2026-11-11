@@ -1,0 +1,379 @@
+#my_piquant_megastructure = {
+#	entity = "bawling_pink_rainbow_graphics"
+#	construction_entity = "bawling_pink_rainbow_graphics_construction"
+#	portrait = "GFX_my_piquant_megastructure_background"
+#	upgrade_desc = default|hide		# default: 'default'. Use 'hide' to hide to hide this stage from the upgrade list.
+#	upgrade_from = {
+#		my_flamboyant_megastructure
+#	}
+#	prerequisites = { "tech" }		# required technologies
+#	potential = {}					# trigger, scope: country
+#	possible = {}					# trigger, scope: galactic object, from: country
+#	build_time = 5					# days
+#	victory_score = 1000			# Victory score for the player who owns that megastructure
+#	build_cost = {
+#		minerals = 8
+#		energy = 13
+#		influence = 21
+#	}
+#	monthly_production = {
+#		energy = 34
+#	}
+#	maintenance = {
+#		energy = 10
+#	}
+#	country_modifier = {}
+#
+#	placement_rules = {
+#		planet_possible = {}		# trigger, scope: planet
+#	}
+#
+#	on_build_start = {}				# effects, scope: galactic object, from: country, fromfrom: megastructure instance (when upgrading existing megastructure)
+#	on_build_cancel = {}			# effects, scope: galactic object, from: country
+#	on_build_complete = {}			# effects, scope: galactic object, from: country, fromfrom: megastructure instance
+#
+#	ai_weight = {					# scope = country, default = 100
+#		modifier = {
+#			weight = 0
+#			NOT = {
+#				has_ethic = ethic_militarist
+#			}
+#		}
+#	}
+#
+#	construction_blocked_by_others = no # default yes, set to no if other constructions in same system
+#										should block construction of this type
+#}
+ 
+TMR_gatebuilder_core0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -7 y = -7 }
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 50000
+			influence = 500
+		}
+
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	potential = {
+		has_technology = tech_TMR_gatebuilder_core
+		NOT = { has_country_flag = built_TMR_gatebuilder_core }
+		is_ai = no
+	}
+
+	# prerequisites = { "tech_TMR_gatebuilder_core" }
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOT = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			#NOT = { has_any_megastructure = yes }
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_planets_for_material"
+				solar_system = { any_system_planet = { NOT = { is_star = yes } }}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 1
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = ring_world_built
+		set_star_flag = TMR_gatebuilder_core
+		from = { set_country_flag = built_TMR_gatebuilder_core }
+		fromfrom.planet = { if = {
+			limit = { exists = orbital_station }
+			orbital_station = {
+				dismantle = yes
+			}
+		}}
+	}
+}
+
+TMR_gatebuilder_core1 = {
+	entity = "shielded_planet2_01_entity"
+	construction_entity = "shielded_planet2_01_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 7200
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 50000
+			unity = 5000
+		}
+
+		upkeep = {
+			unity = 25
+		}
+
+		produces = {
+			energy = 1000
+		}
+	}
+
+	upgrade_from = {
+		TMR_gatebuilder_core0
+	}
+
+	on_build_complete = { }
+}
+
+# Temporarily used for creating specific habitable or structural sections.
+TMR_gatebuilder_core2 = {
+	entity = "nanite_star_01_entity"
+	construction_entity = "nanite_star_01_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 7200
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 50000
+			unity = 5000
+		}
+		upkeep = {
+			unity = 50
+		}
+		produces = {
+			energy = 2000
+		}
+	}
+
+	upgrade_from = {
+		TMR_gatebuilder_core1
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = { is_star = no }
+			remove_planet = yes
+		}
+	}
+}
+
+
+#Partial Dyson Sphere
+TMR_gatebuilder_core3 = {
+	entity = "nanite_star_02_entity"
+	construction_entity = "nanite_star_02_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 7200
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 50000
+			unity = 5000
+		}
+		upkeep = {
+			unity = 100
+		}
+		produces = {
+			energy = 2000
+			physics_research = 500
+			society_research = 500
+			engineering_research = 500
+		}
+	}
+
+	upgrade_from = {
+		TMR_gatebuilder_core2
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
+}
+
+TMR_gatebuilder_core4 = {
+	entity = "nanite_star_03_entity"
+	construction_entity = "nanite_star_03_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 7200
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 50000
+			unity = 5000
+		}
+		upkeep = {
+			unity = 200
+		}
+		produces = {
+			energy = 3000
+			nanites = 2000
+			physics_research = 500
+			society_research = 500
+			engineering_research = 500
+		}
+	}
+
+	upgrade_from = {
+		TMR_gatebuilder_core3
+	}
+
+	on_build_complete = {
+	}
+}
+# 生产核心
+TMR_gatebuilder_core4_build_core = {
+	entity = "nanite_star_03_entity"
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 7200
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 15000
+		}
+		upkeep = {
+			unity = 200
+		}
+		produces = {
+			energy = 3000
+			nanites = 2000
+			physics_research = 500
+			society_research = 500
+			engineering_research = 500
+		}
+	}
+
+	potential = {
+		NOT = { exists = event_target:tmr_core_fleet }
+		is_ai = no
+	}
+
+	upgrade_from = {
+		TMR_gatebuilder_core4
+	}
+
+	on_build_complete = {
+		
+	}
+}
+# 引爆核心
+TMR_gatebuilder_core4_detonate_core = {
+	entity = "nanite_star_03_entity"
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 0
+	resources = {
+		category = megastructures
+		upkeep = {
+			unity = 200
+		}
+		produces = {
+			energy = 3000
+			nanites = 2000
+			physics_research = 500
+			society_research = 500
+			engineering_research = 500
+		}
+	}
+
+	upgrade_from = {
+		TMR_gatebuilder_core4
+	}
+
+	potential = {
+		exists = event_target:tmr_core_fleet
+		is_ai = no
+	}
+
+	possible = {
+		FROM = { 
+			custom_tooltip_fail = {
+				text = "triggered_gatebuilder_menu"
+				NOT = { has_country_flag = triggered_gatebuilder_menu }
+			}
+		}
+	}
+
+	on_build_complete = {
+		
+	}
+}

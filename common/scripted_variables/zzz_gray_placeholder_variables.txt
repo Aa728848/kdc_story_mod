@@ -1,0 +1,23 @@
+@AOW_var_mega_Ostar = 1
+@AOW_var_mega_Bstar = 1
+@AOW_var_mega_Astar = 1
+@AOW_var_mega_Fstar = 1
+@AOW_var_mega_Gstar = 1
+@AOW_var_mega_Kstar = 1
+@AOW_var_mega_Mstar = 1
+
+@AOW_var_mega_hyper_star_prdc = 1
+@AOW_var_mega_o_super_star_prdc = 1
+@AOW_var_mega_b_super_star_prdc = 1
+@AOW_var_mega_a_super_star_prdc = 1
+@AOW_var_mega_f_super_star_prdc = 1
+@AOW_var_mega_g_super_star_prdc = 1
+@AOW_var_mega_k_super_star_prdc = 1
+@AOW_var_mega_m_super_star_prdc = 1
+@AOW_var_mega_o_star = 1
+@AOW_var_mega_giant_star = 1
+@AOW_var_mega_a_star = 1
+@AOW_var_mega_f_star = 1
+@AOW_var_mega_g_star = 1
+@AOW_var_mega_k_star = 1
+@AOW_var_mega_m_star = 1

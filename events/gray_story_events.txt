@@ -1,0 +1,699 @@
+namespace = gray_story
+
+ship_event = {
+	id = gray_story.1
+	title = gray_story.1.name
+	desc = {
+		exclusive_trigger = {
+			owner = { has_country_flag = encountered_first_lgate }
+		}
+		text = gray_story.1.desc
+	}
+	desc = gray_story.1.desc.b
+	picture = GFX_evt_gray_goo
+	location = from 
+	is_triggered_only = yes 
+
+	trigger = {
+		owner = { is_ai = no }
+	}
+
+	option = {
+		name = OK
+		owner = { 
+			add_resource = { nanites = 10 }
+			if = {
+				limit = { 
+					NOR = {
+						has_tech_option = tech_quantum_field_nanocybernetics
+						has_technology = tech_quantum_field_nanocybernetics
+						has_event_chain = gray_story_chain_left
+						has_global_flag = triggered_gray_story_event
+					}
+				}
+				hidden_effect = { 
+					set_global_flag = triggered_gray_story_event 
+					set_country_flag = triggered_gray_story_country
+				}
+				begin_event_chain = {
+					event_chain = gray_story_chain_left
+				}
+				if = {
+					limit = { has_technology = tech_sapient_ai }
+					country_event = { id = gray_story.4 days = 180 random = 180 }
+				} else = {
+					custom_tooltip = gray_story.1.tooltip
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gray_story.2
+	title = gray_story.2.name
+	desc = gray_story.2.desc
+	picture = GFX_evt_l-gateway
+	location = from 
+	is_triggered_only = yes 
+
+	trigger = {
+		owner = { is_ai = no }
+	}
+
+	option = {
+		name = OK
+		owner = { 
+			if = {
+				limit = { 
+					NOR = {
+						has_tech_option = tech_quantum_field_nanocybernetics
+						has_technology = tech_quantum_field_nanocybernetics
+						has_event_chain = gray_story_chain_left
+						has_global_flag = triggered_gray_story_event
+					}
+				}
+				hidden_effect = { 
+					set_global_flag = triggered_gray_story_event
+					set_country_flag = triggered_gray_story_country 
+				}
+				begin_event_chain = {
+					event_chain = gray_story_chain_left
+				}
+				if = {
+					limit = { has_technology = tech_sapient_ai }
+					country_event = { id = gray_story.4 days = 180 random = 180 }
+				} else = {
+					custom_tooltip = gray_story.1.tooltip
+				}
+			}
+			add_resource = { nanites = 10 }
+		}
+	}
+}
+
+# 研究红脑触发事件
+country_event = {
+	id = gray_story.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		OR = {
+			last_increased_tech = tech_sapient_ai
+			has_technology = tech_sapient_ai
+		}
+		has_global_flag = triggered_gray_story_event
+		has_country_flag = triggered_gray_story_country
+		has_event_chain = gray_story_chain_left
+		NOR = { 
+			has_country_flag = triggered_gray_sp_prev_event 
+			has_special_project = gray_story_nanite_start
+			has_tech_option = tech_quantum_field_nanocybernetics
+			has_technology = tech_quantum_field_nanocybernetics
+		}
+	}
+
+	immediate = {
+		set_country_flag = triggered_gray_sp_prev_event
+		country_event = { id = gray_story.4 days = 180 random = 180 }
+	}
+}
+
+country_event = {
+	id = gray_story.4
+	title = gray_story.4.name
+	desc = gray_story.4.desc
+	picture = GFX_evt_gray_goo
+	is_triggered_only = yes 
+
+	trigger = {
+		has_global_flag = triggered_gray_story_event
+		has_country_flag = triggered_gray_story_country
+		has_event_chain = gray_story_chain_left
+		NOR = {
+			has_tech_option = tech_quantum_field_nanocybernetics
+			has_technology = tech_quantum_field_nanocybernetics
+			has_special_project = gray_story_nanite_start
+		}
+	}
+
+	option = {
+		name = OK
+		capital_scope = {
+			enable_special_project = {
+				name = gray_story_nanite_start
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_story.5
+	title = gray_story.5.name
+	desc = gray_story.5.desc
+	picture = GFX_evt_inhabited_solar_system
+	is_triggered_only = yes 
+
+	option = {
+		name = gray_story.5.a
+		start_situation = { type = gray_story_gb_system target = root }
+	}
+}
+
+situation_event = {
+	id = gray_story.6
+	title = gray_story.6.name
+	desc = gray_story.6.desc
+	picture = GFX_evt_inhabited_solar_system
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			NOT = { has_country_flag = triggered_gatebuilder_system_event }
+		}
+	}
+	
+	immediate = {
+		owner = {
+			set_country_flag = triggered_gatebuilder_system_event
+		}
+	}
+
+	option = {
+		name = BREAKTHROUGH
+		destroy_situation = this
+		hidden_effect = { no_scope = {
+			set_spawn_system_batch = begin
+			spawn_system = {
+				initializer = gatebuilder_commu_base_system
+				min_orientation_angle = 0
+				max_orientation_angle = 360
+				min_distance = 35
+				max_distance = 40
+				hyperlane = no
+			}
+			set_spawn_system_batch = end
+		}}
+		event_target:gatebuilder_commu_base_system = {
+			hidden_effect = { every_neighbor_system_euclidean = {
+				limit = { has_hyperlane_to = prev }
+				remove_hyperlane = {
+					from = THIS
+					to = prev
+				}
+			}}
+			root.owner = { 
+				set_visited = prev
+				create_point_of_interest = {
+					id = gatebuilder_system_poi.2
+					name = gatebuilder_system_poi2.name
+					desc = gatebuilder_system_poi2.desc
+					event_chain = gray_story_chain_left
+					location = prev.system_star
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gray_story.7
+	title = gray_story.7.name
+	desc = gray_story.7.desc
+	picture = GFX_evt_inhabited_solar_system
+	location = from 
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_star_flag = gatebuilder_commu_base_system }
+		owner = { has_point_of_interest = {
+			poi = gatebuilder_system_poi.2
+		} }
+	}
+
+	immediate = {
+		owner = {
+			remove_point_of_interest = gatebuilder_system_poi.2
+		}
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+country_event = {
+	id = gray_story.8
+	title = gray_story.8.name
+	desc = gray_story.8.desc
+	picture = GFX_evt_inhabited_solar_system
+	location = from 
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_star_flag = gatebuilder_commu_base_system }
+	}
+
+	option = {
+		name = MAKE_IT_SO
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
+		add_resource = { energy = -1000 }
+		hidden_effect = { capital_star = { 
+			create_ambient_object = {
+				type = construction_platform_object
+				location = this
+				use_3d_location = yes
+				entity_offset = 350
+				entity_offset_angle = 90
+				entity_offset_height = 11
+				effect = {
+					set_ambient_object_flag = gatebuilder_wormhole_construction_platform
+				}
+			}
+		}}
+		hidden_effect = {
+			capital_scope = { solar_system = {
+				random_system_ambient_object = {
+					limit = { has_ambient_object_flag = gatebuilder_wormhole_construction_platform }
+					enable_special_project = {
+						name = gatebuilder_wormhole_end
+						location = this
+						owner = root
+					}
+				}	
+			}}
+		}
+		tooltip = {
+			capital_star = {
+				enable_special_project = {
+					name = gatebuilder_wormhole_end
+					location = this
+					owner = root
+				}
+			}
+		}
+		
+		from = {
+			hidden_effect = { random_system_ambient_object = {
+				limit = { has_ambient_object_flag = wormhole_station }
+				enable_special_project = {
+					name = gatebuilder_wormhole_start
+					location = this
+					owner = root.owner
+				}
+			}}
+			tooltip = {
+				enable_special_project = {
+					name = gatebuilder_wormhole_start
+					location = system_star
+					owner = root.owner
+				}
+			}
+		}
+	}
+	option = {
+		name = TOOPOOR
+		event_target:gatebuilder_commu_base_system = {
+			hidden_effect = { random_system_ambient_object = {
+				limit = { has_ambient_object_flag = wormhole_station }
+				enable_special_project = {
+					name = start_link_gatebuilder_wormhole
+					location = this
+					owner = root.owner
+				}
+			}}
+			tooltip = {
+				enable_special_project = {
+					name = start_link_gatebuilder_wormhole
+					location = system_star
+					owner = root.owner
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_story.9
+	title = gray_story.9.name
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = gatebuilder_wormhole_finish_half
+		}
+		text = gray_story.9.desc.b
+	}
+	desc = gray_story.9.desc
+	picture = GFX_evt_wormhole
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			NOT = { has_country_flag = gatebuilder_wormhole_finish_half }
+		}
+		name = gray_story.9.a
+		hidden_effect = {
+			set_country_flag = gatebuilder_wormhole_finish_half
+		}
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = gatebuilder_wormhole_finish_half
+		}
+		name = EXCELLENT
+		country_event = { id = gray_story.11 days = 30 random = 30 }
+	}
+}
+
+country_event = {
+	id = gray_story.10
+	title = gray_story.10.name
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = gatebuilder_wormhole_finish_half
+		}
+		text = gray_story.10.desc.b
+	}
+	desc = gray_story.10.desc
+	picture = GFX_evt_wormhole
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			NOT = { has_country_flag = gatebuilder_wormhole_finish_half }
+		}
+		name = gray_story.9.a
+		hidden_effect = {
+			set_country_flag = gatebuilder_wormhole_finish_half
+		}
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = gatebuilder_wormhole_finish_half
+		}
+		name = EXCELLENT
+		country_event = { id = gray_story.11 days = 30 random = 30 }
+	}
+}
+
+country_event = {
+	id = gray_story.11
+	title = gray_story.11.name
+	desc = gray_story.11.desc
+	picture = GFX_evt_wormhole
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = gatebuilder_wormhole_finish
+		event_target:gatebuilder_commu_base_system = {
+			spawn_megastructure = {
+				type = gray_story_wormhole
+				orbit_distance = 350
+				orbit_angle = 90
+				coords_from = star
+				owner = root
+			}
+			random_system_ambient_object = {
+				limit = { has_ambient_object_flag = wormhole_station }
+				destroy_ambient_object = this
+			}
+			set_star_flag = gray_story_wormhole_start
+		}
+		capital_scope = { solar_system = {
+			random_system_ambient_object = {
+				limit = { has_ambient_object_flag = gatebuilder_wormhole_construction_platform }
+				prev = { spawn_megastructure = {
+					type = gray_story_wormhole
+					owner = root
+					coords_from = prev
+					orbit_distance = 50
+					orbit_angle = 180
+				}}
+				destroy_ambient_object = this
+			}
+			set_star_flag = gray_story_wormhole_end
+		}}
+	}
+
+	option = {
+		name = EXCELLENT
+		add_research_option = tech_wormhole_stabilization
+		add_tech_progress = {
+			tech = tech_wormhole_stabilization
+			progress = 0.1
+		}
+	}
+}
+
+ship_event = {
+	id = gray_story.13
+	title = gray_story.13.name
+	desc = gray_story.13.desc
+	picture = GFX_evt_wormhole
+	location = from 
+	is_triggered_only = yes
+
+	immediate = {
+		owner = { abort_special_project = {
+			type = start_link_gatebuilder_wormhole
+		}}
+	}
+
+	option = {
+		name = MAKE_IT_SO
+		allow = {
+			owner = { resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}}
+		}
+		owner = { 
+			add_resource = { energy = -1000 }
+			hidden_effect = { capital_star = { 
+				create_ambient_object = {
+					type = construction_platform_object
+					location = this
+					use_3d_location = yes
+					entity_offset = 350
+					entity_offset_angle = 90
+					entity_offset_height = 11
+					effect = {
+						set_ambient_object_flag = gatebuilder_wormhole_construction_platform
+					}
+				}
+			}}
+			hidden_effect = {
+				capital_scope = { solar_system = {
+					random_system_ambient_object = {
+						limit = { has_ambient_object_flag = gatebuilder_wormhole_construction_platform }
+						enable_special_project = {
+							name = gatebuilder_wormhole_end
+							location = this
+							owner = root
+						}
+					}	
+				}}
+			}
+			tooltip = {
+				capital_star = {
+					enable_special_project = {
+						name = gatebuilder_wormhole_end
+						location = this
+						owner = root
+					}
+				}
+			}
+		}
+		
+		event_target:gatebuilder_commu_base_system = {
+			hidden_effect = { random_system_ambient_object = {
+				limit = { has_ambient_object_flag = wormhole_station }
+				enable_special_project = {
+					name = gatebuilder_wormhole_start
+					location = this
+					owner = root.owner
+				}
+			}}
+			tooltip = {
+				enable_special_project = {
+					name = gatebuilder_wormhole_start
+					location = system_star
+					owner = root.owner
+				}
+			}
+		}
+	}
+	option = {
+		name = TOOPOOR
+		event_target:gatebuilder_commu_base_system = {
+			hidden_effect = { random_system_ambient_object = {
+				limit = { has_ambient_object_flag = wormhole_station }
+				enable_special_project = {
+					name = start_link_gatebuilder_wormhole
+					location = this
+					owner = root.owner
+				}
+			}}
+			tooltip = {
+				enable_special_project = {
+					name = start_link_gatebuilder_wormhole
+					location = system_star
+					owner = root.owner
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gray_story.12
+	title = gray_story.12.name
+	desc = gray_story.12.desc
+	picture = GFX_evt_satellite_in_orbit
+	location = from 
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_planet_flag = gatebuilder_commu_base }
+	}
+
+	option = {
+		name = REMARKABLE
+		from = {
+			create_archaeological_site = site_gatebuilder_commu_base
+		}
+	}
+}
+
+fleet_event = {
+	id = gray_story.14
+	title = gray_story.14.name
+	desc = gray_story.14.desc
+	picture = GFX_evt_barren_dig_site
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = DIG
+	}
+}
+
+fleet_event = {
+	id = gray_story.15
+	title = gray_story.15.name
+	desc = gray_story.15.desc
+	picture = GFX_evt_gray_goo_ships
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = UNFORTUNATE
+		owner = { 
+			generate_lcluster_clue = yes 
+		}
+		medium_artifact_reward = yes
+	}
+}
+
+fleet_event = {
+	id = gray_story.16
+	title = gray_story.16.name
+	desc = gray_story.16.desc
+	picture = GFX_evt_ancient_databank
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = EXCELLENT
+		owner = {
+			add_research_option = tech_quantum_field_nanocybernetics
+			add_tech_progress = {
+				tech = tech_quantum_field_nanocybernetics
+				progress = 0.1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_story.17
+	title = gray_story.17.name
+	desc = gray_story.17.desc
+	picture = GFX_evt_gray_goo
+	is_triggered_only = yes
+
+	trigger = {
+		last_increased_tech = tech_nanite_energy_reaction
+		is_ai = no
+	}
+
+	option = {
+		name = MAKE_IT_SO
+		capital_scope = {
+			enable_special_project = {
+				name = gray_story_nanite_productor
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_story.18
+	title = gray_story.18.name
+	desc = gray_story.18.desc
+	picture = GFX_evt_gray_goo
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+		end_event_chain = gray_story_chain_left
+		hidden_effect = {
+			set_country_flag = activate_gray_research
+			country_event = { id = gray_tech.999 }
+			country_event = { id = gray_tech.100 }
+		}
+		custom_tooltip = open_gray_research_interface
+	}
+}

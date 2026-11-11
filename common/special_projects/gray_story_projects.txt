@@ -1,0 +1,130 @@
+special_project = {
+	key = gray_story_l_gate_first_encounter
+	cost = 0
+	days_to_research = 540
+	picture = GFX_evt_l-gateway
+	event_chain = gray_story_chain_left
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = gray_story.2 }
+	}
+}
+
+special_project = {
+	key = gray_story_nanite_start
+	cost = 35000
+	tech_department = engineering_technology
+	picture = GFX_evt_gray_goo
+	event_chain = gray_story_chain_left
+
+	event_scope = planet_event
+
+	on_success = {
+		owner = { country_event = { id = gray_story.5 }}
+	}
+}
+
+special_project = {
+	key = gatebuilder_wormhole_start
+	cost = 0
+	days_to_research = 90
+	picture = GFX_evt_wormhole
+	event_chain = gray_story_chain_left
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		owner = { country_event = { id = gray_story.9 }}
+	}
+}
+
+special_project = {
+	key = gatebuilder_wormhole_end
+	cost = 0
+	days_to_research = 90
+	picture = GFX_evt_wormhole
+	event_chain = gray_story_chain_left
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		owner = { country_event = { id = gray_story.10 }}
+	}
+}
+
+special_project = {
+	key = start_link_gatebuilder_wormhole
+	cost = 0
+	days_to_research = 2
+	picture = GFX_evt_wormhole
+	event_chain = gray_story_chain_left
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = gray_story.13 }
+	}
+}
+
+special_project = {
+	key = gray_story_nanite_productor
+	cost = 20000
+	tech_department = engineering_technology
+	picture = GFX_evt_gray_goo
+	event_chain = gray_story_chain_left
+
+	event_scope = planet_event
+
+	on_success = {
+		owner = { country_event = { id = gray_story.18 }}
+	}
+}
+
+special_project = {
+	key = gray_origin_nanite_productor
+	cost = 5000
+	tech_department = engineering_technology
+	picture = GFX_evt_gray_goo
+
+	event_scope = planet_event
+
+	on_success = {
+		owner = { country_event = { id = gray_story.18 }}
+	}
+}
+
+special_project = {
+	key = gatebuilder_ships_graphical_culture
+	cost = 20000
+	tech_department = engineering_technology
+	picture = GFX_evt_gray_goo_ships
+	event_chain = gray_story_chain_left
+
+	event_scope = planet_event
+
+
+	on_success = {
+		owner = { country_event = { id = naniteship.1001 }}
+	}
+}

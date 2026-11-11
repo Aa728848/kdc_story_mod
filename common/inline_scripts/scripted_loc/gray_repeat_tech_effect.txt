@@ -1,0 +1,13 @@
+name = GetGrayTech$ID$Effect
+text = {
+    trigger = { check_variable = { which = $NAME$ value = 0 }}
+    localization_key = $NAME$_effect_lv1
+}
+text = {
+    trigger = { check_variable = { which = $NAME$ value = 1 }}
+    localization_key = $NAME$_effect_lv2
+}
+text = {
+    trigger = { check_variable = { which = $NAME$ value >= 2 }}
+    localization_key = $NAME$_effect_lv3
+}

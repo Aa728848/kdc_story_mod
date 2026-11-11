@@ -1,0 +1,19 @@
+# 纳米自动巨构花费
+# 必须严格按照 @gray_$巨构类型$_$资源类型$_cost 的格式命名
+# 环世界
+@gray_ringworld_alloys_cost = 45000
+@gray_ringworld_influence_cost = 300
+@gray_dyson_sphere_alloys_cost = 50000
+@gray_dyson_sphere_unity_cost = 25000
+@gray_matter_decompressor_alloys_cost = 40000
+@gray_matter_decompressor_unity_cost = 20000
+@gray_think_tank_alloys_cost = 50000
+@gray_think_tank_unity_cost = 20000
+
+
+# AOW相关
+
+@AOW_var_nanite_DS_5_PRDC_energy = 2500 # 纳米戴森球产出
+
+@gray_megastrucutre_min_cost_mult = 0.2
+@gray_megastructure_produce_discount = 0.7

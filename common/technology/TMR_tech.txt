@@ -1,0 +1,938 @@
+#########
+#纳米舰船#
+#########
+tech_gatebuilder_ships = {
+	cost = 200000
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_GATEBUILDER_SHIPS_TITLE"
+			desc = "TECH_GATEBUILDER_SHIPS_DESC"
+		}
+		ship = {
+			title = "TECH_GATEBUILDER_SHIPS2_TITLE"
+			desc = "TECH_GATEBUILDER_SHIPS2_DESC"
+		}
+	}
+	modifier = {
+		ship_hull_mult = 0.5
+		starbase_shipyard_build_speed_mult = 0.5
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+
+#小型纳米战斗单元#
+# 暂时隐藏
+tech_small_nano_combat_unit = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITECRAFT1_TITLE"
+			desc = "TECH_NANITECRAFT1_DESC"
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		always = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米拦截舰#
+# 暂时隐藏
+tech_origin_interdictor = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 100
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_ORIGIN_INTERDICTOR_TITLE"
+			desc = "TECH_ORIGIN_INTERDICTOR_DESC"
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		always = no
+	}
+}
+
+
+#纳米母舰#
+# 暂时隐藏
+tech_origin_mothership = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_ORIGIN_MOTHERSHIP_TITLE"
+			desc = "TECH_ORIGIN_MOTHERSHIP_DESC"
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		is_ai = no
+		always = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米集群拦截舰#
+# 暂时隐藏
+tech_nanitecrop_interdictor = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	prerequisites = { "tech_origin_interdictor" }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITECROP_INTERDICTOR_TITLE"
+			desc = "TECH_NANITECROP_INTERDICTOR_DESC"
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		always = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米集群母舰#
+tech_nanitecrop_mothership = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITECROP_MOTHERSHIP_TITLE"
+			desc = "TECH_NANITECROP_MOTHERSHIP_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#灰蛊泰坦#
+tech_nanitecrop_titan = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITECROP_TITAN_TITLE"
+			desc = "TECH_NANITECROP_TITAN_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米风暴#
+tech_nanite_storm = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITECROP_STORM_TITLE"
+			desc = "TECH_NANITECROP_STORM_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nanitecrop_sentry = {
+	cost = 2500000
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITECROP_SENTRY_TITLE"
+			desc = "TECH_NANITECROP_SENTRY_DESC"
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+###########
+#纳米工程学#
+###########
+#纳米机器人技术#
+tech_macro_nanorobot_technology = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_dangerous = yes
+	ai_update_type = military
+	category = { voidcraft }
+	weight = 0
+	modifier = {
+		country_resource_max_nanites_add = 1000000
+		country_nano_research_points_mult = 0.2
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米组装技术#
+tech_building_nanoassembly_plant = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = {
+		voidcraft
+	}
+	weight = 0
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_R_gateway = {
+	icon = tech_A_gateway
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = {
+		voidcraft
+	}
+	# prerequisites = {
+	# 	"tech_TMR_nanite_factory" "tech_stargate_drive" "tech_gatebuilder_reactor" 
+	# 	"tech_nanite_battle_computer" "tech_distar_sensor"
+	# 	"tech_nanite_cluster_aura" "tech_gatebuilder_thruster"
+	# 	"tech_gateway_activation"
+	# }
+	weight = 0
+	
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		has_ascension_perk = ap_graygoo_megastructures
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#A星门#
+# 暂时隐藏
+tech_A_gateway = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = {
+		voidcraft
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_AGATE_TITLE"
+			desc = "TECH_AGATE_DESC"
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_micromechanical_revolution
+		is_ai = no
+		always = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#建门者核心#
+tech_TMR_gatebuilder_core = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	ai_update_type = military
+	category = {
+		voidcraft
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_TMRCORE_TITLE"
+			desc = "TECH_TMRCORE_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#行星级别纳米工厂#
+tech_TMR_nanite_factory = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = {
+		voidcraft
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_TMRFAC_TITLE"
+			desc = "TECH_TMRFAC_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+##########
+#纳米物理学#
+##########
+
+
+#量子场纳米控制论#
+tech_quantum_field_nanocybernetics = {
+	cost = @tier5cost2
+	area = physics
+	tier = 3
+	is_rare = yes
+	ai_update_type = military
+	category = { field_manipulation }
+	weight = 0
+	modifier = {
+		country_physics_tech_research_speed = 0.1
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#人工零点能量场
+tech_artificial_zero_point_energy_field = {
+	cost = @tier5cost2
+	area = physics
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	weight = @tier5weight2
+	category = { field_manipulation }
+	prerequisites = {
+		"tech_quantum_field_nanocybernetics"
+		"tech_zero_point_power"
+	}
+	weight = 100
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.15
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# 冯诺依曼纳米自动机
+tech_vonneumann_nano_automata = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 4
+	is_rare = yes
+	ai_update_type = military
+	weight = @tier5weight3
+	category = { materials }
+	prerequisites = {
+		"tech_quantum_field_nanocybernetics"
+	}
+	weight = 100
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials }
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	modifier = {
+		planet_building_build_speed_mult = 0.25
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# 基本粒子重构
+tech_elementary_particle_reconstruction = {
+	cost = @tier5cost2
+	area = physics
+	tier = 4
+	is_rare = yes
+	ai_update_type = military
+	weight = @tier5weight2
+	category = { particles }
+	prerequisites = {
+		"tech_quantum_field_nanocybernetics"
+	}
+	weight = 100
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	modifier = {
+		country_physics_tech_research_speed = 0.1
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+#纳米能量反应#
+tech_nanite_energy_reaction = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = { particles }
+	prerequisites = {
+		"tech_elementary_particle_reconstruction"
+		"tech_vonneumann_nano_automata"
+		"tech_artificial_zero_point_energy_field"
+	}
+	weight = 100
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	modifier = {
+		starbase_shipyard_build_speed_mult = 0.1
+		ships_upkeep_mult = -0.05
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米能量构造体#
+# 暂时隐藏，过于imba
+tech_nanitepower_structure = {
+	cost = @tier5cost1
+	area = physics
+	tier = 4
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	ai_update_type = military
+	prerequisites = {
+		"tech_nanite_energy_reaction"
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITEPOWER_STRUCTURE_TITLE"
+			desc = "TECH_NANITEPOWER_STRUCTURE_DESC"
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+	potential = {
+		is_ai = no
+		has_ascension_perk = ap_micromechanical_revolution
+		always = no
+	}
+}
+
+#超级纳米能量构造体#
+# 暂时隐藏，过于imba
+tech_supernanitepower_structure = {
+	cost = @tier5cost1
+	area = physics
+	tier = 4
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	ai_update_type = military
+	prerequisites = {
+		"tech_nanitepower_structure"
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_SUPERNANITEPOWER_STRUCTURE_TITLE"
+			desc = "TECH_SUPERNANITEPOWER_STRUCTURE_DESC"
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+	potential = {
+		is_ai = no
+		has_ascension_perk = ap_micromechanical_revolution
+		always = no
+	}
+}
+
+#星门折跃器#
+tech_stargate_drive = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = {
+		computing
+	}
+	weight = 0
+	potential = {
+		is_ai = no
+		always = no
+	}
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_STARGATE_DRIVE_TITLE"
+			desc = "TECH_STARGATE_DRIVE_DESC"
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#建门者能源核心#
+tech_gatebuilder_reactor = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = {
+		computing
+	}
+	weight = 0
+	potential = {
+		is_ai = no
+		always = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_GATEBUILDER_REACTOR_TITLE"
+			desc = "TECH_GATEBUILDER_REACTOR_DESC"
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#纳米作战电脑#
+tech_nanite_battle_computer = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = {
+		computing
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITE_BATTLE_COMPUTER_TITLE"
+			desc = "TECH_NANITE_BATTLE_COMPUTER_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#远星传感器#
+tech_distar_sensor = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = {
+		computing
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_DISTAR_SENSOR_TITLE"
+			desc = "TECH_DISTAR_SENSOR_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#光环·纳米集群#
+tech_nanite_cluster_aura = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = {
+		computing
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITE_CLUSTER_AURA_TITLE"
+			desc = "TECH_NANITE_CLUSTER_AURA_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+}
+
+#建门者推进器#
+tech_gatebuilder_thruster = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	ai_update_type = military
+	category = {
+		voidcraft
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_GATEBUILDER_THRUSTER_TITLE"
+			desc = "TECH_GATEBUILDER_THRUSTER_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#光环·纳米风暴#
+tech_nanite_storm_aura = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = {
+		computing
+	}
+	weight = 0
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITE_STORM_AURA_TITLE"
+			desc = "TECH_NANITE_STORM_AURA_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#############
+#纳米生产建筑#
+#############
+#纳米制造机#
+tech_TMR_nanite_productor = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { materials }
+	weight = 0
+	# prerequisites = { tech_nanite_energy_reaction }
+	is_rare = yes
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#微械奇点#
+# 暂时隐藏
+tech_nanite_singularity = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = {
+		materials
+	}
+	weight = 100
+	is_rare = yes
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITE_SINGULARITY_TITLE"
+			desc = "TECH_NANITE_SINGULARITY_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#质量合成单元#
+# 暂时隐藏
+tech_quality_productor = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = {
+		materials
+	}
+	weight = 1000
+	is_rare = yes
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_QUALITY_PRODUCTOR_TITLE"
+			desc = "TECH_QUALITY_PRODUCTOR_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+		always = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#建门者军队#
+tech_TMR_gatebuilder_army = {
+	cost = @tier5cost3
+	area = society
+	tier = 5
+	category = {
+		military_theory
+	}
+	weight = 0
+	is_rare = yes
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_TMR_GATEBUILDER_ARMY_TITLE"
+			desc = "TECH_TMR_GATEBUILDER_ARMY_DESC"
+		}
+	}
+	potential = {
+		is_ai = no
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#灰蛊哨兵之矛#
+tech_nanite_sentry_maingun = {
+	area = physics
+	cost = 200000
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = { particles }
+	ai_update_type = military
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_NANITELASERS2_TITLE"
+			desc = "TECH_NANITELASERS2_DESC"
+		}
+	}
+	weight = 0
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = "leader_trait_expertise_particles" }
+		}
+	}
+	potential = {
+		is_ai = no
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	ai_weight = {
+		weight = 100
+	}
+}

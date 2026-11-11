@@ -1,0 +1,247 @@
+gray_research_situation = {
+	picture = GFX_evt_engineering_research
+
+	complete_icon = GFX_situation_outcome_research
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+
+	category = positive
+
+	on_start = {
+		# 循环科技相关的变量（仅用于显示）
+		set_variable = { which = cur_acc_nanotech_points value = 0 }
+		# 将数据转移到局势里，避免数据碰撞
+		set_variable = { which = cur_gray_tech_req value = owner.cur_gray_tech_req }
+		set_variable = { which = gray_tech_id value = owner.gray_tech_id }
+
+		if = {
+			limit = { owner = { has_country_flag = is_researching_repeatable_tech }}
+			set_situation_flag = is_researching_repeatable_tech
+			set_variable = { which = gray_repeatable_tech_limit value = owner.gray_repeatable_tech_limit }
+			set_variable = { which = cur_repeatable_tech_lv value = owner.cur_repeatable_tech_lv }
+		}
+
+		# cur_gray_tech_req = 当前科技所需点数
+		# 将之前研究多出的研究点数转移至此并清零
+		if = {
+			limit = { owner = { check_variable = { which = nanotech_points_remain value > 0 }}}
+			# nanotech_points_transfer_max: 最大可转移的盈余点数 = 科技需求点数的10%
+			set_variable = { which = nanotech_points_transfer_max value = cur_gray_tech_req }
+			divide_variable = { which = nanotech_points_transfer_max value = 10 }
+			# 如果盈余的点数大于最大可转移的点数，则只扣减最大可转移额，否则全数转移
+			if = {
+				limit = { check_variable = { which = nanotech_points_transfer_max value < owner.nanotech_points_remain }}
+				set_variable = { which = extra_nanotech_points value = nanotech_points_transfer_max }
+				owner = { subtract_variable = { which = nanotech_points_remain value = prev.nanotech_points_transfer_max }}
+			} else = {
+				set_variable = { which = extra_nanotech_points value = owner.nanotech_points_remain }
+				owner = { clear_variable = nanotech_points_remain }
+			}
+			# 将盈余点数增加到累计点数变量上
+			change_variable = { which = cur_acc_nanotech_points value = extra_nanotech_points }
+			# 计算该点数占科技所需点数的比例（转移的盈余点数/所需点数*100)
+			set_variable = { which = cur_gray_research_perc value = extra_nanotech_points }
+			divide_variable = { which = cur_gray_research_perc value = cur_gray_tech_req }
+			multiply_variable = { which = cur_gray_research_perc value = 100 }
+			add_situation_progress = cur_gray_research_perc
+		}
+		# 防止分数除不尽而多耗一个月
+		add_situation_progress = 0.01
+		# 研究进度提取
+		situation_event = { id = gray_tech.11 }
+		owner = {
+			remove_country_flag = is_researching_repeatable_tech
+		}
+	}
+	on_progress_complete = {	#Effects when Situation's progress has reached 100
+		custom_tooltip = gray_research_finish_effect
+		hidden_effect = { situation_event = { id = gray_tech.3 }}
+	}
+
+	stages = {
+		gray_research_stage = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			custom_tooltip = gray_research_finish_effect
+		}
+	}
+	# 预设
+	approach = {
+		name = situation_gray_research_default
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_green
+		default = yes
+		on_select = {
+			custom_tooltip = situation_gray_research_default_tooltip
+			hidden_effect = {
+				if = {
+					limit = { has_situation_flag = locked }
+					set_situation_locked = no
+					remove_situation_flag = locked
+				}
+				owner = {
+					every_situation = {
+						limit = {
+							is_situation_type = gray_research_situation
+							NOT = { current_situation_approach = situation_gray_research_pause }
+						}
+						situation_event = { id = gray_tech.4 }
+					}
+				}
+			}
+		}
+	}
+	# 暂停研究
+	approach = {
+		name = situation_gray_research_pause
+		icon = GFX_situation_approach_pause
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = situation_gray_research_pause_tooltip
+			set_situation_locked = yes
+			set_situation_flag = locked
+			hidden_effect = { owner = {
+				every_situation = {
+					limit = {
+						is_situation_type = gray_research_situation
+						NOT = { current_situation_approach = situation_gray_research_pause }
+					}
+					situation_event = { id = gray_tech.4 }
+				}
+			}}
+		}
+	}
+	# 取消研究
+	approach = {
+		name = situation_gray_research_cancel
+		icon = GFX_situation_approach_cancel
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_gray_research_cancel_tooltip
+			hidden_effect = { 
+				# 研究进度储存
+				situation_event = { id = gray_tech.10 }
+			}
+		}
+	}
+	# 循环研究
+	approach = {
+		name = situation_gray_research_repeat
+		icon = GFX_situation_approach_repeat
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			NOT = { has_situation_flag = repeat_research }
+			has_situation_flag = is_researching_repeatable_tech
+			check_variable = { which = cur_repeatable_tech_lv value < gray_repeatable_tech_limit }
+		}
+		on_select = {
+			custom_tooltip = situation_gray_research_repeat_tooltip
+			hidden_effect = { 
+				set_situation_flag = repeat_research
+				set_situation_approach = situation_gray_research_default
+			}
+		}
+	}
+	approach = {
+		name = situation_gray_research_repeat_cancel
+		icon = GFX_situation_approach_repeat_cancel
+		icon_background = GFX_situation_approach_bg_red
+		potential = {
+			has_situation_flag = repeat_research
+			has_situation_flag = is_researching_repeatable_tech
+			check_variable = { which = cur_repeatable_tech_lv value < gray_repeatable_tech_limit }
+		}
+		on_select = {
+			custom_tooltip = situation_gray_research_repeat_cancel_tooltip
+			hidden_effect = { 
+				remove_situation_flag = repeat_research
+				set_situation_approach = situation_gray_research_default
+			}
+		}
+	}
+
+	on_monthly = {
+		events = {
+			gray_tech.2
+		}
+	}
+	monthly_progress = {
+		base = 0 
+		modifier = {
+			add = appox_gray_research_perc_add
+			desc = situation_gray_research_progress_tooltip
+		}
+	}
+	# abort_trigger = { has_global_flag = monolith_crisis_end } 
+		
+}
+# 按天数来研究的局势，只需输入研究天数和研究科技的id即可
+gray_research_situation_days = {
+	picture = GFX_evt_engineering_research
+
+	complete_icon = GFX_situation_outcome_research
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+
+	category = positive
+
+	on_start = {
+		# 将数据转移到局势里，避免数据碰撞
+		set_variable = { which = gray_tech_req_days value = owner.gray_tech_req_days }
+		set_variable = { which = gray_tech_id value = owner.gray_tech_id }
+		# 计算每月需要涨的百分比（100/需要的日数*30）
+		# gray_tech_req_days = 研究科技需要的日数
+		set_variable = { which = tech_progress_per_month value = 3000 } # 稍微将公式变换了一下，变成100*30/需要的日数
+		divide_variable = { which = tech_progress_per_month value = gray_tech_req_days }
+		# 防止分数除不尽而多耗一个月
+		add_situation_progress = 0.01
+		# 提取进度
+		situation_event = { id = gray_tech.13 }
+	}
+	on_progress_complete = {	#Effects when Situation's progress has reached 100
+		custom_tooltip = gray_research_finish_effect
+		hidden_effect = { situation_event = { id = gray_tech.3 }}
+	}
+
+	stages = {
+		gray_research_stage = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			custom_tooltip = gray_research_finish_effect
+		}
+	}
+	approach = {
+		name = situation_gray_research_default
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_green
+		default = yes
+	}
+	approach = {
+		name = situation_gray_research_cancel
+		icon = GFX_situation_approach_cancel
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = situation_gray_research_cancel_tooltip
+			hidden_effect = {
+				# 研究进度储存
+				situation_event = { id = gray_tech.12 }
+			}
+		}
+	}
+
+	on_monthly = {
+		events = {
+		}
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = tech_progress_per_month
+			desc = situation_gray_research_progress_tooltip
+		}
+	}
+	modifier = {
+	}
+	# abort_trigger = { has_global_flag = monolith_crisis_end } 
+		
+}

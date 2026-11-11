@@ -1,0 +1,69 @@
+tr_nanomachanic_adopt = {
+	possible = {
+		has_ascension_perk = ap_micromechanical_revolution
+	}
+	modifier = {
+		country_nanites_produces_mult = 0.1
+	}
+}
+
+tr_nanomachanic_finish = {
+	custom_tooltip = tr_nanomachanic_finish_desc
+	modifier = {
+		ascension_perks_add = 1
+	}
+}
+
+tr_nanomachanic_1 = {
+	custom_tooltip = tr_nanomachanic_1_desc
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_nanomachanic_2 = {
+	modifier = {
+		country_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+tr_nanomachanic_3 = {
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.2
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+tr_nanomachanic_4 = {
+	custom_tooltip = tr_nanomachanic_4_desc
+	possible = {
+		has_tradition = tr_nanomachanic_1
+		has_tradition = tr_nanomachanic_2
+	}
+	modifier = {
+		country_nano_research_points_mult = 0.25
+	}
+	ai_weight = {
+		factor = 1000
+	}
+}
+tr_nanomachanic_5 = {
+	possible = {
+		has_tradition = tr_nanomachanic_3
+		has_tradition = tr_nanomachanic_2
+	}
+	modifier = {
+		planetary_ascension_effect_mult = 0.25
+		planetary_ascension_cost_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

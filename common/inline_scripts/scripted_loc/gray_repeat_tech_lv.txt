@@ -1,0 +1,13 @@
+name = GetGrayTech$ID$Lv
+text = {
+    trigger = { check_variable = { which = $NAME$ value <= 0 }}
+    localization_key = roman_1
+}
+text = {
+    trigger = { check_variable = { which = $NAME$ value = 1 }}
+    localization_key = roman_2
+}
+text = {
+    trigger = { check_variable = { which = $NAME$ value >= 2 }}
+    localization_key = roman_3
+}

@@ -1,0 +1,170 @@
+reset_mpj_page_variable = {
+	set_variable = { which = wg_current_mpj_page value = 0 }
+	set_variable = { which = wg_current_mpj_page_step_1 value = 0 }
+	set_variable = { which = wg_current_mpj_page_step_2 value = 1 }
+	set_variable = { which = wg_current_mpj_page_step_3 value = 2 }
+	set_variable = { which = wg_current_mpj_page_step_4 value = 3 }
+	get_digits = { ARRAY = wg_current_mpj_page_step_1 VARIABLE = wg_current_mpj_page_step_1 }
+	get_digits = { ARRAY = wg_current_mpj_page_step_2 VARIABLE = wg_current_mpj_page_step_2 }
+	get_digits = { ARRAY = wg_current_mpj_page_step_3 VARIABLE = wg_current_mpj_page_step_3 }
+	get_digits = { ARRAY = wg_current_mpj_page_step_4 VARIABLE = wg_current_mpj_page_step_4 }
+}
+
+set_mpj_flag = {
+	if = {
+		limit = {
+			check_variable = { which = $STEP$_DIGIT_1 value = 0 }
+		}
+		set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 0 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 1 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 1 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 2 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 2 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 3 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 3 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 4 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 4 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 5 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 5 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 6 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 6 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 7 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 7 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 8 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 8 }
+	} else_if = {
+		limit = { check_variable = { which = $STEP$_DIGIT_1 value = 9 }}
+		set_mpj_flag_S2 = { STEP = $STEP$ MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = 9 }
+	}
+}
+
+set_mpj_flag_S2 = {
+	if = {
+		limit = { check_variable = { which = $STEP$_DIGITS value = 1 }}
+		set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+	}
+	else_if = {
+		limit = { check_variable = { which = $STEP$_DIGITS value > 1 }}
+		if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 0 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$0 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 1 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$1 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 2 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$2 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 3 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$3 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 4 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$4 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 5 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$5 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 6 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$6 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 7 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$7 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 8 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$8 }
+		} else_if = {
+			limit = { check_variable = { which = $STEP$_DIGIT_2 value = 9 }}
+			set_mpj_flag_S3 = { MPJ = $MPJ$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$9 }
+		}
+	}
+}
+
+set_mpj_flag_S3 = {
+	if = {
+		limit = {
+			check_variable = { which = $MPJ$_DIGIT_1 value = 0 }
+		}
+		set_mpj_flag_final = { MPJ_VALUE = 0 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+	}
+	else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 1 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 1 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 2 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 2 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 3 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 3 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 4 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 4 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 5 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 5 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 6 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 6 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 7 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 7 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 8 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 8 STEP_VALUE = $STEP_VALUE$ }
+	} else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGIT_1 value = 9 }}
+		set_mpj_flag_S4 = { MPJ = $MPJ$ FLAG = $FLAG$ MPJ_VALUE = 9 STEP_VALUE = $STEP_VALUE$ }
+	}
+}
+
+set_mpj_flag_S4 = {
+	if = {
+		limit = { check_variable = { which = $MPJ$_DIGITS value = 1 }}
+		set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$ FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+	}
+	else_if = {
+		limit = { check_variable = { which = $MPJ$_DIGITS value > 1 }}
+		if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 0 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$0 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 1 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$1 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 2 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$2 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 3 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$3 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 4 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$4 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 5 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$5 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 6 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$6 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 7 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$7 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 8 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$8 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		} else_if = {
+			limit = { check_variable = { which = $MPJ$_DIGIT_2 value = 9 }}
+			set_mpj_flag_final = { MPJ_VALUE = $MPJ_VALUE$9 FLAG = $FLAG$ STEP_VALUE = $STEP_VALUE$ }
+		}
+	}
+}
+
+set_mpj_flag_final = {
+	set_country_flag = mwsge_mpj_$MPJ_VALUE$_step_$STEP_VALUE$_$FLAG$
+}

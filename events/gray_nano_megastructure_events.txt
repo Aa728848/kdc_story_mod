@@ -1,0 +1,1045 @@
+namespace = gray_mega
+# 建造纳米核心
+ship_event = {
+	id = gray_mega.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ship_size = gray_nano_construct_core
+	}
+
+	immediate = {
+		solar_system = { 
+			if = {
+				limit = { any_fleet_in_system = {
+					has_fleet_flag = gray_nano_core_fleet
+				}}
+				random_fleet_in_system = {
+					limit = { has_fleet_flag = gray_nano_core_fleet }
+					create_gray_nano_core_ship = yes
+				}
+			} else = {
+				create_fleet = {
+					name = "NAME_gray_nano_core"
+					effect = {
+						set_owner = root.owner
+						set_location = root.fleet
+						create_gray_nano_core_ship = yes
+						set_fleet_flag = gray_nano_core_fleet
+					}
+					settings = {
+						can_change_composition = no
+						can_change_leader = no
+						spawn_debris = no
+						ai_ignore_strength = yes
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = fleet
+				fleet = { num_ships <= 1 }
+			}
+			fleet = { delete_fleet = { target = this destroy_template = yes }}
+		}
+		delete_ship = this
+	}
+}
+
+# 解散联合棱镜核心，触发部署事件
+country_event = {
+	id = gray_mega.2
+	title = gray_mega.2.name
+	desc = gray_mega.2.desc
+	is_triggered_only = yes
+	location = from.solar_system
+	trackable = yes
+	picture = GFX_evt_wsg_no_video
+
+	trigger = {
+		OR = {
+			AND = {
+				exists = fromfrom
+				fromfrom = { has_star_flag = return_from_gray_nano_submenu }
+			}
+			from = {
+				is_in_combat = no
+				solar_system = {
+					NOT = { has_star_flag = gray_nano_core_deploying }
+					NOT = { any_fleet_in_system = {
+						# 不能有敌对舰队
+						owner = { is_hostile = prevprev.from }
+						any_owned_ship = { OR = {
+							is_ship_class = shipclass_military 
+							is_ship_class = shipclass_military_station
+						}}
+					}}
+				}
+				has_fleet_flag = gray_nano_core_fleet
+				any_controlled_ship = { is_ship_size = gray_nano_construct_core }
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { 
+				exists = fromfrom
+				fromfrom = { has_star_flag = return_from_gray_nano_submenu }
+			}
+			from = { save_event_target_as = nano_core_fleet }
+			fromfrom = { 
+				remove_star_flag = return_from_gray_nano_submenu 
+				save_event_target_as = nano_core_system
+			}
+		} else = {
+			from.solar_system = {
+				set_star_flag = gray_nano_core_deploying
+				save_event_target_as = nano_core_system
+			}
+			from = { 
+				set_fleet_flag = disbanded
+				export_trigger_value_to_variable = {
+					trigger = num_ships
+					variable = num_nano_core
+				}
+				create_fleet = {
+					name = "NAME_gray_nano_core"
+					effect = {
+						set_owner = root
+						set_location = prev
+						while = {
+							count = prev.num_nano_core
+							create_gray_nano_core_ship = yes
+						}
+						set_fleet_flag = gray_nano_core_fleet
+						set_event_locked = yes
+						save_event_target_as = nano_core_fleet
+					}
+					settings = {
+						can_change_composition = no
+						can_change_leader = no
+						spawn_debris = no
+						ai_ignore_strength = yes
+					}
+				}
+			}
+			event_target:nano_core_system = {
+				clear_variable = num_nano_core
+				every_fleet_in_system = {
+					limit = { 
+						exists = this
+						NOT = { has_fleet_flag = disbanded }
+						has_fleet_flag = gray_nano_core_fleet 
+					}
+					set_event_locked = yes
+					export_trigger_value_to_variable = {
+						trigger = num_ships
+						variable = num_nano_core
+					}
+					prev = { change_variable = {
+						which = num_nano_core
+						value = prev.num_nano_core
+					}}
+				}
+			}
+			from = { delete_fleet = { target = this destroy_template = yes }}
+			# 计算巨构合金花费修正
+			set_variable = { which = mod_mega_alloys_value value = value:mod_mega_alloys_value }
+			set_variable = { which = minus_mod_mega_alloys_value value = mod_mega_alloys_value }
+			multiply_variable = { which = minus_mod_mega_alloys_value value = -1 }
+			# 计算巨构影响力花费修正
+			set_variable = { which = mod_mega_influence_value value = value:mod_mega_influence_value }
+			set_variable = { which = minus_mod_mega_influence_value value = mod_mega_influence_value }
+			multiply_variable = { which = minus_mod_mega_influence_value value = -1 }
+			# 计算巨构凝聚力花费修正
+			set_variable = { which = mod_mega_unity_value value = value:mod_mega_unity_value }
+			set_variable = { which = minus_mod_mega_unity_value value = mod_mega_unity_value }
+			multiply_variable = { which = minus_mod_mega_unity_value value = -1 }
+			# if = {
+			# 	limit = {
+			# 		has_global_flag = AOW_installed
+			# 		event_target:nano_core_system = { AOW_trgr_SSTM_single_star_system = yes }
+			# 	}
+			# 	event_target:nano_core_system.system_star = {
+			# 		set_variable = { which = gray_dyson_sphere_alloys_cost
+			# 			value = value:gray_dyson_sphere_aow_cost|BASE|10000|RESOURCE|alloys }
+			# 		set_variable = { which = gray_dyson_sphere_unity_cost
+			# 			value = value:gray_dyson_sphere_aow_cost|BASE|5000|RESOURCE|unity }
+			# 	}
+			# }
+		}
+	}
+
+	after = { 
+		
+	}
+
+	option = {
+		# 环世界
+		name = "pc_ringworld_habitable"
+		custom_tooltip = "ring_world_1_MEGASTRUCTURE_DETAILS"
+		trigger = {
+			has_technology = tech_ring_world
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = "NOT_ENOUGH_NANO_CORE_5"
+				event_target:nano_core_system = { 
+					check_variable = { which = num_nano_core value >= 5 } 
+				}
+			}
+			hidden:event_target:nano_core_system = { 
+				gray_ringworld_trigger = yes
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @gray_ringworld_alloys_cost
+				mult = mod_mega_alloys_value
+			}
+			resource_stockpile_compare = {
+				resource = influence
+				value >= @gray_ringworld_influence_cost
+				mult = mod_mega_influence_value
+			}
+			custom_tooltip = {
+				fail_text = "need_built_ringworld"
+				has_country_flag = built_ringworld
+			}
+			has_technology = tech_nano_ring_world
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 5 }
+		}
+		add_resource = {
+			alloys = @gray_ringworld_alloys_cost
+			mult = minus_mod_mega_alloys_value
+		}
+		add_resource = {
+			influence = @gray_ringworld_influence_cost
+			mult = minus_mod_mega_influence_value
+		}
+		hidden_effect = {
+			event_target:nano_core_system = {
+				set_star_flag = nano_core_constructing
+				star = { set_planet_flag = exists_megastructure }
+				spawn_megastructure = {
+					type = gray_nano_megastructure_base
+					planet = system_star
+					owner = root
+					init_effect = {
+						upgrade_megastructure_to = gray_nano_megastructure_base_2
+						set_megastructure_flag = ringworld
+					}
+				}
+				event_target:nano_core_fleet = {
+					delete_nano_core = { NUM = 5 }
+				}
+			}
+		}
+		gray_nano_core_menu_after_effect = yes
+	}
+
+	option = {
+		name = "gray_nano_dyson_sphere"
+		custom_tooltip = "dyson_sphere_0_MEGASTRUCTURE_DETAILS"
+		trigger = {
+			has_technology = tech_dyson_sphere
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = "NOT_ENOUGH_NANO_CORE_4"
+				event_target:nano_core_system = { 
+					check_variable = { which = num_nano_core value >= 4 } 
+				}
+			}
+			hidden:event_target:nano_core_system = { 
+				gray_dyson_sphere_trigger = yes
+			}
+			if = {
+				limit = { has_global_flag = AOW_installed }
+				if = {
+					limit = { event_target:nano_core_system = {
+						AOW_trgr_SSTM_single_star_system = yes
+					} }
+					resource_stockpile_compare = {
+						resource = alloys
+						value >= 1
+						mult = event_target:nano_core_system.system_star.gray_dyson_sphere_alloys_cost
+					}
+					resource_stockpile_compare = {
+						resource = unity
+						value >= 1
+						mult = event_target:nano_core_system.system_star.gray_dyson_sphere_unity_cost
+					}
+				}
+			} else = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @gray_dyson_sphere_alloys_cost
+					mult = mod_mega_alloys_value
+				}
+				resource_stockpile_compare = {
+					resource = unity
+					value >= @gray_dyson_sphere_unity_cost
+					mult = mod_mega_unity_value
+				}
+			}
+			custom_tooltip = {
+				fail_text = "need_built_dyson_sphere"
+				has_country_flag = built_dyson_sphere_5
+			}
+			has_technology = tech_nano_dyson_sphere
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 4 }
+		}
+		if = {
+			limit = { 
+				has_global_flag = AOW_installed 
+				event_target:nano_core_system = { AOW_trgr_SSTM_single_star_system = no }
+			}
+			hidden_effect = {
+				event_target:nano_core_system = {
+					clear_variable = gray_mega_star_count
+					every_system_planet = {
+						limit = { 
+							AOW_trgr_PLNT_main_sequence_star = yes
+						}
+						prev = { change_variable = { which = gray_mega_star_count value = 1 }}
+						set_variable = { which = gray_mega_star_id value = prev.gray_mega_star_count }
+					}
+				}
+				clear_variable = gray_mega_setting_page
+				country_event = { id = gray_mega.10
+					scopes = { 
+						from = event_target:nano_core_fleet 
+						fromfrom = event_target:nano_core_system 
+					}
+				}
+			}
+		} else = {
+			if = {
+				limit = { event_target:nano_core_system = { AOW_trgr_SSTM_single_star_system = no }}
+				add_resource = {
+					alloys = -1
+					mult = event_target:nano_core_system.system_star.gray_dyson_sphere_alloys_cost
+				}
+				add_resource = {
+					unity = -1
+					mult = event_target:nano_core_system.system_star.gray_dyson_sphere_unity_cost
+				}
+			} else = {
+				add_resource = {
+					alloys = @gray_dyson_sphere_alloys_cost
+					mult = minus_mod_mega_alloys_value
+				}
+				add_resource = {
+					unity = @gray_dyson_sphere_unity_cost
+					mult = minus_mod_mega_unity_value
+				}
+			}
+			hidden_effect = {
+				event_target:nano_core_system = {
+					set_star_flag = nano_core_constructing
+					star = { set_planet_flag = exists_megastructure }
+					spawn_megastructure = {
+						type = gray_nano_megastructure_base
+						planet = system_star
+						owner = root
+						init_effect = {
+							upgrade_megastructure_to = gray_nano_megastructure_base_2
+							set_megastructure_flag = dyson_sphere
+						}
+					}
+					event_target:nano_core_fleet = {
+						delete_nano_core = { NUM = 4 }
+					}
+				}
+			}
+			gray_nano_core_menu_after_effect = yes
+		}
+	}
+
+	option = {
+		name = "gray_nano_matter_decompressor"
+		custom_tooltip = "matter_decompressor_0_MEGASTRUCTURE_DETAILS"
+		trigger = {
+			has_technology = tech_matter_decompressor
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = "NOT_ENOUGH_NANO_CORE_4"
+				event_target:nano_core_system = { 
+					check_variable = { which = num_nano_core value >= 4 } 
+				}
+			}
+			hidden:event_target:nano_core_system = { 
+				gray_matter_decompressor_trigger = yes
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @gray_matter_decompressor_alloys_cost
+				mult = mod_mega_alloys_value
+			}
+			resource_stockpile_compare = {
+				resource = unity
+				value >= @gray_matter_decompressor_unity_cost
+				mult = mod_mega_unity_value
+			}
+			custom_tooltip = {
+				fail_text = "need_built_matter_decompressor"
+				has_country_flag = built_matter_decompressor
+			}
+			has_technology = tech_nano_matter_decompressor
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 4 }
+		}
+		add_resource = {
+			alloys = @gray_matter_decompressor_alloys_cost
+			mult = minus_mod_mega_alloys_value
+		}
+		add_resource = {
+			unity = @gray_matter_decompressor_unity_cost
+			mult = minus_mod_mega_unity_value
+		}
+		hidden_effect = {
+			event_target:nano_core_system = {
+				set_star_flag = nano_core_constructing
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_black_hole 
+						kdc_planet_no_megastructure_trigger = yes
+					}
+					prev = { spawn_megastructure = {
+						type = gray_nano_megastructure_base
+						planet = prev
+						owner = root
+						init_effect = {
+							upgrade_megastructure_to = gray_nano_megastructure_base_2
+							set_megastructure_flag = matter_decompressor
+						}
+					}}
+				}
+			}
+			event_target:nano_core_fleet = {
+				delete_nano_core = { NUM = 4 }
+			}
+		}
+		gray_nano_core_menu_after_effect = yes
+	}
+
+	option = {
+		name = "gray_nano_think_tank"
+		custom_tooltip = "think_tank_0_MEGASTRUCTURE_DETAILS"
+		trigger = {
+			has_technology = tech_science_nexus
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = "NOT_ENOUGH_NANO_CORE_4"
+				event_target:nano_core_system = { 
+					check_variable = { which = num_nano_core value >= 4 } 
+				}
+			}
+			hidden:event_target:nano_core_system = { 
+				gray_think_tank_trigger = yes
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @gray_think_tank_alloys_cost
+				mult = mod_mega_alloys_value
+			}
+			resource_stockpile_compare = {
+				resource = unity
+				value >= @gray_think_tank_unity_cost
+				mult = mod_mega_unity_value
+			}
+			custom_tooltip = {
+				fail_text = "need_built_think_tank"
+				has_country_flag = built_think_tank_3
+			}
+			has_technology = tech_nano_science_nexus
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 4 }
+		}
+		add_resource = {
+			alloys = @gray_think_tank_alloys_cost
+			mult = minus_mod_mega_alloys_value
+		}
+		add_resource = {
+			unity = @gray_think_tank_unity_cost
+			mult = minus_mod_mega_unity_value
+		}
+		hidden_effect = {
+			event_target:nano_core_system = {
+				set_star_flag = nano_core_constructing
+				random_system_planet = {
+					limit = { 
+						is_colonizable = no
+						is_colony = no
+						is_star = no 
+						is_asteroid = no
+						is_moon = no
+						NOT = { has_planet_flag = exists_megastructure }
+						kdc_planet_no_megastructure_trigger = yes
+					}
+					set_planet_flag = exists_megastructure
+					prev = { spawn_megastructure = {
+						type = gray_nano_megastructure_base
+						planet = prev
+						owner = root
+						init_effect = {
+							upgrade_megastructure_to = gray_nano_megastructure_base_2
+							set_megastructure_flag = think_tank
+						}
+					}}
+				}
+				event_target:nano_core_fleet = {
+					delete_nano_core = { NUM = 4 }
+				}
+			}
+		}
+		gray_nano_core_menu_after_effect = yes
+	}
+
+	option = {
+		name = cancel_construction
+		gray_nano_core_menu_after_effect = yes
+	}
+}
+
+# AOE选恒星触发界面
+# from = nano core fleet
+# fromfrom = system of fleet located
+country_event = {
+	id = gray_mega.10
+	title = gray_mega.2.name
+	desc = gray_mega.10.desc
+	is_triggered_only = yes
+	location = fromfrom
+	trackable = yes
+	picture = GFX_evt_wsg_no_video
+
+	immediate = {
+		fromfrom = {
+			save_event_target_as = nano_core_system
+			if = {
+				limit = {
+					check_variable_arithmetic = {
+						which = gray_mega_setting_page
+						multiply = 3
+						add = 1
+						value <= root.fromfrom.gray_mega_star_count
+					}
+				}
+				random_system_planet = {
+					limit = { check_variable_arithmetic = {
+						which = gray_mega_setting_page
+						multiply = 3
+						add = 1
+						value = gray_mega_star_id
+					}}
+					save_event_target_as = gray_mega_star_1
+					set_variable = { which = gray_dyson_sphere_alloys_cost value = 10000 }
+					set_variable = { which = gray_dyson_sphere_unity_cost value = 5000 }
+						# set_variable = { which = gray_dyson_sphere_alloys_cost
+					# 	value = value:gray_dyson_sphere_aow_cost|BASE|10000|RESOURCE|alloys }
+					# set_variable = { which = gray_dyson_sphere_unity_cost
+					# 	value = value:gray_dyson_sphere_aow_cost|BASE|5000|RESOURCE|unity }
+				}
+			}
+			if = {
+				limit = {
+					check_variable_arithmetic = {
+						which = gray_mega_setting_page
+						multiply = 3
+						add = 2
+						value <= root.fromfrom.gray_mega_star_count
+					}
+				}
+				random_system_planet = {
+					limit = { check_variable_arithmetic = {
+						which = gray_mega_setting_page
+						multiply = 3
+						add = 2
+						value = gray_mega_star_id
+					}}
+					save_event_target_as = gray_mega_star_2
+					set_variable = { which = gray_dyson_sphere_alloys_cost value = 10000 }
+					set_variable = { which = gray_dyson_sphere_unity_cost value = 5000 }
+					# set_variable = { which = gray_dyson_sphere_alloys_cost
+					# 	value = value:gray_dyson_sphere_aow_cost|BASE|10000|RESOURCE|alloys }
+					# set_variable = { which = gray_dyson_sphere_unity_cost
+					# 	value = value:gray_dyson_sphere_aow_cost|BASE|5000|RESOURCE|unity }
+				}
+			}
+			if = {
+				limit = {
+					check_variable_arithmetic = {
+						which = gray_mega_setting_page
+						multiply = 3
+						add = 3
+						value <= root.fromfrom.gray_mega_star_count
+					}
+				}
+				random_system_planet = {
+					limit = { check_variable_arithmetic = {
+						which = gray_mega_setting_page
+						multiply = 3
+						add = 3
+						value = gray_mega_star_id
+					}}
+					save_event_target_as = gray_mega_star_3
+					set_variable = { which = gray_dyson_sphere_alloys_cost value = 10000 }
+					set_variable = { which = gray_dyson_sphere_unity_cost value = 5000 }
+					# set_variable = { which = gray_dyson_sphere_alloys_cost
+					# 	value = value:gray_dyson_sphere_aow_cost|BASE|10000|RESOURCE|alloys }
+					# set_variable = { which = gray_dyson_sphere_unity_cost
+					# 	value = value:gray_dyson_sphere_aow_cost|BASE|5000|RESOURCE|unity }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gray_mega.10.option_1
+		trigger = {
+			exists = event_target:gray_mega_star_1
+			check_variable_arithmetic = {
+				which = gray_mega_setting_page
+				multiply = 3
+				value < fromfrom.gray_mega_star_count
+			}
+		}
+		allow = {
+			hidden:event_target:gray_mega_star_1 = {
+				gray_dyson_sphere_AOW_star_allow_trigger = yes
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= 1
+				mult = event_target:gray_mega_star_1.gray_dyson_sphere_alloys_cost
+			}
+			resource_stockpile_compare = {
+				resource = unity
+				value >= 1
+				mult = event_target:gray_mega_star_1.gray_dyson_sphere_unity_cost
+			}
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 4 }
+		}
+		add_resource = {
+			alloys = -1
+			mult = event_target:gray_mega_star_1.gray_dyson_sphere_alloys_cost
+		}
+		add_resource = {
+			unity = -1
+			mult = event_target:gray_mega_star_1.gray_dyson_sphere_unity_cost
+		}
+		hidden_effect = {
+			event_target:gray_mega_star_1 = {
+				planet_event = { id = gray_mega.11
+					scopes = { from = from fromfrom = root }}
+			}
+		}
+	}
+	option = {
+		name = gray_mega.10.option_2
+		trigger = {
+			exists = event_target:gray_mega_star_2
+			check_variable_arithmetic = {
+				which = gray_mega_setting_page
+				multiply = 3
+				add = 1
+				value < fromfrom.gray_mega_star_count
+			}
+		}
+		allow = {
+			hidden:event_target:gray_mega_star_2 = {
+				gray_dyson_sphere_AOW_star_allow_trigger = yes
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= 1
+				mult = event_target:gray_mega_star_2.gray_dyson_sphere_alloys_cost
+			}
+			resource_stockpile_compare = {
+				resource = unity
+				value >= 1
+				mult = event_target:gray_mega_star_2.gray_dyson_sphere_unity_cost
+			}
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 4 }
+		}
+		add_resource = {
+			alloys = -1
+			mult = event_target:gray_mega_star_2.gray_dyson_sphere_alloys_cost
+		}
+		add_resource = {
+			unity = -1
+			mult = event_target:gray_mega_star_2.gray_dyson_sphere_unity_cost
+		}
+		hidden_effect = {
+			event_target:gray_mega_star_2 = {
+				planet_event = { id = gray_mega.11
+					scopes = { from = from fromfrom = root }}
+			}
+		}
+	}
+	option = {
+		name = gray_mega.10.option_3
+		trigger = {
+			exists = event_target:gray_mega_star_3
+			check_variable_arithmetic = {
+				which = gray_mega_setting_page
+				multiply = 3
+				add = 2
+				value < fromfrom.gray_mega_star_count
+			}
+		}
+		allow = {
+			hidden:event_target:gray_mega_star_3 = {
+				gray_dyson_sphere_AOW_star_allow_trigger = yes
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= 1
+				mult = event_target:gray_mega_star_2.gray_dyson_sphere_alloys_cost
+			}
+			resource_stockpile_compare = {
+				resource = unity
+				value >= 1
+				mult = event_target:gray_mega_star_2.gray_dyson_sphere_unity_cost
+			}
+		}
+		custom_tooltip_with_params = {
+			description = consume_nano_core
+			description_parameters = { "NUM" = 4 }
+		}
+		add_resource = {
+			alloys = -1
+			mult = event_target:gray_mega_star_3.gray_dyson_sphere_alloys_cost
+		}
+		add_resource = {
+			unity = -1
+			mult = event_target:gray_mega_star_3.gray_dyson_sphere_unity_cost
+		}
+		hidden_effect = {
+			event_target:gray_mega_star_3 = {
+				planet_event = { id = gray_mega.11
+					scopes = { from = from fromfrom = root }}
+			}
+		}
+	}
+	option = {
+		name = next_page
+		trigger = {
+			check_variable_arithmetic = {
+				which = gray_mega_setting_page
+				add = 1
+				multiply = 3
+				value < fromfrom.gray_mega_star_count
+			}
+		}
+		hidden_effect = {
+			change_variable = { which = gray_mega_setting_page value = 1 }
+			country_event = { id = gray_mega.10 
+				scopes = { from = from fromfrom = fromfrom }}
+		}
+	}
+	option = {
+		name = last_page
+		trigger = { check_variable = { which = gray_mega_setting_page value > 0 }}
+		hidden_effect = {
+			change_variable = { which = gray_mega_setting_page value = -1 }
+			country_event = { id = gray_mega.10
+				scopes = { from = from fromfrom = fromfrom }}
+		}
+	}
+	option = {
+		name = return_to_last_menu
+		hidden_effect = {
+			fromfrom = { set_star_flag = return_from_gray_nano_submenu }
+			clear_variable = gray_mega_setting_page
+			country_event = { id = gray_mega.2
+				scopes = { from = from fromfrom = fromfrom }}
+		}
+	}
+	option = {
+		name = cancel_construction
+		gray_nano_core_menu_after_effect = yes
+	}
+}
+
+# 戴森球——已选择恒星部署巨构
+# from = nano core fleet
+# fromfrom = fleet owner
+planet_event = {
+	id = gray_mega.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from = { 
+			save_event_target_as = nano_core_fleet 
+			solar_system = { save_event_target_as = nano_core_system }
+		}
+		set_planet_flag = exists_megastructure
+		event_target:nano_core_system = {
+			set_star_flag = nano_core_constructing
+			spawn_megastructure = {
+				type = gray_nano_megastructure_base
+				planet = root
+				owner = fromfrom
+				init_effect = {
+					upgrade_megastructure_to = gray_nano_megastructure_base_2
+					set_megastructure_flag = dyson_sphere
+				}
+			}
+			event_target:nano_core_fleet = { delete_nano_core = { NUM = 4 }}
+		}
+		gray_nano_core_menu_after_effect = yes
+	}
+}
+
+# 升级基座完成，自动升级至其他巨构
+country_event = {
+	id = gray_mega.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_megastructure_type = gray_nano_megastructure_base_2 }
+	}
+
+	immediate = {
+		from = {
+			switch = {
+				trigger = has_megastructure_flag
+				ringworld = { upgrade_megastructure_to = gray_nano_ring_world_2_intermediate }
+				dyson_sphere = { upgrade_megastructure_to = gray_nano_dyson_sphere_1 }
+				matter_decompressor = { upgrade_megastructure_to = gray_nano_matter_decompressor }
+				think_tank = { upgrade_megastructure_to = gray_nano_think_tank }
+			}
+		}
+	}
+}
+
+# 部署失败提示：有其他敌对舰队在此星系
+country_event = {
+	id = gray_mega.3
+	title = gray_mega.3.name
+	desc = {
+		trigger = {
+			from.solar_system = {
+				has_star_flag = gray_nano_core_deploying
+			}
+		}
+		text = gray_mega.3.desc.a
+	}
+	desc = {
+		trigger = {
+			from.solar_system = {
+				NOT = { has_star_flag = gray_nano_core_deploying }
+			}
+		}
+		text = gray_mega.3.desc.b
+	}
+	is_triggered_only = yes
+	location = from.solar_system
+	trackable = yes
+	picture = GFX_evt_wsg_no_video
+
+	trigger = {
+		from = {
+			is_in_combat = no
+			solar_system = { OR = {
+				has_star_flag = gray_nano_core_deploying 
+				any_fleet_in_system = {
+					# 不能有敌对舰队
+					owner = { is_hostile = prevprev.from }
+					any_owned_ship = { OR = {
+						is_ship_class = shipclass_military 
+						is_ship_class = shipclass_military_station
+					}}
+				}
+			}}
+			has_fleet_flag = gray_nano_core_fleet
+			any_controlled_ship = { is_ship_size = gray_nano_construct_core }
+		}
+	}
+
+	immediate = {
+		from = { 
+			set_fleet_flag = disbanded
+			export_trigger_value_to_variable = {
+				trigger = num_ships
+				variable = num_nano_core
+			}
+			create_fleet = {
+				name = "NAME_gray_nano_core"
+				effect = {
+					set_owner = root
+					set_location = prev
+					while = {
+						count = prev.num_nano_core
+						create_gray_nano_core_ship = yes
+					}
+					set_fleet_flag = gray_nano_core_fleet
+					set_event_locked = yes
+				}
+				settings = {
+					can_change_composition = no
+					can_change_leader = no
+					spawn_debris = no
+					ai_ignore_strength = yes
+				}
+			}
+			delete_fleet = { target = this destroy_template = yes }
+		}
+	}
+
+	option = {
+		name = OK
+	}
+
+}
+
+# 使用说明书
+# country_event = {
+# 	id = gray_mega.7
+# 	title = gray_mega.7.name
+# 	desc = gray_mega.7.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_evt_wsg_no_video
+#
+# 	trigger = {
+# 	}
+#
+# 	option = {
+# 		name = gray_mega.7.a
+# 	}
+# }
+
+country_event = {
+	id = gray_mega.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { OR = {
+			is_megastructure_type = matter_decompressor_4 
+			is_megastructure_type = matter_decompressor_restored
+		}}
+	}
+
+	immediate = {
+		set_country_flag = built_matter_decompressor
+	}
+}
+
+country_event = {
+	id = gray_mega.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { OR = {
+			is_megastructure_type = think_tank_3 
+			is_megastructure_type = think_tank_restored
+		}}
+	}
+
+	immediate = {
+		set_country_flag = built_think_tank_3
+	}
+}
+
+country_event = {
+	id = gray_mega.102
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { 
+			is_dyson_sphere_5 = yes
+		}
+	}
+
+	immediate = {
+		set_country_flag = built_dyson_sphere_5
+	}
+}
+# 补充：修复环世界
+country_event = {
+	id = gray_mega.103
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = { is_megastructure_type = ring_world_restored }
+		FROMFROM = {
+			NOT = {
+				any_system_megastructure = { is_megastructure_type = ring_world_ruined }
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = built_ringworld
+	}
+}
+
+event = {
+	id = gray_mega.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { has_technology = tech_nano_construction_core }
+			every_owned_megastructure = {
+				if = {
+					limit = { OR = {
+						is_megastructure_type = matter_decompressor_4 
+						is_megastructure_type = matter_decompressor_restored
+					}}
+					prev = { set_country_flag = built_matter_decompressor }
+				}
+				if = {
+					limit = { OR = {
+						is_megastructure_type = think_tank_3 
+						is_megastructure_type = think_tank_4
+						is_megastructure_type = think_tank_restored
+					}}
+					prev = { set_country_flag = built_think_tank_3 }
+				}
+				if = {
+					limit = { 
+						is_dyson_sphere_5 = yes
+					}
+					prev = { set_country_flag = built_dyson_sphere_5 }
+				}
+				if = {
+					limit = { OR = {
+						is_megastructure_type = ring_world_restored 
+					}}
+					prev = { set_country_flag = built_dyson_sphere_5 }
+				}
+			}
+		}
+	}
+}

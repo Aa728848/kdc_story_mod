@@ -1,0 +1,164 @@
+# Base income of country
+country_base = {
+	parent = country
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = country
+}
+
+decisions = {
+	use_for_ai_budget = yes
+	parent = country
+	generate_mult_modifiers = {
+		cost
+	}
+	modifier_category = country
+}
+
+pop_category_slave = {
+	parent = planet_pops
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+    generate_mult_modifiers = {
+        produces
+		upkeep
+	}
+	modifier_category = pop_group
+}
+
+planet_districts = {
+	parent = planet_structures
+
+	generate_add_modifiers = {
+		cost
+		upkeep
+		produces
+	}
+	
+	generate_mult_modifiers = {
+		cost
+        upkeep
+		produces
+	}
+	modifier_category = planet
+}
+
+megastructures = {
+	use_for_ai_budget = yes
+	ai_use_parent_for_resources_upkeep = {
+		energy
+		consumer_goods
+	}
+	parent = country
+	generate_mult_modifiers = {
+		cost
+		produces
+		upkeep
+	}
+	generate_add_modifiers = {
+		cost
+		produces
+		upkeep
+	}
+	modifier_category = megastructure
+}
+
+planet_technician = {
+	parent = planet_jobs_worker
+	generate_add_modifiers = {
+		produces
+        upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}
+
+planet_farmers = {
+	parent = planet_jobs_worker
+	generate_add_modifiers = {
+		produces
+        upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}
+planet_miners = {
+	parent = planet_jobs_worker
+	generate_add_modifiers = {
+		produces
+        upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}
+planet_metallurgists = {
+	icon = "job_foundry"
+	parent = planet_jobs_specialist
+	generate_add_modifiers = {
+		produces
+        upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}
+planet_artisans = {
+	icon = "job_artisan"
+	parent = planet_jobs_specialist
+	generate_add_modifiers = {
+		produces
+        upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}
+planet_researchers = {
+	icon = "job_researcher"
+	parent = planet_jobs_specialist
+	generate_add_modifiers = {
+		produces
+        upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}
+
+planet_jobs = {
+	parent = planets
+
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop_job
+}

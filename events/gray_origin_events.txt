@@ -1,0 +1,4149 @@
+namespace = gray_origin
+
+# 开局总触发器（灰风起源）
+country_event = {
+	id = gray_origin.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = origin_gray_country
+	}
+	immediate = {
+		# 1.1.0
+		country_event = { id = gray_origin.100 days = 30 }
+		# 1.1.1
+		# country_event = { id = gray_origin.4 days = 900 random = 720 }
+		owner_main_species = { if = {
+			limit = { NOT = { has_trait = trait_gray_origin }}
+			# 检查特质并补加
+			modify_species = {
+				species = owner_main_species
+				add_trait = trait_gray_origin
+				change_scoped_species = yes
+			}
+		}}
+	}
+}
+
+country_event = {
+	id = gray_origin.100
+	title = gray_origin.100.name
+	desc = gray_origin.100.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gaia
+
+	immediate = {
+
+	}
+
+	option = {
+		name = OK
+		begin_event_chain = {
+			event_chain = gray_origin_chains_1
+			target = root
+		}
+		start_situation = { type = gray_origin_home_planet_situation target = capital_scope }
+	}
+}
+
+# 1.1.0-1
+situation_event = {
+	id = gray_origin.2
+	title = gray_origin.2.name
+	desc = gray_origin.2.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_goo
+
+	immediate = {
+		target = {
+			add_modifier = { modifier = weak_magnetic_field }
+		}
+	}
+	
+	option = {
+		name = gray_origin.2.a
+
+	}
+}
+# 1.1.0-2
+situation_event = {
+	id = gray_origin.3
+	title = gray_origin.3.name
+	desc = gray_origin.3.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_goo
+	
+	option = {
+		name = UNDERSTOOD
+		add_gray_origin_event_chain_counter_effect = yes
+	}
+}
+# 1.1.1
+situation_event = {
+	id = gray_origin.4
+	title = gray_origin.4.name
+	desc = gray_origin.4.desc
+	is_triggered_only = yes
+	picture = GFX_evt_colony_settlement
+	immediate = { set_situation_locked = yes }
+	option = {
+		name = gray_origin.4.a
+		if = {
+			limit = { owner = { OR = {
+				is_gestalt = yes
+				has_authority = auth_shenhai
+			}}}
+			# 格式塔/深海强制选A
+			owner = {
+				start_situation = { type = gray_origin_nuke_situation_1 target = capital_scope }
+				hidden_effect = { set_country_flag = situation_gray_origin_nuke_option_A }
+			}
+		} else = {
+			# 选择方案事件
+			situation_event = { id = gray_origin.11101 }
+		}
+	}
+	option = {
+		name = gray_origin.4.b
+		situation_event = { id = gray_origin.6 days = 180 random = 90 }
+		hidden_effect = {
+			target = { set_variable = { which = bomb_kill_pop value = 4 }}
+			set_situation_flag = gray_nuke_option_b
+		}
+	}
+	option = {
+		name = gray_origin.4.c
+		owner = {
+			start_situation = { type = gray_origin_nuke_situation_2 target = capital_scope }
+		}
+	}
+}
+# 1.1.1-1 趋势1起始阶段选择
+situation_event = {
+	id = gray_origin.11101
+	title = gray_origin.11101.title
+	desc = gray_origin.11101.desc
+	is_triggered_only = yes
+	picture = GFX_evt_announcement
+
+	option = {
+		name = situation_gray_origin_nuke_option_A
+		owner = {
+			hidden_effect = {
+				set_country_flag = situation_gray_origin_nuke_option_A
+			}
+			start_situation = { type = gray_origin_nuke_situation_1 target = capital_scope }
+		}
+		custom_tooltip = situation_gray_origin_nuke_option_A_desc
+		target = {
+			custom_tooltip = situation_gray_origin_nuke_option_A_effect 
+		} 
+	}
+	option = {
+		name = situation_gray_origin_nuke_option_B
+		owner = {
+			hidden_effect = {
+				set_country_flag = situation_gray_origin_nuke_option_B
+			}
+			start_situation = { type = gray_origin_nuke_situation_1 target = capital_scope }
+		}
+		custom_tooltip = situation_gray_origin_nuke_option_B_desc
+		target = {
+			hidden_effect = { set_variable = { which = bomb_kill_pop value = 1 }}
+			custom_tooltip = situation_gray_origin_nuke_option_B_effect
+		}
+	}
+}
+# 1.1.1-1 趋势1第一阶段事件，选项A
+situation_event = {
+	id = gray_origin.11102
+	title = gray_origin.11102.title
+	desc = {
+		trigger = { 
+			owner = { NOR = {
+				is_gestalt = yes
+				has_authority = auth_shenhai
+			}}
+		}
+		text = gray_origin.11102.desc.a
+	}
+	desc = {
+		trigger = { 
+			owner = { OR = {
+				is_gestalt = yes
+				has_authority = auth_shenhai
+			}}
+		}
+		text = gray_origin.11102.desc.b
+	}
+	is_triggered_only = yes
+	picture = GFX_evt_announcement
+
+	immediate = { set_situation_locked = yes }
+	after = { set_situation_locked = no }
+
+	option = {
+		name = gray_origin.11102.a
+	}
+}
+# 1.1.1-1 趋势1第二阶段事件，选项A
+situation_event = {
+	id = gray_origin.11103
+	title = gray_origin.11103.title
+	desc = gray_origin.11103.desc
+	is_triggered_only = yes
+	picture = GFX_evt_alien_propaganda
+
+	immediate = { set_situation_locked = yes }
+	after = { set_situation_locked = no }
+
+	option = {
+		name = gray_origin.11103.a
+		target = {
+			add_modifier = { 
+				modifier = martial_law_gray_origin
+				days = 180
+			}
+		}
+	}
+}
+# 1.1.1-1 趋势1第一阶段事件，选项B
+situation_event = {
+	id = gray_origin.11104
+	title = gray_origin.11104.title
+	desc = gray_origin.11104.desc
+	is_triggered_only = yes
+	picture = GFX_evt_announcement
+
+	immediate = { set_situation_locked = yes }
+	after = { set_situation_locked = no }
+
+	option = {
+		name = REMARKABLE
+		hidden_effect = { situation_event = { id = gray_origin.11105 days = 15 random = 35 }}
+	}
+}
+# 1.1.1-1 趋势1第一阶段道中事件，选项B
+situation_event = {
+	id = gray_origin.11105
+	title = gray_origin.11105.title
+	desc = gray_origin.11105.desc
+	is_triggered_only = yes
+	picture = GFX_evt_news_room
+
+	immediate = { set_situation_locked = yes }
+	after = { set_situation_locked = no }
+
+	option = {
+		name = gray_origin.11105.a
+		allow = { owner = {
+			has_resource = { type = energy amount >= 2000 }
+		}}
+		owner = { add_resource = { energy = -1000 }}
+	}
+	option = {
+		name = gray_origin.11105.b
+		hidden_effect = { 
+			target = { change_variable = { which = bomb_kill_pop value = 1 }}
+		}
+		owner = { add_resource = { unity = -200 }}
+	}
+	option = {
+		name = gray_origin.11105.c
+		owner = { add_resource = { influence = -50 }}
+		hidden_effect = { target = { change_variable = { which = bomb_kill_pop value = 1 }}}
+	}
+}
+# 1.1.1-1 趋势1第二阶段事件，选项B
+situation_event = {
+	id = gray_origin.11106
+	title = gray_origin.11106.title
+	desc = gray_origin.11106.desc
+	is_triggered_only = yes
+	picture = GFX_evt_alien_propaganda
+
+	immediate = { set_situation_locked = yes }
+	after = { set_situation_locked = no }
+
+	option = {
+		name = gray_origin.11106.a
+		hidden_effect = {
+			situation_event = { id = gray_origin.11107 days = 15 random = 35 }
+		}
+		target = { custom_tooltip = gray_origin.11106.tooltip }
+	}
+}
+# 1.1.1-1 趋势1第二阶段道中事件，选项B
+situation_event = {
+	id = gray_origin.11107
+	title = gray_origin.11107.title
+	desc = gray_origin.11107.desc
+	is_triggered_only = yes
+	picture = GFX_evt_alien_propaganda
+
+	immediate = { set_situation_locked = yes }
+	after = { set_situation_locked = no }
+
+	option = {
+		name = gray_origin.11107.a
+		allow = { owner = {
+			has_resource = { type = unity amount >= 100 }
+		}}
+		owner = { add_resource = { unity = -100 }}
+	}
+	option = {
+		name = gray_origin.11107.b
+		hidden_effect = { target = { change_variable = { which = bomb_kill_pop value = 1 }}}
+	}
+}
+# 1.1.1-1 趋势1结束
+situation_event = {
+	id = gray_origin.5
+	title = gray_origin.5.title
+	desc = {
+		trigger = { has_situation_flag = situation_gray_origin_nuke_option_A }
+		text = gray_origin.5.desc.a
+	}
+	desc = {
+		trigger = { has_situation_flag = situation_gray_origin_nuke_option_B }
+		text = gray_origin.5.desc.b
+	}
+	is_triggered_only = yes
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_super_explosion
+
+	after = { 
+		if = {
+			limit = { has_situation_flag = situation_gray_origin_nuke_option_A }
+			owner = { country_event = { id = gray_origin.8 }}
+		} else = {
+			owner = { country_event = { id = gray_origin.9 }}
+		}
+		destroy_situation = this 
+	}
+
+	option = {
+		name = "......"
+	}
+}
+
+# 1.1.1-2
+situation_event = {
+	id = gray_origin.6
+	title = gray_origin.6.name
+	desc = gray_origin.6.desc
+	is_triggered_only = yes
+	picture = GFX_evt_decryption
+	show_sound = event_airlock
+
+	option = {
+		name = gray_origin.6.a
+		hidden_effect = {
+			situation_event = { id = gray_origin.7 days = 180 random = 90 }
+		}
+	}
+}
+# 1.1.1-3
+situation_event = {
+	id = gray_origin.7
+	title = gray_origin.7.name
+	desc = gray_origin.7.desc
+	is_triggered_only = yes
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_super_explosion
+
+	immediate = { owner = { country_event = { id = gray_origin.9 }}}
+
+	option = {
+		name = "......"
+	}
+}
+# 1.1.1-4
+country_event = {
+	id = gray_origin.8
+	title = gray_origin.8.name
+	desc = gray_origin.8.desc
+	is_triggered_only = yes
+	picture = GFX_evt_news_room
+
+	immediate = {
+		owner = { random_situation = {
+			limit = { is_situation_type = gray_origin_home_planet_situation }
+			set_situation_locked = no
+		}}
+	}
+
+	option = {
+		name = gray_origin.8.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+			min = 200
+		}
+		add_resource = {
+			influence = 100
+			energy = -200
+		}
+		capital_scope = { 
+			ruin_building = random_no_capital
+			add_planet_devastation = 10
+			random_owned_pop_group = {
+				kill_pop_group = { pop_group = this percentage = 1 }
+			}
+			add_deposit = d_crater
+			add_modifier = {
+				modifier = gray_after_explosion days = 1800
+			}
+		}
+	}
+}
+# 1.1.1-5
+country_event = {
+	id = gray_origin.9
+	title = gray_origin.8.name
+	desc = {
+		text = gray_origin.9.desc.a
+		trigger = { NOT = { has_country_flag = gray_nuke_option_b }}
+	}
+	desc = {
+		text = gray_origin.9.desc.b
+		trigger = { has_country_flag = gray_nuke_option_b }
+	}
+	is_triggered_only = yes
+	picture = GFX_evt_city_ruins
+
+	immediate = {
+		owner = { random_situation = {
+			limit = { is_situation_type = gray_origin_home_planet_situation }
+			set_situation_locked = no
+		}}
+	}
+
+	after = {
+		remove_country_flag = gray_nuke_option_b
+	}
+
+	option = {
+		name = gray_origin.9.a
+		capital_scope = { 
+			ruin_building = random_no_capital
+			add_planet_devastation = 10
+			while = { count = bomb_kill_pop
+				random_owned_pop_group = { kill_pop_group = { pop_group = this percentage = 1 }}
+			}
+			hidden_effect = { clear_variable = bomb_kill_pop }
+			add_deposit = d_crater
+			add_modifier = {
+				modifier = gray_after_explosion2 days = 1080
+			}
+		}
+	}
+}
+# 1.1.1-3 趋势2初始阶段选择
+situation_event = {
+	id = gray_origin.11108
+	title = gray_origin.11108.title
+	desc = gray_origin.11108.desc
+	is_triggered_only = yes
+	picture = GFX_evt_kdc_mod_construction
+
+	option = {
+		name = gray_origin.11108.a
+		owner = { add_resource = { minerals = -500 }}
+	}
+	option = {
+		name = gray_origin.11108.b
+		owner = { add_resource = { alloys = -100 }}
+	}
+}
+# 1.1.1-3 趋势2第一阶段事件
+situation_event = {
+	id = gray_origin.11109
+	title = gray_origin.11109.title
+	desc = gray_origin.11109.desc
+	is_triggered_only = yes
+	picture = GFX_evt_kdc_mod_construction
+
+	immediate = { set_situation_flag = gray_nuke_situation_2_buff }
+
+	option = {
+		name = gray_origin.11109.a
+		target = { custom_tooltip = gray_origin.11109.tooltip }
+	}
+}
+# 1.1.1-3 趋势2第二阶段事件
+situation_event = {
+	id = gray_origin.11110
+	title = gray_origin.11110.title
+	desc = gray_origin.11110.desc
+	is_triggered_only = yes
+	picture = GFX_evt_kdc_mod_construction
+
+	option = {
+		name = gray_origin.11110.a
+	}
+}
+# 1.1.1-3 趋势2第三阶段事件
+situation_event = {
+	id = gray_origin.11111
+	title = gray_origin.11111.title
+	desc = gray_origin.11111.desc
+	is_triggered_only = yes
+	picture = GFX_evt_kdc_mod_construction
+
+	option = {
+		name = gray_origin.11111.a
+	}
+}
+# 1.1.1-3 趋势2结束事件
+situation_event = {
+	id = gray_origin.11112
+	title = gray_origin.11112.title
+	desc = gray_origin.11112.desc
+	is_triggered_only = yes
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_super_explosion
+
+	option = {
+		name = gray_origin.11112.a
+		owner = { country_event = { id = gray_origin.11113 }}
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	id = gray_origin.11113
+	title = gray_origin.11113.title
+	desc = gray_origin.11113.desc
+	is_triggered_only = yes
+	picture = GFX_evt_wsg_no_video
+	show_sound = event_radio_chatter_02
+
+	option = {
+		name = gray_origin.11113.a
+		country_event = { id = gray_origin.11114 }
+	}
+}
+
+country_event = {
+	id = gray_origin.11114
+	title = gray_origin.11114.title
+	desc = gray_origin.11114.desc
+	is_triggered_only = yes
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_celebration
+
+	immediate = {
+		random_situation = {
+			limit = { is_situation_type = gray_origin_home_planet_situation }
+			set_situation_locked = no
+		}
+	}
+
+	option = {
+		name = gray_origin.11114.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+			min = 500
+		}
+		add_resource = {
+			influence = 150
+		}
+		capital_scope = { 
+			add_deposit = d_city_ruins
+			add_deposit = d_kdc_blast_wall_ruins
+			add_modifier = {
+				modifier = gray_after_explosion3 days = 1800
+			}
+		}
+	}
+}
+# 1.1.1-6
+situation_event = {
+	id = gray_origin.10
+	title = gray_origin.10.name
+	desc = gray_origin.10.desc
+	is_triggered_only = yes
+	picture = GFX_evt_city_ruins
+	show_sound = event_construction
+
+
+	after = {
+		situation_event = { id = gray_origin.11 days = 90 random = 90 }
+	}
+	option = {
+		name = gray_origin.10.a
+	}
+}
+# 1.1.1-7
+situation_event = {
+	id = gray_origin.11
+	title = gray_origin.11.name
+	desc = gray_origin.11.desc
+	is_triggered_only = yes
+	picture = GFX_evt_surreal_visions
+
+	immediate = {
+	}
+
+	option = {
+		name = gray_origin.11.a
+		add_gray_origin_event_chain_counter_effect = yes
+	}
+}
+# 1.1.1-8
+# country_event = {
+# 	id = gray_origin.12
+# 	title = gray_origin.12.name
+# 	desc = gray_origin.12.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_evt_alien_propaganda
+
+# 	option = {
+# 		name = gray_origin.12.a
+# 		add_modifier = { modifier = gray_after_explosion_protest2 days = 3600 }
+# 	}
+# 	option = {
+# 		name = gray_origin.12.b
+# 		add_modifier = { modifier = gray_after_explosion_protest days = 720 }
+# 		hidden_effect = {
+# 			# 将统治者复制成随机职业
+# 			random_list = {
+# 				1 = { clone_leader = {
+# 					target = root.ruler
+# 					class = governor
+# 				}}
+# 				1 = { clone_leader = {
+# 					target = root.ruler
+# 					class = scientist
+# 				}}
+# 				1 = { clone_leader = {
+# 					target = root.ruler
+# 					class = admiral
+# 				}}
+# 				1 = { clone_leader = {
+# 					target = root.ruler
+# 					class = general
+# 				}}
+# 			}
+# 			# 干掉原本的统治者
+# 			kill_leader = {
+# 				type = ruler
+# 				show_notification = no
+# 				fire = yes
+# 			}
+# 		}
+# 	}
+# 	option = {
+# 		name = gray_origin.12.c
+# 		add_modifier = { modifier = gray_after_explosion_protest days = 1800 }
+# 		capital_scope = { enable_special_project = {
+# 			name = gray_origin_gray_large_scale_search
+# 			location = this
+# 			owner = root
+# 		}}
+# 	}
+# }
+# # 1.1.1-9
+# country_event = {
+# 	id = gray_origin.13
+# 	title = gray_origin.13.name
+# 	desc = gray_origin.13.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_evt_news_room
+
+# 	immediate = {
+		
+# 	}
+
+# 	option = {
+# 		name = OK
+# 	}
+# }
+# # 没有完成大规模搜查的特殊项目
+# country_event = {
+# 	id = gray_origin.14
+# 	title = gray_origin.14.name
+# 	desc = gray_origin.14.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_evt_news_room
+
+# 	immediate = {
+# 	}
+
+# 	option = {
+# 		name = DISCONCERTING
+# 		capital_scope = {
+# 			remove_modifier = gray_after_explosion_protest
+# 			add_modifier = { modifier = gray_after_explosion_protest3 days = 3600 }
+# 		}
+# 	}
+# }
+# 1.1.2-1
+situation_event = {
+	id = gray_origin.15
+	title = gray_origin.15.name
+	desc = gray_origin.15.desc
+	is_triggered_only = yes
+	picture = GFX_evt_baol_ruins
+
+	option = {
+		name = gray_origin.15.a
+		owner.capital_scope = {
+			add_deposit = d_crater
+		}
+		hidden_effect = {
+			situation_event = { id = gray_origin.16 days = 30 random = 60 }
+		}
+	}
+}
+# 1.1.2-2
+situation_event = {
+	id = gray_origin.16
+	title = gray_origin.16.name
+	desc = gray_origin.16.desc
+	is_triggered_only = yes
+	picture = GFX_evt_desert
+
+	option = {
+		name = gray_origin.16.a
+		hidden_effect = {
+			situation_event = { id = gray_origin.17 days = 90 random = 30 }
+		}
+	}
+}
+# 1.1.2-3
+situation_event = {
+	id = gray_origin.17
+	title = gray_origin.17.name
+	desc = gray_origin.17.desc
+	is_triggered_only = yes
+	picture = GFX_evt_desert
+
+	option = {
+		name = gray_origin.16.a
+		owner.capital_scope = {
+			add_deposit = d_crater
+			add_modifier = { modifier = unstable_tectonics }
+		}
+		hidden_effect = { situation_event = { id = gray_origin.18 days = 90 random = 30 }}
+	}
+}
+# 1.1.2-4
+situation_event = {
+	id = gray_origin.18
+	title = gray_origin.18.name
+	desc = gray_origin.18.desc
+	is_triggered_only = yes
+	picture = GFX_evt_mysterious_signal
+
+	option = {
+		name = gray_origin.18.a
+		hidden_effect = {
+			situation_event = { id = gray_origin.19 days = 180 random = 30 }
+		}
+	}
+}
+# 1.1.2-5
+situation_event = {
+	id = gray_origin.19
+	title = gray_origin.19.name
+	desc = gray_origin.19.desc
+	is_triggered_only = yes
+	picture = GFX_evt_in_the_dark
+
+	option = {
+		name = gray_origin.19.a
+		add_gray_origin_event_chain_counter_effect = yes
+	}
+}
+# 1.2.1-1
+# 遇到失控的灰蛊战舰
+ship_event = {
+	id = gray_origin.20
+	title = gray_origin.20.name
+	desc = gray_origin.20.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_goo_ships
+
+	trigger = {
+		FROM = { has_star_flag = lcluster5 }
+		owner = { 
+			has_country_flag = origin_gray_country 
+			NOT = { has_country_flag = encountered_gray_enemy_warship }
+		}
+	}
+
+	immediate = {
+		owner = { set_country_flag = encountered_gray_enemy_warship }
+	}
+
+	option = {
+		name = BATTLESTATIONS
+	}
+}
+# 1.2.1-2
+# 摧毁失控的灰蛊战舰
+country_event = {
+	id = gray_origin.21
+	title = gray_origin.21.name
+	desc = {
+		exclusive_trigger = {
+			has_event_chain = gray_origin_chains_1
+		}
+		text = gray_origin.21.desc
+	}
+	desc = gray_origin.21.desc.b
+	is_triggered_only = yes
+	picture = GFX_evt_exploding_ship
+	show_sound = event_ship_explosion
+	location = FROMFROMFROM
+	trackable = yes
+
+	trigger = {
+		FROMFROMFROM = { has_fleet_flag = gray_enemy_fleet }
+		has_country_flag = origin_gray_country
+	}
+
+	immediate = {
+		if = {
+			limit = { has_event_chain = gray_origin_chains_1 }
+			FROMFROMFROM = {
+				create_ambient_object = {
+					type = derelict_ship_object
+					location = this
+					use_3d_location = yes
+					entity_offset = {
+						min = 0
+						max = 10
+					}
+					entity_offset_angle = {
+						min = 0
+						max = 360
+					}
+					entity_offset_height = {
+						min = 0
+						max = 0
+					}
+					effect = {
+						set_ambient_object_flag = gray_ambient_object
+						save_event_target_as = gray_ambient_object
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gray_origin.21.a
+		trigger = { has_event_chain = gray_origin_chains_1 }
+		event_target:gray_ambient_object = {
+			enable_special_project = {
+				name = gray_origin_destroyed_gray_warship
+				owner = root
+				location = this
+			}
+		}
+	}
+	option = {
+		name = EXCELLENT
+		trigger = { NOT = { has_event_chain = gray_origin_chains_1 }}
+		add_resource = {
+			nanites = 1000
+			minerals = 500
+		}
+	}
+}
+# 1.2.1-3
+ship_event = {
+	id = gray_origin.22
+	title = gray_origin.22.name
+	desc = gray_origin.22.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_goo_ships
+
+	option = {
+		name = AMAZING
+		owner = { 
+			if = {
+				limit = { NOT = { has_event_chain = gray_origin_chains_1 }}
+				begin_event_chain = {
+					event_chain = gray_origin_chains_1
+					target = this
+				}
+			}
+			add_gray_origin_event_chain_counter_effect = yes
+			add_resource = {
+				nanites = 1000
+				alloys = 500
+			}
+		}
+	}
+}
+# 1.2.2-1
+# 扫描纳米星球
+planet_event = {
+	id = gray_origin.23
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_gray_goo
+		FROM = {
+			has_country_flag = origin_gray_country
+			NOT = { has_country_flag = encountered_graygoo_planet }
+			NOT = { has_country_flag = day_0 }
+		}
+	}
+
+	immediate = {
+		save_event_target_as = graygoo_planet
+		FROMFROM.leader = { save_event_target_as = surveyed_leader }
+		FROM = { 
+			set_country_flag = encountered_graygoo_planet 
+			country_event = { id = gray_origin.10023 }
+		}
+	}
+}
+
+country_event = {
+	id = gray_origin.10023
+	title = gray_origin.23.name
+	desc = gray_origin.23.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_gooed_planet
+
+	immediate = {
+	}
+
+	option = {
+		name = gray_origin.23.a
+		if = {
+			limit = { NOT = { has_event_chain = gray_origin_chains_1 }}
+			begin_event_chain = {
+				event_chain = gray_origin_chains_1
+				target = this
+			}
+		}
+		FROM = { enable_special_project = {
+			name = gray_origin_graygoo_planet
+			owner = root
+			location = this
+		}}
+	}
+}
+# 1.2.2-2
+# 纳米星球调查
+ship_event = {
+	id = gray_origin.24
+	title = gray_origin.24.name
+	desc = gray_origin.24.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_gooed_planet
+
+	immediate = {
+		FROMFROM = { save_event_target_as = graygoo_planet }
+		leader = { save_event_target_as = surveyed_leader }
+	}
+
+	option = {
+		name = gray_origin.24.a
+		owner = { 
+			add_gray_origin_event_chain_counter_effect = yes
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 3
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 3
+			}
+		}
+	}
+}
+# 1.2.3-1
+# 遇见L星门
+ship_event = {
+	id = gray_origin.25
+	title = gray_origin.25.name
+	desc = gray_origin.25.desc
+	is_triggered_only = yes
+	picture = GFX_evt_l-gateway
+
+	trigger = {
+		FROM = { has_star_flag = lcluster_lgate }
+		owner = { 
+			has_country_flag = origin_gray_country 
+			NOT = { has_country_flag = encountered_lcluster_lgate }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = encountered_lcluster_lgate
+		}
+		
+	}
+
+	option = {
+		name = gray_origin.25.a
+		if = {
+			limit = { owner = { NOT = { has_event_chain = gray_origin_chains_1 }}}
+			begin_event_chain = {
+				event_chain = gray_origin_chains_1
+				target = this
+			}
+		}
+		solar_system = {
+			random_system_megastructure = {
+				limit = { is_megastructure_type = lgate_base }
+				enable_special_project = {
+					name = gray_origin_research_lgate
+					owner = Root.owner
+					location = this
+				}
+			}
+		}
+	}
+}
+# 1.2.3-2
+country_event = {
+	id = gray_origin.26
+	title = gray_origin.26.name
+	desc = gray_origin.26.desc
+	is_triggered_only = yes
+	picture = GFX_evt_l-gateway
+
+	trigger = {
+	}
+
+	immediate = {
+		set_country_flag = finish_lgate_special_project
+	}
+
+	option = {
+		name = gray_origin.26.a
+		add_gray_origin_event_chain_counter_effect = yes
+		add_resource = {
+			physics_research = 1000
+			engineering_research = 1000
+		}
+	}
+}
+# 1.1.3-1
+# 触发方式：一段时间内没有完成故事链【贯穿古今的神秘现象】 
+situation_event = {
+	id = gray_origin.27
+	title = gray_origin.27.name
+	desc = gray_origin.27.desc
+	picture = GFX_evt_kdc_mod_hurricane
+	is_triggered_only = yes
+
+	option = {
+		name = gray_origin.27.a
+		target = {
+			add_modifier = { modifier = hazardous_weather }
+		}
+		situation_event = { id = gray_origin.28 days = 30 random = 30 }
+	}
+}
+# 1.1.3-2
+situation_event = {
+	id = gray_origin.28
+	title = gray_origin.28.name
+	desc = gray_origin.28.desc
+	is_triggered_only = yes
+	picture = GFX_evt_alien_cavemen
+
+	option = {
+		name = gray_origin.28.a
+		situation_event = { id = gray_origin.29 days = 10 random = 10 }
+	}
+}
+# 1.1.3-3
+situation_event = {
+	id = gray_origin.29
+	title = gray_origin.29.name
+	desc = gray_origin.29.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_gooed_planet
+
+	after = {
+		target = {
+			add_modifier = { modifier = gray_after_hurricane days = 3600 }
+		}
+		add_gray_origin_event_chain_counter_effect = yes
+		hidden_effect = {
+			situation_event = { id = gray_origin.30 days = 90 random = 90 }
+		}
+	}
+
+	option = {
+		name = gray_origin.29.a
+	}
+	option = {
+		name = PRAISE
+	}
+}
+# 1.1.3-4
+situation_event = {
+	id = gray_origin.30
+	title = gray_origin.30.name
+	desc = gray_origin.30.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_gooed_planet
+
+	option = {
+		add_gray_origin_event_chain_counter_effect = yes
+		name = gray_origin.30.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 3
+			}
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 6
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 6
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 6
+			}
+		}
+	}
+}
+# 2.1.1
+# 完成事件链
+situation_event = {
+	id = gray_origin.31
+	title = gray_origin.31.name
+	desc = gray_origin.31.desc
+	is_triggered_only = yes
+	picture = GFX_evt_gray_gooed_planet
+
+	after = {
+		owner = {
+			end_event_chain = gray_origin_chains_1
+			start_situation = { type = gray_origin_find_gray_situation target = root.owner.capital_scope }
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = gray_origin.31.a
+	}
+	option = {
+		name = gray_origin.31.b
+		custom_tooltip = gray_origin.31.b.tooltip
+		hidden_effect = {
+			owner = { set_country_flag = gray_storyline_control }
+		}
+	}
+}
+
+situation_event = {
+	id = gray_origin.32
+	title = gray_origin.32.name
+	desc = gray_origin.32.desc
+	picture = GFX_evt_dark_alley
+	is_triggered_only = yes
+	option = {
+		name = OK
+		# hidden_effect = { situation_event = { id = gray_origin.33 days = 180 random = 180 }}
+	}
+}
+
+situation_event = {
+	id = gray_origin.33
+	title = gray_origin.33.name
+	desc = gray_origin.33.desc
+	picture = GFX_evt_wsg_gray
+	is_triggered_only = yes
+	option = {
+		name = gray_origin.33.a
+		# hidden_effect = { country_event = { id = gray_origin.34 days = 90 random = 90 }}
+	}
+}
+
+situation_event = {
+	id = gray_origin.34
+	title = gray_origin.34.name
+	desc = gray_origin.34.desc
+	picture = GFX_evt_news_room
+	is_triggered_only = yes
+	option = {
+		name = "INTERESTING"
+		# hidden_effect = { situation_event = { id = gray_origin.35 days = 30 random = 30 }}
+	}
+}
+
+situation_event = {
+	id = gray_origin.35
+	title = gray_origin.35.name
+	desc = gray_origin.35.desc
+	picture = GFX_evt_derelict_interior
+	is_triggered_only = yes
+
+	after = { destroy_situation = this }
+
+	option = {
+		name = gray_origin.35.a
+		hidden_effect = { owner = { country_event = { id = gray_gal.1 }}}
+	}
+}
+
+situation_event = {
+	id = gray_origin.36
+	title = gray_origin.36.name
+	desc = gray_origin.36.desc
+	picture = GFX_evt_mysterious_signal
+	is_triggered_only = yes
+	option = {
+		name = "MAKE_IT_SO"
+		# hidden_effect = { situation_event = { id = gray_origin.37 days = 180 random = 180 }}
+	}
+}
+
+situation_event = {
+	id = gray_origin.37
+	title = gray_origin.37.name
+	desc = gray_origin.37.desc
+	picture = GFX_evt_intelligence_report
+	is_triggered_only = yes
+	option = {
+		name = "ACKNOWLEDGED"
+		# hidden_effect = { situation_event = { id = gray_origin.38 days = 90 random = 90 }}
+	}
+}
+
+situation_event = {
+	id = gray_origin.38
+	title = gray_origin.38.name
+	desc = gray_origin.38.desc
+	picture = GFX_evt_decryption
+	is_triggered_only = yes
+	option = {
+		name = "EXCELLENT"
+		# hidden_effect = { situation_event = { id = gray_origin.39 days = 30 random = 30 }}
+	}
+}
+
+situation_event = {
+	id = gray_origin.39
+	title = gray_origin.39.name
+	desc = gray_origin.39.desc
+	picture = GFX_evt_wg_command_center
+	is_triggered_only = yes
+
+	after = { destroy_situation = this }
+	
+	option = {
+		name = "ONSCREEN"
+		hidden_effect = { owner = { country_event = { id = gray_gal.47 }}}
+	}
+}
+
+# 路线1，帮助灰风且灰风成为总督
+country_event = {
+	id = gray_origin.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = origin_gray_weaken
+		create_gray_official = yes
+		country_event = { id = gray_origin.42 }
+	}
+}
+# 路线2 拒绝灰风
+country_event = {
+	id = gray_origin.41
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = refuse_gray_storyline
+		country_event = { id = gray_origin.54 }
+	}
+}
+
+# 2.3.1-1
+country_event = {
+	id = gray_origin.42
+	title = gray_origin.42.name
+	desc = {
+		exclusive_trigger = { NOT = { has_country_flag = gray_storyline_control }}
+		text = gray_origin.42.desc
+	}
+	desc = gray_origin.42.desc.b
+	picture = GFX_evt_megastructure_construction
+	is_triggered_only = yes
+
+	option = {
+		name = gray_origin.42.a
+		capital_scope = {
+			enable_special_project = {
+				name = gray_origin_gray_global_nanite_framework
+				owner = root
+				location = this
+			}
+		}
+	}
+}
+# 2.3.1-2
+country_event = {
+	id = gray_origin.43
+	title = gray_origin.43.name
+	desc = gray_origin.43.desc
+	picture = GFX_evt_wg_gray_signal
+	is_triggered_only = yes
+
+	option = {
+		name = MAKE_IT_SO
+		custom_tooltip = gray_origin.43.tooltip
+		hidden_effect = {
+			set_country_flag = can_build_nanite_signal_control_center
+		}
+	}
+}
+# 2.3.1-3
+planet_event = {
+	id = gray_origin.44
+	title = gray_origin.44.name
+	desc = gray_origin.44.desc
+	picture = GFX_evt_wg_gray_signal
+	is_triggered_only = yes
+	# 防止重复触发事件
+	trigger = { owner = { NOT = { has_country_flag = triggered_gray_origin44 }}}
+
+	immediate = {
+		owner = {
+			set_country_flag = triggered_gray_origin44
+			country_event = { id = gray_origin.46 }
+			country_event = { id = graygoo.499 }
+		}
+	}
+
+	option = {
+		name = gray_origin.44.a
+		remove_modifier = gray_planet_debuff
+		remove_modifier = weak_magnetic_field
+		remove_modifier = unstable_tectonics
+		remove_modifier = unstable_tectonics
+		add_planet_devastation = -50
+		if = {
+			limit = { has_modifier = hazardous_weather }
+			remove_modifier = hazardous_weather
+		}
+		if = {
+			limit = { has_modifier = gray_unstoppable_tectonics }
+			remove_modifier = gray_unstoppable_tectonics
+		}
+	}
+}
+
+# 补漏flag
+event = {
+	id = gray_origin.999
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = {
+				is_country_type = default
+				has_origin = origin_gray
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = triggered_gray_origin44 }
+					any_owned_planet = { has_building = building_nanite_signal_control_center }
+				}
+				set_country_flag = triggered_gray_origin44
+			}
+		}
+	}
+}
+
+# 检测是否完成8个星系的探索
+country_event = {
+	id = gray_origin.45
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = origin_gray_country
+		FROM = { has_star_flag = gray_origin_lcluster }
+		NOR = {
+			has_country_flag = surveyed_all_lcluster
+			has_country_flag = triggered_gray_origin46
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { any_system = {
+					has_star_flag = gray_origin_lcluster
+					NOT = { is_same_value = Root.from }
+					is_surveyed = {
+						who = ROOT
+						status = no
+					}
+				}}
+			}
+			set_country_flag = surveyed_all_lcluster
+			if = {
+				limit = { capital_scope = {
+					has_active_building = building_nanite_signal_control_center
+				}}
+				country_event = { id = gray_origin.46 }
+			}
+		}
+	}
+}
+# 改造纳米星球事件
+country_event = {
+	id = gray_origin.46
+	title = gray_origin.46.name
+	desc = gray_origin.46.desc
+	desc = {
+		exclusive_trigger = { has_country_flag = surveyed_all_lcluster }
+		text = gray_origin.47.desc
+	}
+	picture = GFX_evt_gray_gooed_planet
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_country_flag = triggered_gray_origin46}
+	}
+	after = { set_country_flag = triggered_gray_origin46 }
+
+	option = {
+		name = UNDERSTOOD
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = refuse_storyline_talk_to_gray }
+				country_event = { id = gray_gal.44 }
+			}
+			else = {
+				country_event = { id = gray_gal.36 }
+			}
+		}
+	}
+}
+
+# 2.3.1-2a
+country_event = {
+	id = gray_origin.54
+	title = gray_origin.54.name
+	desc = gray_origin.54.desc
+	picture = GFX_evt_megastructure_construction
+	is_triggered_only = yes
+	option = {
+		name = gray_origin.54.a
+		capital_scope = { enable_special_project = {
+			name = gray_origin_gray_recover_nanite_signal
+			location = this
+			owner = root
+		}}
+	}
+}
+# 2.3.1-2b
+country_event = {
+	id = gray_origin.55
+	title = gray_origin.55.name
+	desc = gray_origin.55.desc
+	picture = GFX_evt_wg_gray_signal
+	is_triggered_only = yes
+	option = {
+		name = EXCELLENT
+		hidden_effect = { country_event = { id = gray_origin.56 days = 10 }}
+	}
+}
+# 2.3.1-2c
+country_event = {
+	id = gray_origin.56
+	title = gray_origin.56.name
+	desc = gray_origin.56.desc
+	picture = GFX_evt_burning_settlement
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = {
+			add_planet_devastation = 50
+			add_modifier = { modifier = gray_chaos_pop days = 3600 }
+			add_modifier = { modifier = gray_unstoppable_tectonics days = 1800 }
+			random_list = {
+				1 = { change_pc = pc_arctic }
+				1 = { change_pc = pc_tundra }
+				1 = { change_pc = pc_alpine }
+				1 = { change_pc = pc_tropical }
+				1 = { change_pc = pc_continental }
+				1 = { change_pc = pc_ocean }
+				1 = { change_pc = pc_desert }
+				1 = { change_pc = pc_arid }
+				1 = { change_pc = pc_savannah }
+			}
+		}
+	}
+
+	after = {
+		custom_tooltip = gray_origin.56.tooltip
+		capital_scope = { 
+			random_list = {
+				1 = { while = { count = 3 
+					random_owned_pop_group = { kill_pop_group = { pop_group = this percentage = 1 } }
+				}}
+				19 = {}
+			}
+			while = { count = 3 
+				random_list = {
+					1 = { random_owned_pop_group = { kill_pop_group = { pop_group = this percentage = 1 }}}
+					4 = {}
+				}
+			}
+			random_list = {
+				1 = { remove_random_district = yes }
+				7 = {}
+			}
+			random_list = {
+				1 = { remove_random_district = yes }
+				5 = {}
+			}
+		}
+	}
+
+	option = {
+		name = gray_origin.56.a
+		hidden_effect = { country_event = { id = gray_origin.57 days = 30 random = 30 }}
+	}
+	option = {
+		name = gray_origin.56.b
+		set_country_flag = refuse_storyline_talk_to_gray
+		hidden_effect = { country_event = { id = gray_origin.58 days = 30 random = 30 }}
+	}
+}
+# 2.3.1-2d
+country_event = {
+	id = gray_origin.57
+	title = gray_origin.57.name
+	desc = {
+		exclusive_trigger = { NOT = { has_country_flag = refuse_storyline_talk_to_gray }}
+		text = gray_origin.57.desc
+	}
+	desc = {
+		trigger = { has_country_flag = refuse_storyline_talk_to_gray }
+		text = gray_origin.57.b.desc
+	}
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+	option = {
+		name = gray_origin.57.a
+		capital_scope = {
+			remove_modifier = gray_planet_debuff
+			remove_modifier = weak_magnetic_field
+			remove_modifier = unstable_tectonics
+			if = {
+				limit = { has_modifier = hazardous_weather }
+				remove_modifier = hazardous_weather
+			}
+		}
+		country_event = { id = gray_origin.59 days = 180 random = 180 }
+	}
+}
+# 2.3.1-2e
+country_event = {
+	id = gray_origin.58
+	title = gray_origin.58.name
+	desc = gray_origin.58.desc
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+	option = {
+		name = gray_origin.58.a
+		remove_modifier = gray_unstoppable_tectonics
+		add_modifier = {
+			modifier = gray_unstoppable_tectonics days = 720
+		}
+		hidden_effect = {
+			country_event = { id = gray_gal.535 }
+			set_variable = { which = gray_story_affection value = -2 } #亡羊补牢线好感度初始
+		}
+	}
+}
+# 2.3.2-2a
+country_event = {
+	id = gray_origin.59
+	title = gray_origin.59.name
+	desc = gray_origin.59.desc
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+	option = {
+		name = MAKE_IT_SO
+		begin_event_chain = {
+			event_chain = gray_origin_terraform_planet_chain
+			target = this
+		}
+		hidden_effect = {
+			country_event = { id = gray_origin.48 }
+		}
+	}
+}
+country_event = {
+	id = gray_origin.48
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = gray_origin.10048 }
+		country_event = { id = gray_origin.10048 }
+		country_event = { id = gray_origin.10048 }
+		country_event = { id = gray_origin.10048 }
+	}
+}
+
+# 2.3.3
+country_event = {
+	id = gray_origin.10048
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = { 
+				OR = {
+					has_star_flag = gray_origin_lcluster
+					has_star_flag = lcluster
+				}
+				any_ship_in_system = {
+					NOT = { owner = { is_hostile = ROOT }}
+				}
+				any_system_planet = {
+					is_planet_class = pc_gray_goo
+					NOT = { has_planet_flag = terraform_graygoo_planet }
+				}
+			}
+			random_system_planet = {
+				limit = {
+					is_planet_class = pc_gray_goo
+					NOT = { has_planet_flag = terraform_graygoo_planet }
+				}
+				set_planet_flag = terraform_graygoo_planet
+				change_planet_size = +5
+				enable_special_project = {
+					name = gray_origin_gray_setup_satelites
+					owner = root
+					location = this
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gray_origin.49
+	title = gray_origin.49.name
+	desc = gray_origin.49.desc
+	picture = GFX_evt_satellite_in_orbit
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = OK
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gray_origin_terraform_planet_chain
+				counter = setup_satelites_on_graygooed_planets
+				amount = 1
+			}
+		}
+		event_target:setup_satelite_planet = {
+			if = {
+				limit = { root.owner = {
+					has_country_flag = refuse_gray_storyline
+					NOT = { has_country_flag = refuse_storyline_talk_to_gray }
+				}}
+				enable_special_project = {
+					name = gray_origin_gray_terraform_graygoo_planet2
+					owner = root.owner
+					location = this
+				}
+			} else = {
+				enable_special_project = {
+					name = gray_origin_gray_terraform_graygoo_planet
+					owner = root.owner
+					location = this
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = gray_origin.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:terraformed_graygoo_planet = { 
+			root.owner.owner_main_species = {
+				switch = {
+					trigger = has_trait
+					trait_pc_desert_preference = { PREV = {
+						set_planet_flag = pc_desert
+					}}
+					trait_pc_arid_preference = { PREV = {
+						set_planet_flag = pc_arid
+					}}
+					trait_pc_savannah_preference = { PREV = {
+						set_planet_flag = pc_savannah
+					}}
+					trait_pc_tropical_preference = { PREV = {
+						set_planet_flag = pc_tropical
+					}}
+					trait_pc_continental_preference = { PREV = {
+						set_planet_flag = pc_continental
+					}}
+					trait_pc_ocean_preference = { PREV = {
+						set_planet_flag = pc_ocean
+					}}
+					trait_pc_arctic_preference = { PREV = {
+						set_planet_flag = pc_arctic
+					}}
+					trait_pc_tundra_preference = { PREV = {
+						set_planet_flag = pc_tundra
+					}}
+					trait_pc_alpine_preference = { PREV = {
+						set_planet_flag = pc_alpine
+					}}
+					trait_pc_nuked_preference = { PREV = {
+						set_planet_flag = pc_nuked
+					}}
+					default = { PREV = {
+						set_planet_flag = pc_gaia
+					}}
+				}
+			}
+		}
+		owner = { country_event = { id = gray_origin.53 }}
+	}
+}
+
+ship_event = {
+	id = gray_origin.51
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:terraformed_graygoo_planet = { 
+			root.owner.owner_main_species = {
+				switch = {
+					trigger = has_trait
+					trait_pc_desert_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+								}
+							}
+							50 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+						}
+					}}
+					trait_pc_arid_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_savannah }
+								}
+							}
+							50 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+						}
+					}}
+					trait_pc_savannah_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+								}
+							}
+							50 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+						}
+					}}
+					trait_pc_tropical_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+								}
+							}
+							50 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+						}
+					}}
+					trait_pc_continental_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_ocean }
+								}
+							}
+							50 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+						}
+					}}
+					trait_pc_ocean_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+								}
+							}
+							30 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+						}
+					}}
+					trait_pc_arctic_preference = { PREV = {
+						random_list = {
+							50 = {
+								random_list = {
+									1 = { set_planet_flag = pc_tundra }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+							50 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+								}
+							}
+						}
+					}}
+					trait_pc_tundra_preference = { PREV = {
+						random_list = {
+							70 = {
+								random_list = {
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_alpine }
+								}
+							}
+							30 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+								}
+							}
+						}
+					}}
+					trait_pc_alpine_preference = { PREV = {
+						random_list = {
+							70 = {
+								random_list = {
+									1 = { set_planet_flag = pc_arctic }
+									1 = { set_planet_flag = pc_tundra }
+								}
+							}
+							30 = {
+								modifier = {
+									factor = 0
+									root.owner = { NOT = { has_country_flag = refuse_gray_storyline }}
+								}
+								random_list = {
+									1 = { set_planet_flag = pc_tropical }
+									1 = { set_planet_flag = pc_continental }
+									1 = { set_planet_flag = pc_ocean }
+									1 = { set_planet_flag = pc_desert }
+									1 = { set_planet_flag = pc_arid }
+									1 = { set_planet_flag = pc_savannah }
+								}
+							}
+						}
+					}}
+					default = { PREV = {
+						random_list = {
+							1 = { set_planet_flag = pc_arctic }
+							1 = { set_planet_flag = pc_tundra }
+							1 = { set_planet_flag = pc_alpine }
+							1 = { set_planet_flag = pc_tropical }
+							1 = { set_planet_flag = pc_continental }
+							1 = { set_planet_flag = pc_ocean }
+							1 = { set_planet_flag = pc_desert }
+							1 = { set_planet_flag = pc_arid }
+							1 = { set_planet_flag = pc_savannah }
+							1 = { set_planet_flag = pc_gaia }
+						}
+					}}
+				}
+			}
+		}
+		owner = { country_event = { id = gray_origin.53 }}
+	}
+}
+
+ship_event = {
+	id = gray_origin.52
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:terraformed_graygoo_planet = { 
+			set_planet_flag = pc_gaia
+		}
+		owner = { country_event = { id = gray_origin.53 }}
+	}
+}
+
+country_event = {
+	id = gray_origin.53
+	title = gray_origin.53.name
+	desc = gray_origin.53.desc
+	desc = {
+		trigger = { has_country_flag = terraform_a_graygoo_planet }
+		text = gray_origin.53.desc.b
+	}
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = refuse_gray_storyline
+			NOT = { has_country_flag = terraform_a_graygoo_planet }
+		}
+		text = gray_origin.53.desc.c
+	}
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = refuse_gray_storyline
+			has_country_flag = terraform_a_graygoo_planet
+		}
+		text = gray_origin.53.desc.d
+	}
+	picture = {
+		trigger = { event_target:terraformed_graygoo_planet = { OR = {
+			has_planet_flag = pc_arid
+			has_planet_flag = pc_savannah
+			has_planet_flag = pc_desert 
+		}}}
+		picture = GFX_evt_desert
+	}
+	picture = {
+		trigger = { event_target:terraformed_graygoo_planet = { OR = {
+			has_planet_flag = pc_ocean 
+			has_planet_flag = pc_continental
+			has_planet_flag = pc_tropical
+		}}}
+		picture = GFX_evt_continental
+	}
+	picture = {
+		trigger = { event_target:terraformed_graygoo_planet = { OR = {
+			has_planet_flag = pc_arctic
+			has_planet_flag = pc_tundra
+			has_planet_flag = pc_alpine 
+		}}}
+		picture = GFX_evt_frozen
+	}
+	picture = {
+		trigger = { event_target:terraformed_graygoo_planet = { has_planet_flag = pc_gaia }}
+		picture = GFX_evt_gaia
+	}
+	picture = {
+		trigger = { event_target:terraformed_graygoo_planet = { has_planet_flag = pc_nuked }}
+		picture = GFX_evt_tomb_world
+	}
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_country_flag = finish_nanite_planet_terraform }}
+			set_country_flag = finish_nanite_planet_terraform
+			add_tech_progress = {
+				tech = tech_nanite_terraform
+				progress = 0.1
+			}
+			add_research_option = tech_nanite_terraform
+		}
+	}
+
+	after = {
+		add_event_chain_counter = {
+			event_chain = gray_origin_terraform_planet_chain
+			counter = terraformed_graygooed_planets
+			amount = 1
+		}
+		event_target:terraformed_graygoo_planet = {
+			switch = {
+				trigger = has_planet_flag
+				pc_arid = { change_pc = pc_arid }
+				pc_savannah = { change_pc = pc_savannah }
+				pc_desert = { change_pc = pc_desert }
+				pc_ocean = { change_pc = pc_ocean }
+				pc_continental = { change_pc = pc_continental }
+				pc_tropical = { change_pc = pc_tropical }
+				pc_arctic = { change_pc = pc_arctic }
+				pc_tundra = { change_pc = pc_tundra }
+				pc_alpine = { change_pc = pc_alpine }
+				pc_gaia = { change_pc = pc_gaia }
+				pc_nuked = { change_pc = pc_nuked }
+				default = { change_pc = pc_gaia }
+			}
+			reroll_planet = yes
+		}
+		if = {
+			limit = { has_completed_event_chain_counter = {
+				event_chain = gray_origin_terraform_planet_chain
+				counter = terraformed_graygooed_planets
+			}}
+			end_event_chain = gray_origin_terraform_planet_chain
+			if = {
+				limit = { has_country_flag = refuse_gray_storyline  }
+				if = {
+					limit = { has_country_flag = gray_leave }
+					# 亡羊补牢线 - 好感度不足
+					country_event = { id = gray_origin.73 }
+				}
+				else_if = { #自主线
+					limit = { can_trigger_lgate_gal_with_gray = no }
+					country_event = { id = gray_origin.60 days = 180 random = 360 }
+				}
+			}
+
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		trigger = {
+			NOT = { has_country_flag = terraform_a_graygoo_planet }
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+		add_resource = { influence = 100 }
+		hidden_effect = {
+			set_country_flag = terraform_a_graygoo_planet
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		trigger = {
+			has_country_flag = terraform_a_graygoo_planet
+		}
+	}
+}
+
+# 2.3.2-2a
+country_event = {
+	id = gray_origin.60
+	title = gray_origin.60.name
+	desc = gray_origin.60.desc
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+
+	immediate = { 
+		country_event = { id = gray_origin.61 }
+	}
+	
+	option = {
+		name = MAKE_IT_SO
+		begin_event_chain = {
+			event_chain = gray_origin_chain_2
+			target = root
+		}
+	}
+}
+# 设置特殊项目和杂项
+country_event = {
+	id = gray_origin.61
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_variable = { which = found_gray_origin_chain2_clue value = 0 }
+		set_variable = { which = gray_origin_chain2_clue_failed value = 0 }
+		event_target:lcluster1 = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster1b = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster2 = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster2b = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster3 = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster3b = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster4b = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+		event_target:lcluster5 = {
+			random_system_planet = {
+				limit = {
+					is_star = no
+					is_asteroid = no
+					NOT = { is_planet_class = pc_gas_giant }
+				}
+				enable_special_project = {
+					name = gray_origin_chain2_search_clue_project
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_origin.79
+	title = gray_origin.79.name
+	desc = gray_origin.79.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	immediate = {
+		begin_event_chain = {
+			event_chain = gray_origin_chain_2
+		}
+		event_target:lcluster2b = {
+			set_star_flag = gray_origin_chain2_story_system
+			root = { 
+				create_point_of_interest = {
+					id = gray_origin_chain_2_poi.1
+					name = gray_origin_chain_2_poi.name
+					desc = gray_origin_chain_2_poi.desc
+					event_chain = gray_origin_chain_2
+					location = prev.star
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gray_origin.79.a
+		tooltip = { begin_event_chain = {
+			event_chain = gray_origin_chain_2
+		}}
+	}
+}
+
+country_event = {
+	id = gray_origin.80
+	title = gray_origin.80.name
+	desc = gray_origin.80.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:lcluster4b = {
+			set_star_flag = gray_origin_chain2_story_system
+			root = { 
+				create_point_of_interest = {
+					id = gray_origin_chain_2_poi.2
+					name = gray_origin_chain_2_poi.name
+					desc = gray_origin_chain_2_poi.desc
+					event_chain = gray_origin_chain_2
+					location = prev.star
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gray_origin.80.a
+	}
+}
+
+# 灰风线：2.4.1-1进入星系
+ship_event = {
+	id = gray_origin.62
+	title = gray_origin.62.name
+	desc = gray_origin.62.desc
+	is_triggered_only = yes
+	picture = GFX_evt_city_ruins
+
+	trigger = {
+		OR = {
+			AND = {
+				exists = from
+				owner = { 
+					NOT = { has_country_flag = triggered_gray_origin62}
+					can_trigger_lgate_gal_with_gray = yes
+					check_variable = { which = gray_origin_chain2_storyline value = 0 }
+				}
+				from = { has_star_flag = gray_origin_chain2_story_system }
+			}
+			has_ship_flag = refuse_gray_storyline_event_chain
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { exists = from }
+			from = { remove_star_flag = gray_origin_chain2_story_system }
+		}
+		owner = { 
+			set_country_flag = triggered_gray_origin62
+			if = {
+				limit = { root = { has_ship_flag = refuse_gray_storyline_event_chain }}
+				root = { remove_ship_flag = refuse_gray_storyline_event_chain }
+			} else = {
+				remove_point_of_interest = gray_origin_chain_2_poi.1
+				change_variable = { which = gray_origin_chain2_storyline value = 1 }
+			}
+		}
+		solar_system = { random_system_planet = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+				NOT = { is_planet_class = pc_gas_giant }
+				is_colonizable = no
+				is_colony = no
+			}
+			save_event_target_as = gray_chain2_anomaly_planet
+			set_planet_flag = gray_chain2_anomaly_planet_1
+		}}
+	}
+
+	option = {
+		name = gray_origin.62.a
+		hidden_effect = { if = {
+			limit = { NOT = { exists = event_target:gray_chain2_anomaly_planet }}
+			solar_system = { random_system_planet = { 
+				save_event_target_as = gray_chain2_anomaly_planet
+			}}
+		}}
+		event_target:gray_chain2_anomaly_planet = {
+			enable_special_project = {
+				name = gray_origin_chain2_project_1
+				owner = root.owner
+				location = this
+			}
+		}
+	}
+}
+# 2.4.1-2 古代工厂
+ship_event = {
+	id = gray_origin.63
+	title = gray_origin.63.name
+	desc = gray_origin.63.desc
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+	
+	option = {
+		name = AMAZING
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gray_origin_chain_2
+				counter = gray_origin_chain_2_clues
+				amount = 1
+			}
+			if = {
+				limit = { NOT = { has_country_flag = activate_gray_research }}
+			}
+			hidden_effect = {
+				if = {
+					limit = { can_trigger_lgate_gal_with_gray = yes }
+					country_event = { id = gray_gal.96 }
+				} else_if = {
+					# 自主线检查是否满线索
+					limit = { has_completed_event_chain_counter = {
+						event_chain = gray_origin_chain_2
+						counter = gray_origin_chain_2_clues
+					}}
+					country_event = { id = gray_origin.72 }
+				}
+			}
+		}
+		hidden_effect = { solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = gray_chain2_anomaly_planet_1 }
+				while = { count = 3
+					add_deposit = d_nanites_deposit
+				}
+				add_deposit = d_alloys_2
+			}
+		}}
+	}
+}
+
+country_event = {
+	id = gray_origin.81
+	title = gray_origin.81.name
+	desc = gray_origin.81.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:lcluster5 = {
+			set_star_flag = gray_origin_chain2_story_system
+			root = { 
+				create_point_of_interest = {
+					id = gray_origin_chain_2_poi.3
+					name = gray_origin_chain_2_poi.name
+					desc = gray_origin_chain_2_poi.desc
+					event_chain = gray_origin_chain_2
+					location = prev.star
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gray_origin.81.a
+	}
+}
+
+country_event = {
+	id = gray_origin.82
+	title = gray_origin.82.name
+	desc = gray_origin.82.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:lcluster3b = {
+			set_star_flag = gray_origin_chain2_story_system
+			root = { 
+				create_point_of_interest = {
+					id = gray_origin_chain_2_poi.4
+					name = gray_origin_chain_2_poi.name
+					desc = gray_origin_chain_2_poi.desc
+					event_chain = gray_origin_chain_2
+					location = prev.star
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+	}
+}
+
+country_event = {
+	id = gray_origin.10083
+	title = gray_origin.10083.name
+	desc = gray_origin.100083.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		country_event = { id = gray_origin.83 }
+	}
+}
+
+country_event = {
+	id = gray_origin.10084
+	title = gray_origin.10083.name
+	desc = gray_origin.100083.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		country_event = { id = gray_origin.83 }
+	}
+}
+
+country_event = {
+	id = gray_origin.83
+	title = gray_origin.83.name
+	desc = gray_origin.83.desc
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:lcluster1b = {
+			set_star_flag = gray_origin_chain2_story_system
+			root.owner = { 
+				create_point_of_interest = {
+					id = gray_origin_chain_2_poi.5
+					name = gray_origin_chain_2_poi.name
+					desc = gray_origin_chain_2_poi.desc
+					event_chain = gray_origin_chain_2
+					location = prev.star
+				}
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# 灰风线：2.4.2-1进入星系
+ship_event = {
+	id = gray_origin.64
+	title = gray_origin.64.name
+	desc = gray_origin.64.desc
+	is_triggered_only = yes
+	picture = GFX_evt_city_ruins
+
+	trigger = {
+		OR = {
+			AND = {
+				exists = from
+				owner = {
+					NOT = { has_country_flag = triggered_gray_origin64 }
+					can_trigger_lgate_gal_with_gray = yes
+					check_variable = { which = gray_origin_chain2_storyline value = 1 }
+				}
+				from = { has_star_flag = gray_origin_chain2_story_system }
+			}
+			has_ship_flag = refuse_gray_storyline_event_chain
+		}
+	}
+
+	immediate = {
+		from = { remove_star_flag = gray_origin_chain2_story_system }
+		owner = { 
+			set_country_flag = triggered_gray_origin64
+			if = {
+				limit = { root = { has_ship_flag = refuse_gray_storyline_event_chain }}
+				root = { remove_ship_flag = refuse_gray_storyline_event_chain }
+			} else = {
+				remove_point_of_interest = gray_origin_chain_2_poi.2
+				change_variable = { which = gray_origin_chain2_storyline value = 1 }
+			}
+		}
+		solar_system = { random_system_planet = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+				NOT = { is_planet_class = pc_gas_giant }
+				is_colonizable = no
+				is_colony = no
+			}
+			save_event_target_as = gray_chain2_anomaly_planet
+			set_planet_flag = gray_chain2_anomaly_planet_2
+		}}
+	}
+
+	option = {
+		name = MAKE_IT_SO
+		hidden_effect = { if = {
+			limit = { NOT = { exists = event_target:gray_chain2_anomaly_planet }}
+			solar_system = { random_system_planet = { 
+				save_event_target_as = gray_chain2_anomaly_planet
+			}}
+		}}
+		event_target:gray_chain2_anomaly_planet = {
+			enable_special_project = {
+				name = gray_origin_chain2_project_2
+				owner = root.owner
+				location = this
+			}
+		}
+	}
+}
+# 2.4.2-2 调查无人建筑
+ship_event = {
+	id = gray_origin.65
+	title = gray_origin.65.name
+	desc = gray_origin.65.desc
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+	
+	option = {
+		name = AMAZING
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gray_origin_chain_2
+				counter = gray_origin_chain_2_clues
+				amount = 1
+			}
+			add_resource = {
+				nanites = 100
+			}
+			country_event = { id = gray_origin.203 }
+			hidden_effect = {
+				if = {
+					limit = { can_trigger_lgate_gal_with_gray = yes }
+					hidden_effect = { country_event = { id = gray_gal.142 }}
+				} else_if = {
+					# 自主线检查是否满线索
+					limit = { has_completed_event_chain_counter = {
+						event_chain = gray_origin_chain_2
+						counter = gray_origin_chain_2_clues
+					}}
+					country_event = { id = gray_origin.72 }
+				}
+			}
+		}
+		hidden_effect = { solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = gray_chain2_anomaly_planet_2 }
+				while = { count = 3
+					add_deposit = d_nanites_deposit
+				}
+				add_deposit = d_engineering_2
+			}
+		}}
+	}
+}
+
+# 灰风线：2.4.3-1 进入星系
+ship_event = {
+	id = gray_origin.66
+	title = gray_origin.66.name
+	desc = gray_origin.66.desc
+	picture = GFX_evt_satellite_in_orbit
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			AND = {
+				exists = from
+				owner = {
+					NOT = { has_country_flag = triggered_gray_origin66 }
+					can_trigger_lgate_gal_with_gray = yes
+					check_variable = { which = gray_origin_chain2_storyline value = 2 }
+				}
+				from = { has_star_flag = gray_origin_chain2_story_system }
+			}
+			has_ship_flag = refuse_gray_storyline_event_chain
+		}
+	}
+
+	immediate = {
+		from = { remove_star_flag = gray_origin_chain2_story_system }
+		owner = { 
+			set_country_flag = triggered_gray_origin66
+			if = {
+				limit = { root = { has_ship_flag = refuse_gray_storyline_event_chain }}
+				root = { remove_ship_flag = refuse_gray_storyline_event_chain }
+			} else = {
+				remove_point_of_interest = gray_origin_chain_2_poi.3
+				change_variable = { which = gray_origin_chain2_storyline value = 1 }
+			}
+		}
+		solar_system = { random_system_planet = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+				NOT = { is_planet_class = pc_gas_giant }
+				is_colonizable = no
+				is_colony = no
+			}
+			save_event_target_as = gray_chain2_anomaly_planet
+			set_planet_flag = gray_chain2_anomaly_planet_3
+			create_ambient_object = {
+				type = small_debris_object
+				location = this
+				entity_offset = {
+					min = 10
+					max = 35
+				}
+				entity_offset_angle = {
+					min = 0
+					max = 180
+				}
+			}
+		}}
+	}
+
+	option = {
+		name = INTRIGUING
+		hidden_effect = { if = {
+			limit = { NOT = { exists = event_target:gray_chain2_anomaly_planet }}
+			solar_system = { random_system_planet = { 
+				save_event_target_as = gray_chain2_anomaly_planet
+			}}
+		}}
+		event_target:gray_chain2_anomaly_planet = {
+			enable_special_project = {
+				name = gray_origin_chain2_project_3
+				owner = root.owner
+				location = this
+			}
+		}
+	}
+}
+# 2.4.3-2 卫星设施残骸
+ship_event = {
+	id = gray_origin.67
+	title = gray_origin.67.name
+	desc = gray_origin.67.desc
+	picture = GFX_evt_satellite_in_orbit
+	is_triggered_only = yes
+	
+	option = {
+		name = AMAZING
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gray_origin_chain_2
+				counter = gray_origin_chain_2_clues
+				amount = 1
+			}
+			country_event = { id = gray_origin.203 }
+			hidden_effect = {
+				if = {
+					limit = { can_trigger_lgate_gal_with_gray = yes }
+					country_event = { id = gray_gal.221 }
+				}
+				else_if = {
+					# 自主线检查是否满线索
+					limit = { has_completed_event_chain_counter = {
+						event_chain = gray_origin_chain_2
+						counter = gray_origin_chain_2_clues
+					}}
+					country_event = { id = gray_origin.72 }
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = gray_chain2_anomaly_planet_3 }
+				add_deposit = d_physics_3
+			}
+		}
+	}
+}
+
+# 灰风线：2.4.4-1进入星系
+ship_event = {
+	id = gray_origin.68
+	title = gray_origin.68.name
+	desc = gray_origin.68.desc
+	picture = GFX_evt_ancient_databank
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			AND = {
+				exists = from
+				owner = {
+					NOT = { has_country_flag = triggered_gray_origin68 }
+					can_trigger_lgate_gal_with_gray = yes
+					check_variable = { which = gray_origin_chain2_storyline value = 3 }
+				}
+				from = { has_star_flag = gray_origin_chain2_story_system }
+			}
+			has_ship_flag = refuse_gray_storyline_event_chain
+		}
+		
+	}
+
+	immediate = {
+		from = { remove_star_flag = gray_origin_chain2_story_system }
+		owner = { 
+			set_country_flag = triggered_gray_origin68
+			if = {
+				limit = { root = { has_ship_flag = refuse_gray_storyline_event_chain }}
+				root = { remove_ship_flag = refuse_gray_storyline_event_chain }
+			} else = {
+				remove_point_of_interest = gray_origin_chain_2_poi.4
+				change_variable = { which = gray_origin_chain2_storyline value = 1 }
+			}
+		}
+		solar_system = { random_system_planet = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+				NOT = { is_planet_class = pc_gas_giant }
+				is_colonizable = no
+				is_colony = no
+			}
+			save_event_target_as = gray_chain2_anomaly_planet
+			set_planet_flag = gray_chain2_anomaly_planet_4
+		}}
+	}
+
+	option = {
+		name = INTERESTING
+		hidden_effect = { if = {
+			limit = { NOT = { exists = event_target:gray_chain2_anomaly_planet }}
+			solar_system = { random_system_planet = { 
+				save_event_target_as = gray_chain2_anomaly_planet
+			}}
+		}}
+		event_target:gray_chain2_anomaly_planet = {
+			enable_special_project = {
+				name = gray_origin_chain2_project_4
+				owner = root.owner
+				location = this
+			}
+		}
+	}
+}
+# 2.4.4-2 古代研究设施
+ship_event = {
+	id = gray_origin.69
+	title = gray_origin.69.name
+	desc = gray_origin.69.desc
+	picture = GFX_evt_ancient_databank
+	is_triggered_only = yes
+	
+	option = {
+		name = AMAZING
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gray_origin_chain_2
+				counter = gray_origin_chain_2_clues
+				amount = 1
+			}
+			country_event = { id = gray_origin.203 }
+			hidden_effect = {
+				if = {
+					limit = { can_trigger_lgate_gal_with_gray = yes }
+					country_event = { id = gray_gal.344 }
+				} else_if = {
+					# 自主线检查是否满线索
+					limit = { has_completed_event_chain_counter = {
+						event_chain = gray_origin_chain_2
+						counter = gray_origin_chain_2_clues
+					}}
+					country_event = { id = gray_origin.72 }
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = gray_chain2_anomaly_planet_4 }
+				add_deposit = d_physics_5
+				add_deposit = d_society_5
+				add_deposit = d_engineering_5
+			}
+		}
+	}
+}
+
+# 灰风线：2.4.5-1进入星系
+ship_event = {
+	id = gray_origin.70
+	title = gray_origin.70.name
+	desc = gray_origin.70.desc
+	picture = GFX_evt_discovered_hidden_door
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			AND = {
+				exists = from
+				owner = { 
+					NOT = { has_country_flag = triggered_gray_origin70}
+					can_trigger_lgate_gal_with_gray = yes
+					check_variable = { which = gray_origin_chain2_storyline value = 4 }
+				}
+				from = { has_star_flag = gray_origin_chain2_story_system }
+			}
+			has_ship_flag = refuse_gray_storyline_event_chain
+		}
+	}
+
+	immediate = {
+		from = { remove_star_flag = gray_origin_chain2_story_system }
+		owner = { 
+			set_country_flag = triggered_gray_origin70
+			if = {
+				limit = { root = { has_ship_flag = refuse_gray_storyline_event_chain }}
+				root = { remove_ship_flag = refuse_gray_storyline_event_chain }
+			} else = {
+				change_variable = { which = gray_origin_chain2_storyline value = 1 }
+				remove_point_of_interest = gray_origin_chain_2_poi.5
+			}
+		}
+		solar_system = { random_system_planet = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+				NOT = { is_planet_class = pc_gas_giant }
+				is_colonizable = no
+				is_colony = no
+			}
+			save_event_target_as = gray_chain2_anomaly_planet
+			set_planet_flag = gray_chain2_anomaly_planet_5
+		}}
+	}
+
+	option = {
+		name = gray_origin.70.a
+		hidden_effect = { if = {
+			limit = { NOT = { exists = event_target:gray_chain2_anomaly_planet }}
+			solar_system = { random_system_planet = { 
+				save_event_target_as = gray_chain2_anomaly_planet
+			}}
+		}}
+		event_target:gray_chain2_anomaly_planet = {
+			enable_special_project = {
+				name = gray_origin_chain2_project_5
+				owner = root.owner
+				location = this
+			}
+		}
+	}
+}
+# 2.4.5-2 神秘墓室
+ship_event = {
+	id = gray_origin.71
+	title = gray_origin.71.name
+	desc = gray_origin.71.desc
+	picture = GFX_evt_ancient_databank
+	is_triggered_only = yes
+	
+	option = {
+		name = AMAZING
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gray_origin_chain_2
+				counter = gray_origin_chain_2_clues
+				amount = 1
+			}
+			country_event = { id = gray_origin.203 }
+			hidden_effect = {
+				if = {
+					limit = { can_trigger_lgate_gal_with_gray = yes }
+					country_event = { id = gray_origin.72 }
+				} else_if = {
+					# 自主线检查是否满线索
+					limit = { has_completed_event_chain_counter = {
+						event_chain = gray_origin_chain_2
+						counter = gray_origin_chain_2_clues
+					}}
+					country_event = { id = gray_origin.72 }
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = gray_chain2_anomaly_planet_5 }
+				add_deposit = d_physics_10
+				add_deposit = d_society_10
+				add_deposit = d_engineering_10
+			}
+		}
+	}
+}
+
+# 灰风线
+country_event = {
+	id = gray_origin.72
+	title = gray_origin.72.name
+	desc = gray_origin.72.desc
+	picture = GFX_evt_l-gateway
+	is_triggered_only = yes
+
+	immediate = {
+
+	}
+	after = {
+		end_event_chain = gray_origin_chain_2
+		country_event = { id = gray_origin.200 }
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+	option = {
+		name = gray_origin.72.test
+	}
+}
+# 2.3.2-1f 亡羊补牢线 - 覆水难收，灰风好感度不足离开
+country_event = {
+	id = gray_origin.73
+	title = gray_origin.73.name
+	desc = gray_origin.73.desc
+	picture = GFX_evt_l-gateway
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = gray_origin.99 }
+		country_event = { id = gray_origin.60 days = 180 random = 360 }
+	}
+
+	option = {
+		name = gray_origin.73.a
+		give_technology = { tech = tech_nanite_terraform }
+	}
+}
+# 移除灰风
+country_event = {
+	id = gray_origin.99
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = gray_owner
+		if = {
+			limit = { has_country_flag = gray_official_active }
+			remove_country_flag = gray_official_active
+			event_target:gray_official = {
+				kill_leader = { show_notification = no }
+			}
+		}
+		if = {
+			limit = { has_country_flag = gray_warship_active }
+			remove_country_flag = gray_warship_active
+			event_target:gray_leader_admiral = { kill_leader = { show_notification = no fire = yes } }
+			event_target:gray_warship = { delete_fleet = this }
+		}
+		if = {
+			limit = { has_country_flag = gray_army_active }
+			remove_country_flag = gray_army_active
+			every_owned_army = {
+				limit = { army_type = gray_army }
+				remove_army = yes
+			}
+		}
+		clear_variable = wg_gray_affection
+		clear_variable = wg_gray_affection_level
+		clear_variable = wg_gray_cloth
+		clear_variable = gray_skill
+		event_target:gray_country = {
+			destroy_country = yes
+		}
+		clear_global_event_target = gray_official
+		clear_global_event_target = gray_leader_admiral
+		clear_global_event_target = gray_warship
+		clear_global_event_target = gray_owner
+		clear_global_event_target = gray_country
+		clear_global_event_target = gray_species
+	}
+}
+
+# 开门
+country_event = {
+	id = gray_origin.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = lcluster_opener
+		set_country_flag = finish_gray_storyline
+		remove_country_flag = origin_gray_weaken
+		no_scope = {
+			set_global_flag = lgates_activated_globally
+			every_megastructure = {
+				limit = {
+					is_megastructure_type = lgate_base
+				}
+				activate_gateway = this
+				set_megastructure_flag = lgate_activated
+			}
+			event_target:lcluster1 = {
+				random_system_megastructure = {
+					activate_gateway = this
+					set_megastructure_flag = lgate_activated
+				}
+			}
+		}
+	}
+}
+# 检测灰风开门后解除弱化状态
+event = {
+	id = gray_origin.201
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = {  has_country_flag = origin_gray_country }
+			country_event = { id = gray_origin.202 }
+		}
+		random_country = {
+			limit = { 
+				has_country_flag = origin_gray_country 
+				has_country_flag = finish_gray_storyline
+			}
+			remove_country_flag = origin_gray_weaken
+		}
+	}
+}
+# 补改纳米球的科技
+country_event = {
+	id = gray_origin.202
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOR = { 
+			has_technology = tech_nanite_terraform 
+			has_tech_option = tech_nanite_terraform
+		}
+		has_country_flag = finish_nanite_planet_terraform
+	}
+
+	immediate = {
+		add_research_option = tech_nanite_terraform
+		add_tech_progress = {
+			tech = tech_nanite_terraform
+			progress = 0.1
+		}
+	}
+}
+# 激活纳米研究局
+country_event = {
+	id = gray_origin.203
+	title = gray_origin.203.name
+	desc = gray_origin.203.desc
+	picture = GFX_evt_gray_goo
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = activate_gray_research_prev }
+	}
+
+	immediate = {
+		set_country_flag = activate_gray_research_prev
+	}
+
+	option = {
+		name = MAKE_IT_SO
+		capital_scope = {
+			enable_special_project = {
+				name = gray_origin_nanite_productor
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+# 每月检查同化人口
+country_event = {
+	id = gray_origin.204
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_species = {
+			has_living_standard = { country = root type = living_standard_assimilation_gray }
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				is_colony = yes
+				any_owned_species = {
+					has_living_standard = { country = root type = living_standard_assimilation_gray }
+				}
+			}
+			random_owned_pop_group = {
+				limit = {
+					has_living_standard = { country = root type = living_standard_assimilation_gray }
+				}
+				change_species = root.owner_main_species
+			}
+		}
+	}
+}
+
+# 灰风升级加好感
+country_event = {
+	id = gray_origin.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = origin_gray_country
+		FROM = {
+			has_leader_flag = gray_leader
+		}
+	}
+
+	immediate = {
+		set_variable = { which = gray_skill value = from.trigger:has_total_skill }
+		subtract_variable = { which = gray_skill value = from.trigger:has_base_skill }
+		if = {
+			limit = { has_global_flag = has_wsg_mod }
+			change_variable = { which = gray_affection value = 2 }
+			if = { # buff加成的额外好感度
+				limit = { owner = { has_modifier = wg_modifier_canteen_affectionUp2 }}
+				change_variable = { which = gray_affection value = 2 }
+			}
+			random_list = {
+				40 = {
+					modifier = { # buff加成的额外几率
+						ROOT = { has_modifier = wg_modifier_canteen_affectionUp1 }
+						factor = 2
+					}
+					change_variable = { which = gray_affection value = 1 }
+					if = { # buff加成的额外好感度
+						limit = { owner = { has_modifier = wg_modifier_canteen_affectionUp2 }}
+						change_variable = { which = gray_affection value = 1 }
+					}
+				}
+				60 = {}
+			}
+			random_list = {
+				20 = {
+					modifier = { # buff加成的额外几率
+						ROOT = { has_modifier = wg_modifier_canteen_affectionUp1 }
+						factor = 2
+					}
+					change_variable = { which = gray_affection value = 1 }
+					if = { # buff加成的额外好感度
+						limit = { owner = { has_modifier = wg_modifier_canteen_affectionUp2 }}
+						change_variable = { which = gray_affection value = 1 }
+					}
+				}
+				80 = {}
+			}
+		}
+	}
+}
+
+event = {
+	id = gray_origin.301
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			has_country_flag = gray_owner
+			check_variable = { which = gray_skill value <= 0 }
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				has_country_flag = gray_owner
+				check_variable = { which = gray_skill value <= 0 }
+			}
+			if = {
+				limit = { has_country_flag = origin_gray_country }
+				random_owned_leader = {
+					limit = { has_leader_flag = gray_leader }
+					prev = {
+						set_variable = { which = gray_skill value = prev.trigger:has_total_skill }
+						subtract_variable = { which = gray_skill value = prev.trigger:has_base_skill }
+					}
+					break = yes
+				}
+			} else = {
+				set_variable = { which = gray_skill value = 10 }
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = gray_origin.2100
+	title = "gray_origin.2100.name"
+	desc = "gray_origin.2100.desc"
+	picture = GFX_evt_nanite_upgrade
+	show_sound = event_the_great_awakening
+	is_triggered_only = yes
+
+	option = {
+		name = "gray_origin.2100.a"
+		begin_event_chain = {
+			event_chain = gray_ascension_upgrade_chain
+			target = this
+		}
+		capital_scope = { enable_special_project = {
+			name = "gray_ascension_upgrade"
+			location = THIS
+		}}
+	}
+}
+
+# 开始改造
+country_event = {
+	id = gray_origin.2102
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = start_gray_ascension_project
+		country_event = { id = gray_origin.2103 days = 30 }
+	}
+}
+
+# 扣除核心
+country_event = {
+	id = gray_origin.2103
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = start_gray_ascension_project
+		has_special_project = gray_ascension_upgrade
+	}
+
+	immediate = {
+		if = {
+			limit = { check_variable = { which = gray_ascension_project_nanite_cost value > 100 }}
+			divide_variable = { which = gray_ascension_project_nanite_cost value = 100 }
+			while = { count = gray_ascension_project_nanite_cost
+				add_event_chain_counter = {
+					event_chain = gray_ascension_upgrade_chain
+					counter = gray_ascension_upgrade_nanites_consume
+					amount = -100
+				}
+			}
+			multiply_variable = { which = gray_ascension_project_nanite_cost value = 100 }
+		}
+		while = { count = gray_ascension_project_nanite_cost
+			add_event_chain_counter = {
+				event_chain = gray_ascension_upgrade_chain
+				counter = gray_ascension_upgrade_nanites_consume
+				amount = -1
+			}
+		}
+		set_variable = { which = num_nanites_pop_cost value = 0 }
+		every_owned_pop_group = {
+			limit = {
+				OR = {
+					AND = {
+						root = { has_authority = auth_warshipgirls }
+						species = { is_archetype = WARSHIPGIRL }
+					}
+					AND = {
+						root = { has_authority = auth_shenhai }
+						species = { is_archetype = SHENHAI }
+					}
+					AND = {
+						root = { has_authority = auth_starshipgirls }
+						species = { is_archetype = STARSHIPGIRLS }
+					}
+					is_sapient = yes
+				}
+			}
+			ROOT = { change_variable = { which = num_nanites_pop_cost value = 1 }}
+		}
+		divide_variable = { which = num_nanites_pop_cost value = 250 }
+		set_variable = { which = gray_ascension_project_nanite_cost value = 6 }
+		if = {
+			limit = { check_variable = { which = num_nanites_pop_cost value > 6 }}
+			set_variable = { which = gray_ascension_project_nanite_cost value = num_nanites_pop_cost }
+		}
+		if = {
+			limit = { check_variable = { which = gray_ascension_project_nanite_cost value > 100 }}
+			divide_variable = { which = gray_ascension_project_nanite_cost value = 100 }
+			while = { count = gray_ascension_project_nanite_cost
+				add_event_chain_counter = {
+					event_chain = gray_ascension_upgrade_chain
+					counter = gray_ascension_upgrade_nanites_consume
+					amount = 100
+				}
+			}
+			multiply_variable = { which = gray_ascension_project_nanite_cost value = 100 }
+		}
+		while = { count = gray_ascension_project_nanite_cost
+			add_event_chain_counter = {
+				event_chain = gray_ascension_upgrade_chain
+				counter = gray_ascension_upgrade_nanites_consume
+				amount = 1
+			}
+		}
+		add_resource = {
+			nanites = -1
+			mult = gray_ascension_project_nanite_cost
+		}
+		country_event = { id = gray_origin.2106 days = 1 }
+	}
+}
+
+# 核心不足
+country_event = {
+	id = gray_origin.2104
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = start_gray_ascension_project
+		abort_special_project = {
+			type = "gray_ascension_upgrade"
+		}
+		country_event = { id = gray_origin.2105 days = 1 }
+	}
+}
+
+country_event = {
+	id = gray_origin.2105
+	title = "gray_origin.2105.name"
+	desc = "gray_origin.2105.desc"
+	picture = GFX_evt_no_video_feed_room
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = { enable_special_project = {
+			name = "gray_ascension_upgrade"
+			location = THIS
+		}}
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+# 延后检查资源是否不足
+country_event = {
+	id = gray_origin.2106
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		multiply_variable = { which = gray_ascension_project_nanite_cost value = -1 }
+		if = {
+			limit = { 
+				resource_stockpile_compare = { resource = nanites value > 0 } 
+			}
+			country_event = { id = gray_origin.2103 days = 30 }
+		} else = {
+			country_event = { id = gray_origin.2104 }
+		}
+	}
+}
+
+# 灰风飞升
+country_event = {
+	id = gray_origin.1000
+	title = gray_origin.1000.name
+	desc = gray_origin.1000.desc
+	picture = GFX_evt_wsg_gray
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = start_gray_ascension_project
+		set_country_flag = gray_ascension_finish
+		end_event_chain = gray_ascension_upgrade_chain
+		# 产业革命兼容（人口特质维护费）
+		# country_event = { id = PR_job_mod_KDC.3 days = 1 }
+		if = { #完成义体化进程
+			limit = {
+				if = { # dlc有局势
+					limit = { has_machine_age_dlc = yes }
+					has_country_flag = situation_cyberization_complete
+				} else = {
+					owner_main_species = { has_trait = trait_cybernetic }
+				}
+			}
+			set_timed_country_flag = { flag = has_trait_cybernetic days = 30 }
+		}
+
+		if = { # 灵能飞升 - 完整觉醒特质
+			limit = { has_tradition = tr_psionics_psionic_assimilation }
+			set_timed_country_flag = { flag = has_trait_psionic days = 30 }
+		}
+		else_if = { # 灵能飞升 - 灵能潜质特质
+			limit = { has_tradition = tr_psionics_adopt }
+			set_timed_country_flag = { flag = has_trait_latent_psionic days = 30 }
+		}
+
+		if = {
+			limit = { owner_main_species = { has_trait = trait_dragon_lineage }}
+			set_timed_country_flag = { flag = has_trait_dragon_lineage days = 30 }
+		}
+		if = {
+			limit = { owner_main_species = { has_trait = trait_dimension_life }}
+			set_timed_country_flag = { flag = has_trait_dimension_life days = 30 }
+		}
+
+		if = {
+			# 如果种族是原版物种，则转白毛，否则只加特质
+			limit = { owner_main_species = {
+				is_vanilla_species_class = yes
+			}}
+			create_species = {
+				name = this
+				namelist = this
+				plural = this
+				# is_mod = yes
+				class = "NANITESCROP"
+				portrait = "Nanitescrop"
+				immortal = yes
+				homeworld = root.capital_scope
+				traits = {
+					trait = "gray_trait_species_gray"
+				}
+				effect = {
+					save_event_target_as = gray_species
+				}
+			}
+			every_owned_pop_group = {
+				limit = { is_same_species = root.owner_main_species }
+				change_species = event_target:gray_species
+			}
+			every_owned_leader = {
+				limit = { is_same_species = root.owner_main_species }
+				change_species = event_target:gray_species
+				change_leader_portrait = species
+			}
+			every_envoy = {
+				limit = { is_same_species = root.owner_main_species }
+				change_species = event_target:gray_species
+			}
+			every_owned_army = {
+				limit = {
+					exists = species
+					is_same_species = root.owner_main_species
+				}
+				change_species = event_target:gray_species
+			}
+			every_controlled_ship = {
+				limit = {
+					is_ship_class = shipclass_colonizer
+					is_same_species = root.owner_main_species
+				}
+				change_species = event_target:gray_species
+			}
+			change_species = event_target:gray_species
+			set_country_flag = prompt_species
+		} else = {
+			owner_main_species = { 
+				change_species_characteristics = {
+					immortal = yes
+					remove_trait = trait_gray_origin 
+					add_trait = gray_trait_species_gray
+					add_traits_at_start_of_list = yes
+				}
+				save_event_target_as = gray_species
+			}
+			if = {
+				limit = { NOT = { exists = event_target:gray_species }}
+				owner_main_species = { save_event_target_as = gray_species }
+			}
+			every_owned_pop_group = {
+				limit = { species = { 
+					NOT = { is_same_species = root.owner_main_species }
+				}}
+				change_species = event_target:gray_species
+			}
+			every_controlled_ship = {
+				limit = {
+					is_ship_class = shipclass_colonizer
+					is_same_species = root.owner_main_species
+				}
+				change_species = event_target:gray_species
+			}
+		}
+		change_dominant_species = { species = event_target:gray_species change_all = yes }
+		# add_modifier = {
+		# 	modifier = modifier_ban_assemble
+		# 	days = 32
+		# }
+		country_event = { id = gray_origin.1005 }
+	}
+
+	option = {
+		name = "gray_origin.1000.a"
+		if = {
+			limit = { is_wg_empire = yes }
+			change_variable = { which = rankpts value = 10 }
+		} 
+		if = {
+			limit = { has_country_flag = prompt_species }
+			event_target:gray_species = {
+				rename_species = {
+					prompt_country = root #If targeted country is a player they will get a popup asking for a name/plural/adjective combo. Otherwise the species will get a random name from the specified name_list
+					name_list = ascension_list1
+				}
+			}
+			remove_country_flag = prompt_species
+		}
+		hidden_effect = {
+			ruler = { add_trait = { trait = leader_trait_ruler_gray } }
+			every_owned_leader = {
+				limit = {
+					NOT = { has_leader_flag = gray_leader }
+					OR = {
+						is_same_species = event_target:gray_species
+						has_leader_flag = wsg_event_leader
+					}
+					NOR = {
+						has_trait =	leader_trait_admiral_ap_gray
+						has_trait =	leader_trait_governor_ap_gray
+						has_trait =	leader_trait_scientist_ap_gray
+						has_trait =	leader_trait_ruler_gray
+					}
+				}
+				switch = {
+					trigger = leader_class
+					commander = { add_trait = { trait = leader_trait_admiral_ap_gray } }
+					official = { add_trait = { trait = leader_trait_governor_ap_gray } }
+					scientist = { add_trait = { trait = leader_trait_scientist_ap_gray } }
+				}
+			}
+			every_pool_leader = {
+				limit = {
+					OR = {
+						is_same_species = event_target:gray_species
+						has_leader_flag = wsg_event_leader
+					}
+					NOR = {
+						has_trait = leader_trait_admiral_ap_gray
+						has_trait = leader_trait_governor_ap_gray
+						has_trait = leader_trait_scientist_ap_gray
+					}
+				}
+				switch = {
+					trigger = leader_class
+					commander = { add_trait = { trait = leader_trait_admiral_ap_gray } }
+					official = { add_trait = { trait = leader_trait_governor_ap_gray } }
+					scientist = { add_trait = { trait = leader_trait_scientist_ap_gray } }
+				}	
+			}
+			random_owned_leader = {
+				limit = { has_leader_flag = gray_leader }
+				set_gray_portrait = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_origin.1005
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		every_owned_pop_group = {
+			limit = { is_same_species = root.owner_main_species }
+			root = { switch = {
+				trigger = has_country_flag
+				has_trait_cybernetic = {
+					prev = { modify_species = {
+						species = this
+						add_trait = trait_cybernetic
+						effect = { save_event_target_as = gray_species }
+					}}
+				}
+				has_trait_psionic = {
+					prev = { modify_species = {
+						species = this
+						add_trait = trait_psionic
+						effect = { save_event_target_as = gray_species }
+					}}
+				}
+				has_trait_latent_psionic = {
+					prev = { modify_species = {
+						species = this
+						add_trait = trait_latent_psionic
+						effect = { save_event_target_as = gray_species }
+					}}
+				}
+			}}
+			if = {
+				limit = { root = { has_country_flag = has_trait_dragon_lineage }}
+				modify_species = {
+					species = this
+					add_trait = trait_dragon_lineage
+					add_traits_at_start_of_list = yes
+					effect = { save_event_target_as = gray_species }
+				}
+			}
+			else_if = {
+				limit = { root = { has_country_flag = has_trait_dimension_life }}
+				modify_species = {
+					species = this
+					add_trait = trait_dimension_life
+					add_traits_at_start_of_list = yes
+					effect = { save_event_target_as = gray_species }
+				}
+			}
+		}
+		change_dominant_species = { species = event_target:gray_species change_all = yes }
+	}
+}
+
+
+country_event = {
+	id = gray_origin.1001
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			species = { has_trait = gray_trait_species_gray }
+		}
+	}
+
+	immediate = {
+		from = { 
+			switch = {
+				trigger = leader_class
+				commander = { add_trait = { trait = leader_trait_admiral_ap_gray } }
+				official = { add_trait = { trait = leader_trait_governor_ap_gray } }
+				scientist = { add_trait = { trait = leader_trait_scientist_ap_gray } }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_origin.1002
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		AND = {
+			has_ascension_perk = ap_become_the_gray
+			from = { has_trait = leader_trait_ruler_gray }
+		}
+	}
+
+	immediate = {
+		from = { 
+			remove_trait = leader_trait_ruler_gray
+			switch = {
+				trigger = leader_class
+				commander = { add_trait = { trait = leader_trait_admiral_ap_gray } }
+				official = { add_trait = { trait = leader_trait_governor_ap_gray } }
+				scientist = { add_trait = { trait = leader_trait_scientist_ap_gray } }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gray_origin.1007
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		AND = {
+			has_ascension_perk = ap_become_the_gray
+			from = { NOT = { has_trait = leader_trait_ruler_gray }}
+		}
+	}
+
+	immediate = {
+		from = {
+			remove_trait = leader_trait_admiral_ap_gray
+			remove_trait = leader_trait_governor_ap_gray
+			remove_trait = leader_trait_scientist_ap_gray
+			add_trait = { trait = leader_trait_ruler_gray }
+		}
+	}
+}
+# 增加特质buff
+country_event = {
+	id = gray_origin.1003
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner_main_species = { has_trait = gray_trait_lv2_building }
+				NOT = { has_modifier = gray_trait_lv2_building_modifier }
+			}
+			add_modifier = {
+				modifier = gray_trait_lv2_building_modifier
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				owner_main_species = { has_trait = gray_trait_lv2_politic }
+				NOT = { has_modifier = gray_trait_lv2_politic_modifier }
+			}
+			add_modifier = {
+				modifier = gray_trait_lv2_politic_modifier
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				owner_main_species = { has_trait = gray_trait_lv3_building }
+				NOT = { has_modifier = gray_trait_lv3_building_modifier }
+			}
+			add_modifier = {
+				modifier = gray_trait_lv3_building_modifier
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				owner_main_species = { has_trait = gray_trait_lv3_space_engineering }
+				NOT = { has_modifier = gray_trait_space_engineering_modifier }
+			}
+			add_modifier = {
+				modifier = gray_trait_space_engineering_modifier
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				owner_main_species = { has_trait = gray_trait_lv3_research}
+				NOT = { has_modifier = gray_trait_research_module_modifier }
+			}
+			add_modifier = {
+				modifier = gray_trait_research_module_modifier
+				days = -1
+			}
+		}
+	}
+}
+# 移除特质buff
+country_event = {
+	id = gray_origin.1004
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner_main_species = { NOT = { has_trait = "gray_trait_lv2_building" }}
+				has_modifier = gray_trait_lv2_building_modifier
+			}
+			remove_modifier = gray_trait_lv2_building_modifier
+		}
+		if = {
+			limit = {
+				owner_main_species = { NOT = { has_trait = "gray_trait_lv2_politic" }}
+				has_modifier = gray_trait_lv2_politic_modifier
+			}
+			remove_modifier = gray_trait_lv2_politic_modifier
+		}
+		if = {
+			limit = {
+				owner_main_species = { NOT = { has_trait = "gray_trait_lv3_building" }}
+				has_modifier = gray_trait_lv3_building_modifier
+			}
+			remove_modifier = gray_trait_lv3_building_modifier
+		}
+		if = {
+			limit = {
+				owner_main_species = { NOT = { has_trait = gray_trait_lv3_space_engineering }}
+				has_modifier = gray_trait_space_engineering_modifier
+			}
+			remove_modifier = gray_trait_space_engineering_modifier
+		}
+		if = {
+			limit = {
+				owner_main_species = { NOT = { has_trait = "gray_trait_lv3_research" }}
+				has_modifier = gray_trait_research_module_modifier
+			}
+			remove_modifier = gray_trait_research_module_modifier
+		}
+	}
+}
+
+planet_event = {
+	id = gray_origin.2000
+	title = gray_origin.2000.name
+	desc = gray_origin.2000.desc
+	picture = GFX_evt_wg_gray_signal
+	show_sound = event_cityscape
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_wg_graygoo
+	}
+
+	option = {
+		name = EXCELLENT
+		add_modifier = { modifier = gray_arcology_modify_buff years = 5 }
+		custom_tooltip = gray_arcology_modify_buff_desc
+	}
+}
+
+# 显示所有境内的纳米星球
+country_event = {
+	id = gray_origin.2002
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_event_chain = show_graygoo_planets_chain }}
+			begin_event_chain = {
+				event_chain = show_graygoo_planets_chain
+				target = root
+			}
+			every_planet_within_border = {
+				limit = { 
+					is_planet_class = pc_gray_goo
+					solar_system = {
+						any_system_megastructure = {
+							planet = { is_same_value = prevprevprev }
+						}
+					}
+				}
+				enable_special_project = {
+					name = show_graygoo_planets
+					location = this
+					owner = root
+				}
+			}
+		} else = {
+			end_event_chain = show_graygoo_planets_chain
+			country_event = { id = gray_origin.2002 days = 1 }
+		}
+	}
+}
+
+# 取消显示
+country_event = {
+	id = gray_origin.2003
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		end_event_chain = show_graygoo_planets_chain
+	}
+}
+
+country_event = {
+	id = gray_origin.2010
+	title = gray_origin.2010.name
+	desc = gray_origin.2010.desc
+	picture = GFX_evt_megastructure_construction
+	is_triggered_only = yes
+
+	trigger = {
+		last_increased_tech = tech_nano_construction_core
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+# on_pop_purged
+# This = Planet scope
+# From = Country
+# FromFrom = Pop
+planet_event = {
+	id = gray_origin.1100
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = fromfrom #crisis.202 can remove the last pop
+		fromfrom = {
+			has_purge_type = {
+				type = purge_necrophage
+			}
+		}
+		exists = from
+		from = {
+			has_technology = tech_nano_reconstruct
+			NOR = {
+				has_origin = origin_necrophage
+				has_trait = trait_necrophage
+			}
+		}
+	}
+
+	immediate = {
+		random_owned_pop_group = {
+			limit = {
+				is_same_species = root.owner.owner_main_species
+				has_trait = gray_trait_species_gray
+			}
+			species = { save_event_target_as = nano_pop_species }
+		}
+		if = {
+			limit = {
+				exists = event_target:nano_pop_species
+			}
+			create_pop_group = {
+				size = 100
+				species = event_target:nano_pop_species
+			}
+		}
+		else = {
+			create_pop_group = {
+				size = 100
+				species = owner_main_species
+			}
+		}
+		# last_created_pop = {
+		# 	switch = {
+		# 		trigger = has_trait
+		# 		trait_pc_desert_preference = { modify_species = { remove_trait = trait_pc_desert_preference }}
+		# 		trait_pc_arid_preference  = { modify_species = { remove_trait = trait_pc_arid_preference }}
+		# 		trait_pc_savannah_preference  = { modify_species = { remove_trait = trait_pc_savannah_preference }}
+		# 		trait_pc_tropical_preference  = { modify_species = { remove_trait = trait_pc_tropical_preference }}
+		# 		trait_pc_continental_preference  = { modify_species = { remove_trait = trait_pc_continental_preference }}
+		# 		trait_pc_ocean_preference  = { modify_species = { remove_trait = trait_pc_ocean_preference }}
+		# 		trait_pc_arctic_preference  = { modify_species = { remove_trait = trait_pc_arctic_preference }}
+		# 		trait_pc_tundra_preference  = { modify_species = { remove_trait = trait_pc_tundra_preference }}
+		# 		trait_pc_alpine_preference  = { modify_species = { remove_trait = trait_pc_alpine_preference }}
+		# 		trait_pc_nuked_preference   = { modify_species = { remove_trait = trait_pc_nuked_preference  }}
+		# 		trait_pc_gaia_preference   = { modify_species = { remove_trait = trait_pc_gaia_preference  }}
+		# 		trait_pc_ringworld_habitable_preference   = { modify_species = { remove_trait = trait_pc_ringworld_habitable_preference }}
+		# 		trait_pc_habitat_preference   = { modify_species = { remove_trait = trait_pc_habitat_preference  }}
+		# 	}
+		# 	root.owner_main_species = {
+		# 		switch = {
+		# 			trigger = has_trait
+		# 			trait_pc_desert_preference = { PREV = { modify_species = { add_trait = { trait = trait_pc_desert_preference } }}}
+		# 			trait_pc_arid_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_arid_preference } }}}
+		# 			trait_pc_savannah_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_savannah_preference } }}}
+		# 			trait_pc_tropical_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_tropical_preference } }}}
+		# 			trait_pc_continental_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_continental_preference } }}}
+		# 			trait_pc_ocean_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_ocean_preference } }}}
+		# 			trait_pc_arctic_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_arctic_preference } }}}
+		# 			trait_pc_tundra_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_tundra_preference } }}}
+		# 			trait_pc_alpine_preference  = { PREV = { modify_species = { add_trait = { trait = trait_pc_alpine_preference } }}}
+		# 			trait_pc_nuked_preference   = { PREV = { modify_species = { add_trait = { trait = trait_pc_nuked_preference }  }}}
+		# 			trait_pc_gaia_preference   = { PREV = { modify_species = { add_trait = { trait = trait_pc_gaia_preference }  }}}
+		# 			trait_pc_ringworld_habitable_preference   = { PREV = { modify_species = { add_trait = { trait = trait_pc_ringworld_habitable_preference } }}}
+		# 			trait_pc_habitat_preference   = { PREV = { modify_species = { add_trait = { trait = trait_pc_habitat_preference }  }}}
+		# 		}
+		# 	}
+		# }
+		every_country = {
+			limit = {
+				has_communications = FROM
+				NOT = { is_country = FROM }
+				NOT = { is_same_species = FROMFROM }
+				NOT = { has_ai_personality_behaviour = purger }
+				NOT = { has_origin = origin_necrophage }
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				NOR = {
+					has_valid_civic = civic_death_cult
+					has_valid_civic = civic_death_cult_corporate
+				}
+				OR = {
+					is_country_type = default
+					has_ai_personality = awakened_fallen_empire_xenophile
+				}
+				has_intel_level = {
+					who = FROM
+					category = economy
+					level >= 2
+				}
+			}
+			add_opinion_modifier = { who = FROM modifier = opinion_nano_purge }
+		}
+		every_country = {
+			limit = {
+				has_communications = FROM
+				NOT = { is_country = FROM }
+				is_same_species = FROMFROM
+				has_intel_level = {
+					who = FROM
+					category = economy
+					level >= 1 #lower because you'd hear from a friend of a friend
+				}
+			}
+			add_opinion_modifier = { who = FROM modifier = opinion_nano_purge_our_species }
+		}
+	}
+}
+# # 数职业人口
+# country_event = {
+# 	id = gray_origin.1100
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	trigger = {
+# 		has_country_flag = origin_gray_country
+# 	}
+
+# 	immediate = {
+# 		every_owned_planet = {
+# 			# limit = { has_active_building = building_gray_nano_factory }
+# 			planet_event = { id = gray_origin.1101 days = 5 }
+# 		}
+# 	}
+# }
+
+# planet_event = {
+# 	id = gray_origin.1101
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		set_variable = { which = num_artisan value = 0 }
+# 		every_owned_pop = {
+# 			limit = { has_job = artisan }
+# 			root = { change_variable = { which = num_artisan value = 1 }}
+# 		}
+# 		set_variable = { which = num_foundry value = 0 }
+# 		every_owned_pop = {
+# 			limit = { has_job = foundry }
+# 			root = { change_variable = { which = num_foundry value = 1 }}
+# 		}
+# 	}
+# }
+
+
+
+

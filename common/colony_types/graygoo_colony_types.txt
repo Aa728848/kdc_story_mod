@@ -1,0 +1,105 @@
+#纳米球城市
+col_graygoo_city = {
+	icon = GFX_colony_type_urban
+
+	potential = {
+		is_planet_class = pc_wg_graygoo
+		exists = owner
+	}
+	planet_modifier = {
+		planet_district_arcology_graygoo_housing_build_speed_mult = 0.25
+		planet_district_arcology_graygoo_rural_1_build_speed_mult = 0.25
+		planet_district_arcology_graygoo_rural_2_build_speed_mult = 0.25
+		planet_district_arcology_graygoo_rural_3_build_speed_mult = 0.25
+		pop_happiness = 0.10
+		planet_stability_add = 5
+		custom_tooltip = col_graygoo_city_tooltip
+	}
+	weight_modifier = {
+		base = 2000
+	}
+}
+#消费品
+col_graygoo_factory = {
+	icon = GFX_colony_type_factory
+
+	potential = {
+		exists = owner
+	}
+	planet_modifier = {
+		pop_gray_nano_artisan_bonus_workforce_mult = 0.2
+		pop_artisan_bonus_workforce_mult = 0.2
+		planet_artisans_upkeep_mult = -0.2
+	}
+	weight_modifier = {
+		base = 0
+	}
+}
+#合金
+col_graygoo_foundry = {
+	icon = GFX_colony_type_foundry
+
+	potential = {
+		exists = owner
+	}
+	planet_modifier = {
+		pop_gray_nano_foundry_bonus_workforce_mult = 0.2
+		pop_foundry_bonus_workforce_mult = 0.2
+		planet_metallurgists_upkeep_mult = -0.2
+	}
+	weight_modifier = {
+		base = 0
+	}
+}
+
+#科研
+col_graygoo_science = {
+	icon = GFX_colony_type_research
+
+	potential = {
+		exists = owner
+	}
+	planet_modifier = {
+		pop_gray_nano_researcher_bonus_workforce_mult = 0.2
+		pop_physicist_bonus_workforce_mult = 0.2
+		pop_biologist_bonus_workforce_mult = 0.2
+		pop_engineer_bonus_workforce_mult = 0.2
+		planet_researchers_upkeep_mult = -0.2
+	}
+	weight_modifier = {
+		base = 0
+	}
+}
+#调度站
+col_graygoo_military = {
+	icon = GFX_colony_type_bureaucratic
+
+	potential = {
+		exists = owner
+	}
+	planet_modifier = {
+		pop_soldier_bonus_workforce_mult = 0.2
+		pop_gray_nano_soldier_bonus_workforce_mult = 0.2
+		planet_orbital_bombardment_damage = -0.20
+		army_defense_damage_mult = 0.20
+	}
+	weight_modifier = {
+		base = 0
+	}
+}
+
+#纳米机械
+col_graygoo_nanites = {
+	icon = GFX_colony_type_refinery
+
+	potential = {
+		exists = owner
+	}
+	planet_modifier = {
+		pop_pc_graygoo_nanite_manufacturer_bonus_workforce_mult = 0.2
+		pop_gray_nanite_manufacturer_bonus_workforce_mult = 0.2
+	}
+	weight_modifier = {
+		base = 0
+	}
+}

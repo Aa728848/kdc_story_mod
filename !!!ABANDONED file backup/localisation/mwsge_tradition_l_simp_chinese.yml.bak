@@ -1,0 +1,114 @@
+﻿l_simp_chinese:
+######################## 
+#军事传统
+######################## 
+ tradition_wg_milltary:0 "军事"
+ tradition_wg_milltary_desc:0 "上万年的内斗使得我们的军事理论日趋成熟，但面对天外来客时，我们必须改变对以往战争的认识，确保我们在军事上的绝对优势。"
+ tr_wg_milltary_adopt:0 "军事传统"
+ tr_wg_milltary_adopt_desc:0 "$tradition_wg_milltary_desc$\n\n$tr_wg_milltary_adopt_effect$\n\n$tr_wg_milltary_finish_effect$"
+ tr_wg_milltary_adopt_effect:0 "§E$TRADITIONS_ADOPT$：§!\n§Y$MOD_COUNTRY_STARBASE_CAPACITY_ADD$§!增加§Y3§!，并且§Y$MOD_ARMY_DAMAGE_MULT$§!提升§G+25%§!。"
+ tr_wg_milltary_finish:0 "军事传统完成"
+ tr_wg_milltary_finish_effect:0 "§E$TRADITIONS_FINISH$：§!\n采纳全部$tr_wg_milltary_adopt$可以解锁§Y战争学说§!政策，且$MOD_COUNTRY_WAR_EXHAUSTION_MULT$降低§G20%§!。"
+ tr_wg_milltary_dreadnoughtism:0 "大舰巨炮主义"
+ tr_wg_milltary_dreadnoughtism_desc:0 "§Y$MOD_SHIP_ORBITAL_BOMBARDMENT_MULT$§!提升§G+10%§!，§Y$MOD_SHIP_HULL_MULT$§!提升§G+10%§!，§Y$MOD_SHIP_WEAPON_DAMAGE$§!提升§G+10%§!，"
+ tr_wg_milltary_dreadnoughtism_delayed:0 "军事的发展一直围绕着如何更快更好的将火力投送到目标区域，在日益发展的科技与广袤的宇宙空间环境下，我们的舰船都需要更大口径的武器和更坚实的船身才能粉碎任何敌人。"
+ tr_wg_milltary_lightning_war:0 "闪击战"
+ tr_wg_milltary_lightning_war_desc:0 "§Y$MOD_SHIP_SPEED_MULT$§!提升§G+10%§!，§Y$MOD_SHIP_FIRE_RATE_MULT$§!提升§G+10%§!"
+ tr_wg_milltary_lightning_war_delayed:0 "天下武功，唯快不破。无论是在战事还是部署上，我们都要比我们的对手要快。只要我们更早实现了战略目的，敌人就不得不投入更多来挽回他的军事劣势，长此下去必然是我们的胜利。"
+ tr_wg_milltary_great_fleet:0 "庞大舰队"
+ tr_wg_milltary_great_fleet_desc:0 "§Y$MOD_COUNTRY_COMMAND_LIMIT_ADD$§!增加§Y20§!，§Y$MOD_LEADER_ADMIRAL_SKILL_LEVELS$§!增加§Y2§!。"
+ tr_wg_milltary_great_fleet_delayed:0 "在宇宙这个庞大的舞台上将鸡蛋全放进一个篮子里显然是愚蠢的——但这仅仅是对那些科技仍不发达的国家而言。可曾想过那些偏居一隅的老人却是因为这样才能守住它们的一分三亩地？以星系——超空间航道为主调的宇宙就像一个巨大的棋盘，只有使用庞大的舰队来击败敌人并取得完全胜利才能断绝敌人的一切幻想。"
+ tr_wg_milltary_enhanced_logistics:0 "后勤优化"
+ tr_wg_milltary_enhanced_logistics_desc:0 "§Y$mod_ships_upkeep_mult$§!减少§G-10%§!，§Y$MOD_COUNTRY_NAVAL_CAP_MULT$§!提升§G+20%§!"
+ tr_wg_milltary_enhanced_logistics_delayed:0 "战争中除了正面战场，后勤更是另一个重要的战场。随着我们的疆域不断扩大，舰队不得不被部署在远离我们家园的地方，通过优化后勤，可以使我们的舰队能更持久的作战。"
+ tr_wg_milltary_fairy_shipyard_workers:0 "妖精船坞劳工"
+ tr_wg_milltary_fairy_shipyard_workers_desc:0 "§Y舰船建造花费§!降低§G-10%§!，§Y建造时间§!降低§G-30%§!。"
+ tr_wg_milltary_fairy_shipyard_workers_delayed:0 "帝国对不断建设庞大舰队的需求日益激增，妖精劳工将会成为我们造船行业的可靠保障，她们娇小的身材可以钻入狭窄的孔洞中作业，使我们的造船效率成倍增长。"
+
+######################## 
+# 支配传统
+########################
+ tr_wg_domination_adopt:0 "$tr_domination_adopt$"
+ tr_wg_domination_adopt_desc:0 "$tradition_domination_desc$\n\n$tr_wg_domination_adopt_effect$\n\n$tr_wg_domination_finish_effect$"
+ tr_wg_domination_adopt_effect:0 "§E$TRADITIONS_ADOPT$：§!\n§Y$mod_planet_jobs_ruler_produces_mult$§!提升§G+10%§!，且§Y$MOD_LEADER_GOVERNOR_SKILL_LEVELS$§!增加§G2§!。"
+
+ tr_wg_domination_finish:0 "$tr_domination_finish$"
+ tr_wg_domination_finish_effect:0 "§E$TRADITIONS_FINISH$：§!\n采纳所有$tr_domination_adopt$将降低§Y$MOD_EMPIRE_SIZE_POPS_MULT$§!§G15%§!，§Y$MOD_EMPIRE_SIZE_MULT$§!将提升§G20%§!，且我们的 £influence£ §Y$mod_country_influence_produces_add$§!将增加§Y1§!。"
+
+ tr_wg_domination_vertical_management:0 "垂直管理"
+ tr_wg_domination_vertical_management_desc:0 "§Y$MOD_EMPIRE_SIZE_DISTRICTS_MULT$§!降低§G-15%§!，§Y$MOD_EMPIRE_SIZE_COLONIES_MULT$§!降低§G-15%§!"
+ tr_wg_domination_vertical_management_delayed:0 "舰娘们一向都有明确的上下级关系去管理事务，但这并不代表我的上司的上司就不是我的上司。相反，要贯彻落实只有一名旗舰，一个总督府的概念，确保所有舰娘都能被统一指挥，才能做到心往一处想，劲往一处使。"
+ tr_wg_domination_warshipgirls_council:0 "舰娘枢密院"
+ tr_wg_domination_warshipgirls_council_desc:0 "§Y$MOD_LEADER_SKILL_LEVELS$§!增加§Y2§!，§Y$mod_leaders_upkeep_mult$§!减少§G-10%§!"
+ tr_wg_domination_warshipgirls_council_delayed:0 "个人的才华固然重要，但众人的智慧更是不可被忽视的一环，通过这样一个枢密院机构，伟大的领袖可以接收到来自各界精英人士的意见与建议，这将使我们在国家发展的道路上疾驰。"
+ tr_wg_domination_peoples_police_officer:0 "宪兵队"
+ tr_wg_domination_peoples_police_officer_desc:0 "§Y$MOD_COUNTRY_EDICT_LENGTH_MULT$§!提升§G+20%§!，§Y且所有殖民地的$MOD_PLANET_STABILITY_ADD$§!增加§Y5§!"
+ tr_wg_domination_peoples_police_officer_delayed:0 "宪兵队是由国民产生的，值得信赖的第三方督查机构。她们将致力于同国民协作，高效执法，确保政府政策能够顺应民意，深入民心。"
+ tr_wg_domination_supervisory_committee:0 "监督委员会"
+ tr_wg_domination_supervisory_committee_desc:0 "$tr_wg_domination_peoples_police_officer_desc$"
+ tr_wg_domination_supervisory_committee_delayed:0 "放任的自由只会滋生惰性，监督委员会的职责便是找出社会中的蛀虫并加以改造。"
+
+######################## 
+# 科教传统
+########################
+ tradition_wg_science:0 "科教"
+ tradition_wg_science_desc:0 "科学进步是第一生产力，如果落后就要被挨打。在这个充满竞争的宇宙中，我们没理由要落后于人。"
+ tr_wg_science_adopt:0 "科教传统"
+ tr_wg_science_adopt_desc:0 "$tradition_wg_science_desc$\n\n$tr_wg_science_adopt_effect$\n\n$tr_wg_science_finish_effect$"
+ tr_wg_science_adopt_effect:0 "§E$TRADITIONS_ADOPT$：§!\n§Y$MOD_SHIP_ANOMALY_GENERATION_CHANCE_MULT$§!提升§G+10%§!。"
+ tr_wg_science_finish:0 "科教传统完成"
+ tr_wg_science_finish_effect:0 "§E$TRADITIONS_FINISH$：§!\n采纳所有$tr_wg_science_adopt$将提升§Y$MOD_COUNTRY_ALL_TECH_RESEARCH_SPEED$§!§G+10%§!。此外，§Y$MOD_COUNTRY_ALL_TECH_RESEARCH_SPEED$§!将会增加§Y2§!，§Y$MOD_COUNTRY_NUM_TECH_ALTERNATIVES_ADD$§!增加§Y1§!。"
+ tr_wg_science_to_boldly_go:0 "勇往直前"
+ tr_wg_science_to_boldly_go_desc:0 "§Y$MOD_SHIP_SCIENCE_SURVEY_SPEED$§!提升§G+35%§!，§Y$mod_shipclass_science_ship_disengage_mult$§!提升§G+50%§!，且§Y$MOD_SHIP_ARCHAEOLOGICAL_SITE_CLUES_ADD$§!增加§Y1§!"
+ tr_wg_science_to_boldly_go_delayed:0 "在这片广袤且充满未知的宇宙中，如果不满怀勇气敢于前行，那么必定会被他人甩于脚后。这个宇宙本身便是知识的海洋。千里之行，始于足下。"
+ tr_wg_science_superpower_of_eduction:0 "科教兴国"
+ tr_wg_science_superpower_of_eduction_desc:0 "§Y来自人口的§!£physics£ £society£ £engineering£§Y研究点数产出§!提升§G+5%§!。"
+ tr_wg_science_superpower_of_eduction_delayed:0 "随着我们帝国的不断发展，科技领域对高素质人才的需求越来越大，因此我们必须将科教兴国作为治国策略来保证人才供应。"
+ tr_wg_science_fairy_researchers:0 "辅助型科研妖精"
+ tr_wg_science_fairy_researchers_desc:0 "§Y$MOD_COUNTRY_ALL_TECH_RESEARCH_SPEED$§!提升§G+5%§!，§Y$MOD_SHIP_ANOMALY_RESEARCH_SPEED$§!提升§G+10%§!。"
+ tr_wg_science_fairy_researchers_delayed:0 "只需要几乎可以忽略不计的食物就可以让一些有科研天赋的妖精成为科学家的得力助手。"
+ tr_wg_science_university:0 "象牙塔"
+ tr_wg_science_university_desc:0 " £job_wsg_researcher£ §H$job_wsg_researcher$§!研究产出增加§Y2§!，但维护费增加§R1§! £consumer_goods£ §Y$consumer_goods$§!，并且我们的行星每§Y40§!个£pop£ 人口将产生额外§Y1§!£job_wsg_researcher£ $job_wsg_researcher$职业"
+ tr_wg_science_university_delayed:0 "培养一名优秀人才的成本是高昂的，但也能收获无限的可能性。比较节省资源的做法便是建立一座便于精英交流的高等学府，以集中资源对尽量多的人才进行教育，并让他们在交流当中启发自己的创意。"
+ tr_sh_science_university:0   "$tr_wg_science_university$"
+ tr_sh_science_university_desc:0 "£job_sh_researcher£ §H$job_sh_researcher$§!研究产出增加§Y3§!，但维护费增加§R1§! £consumer_goods£，并且我们的行星每§Y66§!£pop£ 人口将产生额外§G1§!个 £job_sh_researcher£ $job_sh_researcher$职业"
+ tr_sh_science_university_delayed:0 "$tr_wg_science_university_delayed$"
+
+######################## 
+# 繁荣传统
+########################
+ tr_wg_prosperity_adopt:0 "$tr_prosperity_adopt$"
+ tr_wg_prosperity_adopt_desc:0 "$tradition_prosperity_desc$\n\n$tr_wg_prosperity_adopt_effect$\n\n$tr_prosperity_finish_effect$"
+ tr_wg_prosperity_adopt_effect:0 "§E$TRADITIONS_ADOPT$：§!\n§Y$mod_station_gatherers_produces_mult$§!提升§Y15%§!，并且§Y$MOD_TRADE_VALUE_MULT$§!提升§G15%§!。"
+ 
+ tr_wg_prosperity_interstellar_trading:0 "星际贸易"
+ tr_wg_prosperity_interstellar_trading_desc:0 "§Y$mod_planet_branch_offices_cost_mult$§!降低§G-15%§!，且§Y$MOD_BRANCH_OFFICE_VALUE_MULT$§!提升§G+10%§!。"
+ tr_wg_prosperity_interstellar_trading_delayed:0 "随着跨星系贸易的日益成熟，为我们的社会带来了无尽的机会。为了把握时代潮流，我们必须大力支持这一新兴行业。"
+ tr_wg_prosperity_industrial_upgrading:0 "产业升级"
+ tr_wg_prosperity_industrial_upgrading_desc:0 "§Y$mod_planet_jobs_specialist_produces_mult$§!提升§G+5%§!，且§Y$MOD_PLANET_DECISION_ENACT_SPEED_MULT$§!提升§G+5%§!。"
+ tr_wg_prosperity_industrial_upgrading_delayed:0 "新时代的到来往往伴随着新的规则与标准。不思进取的老旧行业将会被逐渐淘汰，产业升级将会为我们的国家带来无限的活力。"
+ tr_wg_prosperity_fairy_construction_group:0 "妖精建设运营团队"
+ tr_wg_prosperity_fairy_construction_group_desc:0 "§Y$MOD_PLANET_BUILDING_BUILD_SPEED_MULT$§!降低§G-25%§!，且§Y建筑和区划花费、维护费§!降低§G-10%§!。"
+ tr_wg_prosperity_fairy_construction_group_delayed:0 "将部分超大型建设项目交由专业的妖精团队，比起一般的企业，她们对质量的把控与准点率更有保障。同时大量尽职尽责的妖精也将负责管理运营，让我们能高枕无忧。"
+ 
+######################## 
+# 扩张传统
+########################
+ tr_wg_expansion_adopt:0 "$tr_expansion_adopt$"
+ tr_wg_expansion_adopt_desc:0 "$tradition_expansion_desc$\n\n$tr_wg_expansion_adopt_effect$\n\n$tr_expansion_finish_effect$"
+ tr_wg_expansion_adopt_effect:0 "§E$TRADITIONS_ADOPT$：§!\n§Y$MOD_POP_RESETTLEMENT_COST_MULT$§!降低§G-30%§!"
+ tr_wg_expansion_new_age:0 "新时代"
+ tr_wg_expansion_new_age_desc:0 "§Y$MOD_PLANET_COLONY_DEVELOPMENT_SPEED_MULT$§!提升§G+30%§!，§Y$mod_shipsize_colonizer_build_speed_mult$§!提升§G+20%§!。"
+ tr_wg_expansion_new_age_delayed:0 "随着星际旅行殖民技术的成熟，越来越多的舰娘选择踏上殖民船，离开自己熟悉的世界，探索未知，征服未知。"
+ tr_wg_expansion_living_space_adjustment:0 "妖精船员居住空间调整"
+ tr_wg_expansion_living_space_adjustment_desc:0 "§Y$MOD_COLONY_START_NUM_POPS_ADD$§!增加§Y1§!"
+ tr_wg_expansion_living_space_adjustment_delayed:0 "通过拆除或压缩殖民船上妖精船员的居住空间来安置更多舰娘人口。为了我们殖民地的快速发展，我们相信妖精船员们会接受的。"
+ tr_wg_expansion_fairy_space_construction_unit:0 "太空妖精建设团队"
+ tr_wg_expansion_fairy_space_construction_unit_desc:0 "§Y$mod_starbases_upkeep_mult$§!降低§G-10%§!，§Y$MOD_STARBASE_UPGRADE_COST_MULT$§!降低§G-10%§!，§Y$MOD_STARBASE_MODULE_BUILD_SPEED_MULT$§!提升§G+25%§!。"
+ tr_wg_expansion_fairy_space_construction_unit_delayed:0 "太空建设往往是极度危险且复杂的，稍有不慎就会带来严重的事故。但身材娇小切坚韧的妖精可以作为优秀的工程师来为我们建造太空设施。此外，她们还能顺便我们维护空间站，来减少维护费用。"
+ tr_wg_expansion_overexpanding:0 "扩张狂热"
+ tr_wg_expansion_overexpanding_desc:0 "§Y$MOD_COUNTRY_STARBASE_INFLUENCE_COST_MULT$§!降低§G-10%§!，且§Y$mod_ship_starbase_outpost_cost_mult$§!降低§G-10%§!。"
+ tr_wg_expansion_overexpanding_delayed:0 "在踏上宇宙这个舞台上之后，我们所有的产业都将从原本单恒星系的格局大大扩展至整个宇宙的级别，因此建设有效的恒星基地网络来对帝国疆域进行有效的控制极为重要，将为产业升级做好准备。"
+ tr_wg_expansion_oribital_fairy_duty_officer:0 "轨道站值班妖精"
+ tr_wg_expansion_oribital_fairy_duty_officer_desc:0 "§Y$mod_station_gatherers_produces_mult$§!提升§G+30%§!，且§Y$mod_station_researchers_produces_mult$§!提升§G+30%§!。"
+ tr_wg_expansion_oribital_fairy_duty_officer_delayed:0 "原先舰娘们需要在轨道站上孤独的从事各种繁重的工作，这可能会出现各种心理疾病。现在我们让妖精进行全部的轨道站工作，她们不知疲倦且听话顺从，能大大提高我们的轨道站产出。"

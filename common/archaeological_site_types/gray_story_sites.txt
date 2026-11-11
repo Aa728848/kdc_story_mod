@@ -1,0 +1,33 @@
+site_gatebuilder_commu_base = {
+	desc = "site_gatebuilder_commu_base_intro"
+	picture = GFX_evt_archaeological_dig
+	stages = 3
+	weight = 0
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_D1
+		event = gray_story.14
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D2
+		event = gray_story.15
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D3
+		event = gray_story.16
+	}
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}

@@ -1,0 +1,24 @@
+#纳米轰炸#
+namespace = nanitebombard
+planet_event = {
+	id = nanitebombard.1
+	title = nanitebombard.1.name
+	desc = nanitebombard.1.desc
+	picture = GFX_evt_gray_gooed_planet
+	show_sound = event_air_raid_siren
+	is_triggered_only = yes
+
+	trigger = {
+			has_orbital_bombardment_stance = nanite_war_bomb
+			planet_devastation >= 70
+	}
+	immediate = {
+		destroy_colony = yes
+		change_pc = pc_gray_goo
+		reset_planet = yes
+	}
+
+	option = {
+		name= nanitebombard.1.a
+	}
+}

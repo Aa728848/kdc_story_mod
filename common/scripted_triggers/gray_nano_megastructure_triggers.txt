@@ -1,0 +1,357 @@
+# scope: fleet
+gray_ringworld_trigger = {
+	custom_tooltip = {
+		fail_text = "requires_inside_border"
+		is_inside_border = root
+	}
+	hidden_trigger = { star = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			solar_system = {
+				NOT = { any_system_megastructure = { exists = this }}
+			}
+			NOT = { has_planet_flag = exists_megastructure }
+		}
+	}}
+	custom_tooltip = {
+		fail_text = "requires_surveyed_system"
+		NOT = {
+			any_system_planet = {
+				is_surveyed = {
+					who = root
+					status = no
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_habitable_planets"
+		NOT = {
+			any_system_planet = {
+				colonizable_planet = yes
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_black_hole"
+		NOT = { is_star_class = sc_black_hole }
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_binary_trinary"
+		NOR = {
+			is_star_class = sc_binary_1
+			is_star_class = sc_binary_2
+			is_star_class = sc_binary_3
+			is_star_class = sc_binary_4
+			is_star_class = sc_binary_5
+			is_star_class = sc_binary_6
+			is_star_class = sc_binary_7
+			is_star_class = sc_binary_8
+			is_star_class = sc_binary_9
+			is_star_class = sc_binary_10
+			is_star_class = sc_trinary_1
+			is_star_class = sc_trinary_2
+			is_star_class = sc_trinary_3
+			is_star_class = sc_trinary_4
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_existing_megastructure"
+		#NOT = { has_any_megastructure = yes }
+		has_no_non_gate_megastructure = yes
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_anomaly"
+		system_star = { NOT = { has_anomaly = yes }}
+	}
+	custom_tooltip = {
+		fail_text = "requires_planets_for_material"
+		solar_system = { any_system_planet = { NOT = { is_star = yes } } }
+	}
+}
+
+gray_dyson_sphere_trigger = {
+	custom_tooltip = {
+		fail_text = "requires_inside_border"
+		is_inside_border = root
+	}
+	custom_tooltip = {
+		fail_text = "requires_surveyed_system"
+		NOT = {
+			any_system_planet = {
+				is_surveyed = {
+					who = root
+					status = no
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_black_hole_neutron_star_pulsar"
+		NOT = {
+			is_star_class = sc_black_hole
+			is_star_class = sc_neutron_star
+			is_star_class = sc_pulsar
+		}
+	}
+	if = {
+		limit = { has_global_flag = AOW_installed }
+		custom_tooltip = {#不能是磁星、超新星
+			fail_text = "requires_no_magnetar_collapsar"
+			NOR = {
+				is_star_class = sc_magnetar #磁星
+				is_star_class = sc_collapsar #超新星
+			}
+		}
+		custom_tooltip = {#不能是新星、超新星
+			fail_text = "requires_no_extreme_system"
+			NOR = {
+				is_star_class = sc_nova_1
+				is_star_class = sc_nova_2
+				is_star_class = sc_microquasar_1
+				is_star_class = sc_microquasar_2
+			}
+		}
+		custom_tooltip = {#不能是多星
+			fail_text = "requires_single_star_system"
+			OR = {
+				AOW_trgr_SSTM_single_star_system = yes
+				root = { has_technology = AOW_TECH_dimension_hiding }
+			}
+		}
+		custom_tooltip = {#不能星系核心
+			fail_text = "requires_no_sc_galactic_core"
+			NOT = { is_star_class = sc_galactic_core }
+		}
+		custom_tooltip = {#星系内不能有宜居星球和殖民地
+			fail_text = "requires_no_habitable_planets"
+			OR = {
+				AOW_trgr_SSTM_has_habitable_planets = no
+				root = { has_technology = AOW_TECH_simulated_sunlight }
+			}
+		}
+		any_system_planet = {
+			gray_dyson_sphere_AOW_star_allow_trigger = yes
+		}
+	} else = {
+		custom_tooltip = {
+			fail_text = "requires_no_anomaly"
+			system_star = { NOT = { has_anomaly = yes }}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		hidden:star = {
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				solar_system = {
+					NOT = { any_system_megastructure = { 
+						exists = planet
+						planet = { is_same_value = prevprevprev } 
+					}}
+				}
+				NOT = { has_planet_flag = exists_megastructure }
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			#NOT = { has_any_megastructure = yes }
+			has_no_non_gate_megastructure = yes
+		}
+	}
+}
+
+gray_dyson_sphere_AOW_star_allow_trigger = {
+	custom_tooltip = {
+		fail_text = "requires_no_anomaly"
+		NOT = { has_anomaly = yes }
+	}
+	custom_tooltip = {	#不能为星核黑洞
+		fail_text = "AOW_mega_requires_PLNT_no_galactic_core"
+		NOT = { is_planet_class = pc_galactic_core_black_hole }
+	}
+	custom_tooltip = {	#不能是褐矮星
+		fail_text = "requires_no_pc_brown_dwarf"
+		NOR = {
+			is_planet_class = pc_l_star
+			is_planet_class = pc_t_star
+			is_planet_class = pc_y_star
+		}
+	}
+	custom_tooltip = {	#不能有废弃戴森球
+		fail_text = "requires_no_dyson_sphere_ruined"
+		NOT = { has_megastructure = dyson_sphere_ruined }
+	}
+	custom_tooltip = {	#必须为主序星
+		fail_text = "AOW_mega_requires_PLNT_main_sequence_star"
+		AOW_trgr_PLNT_main_sequence_star = yes
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_existing_megastructure"
+		OR = {
+			AOW_trgr_PLNT_has_mega_shipyard = yes
+			kdc_planet_no_megastructure_trigger = yes
+		}
+	}
+}
+
+is_dyson_sphere_5 = {
+	OR = {
+		is_megastructure_type = dyson_sphere_5
+		is_megastructure_type = dyson_sphere_restored
+		is_megastructure_type = dyson_sphere_5_O
+		is_megastructure_type = dyson_sphere_5_B
+		is_megastructure_type = dyson_sphere_5_A
+		is_megastructure_type = dyson_sphere_5_F
+		is_megastructure_type = dyson_sphere_5_G
+		is_megastructure_type = dyson_sphere_5_K
+		is_megastructure_type = dyson_sphere_5_M
+	}
+}
+
+gray_matter_decompressor_trigger = {
+	hidden_trigger = { exists = starbase }
+	hidden:star = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			solar_system = {
+				NOT = { any_system_megastructure = {
+					exists = planet
+					planet = { is_same_value = prevprevprev }
+				}}
+			}
+			NOT = { has_planet_flag = exists_megastructure }
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_inside_border"
+		is_inside_border = root
+	}
+	custom_tooltip = {
+		fail_text = "requires_surveyed_system"
+		NOT = {
+			any_system_planet = {
+				is_surveyed = {
+					who = root
+					status = no
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_habitable_planets"
+		NOT = {
+			any_system_planet = {
+				colonizable_planet = yes
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_black_hole"
+		is_star_class = sc_black_hole
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_existing_megastructure"
+		#NOT = { has_any_megastructure = yes }
+		has_no_non_gate_megastructure = yes
+	}
+}
+
+gray_think_tank_trigger = {
+	hidden_trigger = { exists = starbase }
+	custom_tooltip = {
+		fail_text = "requires_inside_border"
+		is_inside_border = root
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_existing_megastructure"
+		has_no_non_gate_megastructure = yes
+	}
+	custom_tooltip = {
+		fail_text = "requires_surveyed_system"
+		NOT = {
+			any_system_planet = {
+				is_surveyed = {
+					who = root
+					status = no
+				}
+			}
+		}
+	}
+	any_system_planet = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			solar_system = {
+				NOT = { any_system_megastructure = { 
+					exists = planet
+					planet = { is_same_value = prevprevprev }
+				}}
+			}
+			NOT = { has_planet_flag = exists_megastructure }
+		}
+		custom_tooltip = {
+			fail_text = "requires_survey_not_habitable"
+			is_surveyed = {			# prevent leaking habitability information
+				who = prev.from
+				status = yes
+			}
+			colonizable_planet = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_minor_planetary_body"
+			NOR = {
+				is_asteroid = yes
+				is_moon = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_star"
+			is_star = no
+		}
+	}
+}
+
+# prev = system
+# this = planet
+kdc_planet_no_megastructure_trigger = {
+	has_any_megastructure = no
+	NOT = { has_planet_flag = exists_megastructure }
+	solar_system = { NOT = { any_system_megastructure = {
+		exists = planet
+		planet = { is_same_value = prevprevprev }
+	}}}
+}
+
+# this = system
+AOW_trgr_SSTM_single_star_system = {
+	OR = {
+		count_system_planet = { limit = { is_star = yes } count = 1 }
+		count_system_planet = { limit = { is_planet_class = pc_black_hole } count = 11 }#大伤口星系不算多恒星星系
+	}
+}

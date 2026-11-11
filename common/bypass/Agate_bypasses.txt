@@ -1,0 +1,67 @@
+#Agate#
+Agate = {
+	name = AGATE
+	is_pathfind = yes
+	uses_action = no
+	requires_exploration = no
+	always_active = no
+	windup_time = 0
+	winddown_time = 0
+	ftl_multiplier = 0			# 0 means instant
+	icon_frame = 25
+	remember_instances = no	# whether countries remember meeting a specific instance of that type, or if they just remember seeing the type in general
+	galactic_map_tooltip_header=AGATE
+	galactic_map_tooltip_desc=AGATE_DESC
+	connection_type = any_other
+	animation_time = 1
+	ftl_ship_effect = "gateway_ftl_ship_effect_entity"
+	ftl_bypass_effect = "gateway_ftl_bypass_effect_entity"
+	prerequisites = {
+		tech_A_gateway
+	}
+	on_pre_explore = {
+		activate_gateway = fromfrom
+		if = {
+			limit = { num_active_gateways = 1 }
+		}
+	}
+	country_can_use = {
+		always = yes
+		custom_tooltip = { 
+			fail_text = "Agate_is_not_allow"
+			has_global_flag = Agate_open
+		}
+	}
+	on_action = "on_entering_gateway"
+}
+
+Rgate = {
+	name = RGATE
+	is_pathfind = yes
+	uses_action = no
+	requires_exploration = no
+	always_active = no
+	windup_time = 0
+	winddown_time = 0
+	ftl_multiplier = 0			# 0 means instant
+	icon_frame = 30
+	remember_instances = no	# whether countries remember meeting a specific instance of that type, or if they just remember seeing the type in general
+	galactic_map_tooltip_header=RGATE
+	galactic_map_tooltip_desc=RGATE_DESC
+	connection_type = any_other
+	animation_time = 1
+	ftl_ship_effect = "gateway_ftl_ship_effect_entity"
+	ftl_bypass_effect = "gateway_ftl_bypass_effect_entity"
+	prerequisites = {
+		tech_R_gateway
+	}
+	on_pre_explore = {
+		activate_gateway = fromfrom
+	}
+	country_can_use = {
+		is_fallen_empire = no
+		has_technology = tech_R_gateway
+		fail_text = { text = "you_are_not_allowed" }
+	}
+	on_action = "on_entering_gateway"
+}

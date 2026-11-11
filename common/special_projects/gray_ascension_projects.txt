@@ -1,0 +1,44 @@
+special_project = {
+	key = gray_ascension_upgrade
+	cost = {
+		base = 2000
+		scaled_modifier = {
+			limit = {
+				exists = owner
+				OR = {
+					AND = {
+						owner = { has_authority = auth_warshipgirls }
+						species = { is_archetype = WARSHIPGIRL }
+					}
+					AND = {
+						owner = { has_authority = auth_shenhai }
+						species = { is_archetype = SHENHAI }
+					}
+					AND = {
+						owner = { has_authority = auth_starshipgirls }
+						species = { is_archetype = STARSHIPGIRLS }
+					}
+					is_sapient = yes
+				}
+			}
+			scope = this
+			add = 2
+			calc = pop_amount
+		}
+	}
+	tech_department = society_technology
+	picture = GFX_evt_nanite_upgrade
+	event_chain = gray_ascension_upgrade_chain
+
+	event_scope = planet_event
+
+	on_start = {
+		from.owner = {
+			country_event = { id = gray_origin.2102 }
+		}
+	}
+
+	on_success = {
+		owner = { country_event = { id = gray_origin.1000 }}
+	}
+}

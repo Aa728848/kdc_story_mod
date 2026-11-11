@@ -1,0 +1,43 @@
+###_wsg pf triggers	######################################################################################
+#_在每个职位的possible模块加入		z_pop_job_trigger = yes
+
+###_工作检测	########################################
+z_pop_job_trigger = { always = yes }
+PR_prmt_trgr_HC = {
+    [[MORE] pop_amount > $MORE$ ]
+    [[LESS] pop_amount < $LESS$ ]
+    [[SCOPE] NOT = { is_variable_set = $SCOPE$ } ]
+}
+
+AOW_trgr_MEGA_is_qsqm_5 = { always = no }
+AOW_trgr_MEGA_is_qsqm_4 = { always = no }
+AOW_trgr_MEGA_is_qsqm_3 = { always = no }
+AOW_trgr_MEGA_is_qsqm_2 = { always = no }
+AOW_trgr_PLNT_has_mega_shipyard = { always = no }
+AOW_trgr_PLNT_main_sequence_star = { always = no }
+AOW_trgr_SSTM_has_habitable_planets = {
+    any_system_planet = { OR = {
+        colonizable_planet = yes
+        is_colony = yes
+    }}
+}
+
+AOW_trgr_PLNT_o_spectrum = { always = no }
+AOW_trgr_PLNT_b_spectrum = { always = no }
+AOW_trgr_PLNT_a_spectrum = { always = no }
+AOW_trgr_PLNT_f_spectrum = { always = no }
+AOW_trgr_PLNT_g_spectrum = { always = no }
+AOW_trgr_PLNT_k_spectrum = { always = no }
+AOW_trgr_PLNT_m_spectrum = { always = no }
+
+AOW_trgr_PLNT_hyper_star = { always = no }
+AOW_trgr_PLNT_o_super_star = { always = no }
+AOW_trgr_PLNT_b_super_star = { always = no }
+AOW_trgr_PLNT_a_super_star = { always = no }
+AOW_trgr_PLNT_f_super_star = { always = no }
+AOW_trgr_PLNT_g_super_star = { always = no }
+AOW_trgr_PLNT_k_super_star = { always = no }
+AOW_trgr_PLNT_m_super_star = { always = no }
+AOW_trgr_PLNT_giant_star = { always = no }
+AOW_trgr_PLNT_hyper_star = { always = no }
+AOW_trgr_PLNT_hyper_star = { always = no }

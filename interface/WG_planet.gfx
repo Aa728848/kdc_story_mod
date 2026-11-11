@@ -1,0 +1,96 @@
+spriteTypes = {	
+	#Sprite sheet
+	spriteType = {
+		name = "GFX_wg_planet_type"
+		texturefile = "gfx/interface/icons/wg_planet_type_icons.dds"
+		noOfFrames = 20
+	}
+
+	#全水球
+	spriteType = { 
+		name = "GFX_wg_planet_type_water"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 1
+	}
+	#温泉球
+	spriteType = { 
+		name = "GFX_wg_planet_type_swim"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 2
+	}
+	#poke球
+	spriteType = { 
+		name = "GFX_wg_planet_type_poke"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 3
+	}
+	#云海球
+	spriteType = { 
+		name = "GFX_wg_planet_type_cloud"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 4
+	}
+	#工程师球
+	spriteType = { 
+		name = "GFX_wg_planet_type_engineer"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 5
+	}
+	#深海球
+	spriteType = { 
+		name = "GFX_wg_planet_type_shenhai"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 6
+	}
+	#莫德萨恩之眼
+	spriteType = { 
+		name = "GFX_wg_planet_type_pis_eye"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 7
+	}
+	#戴森环
+	spriteType = { 
+		name = "GFX_wg_planet_type_dyson_ring"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 8
+	}
+	#港区球
+	spriteType = { 
+		name = "GFX_wg_planet_type_port"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 9
+	}
+	#纳米改造球
+	spriteType = { 
+		name = "GFX_wg_planet_type_graygoo"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_wg_planet_type"
+		default_frame = 10
+	}
+
+	spriteType = {
+		name = "GFX_district_arcology_graygoo_housing_bg"
+		texturefile = "gfx/interface/planetview/district_backgrounds/district_city_bg.dds"
+	}
+	spriteType = {
+		name = "GFX_district_arcology_graygoo_rural_1_bg"
+		texturefile = "gfx/interface/planetview/district_backgrounds/district_arcology_housing_secondary_bg.dds"
+	}
+	spriteType = {
+		name = "GFX_district_arcology_graygoo_rural_2_bg"
+		texturefile = "gfx/interface/planetview/district_backgrounds/district_arcology_housing_secondary_bg.dds"
+	}
+	spriteType = {
+		name = "GFX_district_arcology_graygoo_rural_3_bg"
+		texturefile = "gfx/interface/planetview/district_backgrounds/district_arcology_housing_secondary_bg.dds"
+	}
+}

@@ -1,0 +1,1006 @@
+# 纳米理想城
+@t1_graygoo_terraform_energy_cost = 4000
+@t1_to_graygoo_energy_cost = 2000
+@t1_to_graygoo_nanite_cost = 1000
+@t2_to_graygoo_energy_cost = 4000
+@t2_to_graygoo_nanite_cost = 2500
+@t3_to_graygoo_energy_cost = 6000
+@t3_to_graygoo_nanite_cost = 3500
+@t4_to_graygoo_energy_cost = 10000
+@t4_to_graygoo_nanite_cost = 5000
+
+@t1_to_graygoo_time = 200
+@t2_to_graygoo_time = 600
+@t3_to_graygoo_time = 900
+@t4_to_graygoo_time = 1500
+@graygoo_terraform_time = 800
+
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_wg_graygoo"
+	
+	duration = 1500
+
+	potential = {
+		has_ascension_perk = ap_graygoo_planet_transform
+		has_ascension_perk = ap_graygoo_arcology
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+	}
+	
+	resources = {
+		category = terraforming
+		cost = {
+			energy = 20000
+			nanites = 4000
+			influence = 150
+		}
+	}
+
+	effect = {
+		tooltip = {
+			add_resource = {
+				energy = -20000
+				nanites = -4000
+				influence = -150
+			}
+		}
+		from = {
+			clear_planet_modifiers = yes
+			clear_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# 纳米星球转化宜居
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_desert"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_savannah"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_ocean"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_continental"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_tropical"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_arctic"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_alpine"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_tundra"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gray_goo"
+	to = "pc_desert"
+	duration = @graygoo_terraform_time
+	potential = { 
+		# 星系里不能有戴森球
+		from.solar_system = {
+			NOT = { any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_0
+					is_megastructure_type = dyson_sphere_1
+					is_megastructure_type = dyson_sphere_2
+					is_megastructure_type = dyson_sphere_3
+					is_megastructure_type = dyson_sphere_4
+					is_megastructure_type = dyson_sphere_5
+				}
+			}}
+		}
+		has_technology = tech_nanite_terraform
+		from = { NOT = { has_modifier = terraforming_candidate }}
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_graygoo_terraform_energy_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+			reroll_planet_modifiers = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			prevent_anomaly = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# 宜居逆向转化纳米星球
+terraform_link = {
+	from = "pc_desert"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_arid"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_savannah"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_ocean"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_continental"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_tropical"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_arctic"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_alpine"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_tundra"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_gaia"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_nuked"
+	to = "pc_gray_goo"
+	duration = @t1_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t1_to_graygoo_energy_cost
+			nanites = @t1_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_hive"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t2_to_graygoo_energy_cost
+			nanites = @t2_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_machine"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t2_to_graygoo_energy_cost
+			nanites = @t2_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_city"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t2_to_graygoo_energy_cost
+			nanites = @t2_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_relic"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t2_to_graygoo_energy_cost
+			nanites = @t2_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_shenhai"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t2_to_graygoo_energy_cost
+			nanites = @t2_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_wsg_port"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_swim"
+	to = "pc_gray_goo"
+	duration = @t3_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+		from = { is_colony = no }
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# 非宜居转化纳米星球
+terraform_link = {
+	from = "pc_barren"
+	to = "pc_gray_goo"
+	duration = @t4_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_barren_cold"
+	to = "pc_gray_goo"
+	duration = @t4_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_molten"
+	to = "pc_gray_goo"
+	duration = @t4_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_toxic"
+	to = "pc_gray_goo"
+	duration = @t4_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_frozen"
+	to = "pc_gray_goo"
+	duration = @t4_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t3_to_graygoo_energy_cost
+			nanites = @t3_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+terraform_link = {
+	from = "pc_wg_water"
+	to = "pc_gray_goo"
+	duration = @t4_to_graygoo_time
+	potential = { 
+		has_ascension_perk = ap_graygoo_planet_transform 
+	}
+	resources = {
+		category = terraforming
+		cost = {
+			energy = @t4_to_graygoo_energy_cost
+			nanites = @t4_to_graygoo_nanite_cost
+		}
+	}
+	effect = {
+		from = {
+			clear_planet_modifiers = yes
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}

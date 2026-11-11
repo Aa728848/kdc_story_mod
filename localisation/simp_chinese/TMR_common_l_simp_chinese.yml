@@ -1,0 +1,138 @@
+﻿l_simp_chinese:
+#舰船部件#
+GATEBUILDER_THRUSTER: "建门者推进器"
+GATEBUILDER_THRUSTER_DESC: "这种推进器专门为纳米战舰打造，具有强劲的推动力"
+
+STARGATE_DRIVE: "星门折跃器"
+STARGATE_DRIVE_DESC: "这种折跃器是古代的跨银河文明留下的精密构造，能够跨越天文数字的距离"
+
+NANITE_BATTLE_COMPUTER: "纳米作战电脑"
+NANITE_BATTLE_COMPUTER_DESC: "这种电脑适用于控制成群的纳米机器"
+LONG_RANGE_BEHAVIOR_DESC: "远距离进攻"
+long_range_desc: "远距离进攻"
+NANITE_BATTLE_COMPUTER2: "$NANITE_BATTLE_COMPUTER$"
+NANITE_BATTLE_COMPUTER2_DESC: "$NANITE_BATTLE_COMPUTER2$"
+
+DISTAR_SENSOR: "远星传感器"
+DISTAR_SENSOR_DESC: "可以一次性释放大量的纳米侦测机器人，跨越繁星的距离进行探测"
+
+NANITE_CLUSTER_AURA: "光环·纳米集群"
+NANITE_CLUSTER_AURA_DESC: "围绕在我们舰船周围的游离纳米机器人，对我们和敌方舰船都会产生巨大的影响"
+gatebuilder_protect: "建门者系统"
+nanite_destroy_circle: "纳米啃啮光环"
+
+NANITE_STORM_AURA: "光环·纳米风暴"
+NANITE_STORM_AURA_DESC: "一个极其复杂的纳米控制系统，是古代建门者系统的衍生，用于操控星域内庞大数量的纳米机群"
+nanite_factory: "纳米工厂"
+nanite_cloud: "纳米云群"
+
+#舰船#
+tech_origin_interdictor: "纳米拦截舰"
+TECH_ORIGIN_INTERDICTOR_TITLE: "§H解锁舰船：§!纳米拦截舰"
+TECH_ORIGIN_INTERDICTOR_DESC: "这应该是古老的建门者的技术，现在我们也能做出类似的设计了"
+tech_origin_interdictor_desc: "这应该是古老的建门者的技术，现在我们也能做出类似的设计了"
+origin_interdictor: "纳米拦截舰"
+origin_interdictor_key: "拦截舰船体"
+
+tech_origin_mothership: "纳米母舰"
+TECH_ORIGIN_MOTHERSHIP_TITLE: "§H解锁舰船：§!纳米母舰"
+TECH_ORIGIN_MOTHERSHIP_DESC: "这种设计独特的巨大的母舰曾经游弋于星河之间，现在我们可以重现其光辉了。"
+tech_origin_mothership_desc: "这种设计独特的巨大的母舰曾经游弋于星河之间，现在我们可以重现其光辉了。"
+origin_mothership: "纳米母舰"
+origin_mothership_key_01: "母舰舰首"
+origin_mothership_key_02: "母舰舰体"
+
+tech_nanitecrop_interdictor: "纳米集群拦截舰"
+TECH_NANITECROP_INTERDICTOR_TITLE: "§H解锁舰船：§!纳米集群拦截舰"
+TECH_NANITECROP_INTERDICTOR_DESC: "专门为战斗而研发的战斗拦截舰，可以搭载更多的武器"
+tech_nanitecrop_interdictor_desc: "专门为战斗而研发的战斗拦截舰，可以搭载更多的武器"
+nanitecrop_interdictor: "纳米集群拦截舰"
+nanitecrop_interdictor_key: "纳米集群拦截舰船体"
+
+TECH_NANITECROP_MOTHERSHIP_TITLE: "§H解锁舰船：§!纳米集群母舰"
+TECH_NANITECROP_MOTHERSHIP_DESC: "这个庞然大物是天文数字的纳米机器人集合体，拥有极其可怕的火力"
+nanitecrop_mothership: "纳米集群母舰"
+nanitecrop_mothership_01: "纳米集群母舰舰首"
+nanitecrop_mothership_02: "纳米集群母舰舰体"
+nanitecrop_mothership_cap: "$nanitecrop_mothership$"
+
+TECH_NANITECROP_TITAN_TITLE: "§H解锁舰船：§!灰蛊泰坦"
+TECH_NANITECROP_TITAN_DESC: "纳米集群战舰的巅峰，是一种火力强悍的主力舰"
+nanitecrop_titan: "灰蛊泰坦"
+nanitecrop_titan_01_key: "灰蛊泰坦舰首"
+nanitecrop_titan_02_key: "灰蛊泰坦舰体"
+nanitecrop_titan_03_key: "灰蛊泰坦舰尾"
+nanitecrop_titan_cap: "$nanitecrop_titan$"
+nanitecrop_titan_plural: "$nanitecrop_titan$"
+
+nanitecrop_encryption: "纳米缄默护卫舰"
+nanitecrop_support_01_key: "纳米缄默护卫舰舰体"
+
+TECH_NANITECROP_SENTRY_TITLE: "§H解锁舰船：§!$nanitecrop_sentry$\n注意：这艘舰船需要由巨型建筑§H纳米星球船坞§!升级建造而成"
+TECH_NANITECROP_SENTRY_DESC: "这是一艘真正巨大的舰船，我们将需要以建造巨型构造建筑的方式来修建这艘庞然大物。"
+nanitecrop_sentry: "灰蛊哨兵"
+nanitecrop_sentry_01_key: "灰蛊哨兵舰艏" 
+nanitecrop_sentry_02_key: "灰蛊哨兵舰桥" 
+nanitecrop_sentry_03_key: "灰蛊哨兵核心" 
+nanitecrop_sentry_04_key: "灰蛊哨兵机库"
+nanitecrop_sentry1: "§R灰蛊哨兵战斗群§!"
+nanitecrop_sentry2: "§R哨兵§!"
+nanite_sentry_maingun: "灰蛊哨兵之矛"
+nanite_sentry_maingun_DESC: "被安装在哨兵级巨型战舰的舰艏的庞大无比的主炮，在这宇宙中几乎没有任何舰船能够抵挡住它一发的伤害"
+nanitecrop_sentry_cap: "$nanitecrop_sentry$"
+nanitecrop_sentry_plural: "$nanitecrop_sentry$"
+
+TECH_NANITECROP_STORM_TITLE: "§H解锁舰船：§!纳米风暴"
+TECH_NANITECROP_STORM_DESC: "无数纳米舰船组合而成的宇宙巨兽，它的所到之处必定被无数的纳米集群所摧毁、吞噬"
+nanite_storm: "纳米风暴"
+nanite_storm_01_key: "纳米风暴主炮组"
+nanite_storm_02_key: "纳米风暴副炮组"
+nanite_storm_03_key: "纳米风暴近防炮组"
+nanite_storm_04_key: "纳米风暴机库"
+nanite_storm_cap: "$nanite_storm$"
+nanite_storm_plural: "$nanite_storm$"
+
+ 
+
+
+# tech_gatebuilder_ships: "建门者舰体逆向工程"
+# tech_gatebuilder_ships_desc: "一直以来，我们为了能逆向数百万年前建门者建造的那些战争机器所做的努力，最终都以失败告终。关键原因是他们对纳米机械无微不至的控制，使得他们能利用纳米机械合成比传统钢铁更坚固的新元素，这种物质更类似于中子星里常见的奇异物质，但使用纳米机械合成的结构远远比它更稳定。现在我们终于摸到了这一门槛。"
+# TECH_GATEBUILDER_SHIPS_TITLE: "§H解锁舰船科技：§!建门者舰船"
+# TECH_GATEBUILDER_SHIPS_DESC: "只要我们完成建门者舰体逆向工程的原理，我们就能使用我们自己制造的纳米机械，重现往日建门者强大的战争机器。"
+# TECH_GATEBUILDER_SHIPS2_TITLE: "§H解锁舰船外观：§!建门者"
+# TECH_GATEBUILDER_SHIPS2_DESC: "我们将能够把我们自己的舰船改造成和建门者一样那么coooooooooool的外观，为什么不呢？"
+# gatebuilder_ships_graphical_culture: "建门者舰船外观改造"
+# gatebuilder_ships_graphical_culture_DESC: "在完成对建门者舰船原理的逆向工程后，我们现在可以将我们自己的舰船外观也改变成像建门者舰船那样炫酷的外观，这将会展示我们帝国宏厚的实力。"
+# naniteship.1000.name: "建门者舰船外观"
+# naniteship.1000.desc: "在完成对建门者舰船原理的逆向工程后，我们现在可以将我们自己的舰船外观也改变成像建门者舰船那样炫酷的外观，来展示我们帝国的实力。§H唯一的问题是，我们要这么做吗？§!"
+# naniteship.1000.a: "为什么不？"
+# naniteship.1001.desc: "我们的工程团队已经完成了对帝国境内大多数舰船的外观调整，除了恒星基地外（以及一些mod舰船，考虑到有很多mod建筑无法穷举，所以就不换了），我们现在所有的舰船都变得相当cooooooooool了"
+# naniteship.1001.a: "好耶"
+#轨道轰炸#
+nanitebombard.1.name: "纳米轰炸"
+nanitebombard.1.desc: "成群的纳米机器会摧毁星球表面的一切"
+bombardment_nanite_war_bomb: "重型纳米轰炸"
+bombardment_nanite_war_bomb_desc: "成群的纳米机器会摧毁星球表面的一切"
+bombardment_nanite_warn_bomb: "轻型纳米轰炸"
+bombardment_nanite_warn_bomb_desc: "纳米机器群会对星球表面的守军进行大规模杀伤"
+nanitebombard.2.name: "重型纳米轰炸"
+nanitebombard.2.desc: "我们的舰队释放了难以计数的庞大纳米机器群，将星球彻底覆盖并摧毁"
+nanitebombard.1.a: "此事平平无奇"
+
+#战争#
+casus_belli_cb_gray_goo_invade: "灰蛊入侵"
+casus_belli_cb_gray_goo_invade_desc: "我们制造纳米机器需要更多的物质，这个星域是我们收割物质的好地方"
+casus_belli_cb_gray_goo_clear: "终结纳米危机"
+casus_belli_cb_gray_goo_clear_desc: "那群贪得无厌的纳米机器群即将来到我们的星域，必须要让它们付出代价"
+war_goal_wg_gray_goo_invade: "启动纳米收割协议"
+war_goal_wg_gray_goo_invade_desc: "是时候启动纳米收割协议来收集对方星域宝贵的质量了"
+war_goal_wg_gray_goo_clear: "启动纳米清洗协议"
+war_goal_wg_gray_goo_clear_desc: "多余的人口和星球，对星系而言是不必要的，现在是打扫卫生的时候了。"
+war_goal_wg_end_nanite_crisis: "终结纳米危机"
+war_goal_wg_end_nanite_crisis_desc: "那群贪得无厌的纳米机器群即将来到我们的星域，必须要让它们付出代价"
+
+tmr_check.3.title: "请订阅微械革命mod"
+tmr_check.3.desc: "你将要游玩的内容将使用微械革命mod内的素材，请在工坊搜索微械革命(英文The Nanites Revolution)并订阅该mod，以免诸如领袖立绘，船模等游戏素材出现缺失。"
+
+
+

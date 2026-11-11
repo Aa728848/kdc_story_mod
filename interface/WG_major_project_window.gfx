@@ -1,0 +1,86 @@
+
+spriteTypes = {
+	# 主按钮
+	spriteType = {
+		name = "GFX_wg_major_project_main_button_901_117"
+		texturefile = "gfx/interface/wg_major_project/wg_button_901_117.dds"
+		noOfFrames = 1
+	}
+	# 侧边栏按钮
+	spriteType = {
+		name = "GFX_wg_major_project_category_button_169_60"
+		texturefile = "gfx/interface/wg_major_project/wg_button_169_60.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	# 侧边栏按钮（已选中状态）
+	spriteType = {
+		name = "GFX_wg_major_project_category_button_highlight_169_60"
+		texturefile = "gfx/interface/wg_major_project/wg_button_highlight_169_60.dds"
+	}
+	# 副按钮
+	spriteType = {
+		name = "GFX_wg_major_project_sub_button_156_42"
+		texturefile = "gfx/interface/wg_major_project/wg_button_156_42_default.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	# 副按钮（物理）
+	spriteType = {
+		name = "GFX_wg_major_project_sub_button_156_42_physics"
+		texturefile = "gfx/interface/wg_major_project/wg_button_156_42_blue.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	# 副按钮（生物）
+	spriteType = {
+		name = "GFX_wg_major_project_sub_button_156_42_society"
+		texturefile = "gfx/interface/wg_major_project/wg_button_156_42_green.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	# 副按钮（工程）
+	spriteType = {
+		name = "GFX_wg_major_project_sub_button_156_42_engineering"
+		texturefile = "gfx/interface/wg_major_project/wg_button_156_42_yellow.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	# 副官立绘
+	spriteType = {
+		name = "GFX_wg_major_project_illustration"
+		texturefile = "gfx/interface/wg_major_project/wg_project_illustration1.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 1
+	}
+	# 上一页
+	spriteType = {
+		name = "GFX_wg_major_project_last_page"
+		texturefile = "gfx/interface/wg_major_project/last_page.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	# 下一页
+	spriteType = {
+		name = "GFX_wg_major_project_next_page"
+		texturefile = "gfx/interface/wg_major_project/next_page.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+	
+	# 背景
+	spriteType = {
+		name = "GFX_wg_major_project_bg"
+		texturefile = "gfx/interface/wg_major_project/bg.dds"
+	}
+	# desc
+	spriteType = {
+		name = "GFX_wg_major_project_desc"
+		texturefile = "gfx/interface/wg_major_project/desc.dds"
+	}
+	# 项目步骤desc范围
+	spriteType = {
+		name = "GFX_wg_major_project_steps_desc_area"
+		texturefile = "gfx/interface/wg_major_project/steps_desc_area.dds"
+	}
+}

@@ -1,0 +1,844 @@
+tech_gray_genetic_resequencing = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	is_rare = yes
+	category = { biology }	
+	weight = 0
+	
+	gateway = biological
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nanite_factory = {
+	cost = @tier4cost3
+	area = physics
+	tier = 4
+	category = { field_manipulation }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		country_nanites_produces_mult = 0.1
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nanite_factory2 = {
+	cost = @tier5cost2
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		country_nanites_produces_mult = 0.1
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nano_factory = {
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { materials }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+tech_building_gray_nano_factory2 = {
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { materials }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nano_foundry = {
+	cost = @tier4cost1
+	area = engineering
+	tier = 4
+	category = { materials }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nano_foundry2 = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { materials }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+#实验室
+tech_building_gray_nano_research = {
+	area = physics
+	category = { computing }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#实验室
+tech_building_gray_nano_research2 = {
+	area = physics
+	category = { computing }
+	tier = 4
+	cost = @tier4cost2
+	weight = 0
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#实验室
+tech_building_gray_nano_research3 = {
+	area = physics
+	category = { computing }
+	tier = 5
+	cost = @tier5cost3
+	weight = 0
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+
+tech_building_nanite_field_manipulator = {
+	area = physics
+	category = { field_manipulation }
+	tier = 5
+	cost = @tier5cost3
+	weight = 0
+	is_rare = yes
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nano_rare_resource_factory = {
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { materials }
+	weight = 0
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_warshipgirl_nano_assembly_plantF = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { materials }
+	prerequisites = { "tech_building_nanoassembly_plant" "tech_warshipgirl_assembly_plantU" }
+	weight = @tier5weight1
+	
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = "leader_trait_expertise_materials" }
+		}
+	}
+	
+	ai_weight = {
+		modifier = {
+			factor = 100
+			OR = {
+				has_authority = auth_warshipgirls
+			}
+		}
+	}
+	potential = {
+		has_authority = auth_warshipgirls
+	}
+}
+
+tech_sh_nano_assembly3 = {
+	cost = @tier4cost1
+	area = engineering
+	tier = 4
+	category = { materials }
+	prerequisites = { "tech_building_nanoassembly_plant" "tech_sh_assembly2" }
+	weight = @tier5weight1
+	
+	
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = "leader_trait_expertise_materials" }
+		}
+	}
+	
+	ai_weight = {
+		modifier = {
+			factor = 100
+			OR = {
+				has_authority = auth_shenhai
+			}
+		}
+	}
+	potential = {
+		has_authority = auth_shenhai
+	}
+}
+
+tech_building_gray_fortress = {
+	area = society
+	category = { military_theory }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_fortress2 = {
+	area = society
+	category = { military_theory }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_nanite_bureaucratic = {
+	area = society
+	category = { statecraft }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_building_gray_nano_defence_centre = {
+	area = society
+	category = { new_worlds }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_exoskeletons = {
+	area = society
+	category = { biology }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_biomechanics = {
+	area = society
+	category = { biology }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_living_nano_construction = {
+	area = society
+	category = { biology }
+	tier = 3
+	cost = @tier3cost2
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nanite_terraform = {
+	area = society
+	category = { new_worlds }
+	tier = 3
+	cost = @tier3cost3
+	prerequisites = { "tech_climate_restoration" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = "leader_trait_expertise_new_worlds" }
+		}
+	}
+
+	prereqfor_desc = {
+		feature = {
+			title = "TECH_UNLOCK_NANITE_TERRAFORM_TITLE"
+			desc = "TECH_UNLOCK_NANITE_TERRAFORM_DESC"
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+		}
+	}
+	potential = {
+		OR = {
+			AND = {
+				NOT = { has_country_flag = origin_gray_country }
+				has_technology = tech_TMR_nanite_productor
+			}
+			AND = {
+				has_country_flag = origin_gray_country
+				has_country_flag = finish_nanite_planet_terraform
+			}
+		}
+	}	
+}
+
+############################################
+# 舰船部件
+############################################
+tech_gray_nanite_ia = {
+    area = engineering
+	cost = @tier5cost2
+	tier = 5
+	category = { materials }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+tech_gray_nano_reactor = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	category = { particles }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	gateway = gray_nano_weapons
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_nano_computer = {
+    area = physics
+	cost = @tier5cost1
+	tier = 5
+	category = { computing }
+	ai_update_type = military
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_nano_sensors = {
+	area = physics
+	cost = @tier5cost1
+	tier = 5
+	category = { computing }
+	is_reverse_engineerable = no
+	ai_update_type = military
+	weight = 0
+	is_rare = yes
+	
+	gateway = gray_nano_weapons	
+	
+	ai_weight = {
+		weight = 100
+	}
+	
+	prereqfor_desc = {
+		component = {
+			title = "TECH_UNLOCK_GRAY_NANO_SENSORS_TITLE"
+			desc = "tech_gray_nano_sensors_desc"
+		}
+	}
+}
+
+tech_gray_nano_propulsion = {
+	area = engineering
+	cost = @tier5cost2
+	tier = 5
+	category = { propulsion }
+	is_reverse_engineerable = no
+	ai_update_type = military
+	weight = 0
+
+	gateway = gray_nano_weapons
+	
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		custom = {
+			title = "TECH_UNLOCK_GRAY_NANO_THRUSTER_TITLE"
+			desc = "TECH_UNLOCK_GRAY_NANO_THRUSTER_DESC"
+		}
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_nano_jump = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+	ai_update_type = all
+	weight = 0
+	is_rare = yes
+	is_dangerous = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_nano_aura = {
+	area = engineering
+	cost = @tier5cost2
+	tier = 5
+	category = { voidcraft }
+	is_reverse_engineerable = no
+	ai_update_type = military
+	weight = 0
+	is_dangerous = yes
+	gateway = gray_nano_weapons
+}
+
+tech_gray_weapon_SML = {
+	area = physics
+	cost = @tier5cost1
+	tier = 5
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_weapon_l = {
+	area = physics
+	cost = @tier5cost2
+	tier = 5
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+	}
+}
+
+tech_gray_weapon_x = {
+	area = physics
+	cost = @tier5cost2
+	tier = 5
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+	}
+}
+
+tech_gray_weapon_t = {
+    area = physics
+	cost = @tier5cost3
+	tier = 5 
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+	}
+}
+
+tech_gray_weapon_h = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	ai_update_type = military
+	category = { voidcraft }	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_weapon_p = {
+    area = physics
+	cost = @tier5cost1
+	tier = 5
+	category = { particles }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_weapon_g = {
+	area = engineering
+	cost = @tier5cost2
+	tier = 5
+	category = { propulsion }
+	ai_update_type = military
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	ai_weight = {
+		weight = 100
+	}	
+}
+
+tech_planet_killer_graygoo = {
+	area = engineering
+	cost = 60000
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { voidcraft }
+	ai_update_type = military
+	weight = 0
+	
+	ai_weight = {
+		weight = 100
+	}
+
+	potential = {
+		has_country_flag = colossus_project
+		gray_origin_advance_tech_trigger = yes	
+	}
+}
+
+tech_gray_weapon_el = {
+	area = physics
+	cost = 60000
+	tier = 5
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_weapon_ex = {
+	area = physics
+	cost = 60000
+	tier = 5
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_weapon_et = {
+    area = physics
+	cost = 60000
+	tier = 5 
+	category = { particles }
+	ai_update_type = military	
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_gray_nano_shield_recharger = {
+    area = physics
+	cost = 60000
+	tier = 5
+	category = { particles }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+}
+
+tech_gray_nano_armor_hardener = {
+    area = engineering
+	cost = 60000
+	tier = 5
+	category = { materials }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	gateway = gray_nano_weapons
+	
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+}
+# 纳米巨构
+tech_nano_construction_core = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	category = { voidcraft }
+	ai_update_type = all
+	weight = 0
+	is_rare = yes
+
+	prereqfor_desc = {
+		feature = {
+			title = TECH_UNLOCK_NANO_MEGASTRUCTURE_TITLE
+			desc = TECH_UNLOCK_NANO_MEGASTRUCTURE_DESC
+		}
+	}
+
+	modifier = {
+		country_resource_max_add = 20000
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_science_nexus = {
+	area = physics
+	cost = 80000
+	tier = 5
+	category = { computing }
+	ai_update_type = all
+	weight = 0
+	is_rare = yes
+
+	prereqfor_desc = {
+		feature = {
+			title = TECH_UNLOCK_NANO_SCIENCE_NEXUS_TITLE
+			desc = TECH_UNLOCK_NANO_SCIENCE_NEXUS_DESC
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_dyson_sphere = {
+	area = physics
+	cost = 80000
+	tier = 5
+	category = { field_manipulation }
+	ai_update_type = all
+	weight = 0
+	is_rare = yes
+
+	prereqfor_desc = {
+		feature = {
+			title = TECH_UNLOCK_NANO_DYSON_SPHERE_TITLE
+			desc = TECH_UNLOCK_NANO_DYSON_SPHERE_DESC
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_matter_decompressor = {
+	area = physics
+	cost = 80000
+	tier = 5
+	category = { field_manipulation }
+	ai_update_type = all
+	weight = 0
+	is_rare = yes
+
+	prereqfor_desc = {
+		feature = {
+			title = TECH_UNLOCK_NANO_MATTER_DECOMPRESSOR_TITLE
+			desc = TECH_UNLOCK_NANO_MATTER_DECOMPRESSOR_DESC
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_ring_world = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	category = { voidcraft }
+	ai_update_type = all
+	weight = 0
+	is_rare = yes
+
+	prereqfor_desc = {
+		feature = {
+			title = TECH_UNLOCK_NANO_RING_WORLD_TITLE
+			desc = TECH_UNLOCK_NANO_RING_WORLD_DESC
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_reconstruct = {
+	area = physics
+	cost = @tier5cost3
+	tier = 5
+	category = { particles }
+	ai_update_type = all
+	weight = 0
+
+	prereqfor_desc = {
+		feature = {
+			title = TECH_UNLOCK_PURGE_NANO_RECONSTRUCT_TITLE
+			desc = TECH_UNLOCK_PURGE_NANO_RECONSTRUCT_DESC
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_drones = {
+	cost = @tier4cost3
+	area = society
+	tier = 4
+	category = { military_theory }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_nano_army = {
+	cost = @tier4cost3
+	area = society
+	tier = 4
+	category = { military_theory }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}
+
+tech_army_gray_mecha = {
+	cost = @tier4cost3
+	area = society
+	tier = 4
+	category = { military_theory }
+	weight = 0
+	ai_weight = {
+		weight = 100
+	}
+}

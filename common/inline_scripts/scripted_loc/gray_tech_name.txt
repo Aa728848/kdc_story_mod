@@ -1,0 +1,4 @@
+text = {
+    trigger = { check_variable = { which = gray_tech_id value = $ID$ }}
+    localization_key = $NAME$
+}

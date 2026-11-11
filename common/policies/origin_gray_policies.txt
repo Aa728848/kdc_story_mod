@@ -1,0 +1,22 @@
+gray_research_policy = {
+	potential = {
+		is_country_type = default
+		has_technology = tech_building_gray_nano_research
+	}
+		
+	option = {
+		name = "gray_research_balance"	
+		
+		policy_flags = {}			
+	}
+	option = {
+		name = "gray_research_more_nano_points"	
+		
+		policy_flags = { gray_research_more_nano_points }			
+	}
+	option = {
+		name = "gray_research_less_nano_points"	
+		
+		policy_flags = { gray_research_less_nano_points }			
+	}
+}

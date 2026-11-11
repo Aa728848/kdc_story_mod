@@ -1,0 +1,529 @@
+button_tech_TMR_nanite_productor_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1000
+    }
+}
+button_tech_building_gray_nanite_factory_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1016
+    }
+}
+button_tech_building_gray_nanite_factory2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1017
+    }
+}
+button_tech_building_gray_nano_regenerator_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1018
+    }
+}
+button_tech_building_nanoassembly_plant_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1010
+    }
+}
+button_tech_nanoassembly_technology_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1011
+    }
+}
+button_tech_nano_reconstruct_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1013
+    }
+}
+button_tech_building_nanite_field_manipulator_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1014
+    }
+}
+button_tech_repeat_nanite_produce_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1015
+    }
+}
+button_tech_building_gray_nano_foundry_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1020
+    }
+}
+button_tech_building_gray_nano_rare_resource_factory_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1021
+    }
+}
+button_tech_building_gray_nano_foundry2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1022
+    }
+}
+button_tech_nano_job_foundry_upgrade_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1024
+    }
+}
+button_tech_repeat_nano_alloy_produce_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1025
+    }
+}
+button_tech_building_gray_nano_factory_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1030
+    }
+}
+button_tech_building_gray_nano_factory2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1031
+    }
+}
+button_tech_nano_job_artisan_upgrade_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1034
+    }
+}
+button_tech_repeat_nano_consumer_goods_produce_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1035
+    }
+}
+button_tech_building_gray_nano_research_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1040
+    }
+}
+button_tech_building_gray_nano_research2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1041
+    }
+}
+button_tech_building_gray_nano_research3_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1042
+    }
+}
+button_tech_nano_research_slot_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1043
+    }
+}
+button_tech_repeat_nano_research_produce_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1045
+    }
+}
+button_tech_nano_construction_core_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1060
+    }
+}
+button_tech_nano_dyson_sphere_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1061
+    }
+}
+button_tech_nano_matter_decompressor_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1062
+    }
+}
+button_tech_nano_ring_world_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1063
+    }
+}
+button_tech_nano_science_nexus_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1064
+    }
+}
+button_tech_macro_nanorobot_technology_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1070
+    }
+}
+button_tech_TMR_nanite_factory_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1071
+    }
+}
+button_tech_TMR_gatebuilder_core_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1072
+    }
+}
+button_tech_r_gateway_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 0 ID = 1073
+    }
+}
+
+#####################################################################
+# 武器
+#####################################################################
+button_tech_gray_nano_reactor_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2000
+    }
+}
+button_tech_gray_nanite_ia_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2001
+    }
+}
+button_tech_gray_weapon_p_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2002
+    }
+}
+button_tech_gray_weapon_g_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2003
+    }
+}
+button_tech_gray_weapon_h_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2004
+    }
+}
+button_tech_gray_nano_propulsion_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2011
+    }
+}
+button_tech_gray_nano_jump_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2012
+    }
+}
+button_tech_gray_nano_sensors_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2013
+    }
+}
+button_tech_gray_nano_computer_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2014
+    }
+}
+button_tech_gray_nano_armor_hardener_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2015
+    }
+}
+button_tech_gray_nano_shield_recharger_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2016
+    }
+}
+button_tech_planet_killer_graygoo_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2021
+    }
+}
+button_tech_gray_nano_aura_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2022
+    }
+}
+button_tech_nanitecrop_titan_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2031
+    }
+}
+button_tech_nanitecrop_mothership_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2032
+    }
+}
+button_tech_nanite_storm_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2033
+    }
+}
+button_tech_nanitecrop_sentry_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2034
+    }
+}
+button_tech_gray_weapon_SML_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2040
+    }
+}
+button_tech_gray_weapon_l_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2041
+    }
+}
+button_tech_gray_weapon_x_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2042
+    }
+}
+button_tech_gray_weapon_t_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2043
+    }
+}
+button_tech_nanite_sentry_maingun_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2044
+    }
+}
+button_tech_dark_matter_power_core_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2050
+    }
+}
+button_tech_gray_weapon_el_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2051
+    }
+}
+button_tech_gray_weapon_ex_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2052
+    }
+}
+button_tech_gray_weapon_et_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 2053
+    }
+}
+button_tech_TMR_nanite_factory_cat2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 1 ID = 1071
+    }
+}
+#####################################################################
+# 社会
+#####################################################################
+button_tech_psionic_theory_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3000
+    }
+}
+button_tech_modularized_memory_injection_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3010
+    }
+}
+button_tech_modularized_skill_injection_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3011
+    }
+}
+button_tech_nano_cloning_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3012
+    }
+}
+button_tech_repeat_consciousness_copy_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3013
+    }
+}
+button_tech_repeat_consciousness_sycn_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3014
+    }
+}
+button_tech_consciousness_detach_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3020
+    }
+}
+button_tech_consciousness_backup_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3021
+    }
+}
+button_tech_consciousness_create_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3022
+    }
+}
+button_tech_virtual_conscious_network_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3023
+    }
+}
+button_tech_repeat_nano_gestalt_network_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3024
+    }
+}
+button_tech_building_nanite_bureaucratic_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3030
+    }
+}
+button_tech_building_nanite_bureaucratic_2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3031
+    }
+}
+button_tech_building_nanite_bureaucratic_3_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3032
+    }
+}
+button_tech_remote_nano_swarm_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3040
+    }
+}
+button_tech_nano_bureaucrat_upgrade_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3041
+    }
+}
+button_tech_repeat_large_scale_network_manage_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3042
+    }
+}
+button_tech_nano_exoskeletons_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3050
+    }
+}
+button_tech_nano_biomechanics_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3051
+    }
+}
+button_tech_living_nano_construction_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3052
+    }
+}
+button_tech_repeat_nano_biostructure_enhance_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3053
+    }
+}
+button_tech_nano_drones_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3060
+    }
+}
+button_tech_nano_army_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3061
+    }
+}
+button_tech_army_gray_mecha_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3062
+    }
+}
+button_tech_building_gray_nano_defence_centre_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3070
+    }
+}
+button_tech_building_gray_fortress_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3071
+    }
+}
+button_tech_building_gray_fortress2_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3072
+    }
+}
+button_tech_building_gray_nano_resident_finish = {
+    inline_script = {
+        script = "button_effects/gray_research_finish_icon"
+        CAT = 2 ID = 3073
+    }
+}

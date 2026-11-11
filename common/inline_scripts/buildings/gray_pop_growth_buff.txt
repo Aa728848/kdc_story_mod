@@ -1,0 +1,23 @@
+
+triggered_planet_modifier = {
+	potential = {
+		exists = growing_species
+		growing_species = {
+			has_trait = gray_trait_nano_assembly
+		}
+	}
+	modifier = {
+		fake_pop_growth_mod = 4
+	}
+}
+triggered_planet_pop_group_modifier_for_all = {
+	potential = {
+		planet = {
+			exists = growing_species
+			growing_species = {
+				has_trait = gray_trait_nano_assembly
+			}
+		}
+	}
+	bonus_pop_growth = 4
+}

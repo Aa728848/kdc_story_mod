@@ -1,0 +1,1492 @@
+namespace = gray_tech
+
+event = {
+	id = gray_tech.99
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = { 
+			limit = {
+				is_country_type = default
+			}
+			country_event = { id = gray_tech.100 }
+		}
+	}	
+}
+# 初始化一些变量
+country_event = {
+	id = gray_tech.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+		# 研究槽数量
+		if = {
+			limit = { NOT = { is_variable_set = nanotech_points_grow_base }}
+			set_variable = { which = nanotech_points_grow_base value = 25 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = nanotech_points_per_pop_mult }}
+			set_variable = { which = nanotech_points_per_pop_mult value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = num_gray_research_slot }}
+			set_variable = { which = num_gray_research_slot value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nanite_produce }}
+			set_variable = { which = tech_repeat_nanite_produce value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nano_alloy_produce }}
+			set_variable = { which = tech_repeat_nano_alloy_produce value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nano_consumer_goods_produce }}
+			set_variable = { which = tech_repeat_nano_consumer_goods_produce value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nano_research_produce }}
+			set_variable = { which = tech_repeat_nano_research_produce value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nanoweapon }}
+			set_variable = { which = tech_repeat_nanoweapon value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = nanotech_points_from_mega_mult }}
+			set_variable = { which = nanotech_points_from_mega_mult value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nano_gestalt_network }}
+			set_variable = { which = tech_repeat_nano_gestalt_network value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_large_scale_network_manage }}
+			set_variable = { which = tech_repeat_large_scale_network_manage value = 1 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = tech_repeat_nano_biostructure_enhance }}
+			set_variable = { which = tech_repeat_nano_biostructure_enhance value = 1 }
+		}
+	}
+}
+
+# 计算每月获得的研究点数
+country_event = {
+	id = gray_tech.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		OR = {
+			# 确保从其他地方触发时能触发到
+			AND = {
+				exists = from
+				from = { is_same_value = root }
+			}
+			# 节省检测资源，在有研究的时候才检测
+			any_situation = {
+				is_situation_type = gray_research_situation
+			}
+		}
+	}
+
+	immediate = {
+		##############################################################################
+		# 显示用变量设置（各种纳米科研点buff数值*100%）
+		##############################################################################
+		random_owned_pop_group = {
+			limit = {
+				species = { is_same_species = root.owner_main_species }
+			}
+			root = {
+				# 显示人口加成buff数值用变量
+				set_variable = {
+					which = nanopoints_from_pop_mult_perc
+					value = prev.value:gray_job_nano_research_points_mult
+				}
+				multiply_variable = { which = nanopoints_from_pop_mult_perc value = 100 }
+			}
+		}
+		set_variable = {
+			which = nanotech_points_country_perc
+			value = modifier:country_nano_research_points_mult
+		}
+		# 百分比显示
+		multiply_variable = { which = nanotech_points_country_perc value = 100 }
+
+		set_variable = {
+			which = nanopoints_from_mega_mult_perc
+			value = modifier:country_magastructure_nano_research_points_mult
+		}
+		# 百分比显示
+		multiply_variable = { which = nanopoints_from_mega_mult_perc value = 100 }
+		##############################################################################
+		# 纳米科研点计算
+		##############################################################################
+		# 计算人口科研点
+		set_variable = { which = nanotech_points_from_pop value = 0 }
+		# 由于岗位内已内置了代表纳米研究点的自定义modifier，这个modifier会在星球自动加总，所以直接提取即可
+		every_owned_planet = {
+			limit = { check_modifier_value = { modifier = gray_nano_research_points value > 0 }}
+			root = {
+				change_variable = { which = nanotech_points_from_pop 
+				value = prev.modifier:gray_nano_research_points }
+			}
+		}
+		#计算巨构科研点
+		set_variable = { which = nanotech_points_from_mega value = 0 }
+		every_owned_megastructure = {
+			clear_variable = nanotech_points_from_mega
+			if = {
+				limit = { is_megastructure_type = think_tank_1 }
+				set_variable = { which = nanotech_points_from_mega value = 30 }
+			}
+			else_if = {
+				limit = { is_megastructure_type = think_tank_2 }
+				set_variable = { which = nanotech_points_from_mega value = 75 }
+			}
+			else_if = {
+				limit = { OR = {
+					is_megastructure_type = think_tank_3
+					is_megastructure_type = think_tank_4
+					is_megastructure_type = think_tank_restored
+					is_megastructure_type = gray_nano_think_tank 
+				}}
+				set_variable = { which = nanotech_points_from_mega value = 150 }
+			}
+			if = {
+				limit = { has_global_flag = AOW_installed}
+				if = {
+					limit = { AOW_trgr_MEGA_is_qsqm_5 = yes }
+					star = {
+						set_variable = { which = nanotech_points_from_mega value = 1000 }
+						multiply_var_AOW_star = { VAR = nanotech_points_from_mega }
+					}
+					set_variable = { which = nanotech_points_from_mega value = star.nanotech_points_from_mega }
+				} else_if = {
+					limit = { AOW_trgr_MEGA_is_qsqm_4 = yes }
+					star = {
+						set_variable = { which = nanotech_points_from_mega value = 750 }
+						multiply_var_AOW_star = { VAR = nanotech_points_from_mega }
+					}
+					set_variable = { which = nanotech_points_from_mega value = star.nanotech_points_from_mega }
+				} else_if = {
+					limit = { AOW_trgr_MEGA_is_qsqm_3 = yes }
+					star = {
+						set_variable = { which = nanotech_points_from_mega value = 500 }
+						multiply_var_AOW_star = { VAR = nanotech_points_from_mega }
+					}
+					set_variable = { which = nanotech_points_from_mega value = star.nanotech_points_from_mega }
+				} else_if = {
+					limit = { AOW_trgr_MEGA_is_qsqm_2 = yes }
+					star = {
+						set_variable = { which = nanotech_points_from_mega value = 250 }
+						multiply_var_AOW_star = { VAR = nanotech_points_from_mega }
+					}
+					set_variable = { which = nanotech_points_from_mega value = star.nanotech_points_from_mega }
+				}
+			}
+			owner = { change_variable = {
+				which = nanotech_points_from_mega
+				value = prev.nanotech_points_from_mega
+			}}
+		}
+		multiply_variable = {
+			which = nanotech_points_from_mega
+			value = value:gray_megastructure_nanotech_points_country_mult
+		}
+
+		#套用value计算最终结果，详见sv
+		set_variable = {
+			which = nanotech_points_grow
+			value = value:gray_nanotech_points
+		}
+		# 刷新所有研究situation的局势（研究）速度
+		every_situation = {
+			limit = {
+				is_situation_type = gray_research_situation
+				NOT = { current_situation_approach = situation_gray_research_pause }
+			}
+			situation_event = { id = gray_tech.4 }
+		}
+		# country_event = { id = gray_tech.5 }
+	}
+}
+
+# 每月计算situation进展
+situation_event = {
+	id = gray_tech.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	# 所有数据的计算都应该放在局势本身，以免在同时开展多次研究时将数据全部塞进同一个scope而造成数据碰撞
+	immediate = {
+		# nanotech_points_grow = 本月增长的纳米研究点数
+		# cur_acc_nanotech_points = 当前已累积的纳米研究点数
+		# cur_gray_tech_req = 当前科技需求的纳米研究点数
+
+		# 计算有多少个正在进行的研究，并将点数平分给所有正在研究的科技
+		set_variable = { which = nanotech_points_grow value = owner.nanotech_points_grow }
+		if = {
+			# 如果完成纳米化传统，不会平分点数
+			limit = { owner = { NOT = { has_tradition = tr_nanomachanic_finish }}}
+			calculate_gray_tech_points_grow = yes
+		}
+
+		# 将算好的预计增长点数加到当前累积点数，并计算出当前百分比
+		# 下个月已研究百分比 = (本月增长+已累积增长)/当前科技需求*100
+		change_variable = { which = cur_acc_nanotech_points value = nanotech_points_grow }
+		set_variable = { which = cur_gray_research_perc value = cur_acc_nanotech_points }
+		divide_variable = { which = cur_gray_research_perc value = cur_gray_tech_req }
+		multiply_variable = { which = cur_gray_research_perc value = 100 }
+
+		situation_event = { id = gray_tech.4 }
+	}
+}
+# 计算下个月将会增加的研究百分比
+situation_event = {
+	id = gray_tech.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# 如果没完成纳米化传统，则平分研究点至各个研究项目
+		set_variable = { which = nanotech_points_grow value = owner.nanotech_points_grow }
+		if = {
+			limit = { owner = { NOT = { has_tradition = tr_nanomachanic_finish }}}
+			calculate_gray_tech_points_grow = yes
+		}
+		# cur_gray_research_perc = 当前已研究科技的百分比
+		# appox_gray_research_perc_add = 预计下个月增加的已研究科技的百分比
+		# 此变量将会作为增长速度显示在局势里给玩家看
+		set_variable = { which = appox_gray_research_perc_add value = cur_acc_nanotech_points }
+		change_variable = { which = appox_gray_research_perc_add value = nanotech_points_grow }
+		divide_variable = { which = appox_gray_research_perc_add value = cur_gray_tech_req }
+		multiply_variable = { which = appox_gray_research_perc_add value = 100 }
+		
+		# 下个月已研究百分比 - 已研究百分比 = 预计下个月增加的百分比
+		subtract_variable = { which = appox_gray_research_perc_add value = cur_gray_research_perc }
+	}
+}
+# 科研完成
+situation_event = {
+	id = gray_tech.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { is_situation_type = gray_research_situation_days }
+			# 因为最后一次月增长点数不算（局势已经结束了不触发on_monthly），所以手动给他加上
+			calculate_gray_tech_points_grow = yes
+			change_variable = { which = cur_acc_nanotech_points value = nanotech_points_grow }
+			# 将多出的科研点数转移出来，留待下一次研究用
+			if = {
+				limit = { check_variable = { which = cur_acc_nanotech_points value > cur_gray_tech_req }}
+				set_variable = { which = nanotech_points_remain value = cur_acc_nanotech_points }
+				subtract_variable = { which = nanotech_points_remain value = cur_gray_tech_req }
+				owner = { change_variable = { which = nanotech_points_remain value = root.nanotech_points_remain }}
+			}
+		}
+		create_message = {
+			type = GRAY_RESEARCH_FINISH_MESSAGE_TYPE
+			localization = GRAY_RESEARCH_FINISH_MESSAGE_DESC
+			days = 30
+			target = this
+			variable = {
+				type = name
+				localization = TECH
+				scope = this
+			}
+		}
+		owner = {
+			set_variable = { which = gray_tech_id value = root.gray_tech_id }
+			if = {
+				limit = { is_gray_repeatable_tech = yes }
+				# 当中断研究的科技重新研究并研究完成，移除储存的点数。
+				kuat_clear_array_variable = {
+					ARRAY = stored_nanotech_points_array
+					VARIABLE = gray_tech_id
+				}
+			}
+			if = {
+				limit = { root = { has_situation_flag = repeat_research }}
+				root = {
+					add_situation_progress = -100
+					change_variable = { which = cur_repeatable_tech_lv value = 1 }
+					if = {
+						limit = { check_variable = { which = cur_repeatable_tech_lv value >= gray_repeatable_tech_limit}}
+						remove_situation_flag = repeat_research
+					} else = {
+						owner = { set_country_flag = is_researching_repeatable_tech }
+					}
+					set_variable = { which = cur_gray_tech_req value = cur_repeatable_tech_lv }
+					multiply_variable = { which = cur_gray_tech_req value = @gray_repeatable_tech_points_add }
+					change_variable = { which = cur_gray_tech_req value = @gray_repeatable_tech_base }
+				}
+				set_variable = { which = cur_gray_tech_req value = root.cur_gray_tech_req }
+				set_variable = { which = gray_repeatable_tech_limit value = root.gray_repeatable_tech_limit }
+				set_variable = { which = cur_repeatable_tech_lv value = root.cur_repeatable_tech_lv }
+				start_situation = { type = gray_research_situation target = this }
+				random_situation = {
+					limit = { 
+						NOT = { is_same_value = root }
+						is_situation_type = gray_research_situation 
+						check_variable = { which = gray_tech_id value = root.gray_tech_id }
+					}
+					if = {
+						limit = {
+							root = { has_situation_flag = repeat_research }
+						}	
+						set_situation_flag = repeat_research
+					}
+				}
+				destroy_situation = root
+			} else = {
+				# 科技详细界面不能同时弹出多于一个，否则科技图标会出bug（目前我除了多弄一个gui出来无解）
+				if = {
+					limit = { NOT = { has_country_flag = open_gray_research_comfirm_window }}
+					country_event = { id = gray_tech.996 }
+				} else = {
+					destroy_situation = root
+				}
+			}
+
+			# 完成科技后给科技或者其他效果的事件
+			fire_on_action = {
+				on_action = on_gray_tech_increased
+				scopes = { from = root }
+			}
+		}
+	}
+}
+
+# 研究进度储存
+# 注意：该系统使用数列运算法作为储存系统的核心
+# 数列运算会导致后期游戏运行速度明显降低，请斟酌使用！
+# 如果不需要使用数列运算，请删除scripted_effect 中的array_effects.txt文件以及以下事件！
+situation_event = {
+	id = gray_tech.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_variable = { which = cur_acc_nanotech_points value = root.cur_acc_nanotech_points }
+			set_variable = { which = gray_tech_id value = root.gray_tech_id }
+			# 将已研究的点数储存到数列中（ARRAY为储存的数列名，VALUE为储存的数值（变量），VARIABLE为储存的索引（变量）
+			# 详见scripted_effect 中的array_effects.txt文件里的注释
+			kuat_set_array_variable = {
+				ARRAY = stored_nanotech_points_array
+				VALUE = cur_acc_nanotech_points
+				VARIABLE = gray_tech_id
+			}
+		}
+		destroy_situation = this
+	}
+}
+# 研究进度提取
+# 注意：该系统使用数列运算法作为储存系统的核心
+# 数列运算会导致后期游戏运行速度明显降低，请斟酌使用！
+# 如果不需要使用数列运算，请删除scripted_effect 中的array_effects.txt文件以及以下事件！
+situation_event = {
+	id = gray_tech.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_variable = { which = gray_tech_id value = root.gray_tech_id }
+			# 将数列中储存的已研究点数变量提取出来
+			# （ARRAY为储存的数列名，VARIABLE为储存的索引（变量），OUT为转存的变量名
+			# 详见scripted_effect 中的array_effects.txt文件里的注释
+			kuat_get_array_variable = {
+				ARRAY = stored_nanotech_points_array
+				VARIABLE = gray_tech_id
+				OUT = stored_gray_nanotech_points
+			}
+		}
+		if = {
+			limit = { owner = { check_variable = { which = stored_gray_nanotech_points value > 0 }}}
+			set_variable = { which = stored_gray_nanotech_points value = owner.stored_gray_nanotech_points }
+			# 将已储存的点数累加到已研究进度的变量上（在这步的时候该变量仍然是点数而不是百分比）
+			change_variable = { which = cur_acc_nanotech_points value = stored_gray_nanotech_points }
+			set_variable = { which = cur_gray_research_perc value = stored_gray_nanotech_points }
+			# 计算增加的局势进度
+			divide_variable = { which = cur_gray_research_perc value = cur_gray_tech_req }
+			multiply_variable = { which = cur_gray_research_perc value = 100 }
+			add_situation_progress = cur_gray_research_perc
+			owner = {
+				# 清除已存储的研究点数进展
+				kuat_clear_array_variable = { ARRAY = stored_nanotech_points_array VARIABLE = gray_tech_id  }
+			}
+		}
+		# situation_event = { id = gray_tech.2 }
+	}
+}
+# 研究进度储存（天数）
+situation_event = {
+	id = gray_tech.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_variable = { which = research_month_passed value = root.trigger:situation_progress }
+			set_variable = { which = gray_tech_id value = from.gray_tech_id }
+			# 将已研究的点数储存到数列中（ARRAY为储存的数列名，VALUE为储存的数值（变量），VARIABLE为储存的索引（变量）
+			# 详见scripted_effect 中的array_effects.txt文件里的注释
+			kuat_set_array_variable = {
+				ARRAY = stored_nanotech_time_array
+				VALUE = research_month_passed
+				VARIABLE = gray_tech_id
+			}
+		}
+		destroy_situation = this
+	}
+}
+# 研究进度提取（天数）
+situation_event = {
+	id = gray_tech.13
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_variable = { which = gray_tech_id value = root.gray_tech_id }
+			# 将数列中储存的已研究点数变量提取出来
+			# （ARRAY为储存的数列名，VARIABLE为储存的索引（变量），OUT为转存的变量名
+			# 详见scripted_effect 中的array_effects.txt文件里的注释
+			kuat_get_array_variable = {
+				ARRAY = stored_nanotech_time_array
+				VARIABLE = gray_tech_id
+				OUT = stored_gray_research_time
+			}
+		}
+		if = {
+			limit = { owner = { check_variable = { which = stored_gray_research_time value > 0 }}}
+			set_variable = { which = stored_gray_research_time value = owner.stored_gray_research_time }
+			add_situation_progress = stored_gray_research_time
+			owner = {
+				# 清除已存储的研究天数进展
+				kuat_clear_array_variable = { ARRAY = stored_nanotech_time_array VARIABLE = gray_tech_id  }
+			}
+		}
+	}
+}
+# 取消研究的二次确认界面
+# from = 研究的situation
+# country_event = {
+# 	id = gray_tech.998
+# 	title = gray_tech.998.title
+# 	desc = gray_tech.998.desc
+# 	is_triggered_only = yes
+# 	diplomatic = yes 
+# 	custom_gui = "kdc_comfirmation_window"
+
+# 	option = {
+# 		name = OK
+# 		custom_gui = "wg_comfirmation_AgreeButton"
+# 		hidden_effect = {
+# 			if = { 
+# 				limit = { from = { is_situation_type = gray_research_situation }}
+# 				# 研究进度储存（研究点数）
+# 				country_event = { id = gray_tech.10 scopes = { from = from }}
+# 			} else_if = {
+# 				limit = { from = { is_situation_type = gray_research_situation_days }}
+# 				country_event = { id = gray_tech.12 scopes = { from = from }}
+# 			}
+# 		}
+# 	}
+# 	option = {
+# 		name = ""
+# 		custom_gui = "wg_hiding_button"
+# 	}
+# }
+# 操作界面
+country_event = {
+	id = gray_tech.999
+	title = EMPTY_STRING
+	desc = gray_tech.999.desc
+	is_triggered_only = yes
+	diplomatic = yes 
+	custom_gui = "gray_research_window"
+
+	trigger = {
+		NOT = { has_country_flag = opened_gray_research_window }
+	}
+
+	immediate = {
+		set_country_flag = opened_gray_research_window
+		set_variable = { which = gray_research_category_show value = 0 }
+		country_event = { id = gray_tech.1 }
+	}
+	after = {
+		hidden_effect = { 
+			clear_variable = gray_research_category_show 
+			remove_country_flag = opened_gray_research_window
+		}
+	}
+
+	option = {
+		name = EMPTY_STRING
+		custom_gui = "wg_hiding_button"
+	}
+
+}
+#############################################################
+# 各个科技的确认研究界面
+#############################################################
+country_event = {
+	id = gray_tech.997
+	diplomatic_title = gray_tech_title
+	title = gray_tech_effect
+	desc = gray_research_situation_desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = gray_research_comfirm_window
+
+	immediate = {
+		set_country_flag = open_gray_research_comfirm_window
+		# 由于数列使用的effect已经自递归引用了5次，它不能放在其他scripted_effect里
+		kuat_get_array_variable = { ARRAY = stored_nanotech_time_array VARIABLE = gray_tech_id OUT = stored_gray_research_time }
+	}
+
+	after = { remove_country_flag = open_gray_research_comfirm_window }
+
+	option = {
+		# 使用不同的选项gui来设定显示的是天数还是研究点数
+		# 选项名字为所需的时间或研究点数
+		name = "nanotech_days_require_text"
+		custom_gui = "gray_tech_req_option_time"
+		is_dialog_only = yes
+		# response_text必须和desc一致，这个只是为了防止点击按钮退出事件的设置而已
+		response_text = "gray_research_situation_desc"
+	}
+	option = {
+		name = EMPTY_STRING
+		custom_gui = gray_research_start_button
+		trigger = { check_variable = { which = stored_gray_research_time value <= 0 }}
+		allow = { default_gray_research_allow_trigger = yes }
+		# 因为是以天数计算的研究项目，因此变量需要改变，局势也用的另外一种，以和正常的区别开
+		start_situation = {
+			type = gray_research_situation_days
+			target = ROOT
+		}
+	}
+	option = {
+		name = EMPTY_STRING
+		# 如果有储存的进度，则将开始研究的按钮改成继续研究的按钮
+		custom_gui = gray_research_continue_button
+		trigger = { check_variable = { which = stored_gray_research_time value > 0 }}
+		allow = { default_gray_research_allow_trigger = yes }
+		start_situation = {
+			type = gray_research_situation_days
+			target = ROOT
+		}
+	}
+	# 隐藏的取消选项，按右上角X或者esc触发
+	option = {
+		name = EMPTY_STRING
+		custom_gui = wg_hiding_button
+		default_hide_option = yes
+		hidden_effect = { clear_variable = gray_tech_req_days }
+	}
+}
+country_event = {
+	id = gray_tech.998
+	diplomatic_title = gray_tech_title
+	title = gray_tech_effect
+	desc = gray_research_situation_desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = gray_research_comfirm_window
+
+	immediate = {
+		set_country_flag = open_gray_research_comfirm_window	
+		kuat_get_array_variable = { ARRAY = stored_nanotech_points_array VARIABLE = gray_tech_id OUT = cur_gray_research_perc }
+		set_variable = { which = appox_month_gray_research_finish value = cur_gray_tech_req }
+		divide_variable = { which = appox_month_gray_research_finish value = nanotech_points_grow }
+		ceiling_variable = appox_month_gray_research_finish
+		set_gray_repeatable_tech_var = { ID = 1015 NAME = tech_repeat_nanite_produce }
+		set_gray_repeatable_tech_var = { ID = 1025 NAME = tech_repeat_nano_alloy_produce }
+		set_gray_repeatable_tech_var = { ID = 1035 NAME = tech_repeat_nano_consumer_goods_produce }
+		set_gray_repeatable_tech_var = { ID = 1045 NAME = tech_repeat_nano_research_produce }
+		set_gray_repeatable_tech_var = { ID = 3024 NAME = tech_repeat_nano_gestalt_network }
+		set_gray_repeatable_tech_var = { ID = 3042 NAME = tech_repeat_large_scale_network_manage }
+	}
+	after = {
+		remove_country_flag = open_gray_research_comfirm_window
+	}
+
+	option = {
+		name = "nanoresearch_points_require_text"
+		custom_gui = "gray_tech_req_option_res_point"
+		is_dialog_only = yes
+		response_text = "gray_research_situation_desc"
+	}
+	option = {
+		name = EMPTY_STRING
+		custom_gui = "gray_research_start_button"
+		trigger = { check_variable = { which = cur_gray_research_perc value <= 0 }}
+		allow = { default_gray_research_allow_trigger = yes }
+		hidden_effect = {
+			start_situation = {
+				type = gray_research_situation
+				target = ROOT
+			}
+			country_event = { id = gray_tech.1 }
+		}
+	}
+	option = {
+		name = EMPTY_STRING
+		custom_gui = "gray_research_continue_button"
+		trigger = { check_variable = { which = cur_gray_research_perc value > 0 }}
+		allow = { default_gray_research_allow_trigger = yes }
+		hidden_effect = {
+			start_situation = {
+				type = gray_research_situation
+				target = ROOT
+			}
+			country_event = { id = gray_tech.1 }
+		}
+	}
+	# 隐藏的取消选项，按右上角X或者esc触发
+	option = {
+		name = EMPTY_STRING
+		custom_gui = wg_hiding_button
+		default_hide_option = yes
+		hidden_effect = { clear_variable = cur_gray_tech_req }
+	}
+}
+#############################################################
+# 完成研究界面
+#############################################################
+country_event = {
+	id = gray_tech.996
+	diplomatic_title = gray_research_finish_title
+	title = gray_tech_effect
+	desc = gray_research_situation_desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = gray_research_comfirm_window
+
+	immediate = { default_gray_research_comfirm_window_immediate_effect = yes }
+	after = { 
+		default_gray_research_comfirm_window_close_effect = yes 
+	}
+
+	option = {
+		name = EMPTY_STRING
+		custom_gui = "gray_research_continue_button"
+		allow = {
+			custom_tooltip = {
+				fail_text = "opened_gray_research_window"
+				NOT = { has_country_flag = opened_gray_research_window }
+			}
+		}
+		custom_tooltip = "open_gray_research_interface"
+		hidden_effect = { country_event = { id = gray_tech.999 }}
+	}
+	option = {
+		name = EMPTY_STRING
+		custom_gui = "gray_research_cancel_button"
+		default_hide_option = yes
+	}
+}
+#############################################################
+# 各个科技完成的效果，用on action(on_gray_tech_increased)触发
+#############################################################
+country_event = {
+	id = gray_tech.1000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1000 }}
+	immediate = { give_technology = { tech = tech_TMR_nanite_productor message = no }}
+}
+country_event = {
+	id = gray_tech.1016
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1016 }}
+	immediate = { give_technology = { tech = tech_building_gray_nanite_factory message = no }}
+}
+country_event = {
+	id = gray_tech.1017
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1017 }}
+	immediate = { give_technology = { tech = tech_building_gray_nanite_factory2 message = no }}
+}
+country_event = {
+	id = gray_tech.1018
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1018 }}
+	immediate = { set_country_flag = gray_tech_1018_researched }
+}
+country_event = {
+	id = gray_tech.1010
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1010 }}
+	immediate = { give_technology = { tech = tech_building_nanoassembly_plant message = no }}
+}
+country_event = {
+	id = gray_tech.1011
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1011 }}
+	immediate = { change_variable = { which = nano_assembly_technology value = 1 }}
+}
+country_event = {
+	id = gray_tech.1013
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1013 }}
+	immediate = { give_technology = { tech = tech_nano_reconstruct message = no }}
+}
+country_event = {
+	id = gray_tech.1014
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1014 }}
+	immediate = { give_technology = { tech = tech_building_nanite_field_manipulator message = no }}
+}
+country_event = {
+	id = gray_tech.1015
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1015 }}
+	immediate = { 
+		remove_modifier = tech_repeat_nanite_produce_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_nanite_produce_buff multiplier = tech_repeat_nanite_produce }
+		# 检查是否到达上限等级，如果是就不加变量，这样在科技显示等级不会超过最大等级
+		if = {
+			limit = {
+				check_variable = { which = tech_repeat_nanite_produce value < 10 }
+			}
+			change_variable = { which = tech_repeat_nanite_produce value = 1 }
+		} else = {
+			# 超过最大等级给个flag在科技界面显示完成图标
+			set_country_flag = tech_repeat_nanite_produce_finish
+		}
+	}
+}
+country_event = {
+	id = gray_tech.1020
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1020 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_foundry message = no }}
+}
+country_event = {
+	id = gray_tech.1021
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1021 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_rare_resource_factory message = no }}
+}
+country_event = {
+	id = gray_tech.1022
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1022 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_foundry2 message = no }}
+}
+country_event = {
+	id = gray_tech.1024
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1024 }}
+	immediate = { change_variable = { which = tech_nano_job_foundry_upgrade value = 1 }}
+}
+country_event = {
+	id = gray_tech.1025
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1025 }}
+	immediate = { 
+		remove_modifier = tech_repeat_nano_alloy_produce_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_nano_alloy_produce_buff multiplier = tech_repeat_nano_alloy_produce }
+		# 检查是否到达上限等级，如果是就不加变量，这样在科技显示等级不会超过最大等级
+		if = {
+			limit = {
+				check_variable = { which = tech_repeat_nano_alloy_produce value < 10 }
+			}
+			change_variable = { which = tech_repeat_nano_alloy_produce value = 1 }
+		} else = {
+			# 超过最大等级给个flag在科技界面显示完成图标
+			set_country_flag = tech_repeat_nano_alloy_produce_finish
+		}
+	}
+}
+country_event = {
+	id = gray_tech.1030
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1030 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_factory message = no }}
+}
+country_event = {
+	id = gray_tech.1031
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1031 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_factory2 message = no }}
+}
+country_event = {
+	id = gray_tech.1034
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1034 }}
+	immediate = { change_variable = { which = tech_nano_job_artisan_upgrade value = 1 }}
+}
+country_event = {
+	id = gray_tech.1035
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1035 }}
+	immediate = { 
+		remove_modifier = tech_repeat_nano_consumer_goods_produce_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_nano_consumer_goods_produce_buff multiplier = tech_repeat_nano_consumer_goods_produce }
+		# 检查是否到达上限等级，如果是就不加变量，这样在科技显示等级不会超过最大等级
+		if = {
+			limit = {
+				check_variable = { which = tech_repeat_nano_consumer_goods_produce value < 10 }
+			}
+			change_variable = { which = tech_repeat_nano_consumer_goods_produce value = 1 }
+		} else = {
+			# 超过最大等级给个flag在科技界面显示完成图标
+			set_country_flag = tech_repeat_nano_consumer_goods_produce_finish
+		}
+	}
+}
+country_event = {
+	id = gray_tech.1040
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1040 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_research message = no }}
+}
+country_event = {
+	id = gray_tech.1041
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1041 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_research2 message = no }}
+}
+country_event = {
+	id = gray_tech.1042
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1042 }}
+	immediate = { give_technology = { tech = tech_building_gray_nano_research3 message = no }}
+}
+country_event = {
+	id = gray_tech.1043
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1043 }}
+	immediate = { 
+		set_country_flag = research_tech_nano_research_slot 
+		change_variable = { which = num_gray_research_slot value = 1 }
+		remove_modifier = gray_tech_1043_buff
+		change_variable = { which = gray_tech_1043_buff value = 1 }
+		add_modifier = { modifier = gray_tech_1043_buff multiplier = gray_tech_1043_buff }
+	}
+}
+country_event = {
+	id = gray_tech.1045
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1045 }}
+	immediate = { 
+		remove_modifier = tech_repeat_nano_research_produce_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_nano_research_produce_buff multiplier = tech_repeat_nano_research_produce }
+		# 检查是否到达上限等级，如果是就不加变量，这样在科技显示等级不会超过最大等级
+		if = {
+			limit = {
+				check_variable = { which = tech_repeat_nano_research_produce value < 20 }
+			}
+			change_variable = { which = tech_repeat_nano_research_produce value = 1 }
+		} else = {
+			# 超过最大等级给个flag在科技界面显示完成图标
+			set_country_flag = tech_repeat_nano_research_produce_finish
+		}
+	}
+}
+country_event = {
+	id = gray_tech.1060
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1060 }}
+	immediate = { give_technology = { tech = tech_nano_construction_core message = no }}
+}
+country_event = {
+	id = gray_tech.1061
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1061 }}
+	immediate = { give_technology = { tech = tech_nano_dyson_sphere message = no }}
+}
+country_event = {
+	id = gray_tech.1062
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1062 }}
+	immediate = { give_technology = { tech = tech_nano_matter_decompressor message = no }}
+}
+country_event = {
+	id = gray_tech.1063
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1063 }}
+	immediate = { give_technology = { tech = tech_nano_ring_world message = no }}
+}
+country_event = {
+	id = gray_tech.1064
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1064 }}
+	immediate = { give_technology = { tech = tech_nano_science_nexus message = no }}
+}
+country_event = {
+	id = gray_tech.1070
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1070 }}
+	immediate = { give_technology = { tech = tech_macro_nanorobot_technology message = no }}
+}
+country_event = {
+	id = gray_tech.1071
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1071 }}
+	immediate = { give_technology = { tech = tech_TMR_nanite_factory message = no }}
+}
+country_event = {
+	id = gray_tech.1072
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1072 }}
+	immediate = { give_technology = { tech = tech_TMR_gatebuilder_core message = no }}
+}
+country_event = {
+	id = gray_tech.1073
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 1073 }}
+	immediate = { give_technology = { tech = tech_R_gateway message = no }}
+}
+country_event = {
+	id = gray_tech.2000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2000 }}
+	immediate = { give_technology = { tech = tech_gray_nano_reactor message = no }}
+
+}
+country_event = {
+	id = gray_tech.2001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2001 }}
+	immediate = { give_technology = { tech = tech_gray_nanite_ia message = no }}
+}
+country_event = {
+	id = gray_tech.2002
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2002 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_p message = no }}
+}
+country_event = {
+	id = gray_tech.2003
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2003 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_g message = no }}
+}
+country_event = {
+	id = gray_tech.2004
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2004 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_h message = no }}
+}
+country_event = {
+	id = gray_tech.2011
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2011 }}
+	immediate = { give_technology = { tech = tech_gray_nano_propulsion message = no }}
+}
+country_event = {
+	id = gray_tech.2012
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2012 }}
+	immediate = { give_technology = { tech = tech_gray_nano_jump message = no }}
+}
+country_event = {
+	id = gray_tech.2013
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2013 }}
+	immediate = { give_technology = { tech = tech_gray_nano_sensors message = no }}
+}
+country_event = {
+	id = gray_tech.2014
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2014 }}
+	immediate = { give_technology = { tech = tech_gray_nano_computer message = no }}
+}
+country_event = {
+	id = gray_tech.2015
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2015 }}
+	immediate = { give_technology = { tech = tech_gray_nano_armor_hardener message = no }}
+}
+country_event = {
+	id = gray_tech.2016
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2016 }}
+	immediate = { give_technology = { tech = tech_gray_nano_shield_recharger message = no }}
+}
+country_event = {
+	id = gray_tech.2021
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2021 }}
+	immediate = { give_technology = { tech = tech_planet_killer_graygoo message = no }}
+}
+country_event = {
+	id = gray_tech.2022
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2022 }}
+	immediate = { give_technology = { tech = tech_gray_nano_aura message = no }}
+}
+country_event = {
+	id = gray_tech.2031
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2031 }}
+	immediate = { give_technology = { tech = tech_nanitecrop_titan message = no }}
+}
+country_event = {
+	id = gray_tech.2032
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2032 }}
+	immediate = { give_technology = { tech = tech_nanitecrop_mothership message = no }}
+}
+country_event = {
+	id = gray_tech.2033
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2033 }}
+	immediate = { give_technology = { tech = tech_nanite_storm message = no }}
+}
+country_event = {
+	id = gray_tech.2034
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2034 }}
+	immediate = { give_technology = { tech = tech_nanitecrop_sentry message = no }}
+}
+country_event = {
+	id = gray_tech.2040
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2040 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_SML message = no }}
+}
+country_event = {
+	id = gray_tech.2041
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2041 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_l message = no }}
+}
+country_event = {
+	id = gray_tech.2042
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2042 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_x message = no }}
+}
+country_event = {
+	id = gray_tech.2043
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2043 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_t message = no }}
+}
+country_event = {
+	id = gray_tech.2044
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2044 }}
+	immediate = { give_technology = { tech = tech_nanite_sentry_maingun message = no }}
+}
+country_event = {
+	id = gray_tech.2050
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2050 }}
+	immediate = { give_technology = { tech = tech_dark_matter_power_core message = no }}
+}
+country_event = {
+	id = gray_tech.2051
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2051 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_el message = no }}
+}
+country_event = {
+	id = gray_tech.2052
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2052 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_ex message = no }}
+}
+country_event = {
+	id = gray_tech.2053
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2053 }}
+	immediate = { give_technology = { tech = tech_gray_weapon_et message = no }}
+}
+country_event = {
+	id = gray_tech.2054
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 2054 }}
+	immediate = { 
+		remove_modifier = tech_repeat_nanoweapon_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_nanoweapon_buff multiplier = tech_repeat_nanoweapon }
+		change_variable = { which = tech_repeat_nanoweapon value = 1 }
+		# 这个科技没有最大等级，不用检查
+	}
+}
+country_event = {
+	id = gray_tech.3000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3000 }}
+	immediate = { give_technology = { tech = tech_psionic_theory message = no }}
+}
+country_event = {
+	id = gray_tech.3010
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3010 }}
+	immediate = {
+		remove_modifier = gray_tech_3010_buff
+		change_variable = { which = tech_modularized_memory_injection value = 1 }
+		add_modifier = { modifier = gray_tech_3010_buff multiplier = tech_modularized_memory_injection }
+	}
+}
+# sooooooon
+# country_event = {
+# 	id = gray_tech.3011
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	trigger = { gray_tech_finish_event_trigger = { ID = 3011 }}
+# 	immediate = {
+#
+# 	}
+# }
+# country_event = {
+# 	id = gray_tech.3012
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	trigger = { gray_tech_finish_event_trigger = { ID = 3012 }}
+# 	immediate = {
+#
+# 	}
+# }
+# country_event = {
+# 	id = gray_tech.3013
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	trigger = { gray_tech_finish_event_trigger = { ID = 3013 }}
+# 	immediate = {
+#
+# 	}
+# }
+# country_event = {
+# 	id = gray_tech.3014
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	trigger = { gray_tech_finish_event_trigger = { ID = 3014 }}
+# 	immediate = {
+#
+# 	}
+# }
+country_event = {
+	id = gray_tech.3020
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3020 }}
+	immediate = {
+		set_country_flag = gray_tech_3020_researched
+		add_modifier = { modifier = gray_tech_3020_buff }
+	}
+}
+country_event = {
+	id = gray_tech.3021
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3021 }}
+	immediate = {
+		set_country_flag = gray_tech_3021_researched
+		add_modifier = { modifier = gray_tech_3021_buff }
+	}
+}
+country_event = {
+	id = gray_tech.3022
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3022 }}
+	immediate = {
+		set_country_flag = gray_tech_3022_researched
+		add_modifier = { modifier = gray_tech_3022_buff }
+	}
+}
+country_event = {
+	id = gray_tech.3023
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3023 }}
+	immediate = {
+		set_country_flag = gray_tech_3023_researched
+		add_modifier = { modifier = gray_tech_3023_buff }
+	}
+}
+country_event = {
+	id = gray_tech.3024
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3024 }}
+	immediate = {
+		remove_modifier = tech_repeat_nano_gestalt_network_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_nano_gestalt_network_buff multiplier = tech_repeat_nano_gestalt_network }
+		# 检查是否到达上限等级，如果是就不加变量，这样在科技显示等级不会超过最大等级
+		if = {
+			limit = {
+				check_variable = { which = tech_repeat_nano_gestalt_network value < 10 }
+			}
+			change_variable = { which = tech_repeat_nano_gestalt_network value = 1 }
+		} else = {
+			# 超过最大等级给个flag在科技界面显示完成图标
+			set_country_flag = tech_repeat_nano_gestalt_network_finish
+		}
+	}
+}
+country_event = {
+	id = gray_tech.3030
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3030 }}
+	immediate = {
+		give_technology = { tech = tech_building_nanite_bureaucratic message = no }
+		set_variable = { which = tech_building_nanite_bureaucratic value = 1 }
+	}
+}
+country_event = {
+	id = gray_tech.3031
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3031 }}
+	immediate = {
+		set_variable = { which = tech_building_nanite_bureaucratic value = 2 }
+	}
+}
+country_event = {
+	id = gray_tech.3032
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3032 }}
+	immediate = {
+		set_variable = { which = tech_building_nanite_bureaucratic value = 3 }
+	}
+}
+country_event = {
+	id = gray_tech.3040
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3040 }}
+	immediate = {
+		set_country_flag = gray_tech_3040_researched
+		add_modifier = { modifier = gray_tech_3040_buff }
+	}
+}
+country_event = {
+	id = gray_tech.3041
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3041 }}
+	immediate = {
+		change_variable = { which = tech_nano_bureaucrat_upgrade value = 1 }
+	}
+}
+country_event = {
+	id = gray_tech.3042
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3042 }}
+	immediate = {
+		remove_modifier = tech_repeat_large_scale_network_manage_buff
+		# buff刷新在变量前，因为变量数值比buff实际乘量大1，这样在科技显示等级时是下一级的循环科技
+		add_modifier = { modifier = tech_repeat_large_scale_network_manage_buff
+			multiplier = tech_repeat_large_scale_network_manage }
+		# 检查是否到达上限等级，如果是就不加变量，这样在科技显示等级不会超过最大等级
+		if = {
+			limit = {
+				check_variable = { which = tech_repeat_large_scale_network_manage value < 10 }
+			}
+			change_variable = { which = tech_repeat_large_scale_network_manage value = 1 }
+		} else = {
+			# 超过最大等级给个flag在科技界面显示完成图标
+			set_country_flag = tech_repeat_large_scale_network_manage_finish
+		}
+	}
+}
+country_event = {
+	id = gray_tech.3050
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3050 }}
+	immediate = {
+		give_technology = { tech = tech_nano_exoskeletons message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3051
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3051 }}
+	immediate = {
+		give_technology = { tech = tech_nano_biomechanics message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3052
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3052 }}
+	immediate = {
+		give_technology = { tech = tech_living_nano_construction message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3053
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3053 }}
+	immediate = {
+		remove_modifier = tech_repeat_nano_biostructure_enhance_buff
+		change_variable = { which = tech_repeat_nano_biostructure_enhance value = 1 }
+		add_modifier = {
+			modifier = tech_repeat_nano_biostructure_enhance_buff
+			multiplier = tech_repeat_nano_biostructure_enhance
+		}
+		# 这个科技没有最大等级，不用检查
+	}
+}
+country_event = {
+	id = gray_tech.3060
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3060 }}
+	immediate = {
+		give_technology = { tech = tech_nano_drones message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3061
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3061 }}
+	immediate = {
+		give_technology = { tech = tech_nano_army message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3062
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3062 }}
+	immediate = {
+		give_technology = { tech = tech_army_gray_mecha message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3070
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3070 }}
+	immediate = {
+		give_technology = { tech = tech_building_gray_nano_defence_centre message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3071
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3071 }}
+	immediate = {
+		give_technology = { tech = tech_building_gray_fortress message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3072
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3072 }}
+	immediate = {
+		give_technology = { tech = tech_building_gray_fortress2 message = no }
+	}
+}
+country_event = {
+	id = gray_tech.3073
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 3073 }}
+	immediate = {
+		set_country_flag = gray_tech_3073_researched
+	}
+}
+
+# 控制台专用debug事件：灰风科技全开
+country_event = {
+	id = gray_tech.10000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { always = no }
+	immediate = {
+		set_timed_country_flag = { flag = research_all_gray_technologies days = 1 }
+		fire_on_action = {
+			on_action = on_gray_tech_increased
+		}
+	}
+}
+

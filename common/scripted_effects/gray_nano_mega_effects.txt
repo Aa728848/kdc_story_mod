@@ -1,0 +1,67 @@
+# scope:star
+# 根据恒星类型设定戴森球花费
+gray_nano_core_menu_after_effect = {
+	hidden_effect = { event_target:nano_core_system = { 
+		remove_star_flag = gray_nano_core_deploying
+		every_fleet_in_system = {
+			limit = { has_fleet_flag = gray_nano_core_fleet }
+			clear_variable = num_nano_core
+			set_event_locked = no
+		}
+	}}
+}
+# 刷一艘纳米核心船
+# scope: fleet
+create_gray_nano_core_ship = {
+	create_ship = {
+		random_existing_design = gray_nano_construct_core
+		graphical_culture = owner
+		prefix = yes
+	}
+}
+
+# 删除星系内一定数目的纳米核心
+# 输入：NUM
+# this: fleet (优先删除的舰队）
+# prev: system
+delete_nano_core = {
+	if = {
+		limit = { check_variable = { which = num_nano_core value > $NUM$ }}
+		while = { count = $NUM$
+			random_owned_ship = {
+				limit = { is_ship_size = gray_nano_construct_core }
+				delete_ship = this
+			}
+		}
+	} else = {
+		PREV = { 
+			set_variable = { which = num_nano_core_left value = $NUM$ }
+			subtract_variable = {
+				which = num_nano_core_left
+				value = prev.num_nano_core
+			}
+			while = {
+				limit = { check_variable = { which = num_nano_core_left value > 0 }}
+				random_fleet_in_system = {
+					limit = { has_fleet_flag = gray_nano_core_fleet }
+					if = {
+						limit = { check_variable = { which = num_nano_core value > prev.num_nano_core_left }}
+						while = { count = num_nano_core_left
+							random_owned_ship = {
+								limit = { is_ship_size = gray_nano_construct_core }
+								delete_ship = this
+							}
+						}
+					} else = {
+						prev = { subtract_variable = {
+							which = num_nano_core_left
+							value = prev.num_nano_core
+						}}
+						delete_fleet = { target = this destroy_template = yes }
+					}
+				}
+			}
+		}
+		delete_fleet = { target = this destroy_template = yes }
+	}
+}

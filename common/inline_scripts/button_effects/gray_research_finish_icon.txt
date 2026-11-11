@@ -1,0 +1,8 @@
+potential = {
+    from = {
+        check_variable = { which = gray_research_category_show value = $CAT$ }
+        has_gray_tech_$ID$_trigger = yes
+    }
+}
+allow = {}
+effect = {}

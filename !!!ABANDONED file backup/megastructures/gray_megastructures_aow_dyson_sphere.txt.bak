@@ -1,0 +1,274 @@
+gray_dyson_sphere_5_O = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 36000
+	upgrade_from = {
+		gray_nano_dyson_sphere_1
+	}
+	prerequisites = { "tech_dyson_sphere" }
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_o_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_o_hyper_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Hyper
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}
+
+gray_dyson_sphere_5_B = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 28800
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_b_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+	upgrade_from = { gray_nano_dyson_sphere_1 }
+	prerequisites = { "tech_dyson_sphere" }
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}
+
+gray_dyson_sphere_5_A = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 21600
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_a_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+	upgrade_from = { gray_nano_dyson_sphere_1 }
+	prerequisites = { "tech_dyson_sphere" }
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}
+
+gray_dyson_sphere_5_F = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 18000
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_f_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+	upgrade_from = { gray_nano_dyson_sphere_1 }
+	prerequisites = { "tech_dyson_sphere" }
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}
+
+gray_dyson_sphere_5_G = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 14400
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_g_giant_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Giant
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_g_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+	upgrade_from = { gray_nano_dyson_sphere_1 }
+	prerequisites = { "tech_dyson_sphere" }
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}
+
+gray_dyson_sphere_5_K = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 10800
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_k_giant_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Giant
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_k_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+	upgrade_from = { gray_nano_dyson_sphere_1 }
+	prerequisites = { "tech_dyson_sphere" }
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}
+
+gray_dyson_sphere_5_M = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 7200
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = @AOW_var_nanite_DS_5_PRDC_energy
+			multiplier = AOW_var_mega
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_m_giant_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Giant
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_m_super_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Super
+		}
+		produces = {
+			trigger = { planet = { AOW_trgr_PLNT_m_hyper_star = yes } }
+			energy = @AOW_var_DS_5_PRDC_energy_Hyper
+		}
+		upkeep = {
+			trigger = { solar_system = { AOW_trgr_SSTM_single_star_system = no } }
+			energy = @AOW_var_DS_5_UPKP_energy_MultiStar
+			alloys = @AOW_var_DS_5_UPKP_alloys_MultiStar
+			multiplier = AOW_var_mega
+		}
+	}
+	upgrade_from = { gray_nano_dyson_sphere_1 }
+	prerequisites = { "tech_dyson_sphere" }
+	on_build_complete = {
+		AOW_eft_SSTM_dyson_sphere_set_star_class = yes
+		AOW_eft_SSTM_dyson_sphere_change_planets = yes
+		from = {
+			country_event = { id = AOW_mega_notification_vanilla.5 }
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_built_or_repaired_galactic_wonders
+		}
+	}
+}

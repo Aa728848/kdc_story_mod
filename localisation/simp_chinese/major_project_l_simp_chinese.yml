@@ -1,0 +1,8 @@
+﻿l_simp_chinese:
+######################## 大型项目 interface
+ wg_major_project_start_research: "开始研究"
+ mwsge_major_project: "WG大型项目"
+ mwsge_major_project_desc: "大型项目是类似于特殊项目的特殊国家级研究项目，每个国家只能同时进行一项大型项目。在界面中间显示的每个项目步骤的左方，将会标示大型项目的种类。大型项目共分为六种：\n§Ha.一次型§!：可直接研究，不需花费任何资源；或者指定任意一门科研部门负责研究，会弹出相应的特殊项目来研究，特殊项目完成即可完成该大型项目\n§Hb.循环型§!：研究方式同一次型，但需要循环研究多次，令研究进度达至指定目标才能完成该大型项目\n§Hc.概率循环性§!：基本上与循环型大型项目一致，但每次研究完成都会有概率判断是否增加研究进度。\n§Hd.常驻型§!：一般该类型大型项目都需要花费大量时间研究，但执行时每月都会随机判断是否增加研究进度\n§He.科技型§!：与其他大型项目不同，开展科技型大型项目后需要研发对应的科技来增加研究进度，一般这些科技都为循环科技，研究完成后也有可能是随机增加研究进度。\n§Hf.考古型§!：需要进行一连串的考古工作以完成该大型项目。"
+ already_in_current_major_project: "正在显示该大型项目"
+ wg_major_project_1_step_1_name: "项目名字七个字"
+ wg_major_project_1_step_1_desc: "项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc项目desc"

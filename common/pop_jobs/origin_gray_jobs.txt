@@ -1,0 +1,860 @@
+gray_nano_artisan = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gray_nano_factory2
+			icon = artisan
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+
+	planet_modifier = {
+
+	}
+
+	resources = {
+		category = planet_artisans
+		produces = {
+			consumer_goods = 30
+		}
+		upkeep = {
+			nanites = 5
+			minerals = 10
+		}
+		produces = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_artisan_upgrade value > 0 }}}
+			consumer_goods = 4
+		}
+		produces = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_artisan_upgrade value > 1 }}}
+			consumer_goods = 5
+		}
+		produces = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_artisan_upgrade value > 2 }}}
+			consumer_goods = 6
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_artisan_upgrade value > 0 }}}
+			nanites = 3
+			minerals = -3
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_artisan_upgrade value > 1 }}}
+			nanites = 3
+			minerals = -3
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_artisan_upgrade value > 2 }}}
+			nanites = 3
+			minerals = -4
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|artisan|RESOURCE|consumer_goods|
+		modifier = {
+			factor = 2
+			is_enslaved = yes
+			can_take_servant_job = no
+		}
+
+		# low income modifier
+		modifier = {
+			factor = 1.2
+			exists = planet
+			planet = {
+				has_available_jobs = "artisan"
+			}
+			exists = owner
+			owner = {
+				is_ai = yes
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 5
+				}
+			}
+		}
+	}
+
+}
+
+gray_nano_foundry = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gray_nano_foundry2
+			icon = foundry
+		}
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+
+	planet_modifier = {
+
+	}
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			alloys = 25
+		}
+		upkeep = {
+			nanites = 4
+			minerals = 10
+		}
+		produces = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_foundry_upgrade value > 0 }}}
+			alloys = 4
+		}
+		produces = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_foundry_upgrade value > 1 }}}
+			alloys = 5
+		}
+		produces = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_foundry_upgrade value > 2 }}}
+			alloys = 6
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_foundry_upgrade value > 0 }}}
+			nanites = 3
+			minerals = -3
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_foundry_upgrade value > 1 }}}
+			nanites = 3
+			minerals = -3
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = tech_nano_job_foundry_upgrade value > 2 }}}
+			nanites = 3
+			minerals = -4
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight # Fairly important job
+		mult = value:job_weights_modifier|JOB|foundry|RESOURCE|alloys|
+		modifier = {
+			factor = 2
+			is_enslaved = yes
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_construction
+		}
+	}
+
+}
+
+gray_nano_researcher = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gray_nano_research3
+			icon = researcher
+		}
+	}
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_researchers
+		# 偏向传统科技：15点全研究；无偏向，10点全研究；偏向纳米科技，5点全研究
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { OR = { 
+					has_policy_flag = gray_research_more_nano_points 
+					has_policy_flag = gray_research_less_nano_points 
+				}}
+			}
+			physics_research = 5
+			engineering_research = 5
+			society_research = 5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { NOT = { has_policy_flag = gray_research_more_nano_points }}
+			}
+			physics_research = 10
+			engineering_research = 10
+			society_research = 10
+		}
+		produces = {
+			trigger = { 
+				exists = owner
+				owner = { has_valid_civic = civic_technocracy }
+			}
+			unity = 1
+		}
+		upkeep = {
+			consumer_goods = 6
+			nanites = 3
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}	
+	planet_modifier = {
+		
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		gray_nano_research_points = 1
+		mult = value:gray_job_nano_research_points_mult
+	}
+
+	weight = {
+		weight = 20
+		mult = value:job_weights_research_modifier|JOB|gray_nano_researcher|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+	}
+
+}
+
+gray_nanite_manufacturer = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gray_nanite_factory2
+			icon = gray_nanite_manufacturer
+		}
+	}
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	
+	resources = {
+		category = planet_translucers
+		produces = {
+			nanites = 10
+		}
+		upkeep = {
+			energy = 10
+			minerals = 20
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					pop_with_trait_has_job = {
+						TRAIT = gray_trait_nanite_producer
+						JOB = gray_nanite_manufacturer
+					}
+				}
+			}
+			nanites = 5
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					pop_with_trait_has_job = {
+						TRAIT = gray_trait_nanite_producer
+						JOB = gray_nanite_manufacturer
+					}
+				}
+			}
+			energy = 5
+			minerals = 10
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					colony_type = col_graygoo_nanites
+				}
+			}
+			nanites = 2
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					colony_type = col_graygoo_nanites
+				}
+			}
+			energy = 2
+			minerals = 4
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					is_planet_class = pc_wg_graygoo
+				}
+			}
+			nanites = 2
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					is_planet_class = pc_wg_graygoo
+				}
+			}
+			energy = 2
+			minerals = 4
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}
+	
+	weight = {
+		weight = 20
+		modifier = {
+			factor = 15
+			has_trait = gray_trait_nanite_producer
+		}
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 7
+			can_work_specific_job = gray_nanite_manufacturer
+		}
+	}
+}
+
+pc_graygoo_nanite_manufacturer = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gray_nanite_factory2
+			icon = gray_nanite_manufacturer
+		}
+	}
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_worker_job
+	
+	resources = {
+		category = planet_miners
+		produces = {
+			nanites = 6
+		}
+		upkeep = {
+			energy = 9
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					colony_type = col_graygoo_nanites
+				}
+			}
+			nanites = 2
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					colony_type = col_graygoo_nanites
+				}
+			}
+			energy = 3
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					pop_with_trait_has_job = {
+						TRAIT = gray_trait_nanite_producer
+						JOB = pc_graygoo_nanite_manufacturer
+					}
+				}
+			}
+			nanites = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					pop_with_trait_has_job = {
+						TRAIT = gray_trait_nanite_producer
+						JOB = pc_graygoo_nanite_manufacturer
+					}
+				}
+			}
+			energy = 4.5
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}
+	
+	weight = {
+		weight = 15
+		modifier = {
+			factor = 5
+			has_trait = gray_trait_nanite_producer
+		}
+	}
+
+}
+
+gray_nano_rare_resource_manufacturer = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_gray_nano_rare_resource_factory
+			icon = wsg_rare_resource_manufacturer
+		}
+	}
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	
+	resources = {
+		category = planet_translucers
+		upkeep = {
+			nanites = 10
+		}
+		produces = {
+			trigger = {
+				planet = { check_variable = { which = nano_building_rare_resouces_produce_type value = 0 }}
+			}
+			rare_crystals = 3
+			exotic_gases = 3
+			volatile_motes = 3
+		}
+		produces = {
+			trigger = {
+				planet = { check_variable = { which = nano_building_rare_resouces_produce_type value = 1 }}
+			}
+			sr_dark_matter = 3
+			sr_zro = 1
+			sr_living_metal = 1
+		}
+		produces = {
+			trigger = {
+				planet = { check_variable = { which = nano_building_rare_resouces_produce_type value = 2 }}
+				owner = { is_wg_empire = yes }
+			}
+			sr_pantsu = 7
+		}
+		produces = {
+			trigger = {
+				planet = { check_variable = { which = nano_building_rare_resouces_produce_type value = 3 }}
+				owner = { 
+					has_authority = auth_starshipgirls
+				}
+			}
+			sr_tibanna_swgs = 6
+			sr_kyber_swgs = 2
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}
+	
+	weight = {
+		weight = 15
+	}
+}
+
+gray_nano_bureaucrat = {
+	category = specialist
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_nanite_bureaucratic_3
+			icon = manager
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			planet = {
+				exists = owner 
+			}
+		}
+		modifier = {
+			empire_size_add = -2
+		}
+	}	
+	
+	resources = {
+		category = planet_bureaucrats
+		upkeep = {
+			nanites = 2
+			energy = 4
+			consumer_goods = 4
+		}
+		produces = {
+			unity = 8
+		}
+		produces = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 0 }
+			}}
+			unity = 2
+		}
+		produces = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 1 }
+			}}
+			unity = 2
+		}
+		produces = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 2 }
+			}}
+			unity = 3
+		}
+		upkeep = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 0 }
+			}}
+			nanites = 2
+			energy = -1
+			consumer_goods = -1
+		}
+		upkeep = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 1 }
+			}}
+			nanites = 2
+			energy = -1
+			consumer_goods = -1
+		}
+		upkeep = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 2 }
+			}}
+			nanites = 4
+			energy = -2
+			consumer_goods = -2
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}
+
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { has_civic = civic_exalted_priesthood }
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { has_trait = gray_trait_lv2_governor }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_unity"
+
+}
+
+gray_nano_soldier = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_gray_fortress2
+			icon = soldier
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = { is_gestalt = no }
+	}
+	
+	triggered_country_modifier = {
+		modifier = {
+			country_naval_cap_add = 8
+		}
+	}		
+	
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			nanites = 2
+			energy = 2
+			consumer_goods = 2
+		}
+		upkeep = {
+			trigger = { owner = {
+				check_variable = { which = tech_nano_bureaucrat_upgrade value > 2 }
+			}}
+			nanites = 4
+			energy = -2
+			consumer_goods = -2
+		}
+		produces = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			trade = 3
+		}
+		upkeep = {
+			trigger = { planet = { has_building = building_gray_nano_regenerator }}
+			nanites = 1
+		}
+	}	
+	
+	planet_modifier = {
+		planet_defense_armies_add = 2
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_domination_judgment_corps }
+		}
+		modifier = {
+			planet_crime_add = -5
+		}		
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = { has_modifier = anticrime_campaign }
+		}
+		modifier = {
+			planet_crime_add = -10
+		}		
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_modifier = martial_law
+			}
+		}
+		modifier = {
+			planet_stability_add = 5
+		}
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = { has_slavery_type = { type = slavery_military } }
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = { can_be_soldier = no }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_war
+		}
+	}
+}

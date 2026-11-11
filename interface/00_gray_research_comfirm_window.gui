@@ -1,0 +1,968 @@
+@tech_icon_x = 33
+@tech_icon_y = 76
+guiTypes = {
+	containerWindowType = {
+		name = "gray_research_cancel_button"
+		position = { x = 0 y = 0 }
+		size = { width = 234 height = 90 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_gray_research_cancel"
+			position = { x = 0 y = 0 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+			clicksound = "confirm_click"
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+	containerWindowType = {
+		name = "gray_research_start_button"
+		position = { x = 0 y = 0 }
+		size = { width = 234 height = 90 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_gray_research_start"
+			position = { x = 0 y = 0 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+			clicksound = "confirm_click"
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+	containerWindowType = {
+		name = "gray_research_continue_button"
+		position = { x = 0 y = 0 }
+		size = { width = 234 height = 90 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_gray_research_continue"
+			position = { x = 0 y = 0 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+			clicksound = "confirm_click"
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+	containerWindowType = {
+		name = "gray_tech_req_option_time"
+		position = { x = 0 y = 0 }
+		size = { width = 232 height = 90 }
+		moveable = no
+		
+		effectButtonType = {
+			name = "gray_research_req_time_icon"
+			orientation = "UPPER_LEFT"
+			quadTextureSprite = "GFX_gray_research_tech_req_option_time"
+			position = { x = 0 y = 0 }
+			effect = "nanotech_days_require_icon"
+		}
+
+		buttonType = {
+			name = "option_button"
+			position = { x = 70 y = 23 }
+			size = { x = 120 y = 24 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+			format = left
+			oversound = no
+			clicksound = no
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+	containerWindowType = {
+		name = "gray_tech_req_option_res_point"
+		position = { x = 0 y = 0 }
+		size = { width = 232 height = 90 }
+		moveable = no
+		
+		effectButtonType = {
+			name = "gray_research_req_points_icon"
+			orientation = "UPPER_LEFT"
+			quadTextureSprite = "GFX_gray_research_tech_req_option_res_point"
+			position = { x = 0 y = 0 }
+			effect = "nanoresearch_points_tech_icon"
+		}
+
+		buttonType = {
+			name = "option_button"
+			position = { x = 80 y = 25 }
+			size = { x = 120 y = 24 }
+			font = "malgun_goth_24"
+			text = "OPTION_TEXT"
+			format = left
+			oversound = no
+			clicksound = no
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
+
+	containerWindowType = {
+		name = "gray_research_comfirm_window"
+		size = { width = 776 height = 412 }
+		moveable = yes
+		orientation = center
+		origo = center
+		
+		background = {
+			name = "background"
+			quadTextureSprite ="GFX_gray_research_comfirm_bg"
+			position = { x = 0 y = 0 }
+		}
+		
+		buttonType = {
+			name = "close"
+			quadTextureSprite = "GFX_gray_research_button_close"
+			position = { x= 648 y = 4 }
+			Orientation = "UPPER_LEFT"
+			shortcut = "ESCAPE"
+			clicksound = "back_click"
+		}
+
+		instantTextBoxType = {
+			name = "alien_message"
+			font = "cg_16b"
+			format = "LEFT"
+			orientation = "UPPER_LEFT"
+			position = { x = 35 y = 170 }
+			maxWidth = 360
+			maxHeight = 140
+			alwaysTransparent = yes
+			scrollbartype = "standardtext_slider"
+		}
+
+		instantTextBoxType = {
+			name = "heading"
+			font = "malgun_goth_24"
+			text = "DIPLOMACY"
+			orientation = "UPPER_LEFT"
+			position = { x = 45 y = 25 }
+			maxWidth = 543
+			maxHeight = 22
+			fixedSize = yes
+			alwaysTransparent = yes
+		}
+
+		#########################################################
+		# 科技图标
+		#########################################################
+		# @tech_icon_x = 33
+		# @tech_icon_y = 76
+		effectButtonType = {
+			name = "icon_tech_TMR_nanite_productor"
+			quadTextureSprite = "GFX_tech_TMR_nanite_productor"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_TMR_nanite_productor"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nanite_factory"
+			quadTextureSprite = "GFX_tech_building_gray_nanite_factory"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nanite_factory"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_nanoassembly_plant"
+			quadTextureSprite = "GFX_tech_building_nanoassembly_plant"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_nanoassembly_plant"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nanoassembly_technology"
+			quadTextureSprite = "GFX_tech_nanoassembly_technology"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nanoassembly_technology"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nanite_factory2"
+			quadTextureSprite = "GFX_tech_building_gray_nanite_factory2"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nanite_factory2"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_regenerator"
+			quadTextureSprite = "GFX_tech_building_gray_nano_regenerator"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_regenerator"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_reconstruct"
+			quadTextureSprite = "GFX_tech_nano_reconstruct"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_reconstruct"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_nanite_field_manipulator"
+			quadTextureSprite = "GFX_tech_building_nanite_field_manipulator"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_nanite_field_manipulator"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nanite_produce"
+			quadTextureSprite = "GFX_tech_repeat_nanite_produce"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nanite_produce"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_foundry"
+			quadTextureSprite = "GFX_tech_building_gray_nano_foundry"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_foundry"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_rare_resource_factory"
+			quadTextureSprite = "GFX_tech_building_gray_nano_rare_resource_factory"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_rare_resource_factory"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_foundry2"
+			quadTextureSprite = "GFX_tech_building_gray_nano_foundry2"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_foundry2"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_job_foundry_upgrade"
+			quadTextureSprite = "GFX_tech_nano_job_foundry_upgrade"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_job_foundry_upgrade"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nano_alloy_produce"
+			quadTextureSprite = "GFX_tech_repeat_nano_alloy_produce"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nano_alloy_produce"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_job_artisan_upgrade"
+			quadTextureSprite = "GFX_tech_nano_job_artisan_upgrade"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_job_artisan_upgrade"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_factory"
+			quadTextureSprite = "GFX_tech_building_gray_nano_factory"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_factory"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_factory2"
+			quadTextureSprite = "GFX_tech_building_gray_nano_factory2"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_factory2"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_job_artisan_upgrade"
+			quadTextureSprite = "GFX_tech_nano_job_artisan_upgrade"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_job_artisan_upgrade"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nano_consumer_goods_produce"
+			quadTextureSprite = "GFX_tech_repeat_nano_consumer_goods_produce"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nano_consumer_goods_produce"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_research"
+			quadTextureSprite = "GFX_tech_building_gray_nano_research"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_research"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_research2"
+			quadTextureSprite = "GFX_tech_building_gray_nano_research2"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_research2"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_research3"
+			quadTextureSprite = "GFX_tech_building_gray_nano_research3"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_research3"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_research_slot"
+			quadTextureSprite = "GFX_tech_nano_research_slot"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_research_slot"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nano_research_produce"
+			quadTextureSprite = "GFX_tech_repeat_nano_research_produce"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nano_research_produce"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_construction_core"
+			quadTextureSprite = "GFX_tech_nano_construction_core"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_construction_core"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_dyson_sphere"
+			quadTextureSprite = "GFX_tech_nano_dyson_sphere"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_dyson_sphere"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_matter_decompressor"
+			quadTextureSprite = "GFX_tech_nano_matter_decompressor"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_matter_decompressor"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_ring_world"
+			quadTextureSprite = "GFX_tech_nano_ring_world"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_ring_world"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_science_nexus"
+			quadTextureSprite = "GFX_tech_nano_science_nexus"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_science_nexus"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_macro_nanorobot_technology"
+			quadTextureSprite = "GFX_tech_macro_nanorobot_technology"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_macro_nanorobot_technology"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_TMR_nanite_factory"
+			quadTextureSprite = "GFX_tech_TMR_nanite_factory"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_TMR_nanite_factory"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_tech_R_gateway"
+			quadTextureSprite = "GFX_tech_r_gateway"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_tech_R_gateway"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_TMR_gatebuilder_core"
+			quadTextureSprite = "GFX_tech_TMR_gatebuilder_core"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_TMR_gatebuilder_core"
+			alwaysTransparent = yes
+		}
+		#########################################################
+		# 武器科技图标
+		#########################################################
+		effectButtonType = {
+			name = "icon_tech_gray_nanite_ia"
+			quadTextureSprite = "GFX_tech_gray_nanite_ia"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nanite_ia"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_aura"
+			quadTextureSprite = "GFX_tech_gray_nano_aura"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_aura"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_computer"
+			quadTextureSprite = "GFX_tech_gray_nano_computer"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_computer"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_jump"
+			quadTextureSprite = "GFX_tech_gray_nano_jump"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_jump"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_propulsion"
+			quadTextureSprite = "GFX_tech_gray_nano_propulsion"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_propulsion"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_reactor"
+			quadTextureSprite = "GFX_tech_gray_nano_reactor"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_reactor"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_sensors"
+			quadTextureSprite = "GFX_tech_gray_nano_sensors"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_sensors"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_armor_hardener"
+			quadTextureSprite = "GFX_tech_gray_nano_armor_hardener"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_armor_hardener"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_nano_shield_recharger"
+			quadTextureSprite = "GFX_tech_gray_nano_shield_recharger"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_nano_shield_recharger"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_el"
+			quadTextureSprite = "GFX_tech_gray_weapon_el"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_el"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_et"
+			quadTextureSprite = "GFX_tech_gray_weapon_et"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_et"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_ex"
+			quadTextureSprite = "GFX_tech_gray_weapon_ex"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_ex"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_g"
+			quadTextureSprite = "GFX_tech_gray_weapon_g"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_g"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_h"
+			quadTextureSprite = "GFX_tech_gray_weapon_h"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_h"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_l"
+			quadTextureSprite = "GFX_tech_gray_weapon_l"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_l"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_p"
+			quadTextureSprite = "GFX_tech_gray_weapon_p"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_p"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_SML"
+			quadTextureSprite = "GFX_tech_gray_weapon_SML"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_SML"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_t"
+			quadTextureSprite = "GFX_tech_gray_weapon_t"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_t"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_gray_weapon_x"
+			quadTextureSprite = "GFX_tech_gray_weapon_x"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_gray_weapon_x"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nanite_sentry_maingun"
+			quadTextureSprite = "GFX_tech_nanite_sentry_maingun"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nanite_sentry_maingun"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nanite_storm"
+			quadTextureSprite = "GFX_tech_nanite_storm"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nanite_storm"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nanitecrop_mothership"
+			quadTextureSprite = "GFX_tech_nanitecrop_mothership"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nanitecrop_mothership"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nanitecrop_sentry"
+			quadTextureSprite = "GFX_tech_nanitecrop_sentry"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nanitecrop_sentry"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nanitecrop_titan"
+			quadTextureSprite = "GFX_tech_nanitecrop_titan"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nanitecrop_titan"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_planet_killer_graygoo"
+			quadTextureSprite = "GFX_tech_planet_killer_graygoo"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_planet_killer_graygoo"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nanoweapon"
+			quadTextureSprite = "GFX_tech_repeat_nanoweapon"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nanoweapon"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_dark_matter_power_core"
+			quadTextureSprite = "GFX_tech_dark_matter_power_core"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_dark_matter_power_core"
+			alwaysTransparent = yes
+		}
+		#########################################################
+		# 社会科技图标
+		#########################################################
+		effectButtonType = {
+			name = "icon_tech_psionic_theory"
+			quadTextureSprite = "GFX_tech_psionic_theory"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_psionic_theory"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_modularized_memory_injection"
+			quadTextureSprite = "GFX_tech_modularized_memory_injection"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_modularized_memory_injection"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_modularized_skill_injection"
+			quadTextureSprite = "GFX_tech_modularized_skill_injection"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_modularized_skill_injection"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_cloning"
+			quadTextureSprite = "GFX_tech_nano_cloning"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_cloning"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_consciousness_copy"
+			quadTextureSprite = "GFX_tech_repeat_consciousness_copy"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_consciousness_copy"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_consciousness_sycn"
+			quadTextureSprite = "GFX_tech_repeat_consciousness_sycn"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_consciousness_sycn"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_consciousness_detach"
+			quadTextureSprite = "GFX_tech_consciousness_detach"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_consciousness_detach"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_consciousness_backup"
+			quadTextureSprite = "GFX_tech_consciousness_backup"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_consciousness_backup"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_consciousness_create"
+			quadTextureSprite = "GFX_tech_consciousness_create"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_consciousness_create"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_virtual_conscious_network"
+			quadTextureSprite = "GFX_tech_virtual_conscious_network"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_virtual_conscious_network"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nano_gestalt_network"
+			quadTextureSprite = "GFX_tech_repeat_nano_gestalt_network"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nano_gestalt_network"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_nanite_bureaucratic"
+			quadTextureSprite = "GFX_tech_building_nanite_bureaucratic"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_nanite_bureaucratic"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_nanite_bureaucratic_2"
+			quadTextureSprite = "GFX_tech_building_nanite_bureaucratic_2"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_nanite_bureaucratic_2"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_nanite_bureaucratic_3"
+			quadTextureSprite = "GFX_tech_building_nanite_bureaucratic_3"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_nanite_bureaucratic_3"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_remote_nano_swarm"
+			quadTextureSprite = "GFX_tech_remote_nano_swarm"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_remote_nano_swarm"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_bureaucrat_upgrade"
+			quadTextureSprite = "GFX_tech_nano_bureaucrat_upgrade"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_bureaucrat_upgrade"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_large_scale_network_manage"
+			quadTextureSprite = "GFX_tech_repeat_large_scale_network_manage"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_large_scale_network_manage"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_exoskeletons"
+			quadTextureSprite = "GFX_tech_nano_exoskeletons"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_exoskeletons"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_biomechanics"
+			quadTextureSprite = "GFX_tech_nano_biomechanics"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_biomechanics"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_living_nano_construction"
+			quadTextureSprite = "GFX_tech_living_nano_construction"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_living_nano_construction"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_repeat_nano_biostructure_enhance"
+			quadTextureSprite = "GFX_tech_repeat_nano_biostructure_enhance"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_repeat_nano_biostructure_enhance"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_drones"
+			quadTextureSprite = "GFX_tech_nano_drones"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_drones"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_nano_army"
+			quadTextureSprite = "GFX_tech_nano_army"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_nano_army"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_army_gray_mecha"
+			quadTextureSprite = "GFX_tech_army_gray_mecha"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_army_gray_mecha"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_defence_centre"
+			quadTextureSprite = "GFX_tech_building_gray_nano_defence_centre"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_defence_centre"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_fortress"
+			quadTextureSprite = "GFX_tech_building_gray_fortress"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_fortress"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_fortress2"
+			quadTextureSprite = "GFX_tech_building_gray_fortress2"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_fortress2"
+			alwaysTransparent = yes
+		}
+		effectButtonType = {
+			name = "icon_tech_building_gray_nano_resident"
+			quadTextureSprite = "GFX_tech_building_gray_nano_resident"
+			orientation = "UPPER_LEFT"
+			position = { x = @tech_icon_x y = @tech_icon_y }
+			effect = "button_icon_tech_building_gray_nano_resident"
+			alwaysTransparent = yes
+		}
+
+
+
+		### EVENT DIPLO ###
+		containerWindowType = {
+			name = "EVENT_DIPLO"
+			orientation = "UPPER_LEFT"
+			position = { x = 0 y = 0 }
+			size = { width = 700 height = 400 }
+			moveable = no
+			
+			instantTextBoxType={
+				name = "action_title"
+				font = "malgun_goth_24"
+				format = left
+				orientation = "UPPER_LEFT"
+				position = { x = 101 y = 76 }
+				size = { width = 545 height = 54 }
+				maxWidth = 535
+				maxHeight = 54
+				alwaysTransparent = yes
+				scrollbartype = "standardtext_slider_small"
+			}
+			instantTextBoxType={ name = "action_desc" font = "malgun_goth_24" position = { x = -1453 y = -12450 } } # hidden
+			
+			listboxType = {
+				name = "option_list"
+				position = { x = 424 y = 157 }
+				backGround=""
+				size = { x = 250 y = 400 }
+				maxHeight = 90
+				scrollbartype = "standardlistbox_slider"
+				spacing = 20
+				borderSize = { x = 0 y = 0 }
+				Orientation = "UPPER_LEFT"
+			}
+		}
+
+		############################################
+		### ALL OF THIS IS HIDDEN OR DISPLACED ! ###
+		############################################
+		iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long_caravaneer" position = { x = -1453 y = -12450 } }
+		buttonType = { name = "focus_button" position = { x = -1453 y = -12450 } spriteType = "GFX_fleetview_focus" }
+		buttonType = { name = "alien_message_background" size = { x = 0 y = 0 } position = { x = -1453 y = -12450 } spriteType = "GFX_tiles_dark_area_cut_8" } # hidden
+		buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
+		containerWindowType = {
+			name = "portrait"
+			position = { x = -1453 y = -12450 }
+			size = { width = 0 height = 0 } # hide portrait window
+			iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask"  } # hidden
+			iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" } # hidden
+			iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" } # hidden
+			iconType = { name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
+		}
+		iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
+		instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" } # hidden 
+		instantTextBoxType={ name = "empire_government_type" font = "cg_16b" } # hidden
+		instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" } # hidden
+		OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1453 y = -12450 } } # hidden
+		buttonType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1453 y = -12450 } } # hidden
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = -1453 y = -12450 }
+			containerWindowType = { name = "empire_traits_box" } # hidden
+			instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
+			overlappingElementsBoxType = { name = "leader_traits" } # hidden
+			instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
+			instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
+		}
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = -1453 y = -12450 }
+			size = { width = 94 height = 30 }
+			iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
+			instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
+		}	
+	}
+}

@@ -1,0 +1,224 @@
+namespace = acluster
+#星系生成#
+country_event = {
+	id = acluster.1
+	title = acluster.1.name
+	desc = acluster.1.desc
+	show_sound = event_air_raid_siren
+	is_triggered_only = yes
+	
+	immediate = {
+		set_spawn_system_batch = begin
+		# batch-processes the spawn_system effects between "begin" and "end",
+		# so caches are recalculated only once rather than for every system spawned
+		# can also be used when removing and adding hyperlanes
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance = 650
+				max_distance = 650
+				min_orientation_angle = 135
+				max_orientation_angle = 135
+				initializer = acluster_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = Acluster1
+				}
+			}
+			event_target:Acluster1 = {
+				spawn_system = {
+					min_distance = 30
+					max_distance = 30
+					min_orientation_angle = 60
+					max_orientation_angle = 60
+					initializer = acluster_init_02
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster2
+					}
+				}
+				spawn_system = {
+					min_distance = 30
+					max_distance = 30
+					min_orientation_angle = 150
+					max_orientation_angle = 150
+					initializer = acluster_init_03
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster2b
+					}
+				}
+				spawn_system = {
+					min_distance = 30
+					max_distance = 30
+					min_orientation_angle = 240
+					max_orientation_angle = 240
+					initializer = acluster_init_04
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster2c
+					}
+				}
+				spawn_system = {
+					min_distance = 30
+					max_distance = 30
+					min_orientation_angle = 330
+					max_orientation_angle = 330
+					initializer = acluster_init_05
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster2d
+					}
+				}
+			}	
+			event_target:Acluster2 = {
+				spawn_system = {
+					min_distance = 90
+					max_distance = 90
+					min_orientation_angle = 120
+					max_orientation_angle = 120
+					initializer = acluster_init_06
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster3
+					}
+				}
+			}
+			event_target:Acluster3 = {
+				spawn_system = {
+					min_distance = 150
+					max_distance = 150
+					min_orientation_angle = 330
+					max_orientation_angle = 330
+					initializer = acluster_init_07
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster4
+					}
+				}
+			}
+			event_target:Acluster4 = {
+				spawn_system = {
+					min_distance = 150
+					max_distance = 150
+					min_orientation_angle = 240
+					max_orientation_angle = 240
+					initializer = acluster_init_08
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster5
+					}
+				}
+			}
+			event_target:Acluster5 = {
+				spawn_system = {
+					min_distance = 122
+					max_distance = 122
+					min_orientation_angle = 142
+					max_orientation_angle = 142
+					initializer = acluster_init_09
+					hyperlane = no
+					effect = {
+						save_global_event_target_as = Acluster6
+					}
+				}
+			}
+		}
+
+		# add hyperlanes
+		event_target:Acluster2 = {
+			add_hyperlane = {
+				from = event_target:Acluster2
+				to = event_target:Acluster1
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2b
+				to = event_target:Acluster1
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2c
+				to = event_target:Acluster1
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2d
+				to = event_target:Acluster1
+			}
+		}
+		event_target:Acluster3 = {
+			add_hyperlane = {
+				from = event_target:Acluster2
+				to = event_target:Acluster3
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2b
+				to = event_target:Acluster3
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2c
+				to = event_target:Acluster3
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2d
+				to = event_target:Acluster3
+			}
+		}
+		event_target:Acluster4 = {
+			add_hyperlane = {
+				from = event_target:Acluster2
+				to = event_target:Acluster4
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2b
+				to = event_target:Acluster4
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2c
+				to = event_target:Acluster4
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2d
+				to = event_target:Acluster4
+			}
+		}
+		event_target:Acluster5 = {
+			add_hyperlane = {
+				from = event_target:Acluster2
+				to = event_target:Acluster5
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2b
+				to = event_target:Acluster5
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2c
+				to = event_target:Acluster5
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2d
+				to = event_target:Acluster5
+			}
+		}
+		event_target:Acluster6 = {
+			add_hyperlane = {
+				from = event_target:Acluster2
+				to = event_target:Acluster6
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2b
+				to = event_target:Acluster6
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2c
+				to = event_target:Acluster6
+			}
+			add_hyperlane = {
+				from = event_target:Acluster2d
+				to = event_target:Acluster6
+			}
+		}
+		set_spawn_system_batch = end
+	}
+	option = {
+		name= acluster.1.a
+	}
+}

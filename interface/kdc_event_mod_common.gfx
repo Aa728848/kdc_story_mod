@@ -1,0 +1,182 @@
+
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ap_become_the_gray"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_graygoo_planet_transform"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_graygoo_planet_transform.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_graygoo_megastructures"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_graygoo_megastructures.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_graygoo_arcology"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_graygoo_arcology.dds"
+	}
+	spriteType = {
+		name = "GFX_nanoresearch_icon"
+		textureFile = "gfx/interface/gray_research/nanoresearch_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_nanites_large"
+		textureFile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	# 武器
+	spriteType = {
+		name = "GFX_wg_gray_h"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_h.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_l"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_l.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_t"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_t.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_g"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_g.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_p"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_p.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_ia"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_ia.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_thruster"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_thruster.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_sensor"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_sensor.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_reactor"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_reactor.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_jump"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_jump.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_gray_computer"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_computer.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_weapon_SML"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_SML.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_weapon_el"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_el.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_weapon_x"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_X.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_weapon_ex"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_eX.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_weapon_t"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_eT.dds"
+	}
+	spriteType = {
+		name = "GFX_PLANET_KILLER_GRAYGOO"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_pk_graygoo.dds"
+	}
+	spriteType = {
+		name = "GFX_SHIP_AURA_NANO_DAMPENER"
+		texturefile = "gfx/interface/icons/ship_parts/SHIP_AURA_NANO_DAMPENER.dds"
+	}
+	spriteType = {
+		name = "GFX_SHIP_AURA_NANO_PENETRATE"
+		texturefile = "gfx/interface/icons/ship_parts/SHIP_AURA_NANO_PENETRATE.dds"
+	}
+	spriteType = {
+		name = "GFX_SHIP_AURA_NANO_REPAIR"
+		texturefile = "gfx/interface/icons/ship_parts/SHIP_AURA_NANO_REPAIR.dds"
+	}
+	spriteType = {
+		name = "GFX_SHIP_AURA_NANO_SUPRESS"
+		texturefile = "gfx/interface/icons/ship_parts/SHIP_AURA_NANO_SUPRESS.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_nano_shield_recharger"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nano_shield_recharger.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_nano_armor_hardener"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nano_armor_hardener.dds"
+	}
+
+	spriteType = { 
+		name = "GFX_tradition_category_bg_tr_nanomachanic" 
+		textureFile = "gfx/interface/icons/traditions/tradition_category_tile_tr_nanomachanic.dds" 
+	}
+	spriteType = { 
+		name = "GFX_tradition_category_icon_tr_nanomachanic" 
+		textureFile = "gfx/interface/icons/traditions/tradition_icon_tr_nanomachanic.dds" 
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tr_nanomachanic"
+		textureFile = "gfx/interface/icons/traditions/tradition_category_tile_tr_nanomachanic.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	spriteType = {
+		name = "GFX_tr_nanomachanic_1"
+		textureFile = "gfx/interface/icons/traditions/tr_nanomachanic_1.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_nanomachanic_2"
+		textureFile = "gfx/interface/icons/traditions/tr_nanomachanic_2.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_nanomachanic_3"
+		textureFile = "gfx/interface/icons/traditions/tr_nanomachanic_3.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_nanomachanic_4"
+		textureFile = "gfx/interface/icons/traditions/tr_nanomachanic_4.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_nanomachanic_5"
+		textureFile = "gfx/interface/icons/traditions/tr_nanomachanic_5.dds"
+	}
+	# 陆军
+	spriteType = {
+		name = "GFX_gray_nano_drones"
+		textureFile = "gfx/interface/icons/armies/gray_nano_drones.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_nano_army"
+		textureFile = "gfx/interface/icons/armies/gray_nano_army.dds"
+	}
+	spriteType = {
+		name = "GFX_gray_nano_mecha"
+		textureFile = "gfx/interface/icons/armies/gray_nano_mecha.dds"
+	}
+
+	spriteType = {
+		name = "GFX_zone_gray_research"
+		textureFile = "gfx/interface/icons/zones/zone_gray_research.dds"
+	}
+
+	spriteType = {
+		name = "GFX_nanite_star_shipyard0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/tech_TMR_nanite_factory.dds"
+	}
+	spriteType = {
+		name = "GFX_TMR_gatebuilder_core0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/tech_TMR_gatebuilder_core.dds"
+	}
+}

@@ -1,0 +1,242 @@
+#######################################################
+# kdc 修改版通用游戏规则，请勿直接引用此版本的game rules
+# 详见小伞自己的通用游戏规则mod
+#######################################################
+###_++++ z fw universial 游戏规则 范用兼容框架	######################################################
+
+###_[teif/wsg/umd/ptep]	##################
+# Root = Species
+# From = Country
+# This = Species
+species_has_happiness = {
+	NOR = {
+		AND = {
+			has_trait = trait_machine_unit
+			exists = from
+			from = { is_machine_empire = yes }
+		}
+		has_trait = trait_hive_mind
+		can_think = no
+		has_trait = sh_trait_shenhai	#_WSG
+		has_trait = sh_trait_shenhai1	#_WSG
+		has_trait = sh_trait_shenhai2	#_WSG
+		has_trait = sh_trait_silent		#_WSG
+		has_trait = sh_trait_silent1	#_WSG
+		AND = {
+			has_trait = trait_mechanical
+			OR = {
+				NOT = { exists = from }
+				from = { is_machine_empire = yes }
+				from = { NOT = { has_technology = tech_synthetic_workers } }
+				from = { has_policy_flag = ai_outlawed }
+			}
+		}
+		AND = {
+			has_trait = trait_cybernetic
+			exists = from
+			from = {
+				OR = {
+					AND = {
+						is_machine_empire = yes
+						has_civic = civic_machine_assimilator # Assimilator empire
+					}
+					AND = {
+						is_democratic_authority = yes
+						has_country_flag = cyber_collectivist
+					}
+				}
+			}
+		}
+	}
+}
+
+###_[z_pf2/fq]	##################
+# This = planet
+can_crossbreed_species_on_planet = {
+	exists = owner
+	#_	z_pf2
+	NAND = {
+		owner = { is_ai = yes }
+		has_global_flag = z_pf2_no_ai_hybird
+	}
+	#_wsg 禁止ntr
+	any_owned_species = { NOR = {
+		is_archetype = WARSHIPGIRL
+		is_archetype = NANITES_CROP
+		is_archetype = SHENHAI
+		is_archetype = UNITED_FLEET 
+	}}
+	AND = {
+		owner = { has_ascension_perk = ap_xeno_compatibility }
+		count_species = {
+			limit = { is_crossbreeding_possible = yes }
+			count >= 2
+		}
+	}
+}
+
+# This = species one
+# Root = species two
+can_crossbreed_species = {
+	is_crossbreeding_possible = yes
+	root = { is_crossbreeding_possible = yes }
+	NOR = {
+		is_subspecies = root
+		root = { is_subspecies = prev }
+	}
+	#_wsg 禁止ntr
+	NOR = {
+		is_archetype = NANITES_CROP
+	}
+	root = { NOR = {
+		is_archetype = NANITES_CROP
+	}}
+}
+
+###_[aup/ptep]	如果有问题就恢复vanilla
+#_pop_trgr	[ariphaos_patch_slaves_expel]
+# ROOT = country
+# THIS = pop
+can_be_sold_on_slave_market = {
+	OR = {
+		is_enslaved = yes
+		is_non_sapient_robot = yes
+		is_shackled_robot = yes
+	}
+	#_wsg 禁止ntr
+	species = { NOR = {
+		is_archetype = NANITES_CROP
+	}}
+	#_	+[aup]
+	OR ={
+		ariphaos_patch_slaves_expel = yes	#_aup
+		ROOT = { is_ai = no }
+		has_citizenship_rights = no
+		#_+aup
+		AND = {
+			# is_being_assimilated = no		#_aup
+			is_unemployed = yes
+			planet = {
+				num_unemployed > 3
+			}
+			#_aup
+			OR = {
+				NOT = { has_trait = trait_syncretic_proles }
+				ROOT = { NOT = { has_origin = origin_syncretic_evolution } }
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_global_flag = organic_slave_trade_banned_flag
+		}
+		is_organic_species = no
+	}
+	if = {
+		limit = {
+			has_global_flag = sentient_slave_trade_banned_flag
+		}
+		is_sapient = no
+	}
+	NOR = {
+		# Since they can't reproduce, they die out too fast for anyone to want to buy them.
+		has_trait = trait_clone_soldier_infertile
+		has_trait = trait_clone_soldier_infertile_full_potential
+	}
+}
+
+# This = fleet, fleet we'd like to trade
+# Root = country, country that owns the fleet currently
+# From = country, country that would receive the fleet
+can_trade_fleet = {
+	custom_tooltip = {
+		fail_text = "cannot_sold_wg_fleet"
+		any_owned_ship = {
+			is_wg_event_limit_ships = no
+		}
+	}
+	AND = {
+		ROOT = {
+			NAND = {
+				is_overlord = yes
+				OR = {
+					is_wg_fallen_empire = yes
+					is_sh_fallen_empire = yes
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+		NOT = { has_fleet_flag = dimensional_fleet }
+	}
+}
+
+#This, root = country
+can_add_advanced_traits = {
+	OR = {
+		has_tradition = tr_genetics_enhanced_expression
+		has_active_tradition = tr_purity_exemplary_genetics
+		has_active_tradition = tr_cloning_somatic_synthesization
+		has_active_tradition = tr_cloning_somatic_synthesization_clone_army
+		has_active_tradition = tr_mutation_unnatural_selection
+		has_wsg_genemodding_tech = yes
+	}
+}
+
+#This, root = country
+can_add_negative_traits_organic = {
+	OR = {
+		has_utopia = yes
+		has_biogenesis_dlc = yes
+	}
+	OR = {
+		has_tradition = tr_genetics_resequencing
+		has_active_tradition = tr_cybernetics_integrated_anatomy
+		has_active_tradition = tr_cybernetics_assimilator_integrated_anatomy
+		has_active_tradition = tr_purity_genotype_regeneration
+		has_active_tradition = tr_purity_genotype_regeneration_wilderness
+		has_active_tradition = tr_mutation_unnatural_selection
+		has_wsg_genemodding_tech = yes
+	}
+}
+
+#This, root = country
+can_remove_positive_traits_organic = {
+	OR = {
+		AND = {
+			OR = {
+				has_utopia = yes
+				has_biogenesis_dlc = yes
+			}
+			OR = {
+				has_tradition = tr_genetics_resequencing
+				has_active_tradition = tr_cybernetics_integrated_anatomy
+				has_active_tradition = tr_cybernetics_assimilator_integrated_anatomy
+				has_active_tradition = tr_purity_genotype_regeneration
+				has_active_tradition = tr_purity_genotype_regeneration_wilderness
+				has_active_tradition = tr_cloning_somatic_synthesization
+				has_active_tradition = tr_cloning_somatic_synthesization_clone_army
+				has_active_tradition = tr_mutation_unnatural_selection
+				has_wsg_genemodding_tech = yes
+			}
+		}
+		AND = {
+			has_toxoids = yes
+			has_origin = origin_overtuned
+		}
+		has_technology = tech_gene_expressions
+		has_technology = tech_epigenetic_triggers
+	}
+}
+
+#This, root = country
+can_modify_organic_portraits = {
+	OR = {
+		has_tradition = tr_genetics_creation
+		has_tradition = tr_purity_exemplary_genetics
+		has_active_tradition = tr_cloning_somatic_synthesization
+		has_active_tradition = tr_cloning_somatic_synthesization_clone_army
+		has_tradition = tr_mutation_unnatural_selection
+		has_wsg_genemodding_tech = yes
+	}
+}

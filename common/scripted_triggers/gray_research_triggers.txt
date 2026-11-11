@@ -1,0 +1,1005 @@
+# 研究界面科技按钮allow条件
+# ID:科技ID
+# no_prerequisites 填yes即代表没有前置科技条件
+default_gray_tech_button_allow_trigger = {
+    custom_tooltip = gray_tech_$ID$_tooltip
+    from = {
+        OR = {
+            hidden_trigger = { has_gray_tech_$ID$_trigger = yes }
+            AND = {
+                custom_tooltip = {
+                    fail_text = "opened_gray_tech_comfirm_window"
+                    NOT = { has_country_flag = open_gray_research_comfirm_window }
+                }
+                gray_tech_$ID$_prerequisites_trigger = yes
+            }
+        }
+    }
+}
+
+# 完成显示√图标判断触发
+# CAT: 科技所在类别，0 = 生产科技；1 = 武器科技；2 = 社会科技
+# ID: 科技ID
+default_gray_tech_finish_icon_trigger = {
+    from = {
+        check_variable = { which = gray_research_category_show value = $CAT$ }
+        has_gray_tech_$ID$_trigger = yes
+    }
+}
+# from = situation
+# this = country
+gray_tech_finish_event_trigger = {
+    OR = {
+        from = { check_variable = { which = gray_tech_id value = $ID$ }}
+        has_country_flag = research_all_gray_technologies
+    }
+}
+
+gray_repeatable_tech_limit_trigger = {
+    if = {
+        limit = { check_variable = { which = gray_tech_id value = $ID$ }}
+        check_variable = {
+            which = $NAME$
+            value < gray_repeatable_tech_limit
+        }
+    }
+}
+gray_repeatable_tech_limit_else_trigger = {
+    else_if = {
+        limit = { check_variable = { which = gray_tech_id value = $ID$ }}
+        check_variable = {
+            which = $NAME$
+            value < gray_repeatable_tech_limit
+        }
+    }
+}
+
+is_gray_repeatable_tech = {
+    # 循环科技
+    check_variable = { which = gray_tech_id value = 1015 }
+    check_variable = { which = gray_tech_id value = 1025 }
+    check_variable = { which = gray_tech_id value = 1035 }
+    check_variable = { which = gray_tech_id value = 1045 }
+    check_variable = { which = gray_tech_id value = 2054 }
+    check_variable = { which = gray_tech_id value = 3024 }
+    check_variable = { which = gray_tech_id value = 3042 }
+    check_variable = { which = gray_tech_id value = 3053 }
+
+    # 多等级科技
+    check_variable = { which = gray_tech_id value = 1011 }
+    check_variable = { which = gray_tech_id value = 1024 }
+    check_variable = { which = gray_tech_id value = 1034 }
+    check_variable = { which = gray_tech_id value = 1043 }
+    check_variable = { which = gray_tech_id value = 3010 }
+    check_variable = { which = gray_tech_id value = 3041 }
+}
+
+#############################################################################
+# 生产科技
+#############################################################################
+gray_tech_1000_prerequisites_trigger = {
+    always = yes
+}
+has_gray_tech_1000_trigger = {
+    has_technology = tech_TMR_nanite_productor
+}
+
+gray_tech_1010_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_productor
+}
+has_gray_tech_1010_trigger = {
+    has_technology = tech_building_nanoassembly_plant
+}
+
+gray_tech_1011_prerequisites_trigger = {
+    has_technology = tech_building_nanoassembly_plant
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1011_trigger = {
+    check_variable = { which = nano_assembly_technology value >= 3 }
+}
+
+gray_tech_1013_prerequisites_trigger = {
+    has_technology = tech_building_gray_nanite_factory
+    custom_tooltip = {
+        fail_text = "finish_gray_ascension"
+        has_country_flag = gray_ascension_finish
+    }
+}
+has_gray_tech_1013_trigger = {
+    has_technology = tech_nano_reconstruct
+}
+
+gray_tech_1014_prerequisites_trigger = {
+    custom_tooltip = {
+        fail_text = require_nano_assembly_technology
+        check_variable = { which = nano_assembly_technology value >= 1 }
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1014_trigger = {
+    has_technology = tech_building_nanite_field_manipulator
+}
+
+gray_tech_1015_prerequisites_trigger = {
+    has_technology = tech_building_nanite_field_manipulator
+}
+has_gray_tech_1015_trigger = {
+    has_country_flag = tech_repeat_nanite_produce_finish
+}
+
+gray_tech_1016_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_productor
+}
+has_gray_tech_1016_trigger = {
+    has_technology = tech_building_gray_nanite_factory
+}
+
+gray_tech_1017_prerequisites_trigger = {
+    has_technology = tech_building_gray_nanite_factory
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1017_trigger = {
+    has_technology = tech_building_gray_nanite_factory2
+}
+
+gray_tech_1018_prerequisites_trigger = {
+    has_technology = tech_nano_reconstruct
+}
+has_gray_tech_1018_trigger = {
+    has_country_flag = gray_tech_1018_researched
+}
+
+gray_tech_1020_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_alloys_2
+        has_technology = tech_alloys_2
+    # }
+    has_technology = tech_TMR_nanite_productor
+}
+has_gray_tech_1020_trigger = {
+    has_technology = tech_building_gray_nano_foundry
+}
+
+gray_tech_1021_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_foundry
+    has_technology = tech_building_gray_nano_factory
+    # custom_tooltip = {
+    #     text = require_tech_nanite_transmutation
+        has_technology = tech_nanite_transmutation
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_rare_crystals
+        has_technology = tech_rare_crystals
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_exotic_gases
+        has_technology = tech_exotic_gases
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_volatile_motes
+        has_technology = tech_volatile_motes
+    # }
+}
+has_gray_tech_1021_trigger = {
+    has_technology = tech_building_gray_nano_rare_resource_factory
+}
+
+gray_tech_1022_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_foundry
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1022_trigger = {
+    has_technology = tech_building_gray_nano_foundry2
+}
+
+gray_tech_1024_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_foundry2
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1024_trigger = {
+    check_variable = { which = tech_nano_job_foundry_upgrade value >= 3 }
+}
+
+gray_tech_1025_prerequisites_trigger = {
+    custom_tooltip = {
+        fail_text = require_tech_nano_job_foundry_upgrade
+        check_variable = { which = tech_nano_job_foundry_upgrade value >= 1 }
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1025_trigger = {
+    has_country_flag = tech_repeat_nano_alloy_produce_finish
+}
+
+gray_tech_1030_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_productor
+    # custom_tooltip = {
+    #     text = require_tech_luxuries_2
+        has_technology = tech_luxuries_2
+    # }
+}
+has_gray_tech_1030_trigger = {
+    has_technology = tech_building_gray_nano_factory
+}
+
+gray_tech_1031_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_factory
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1031_trigger = {
+    has_technology = tech_building_gray_nano_factory2
+}
+
+gray_tech_1034_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_factory2
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1034_trigger = {
+    check_variable = { which = tech_nano_job_artisan_upgrade value >= 3 }
+}
+
+gray_tech_1035_prerequisites_trigger = {
+    custom_tooltip = {
+        fail_text = require_tech_nano_job_artisan_upgrade
+        check_variable = { which = tech_nano_job_artisan_upgrade value >= 1 }
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1035_trigger = {
+    has_country_flag = tech_repeat_nano_consumer_goods_produce_finish
+}
+
+gray_tech_1040_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_productor
+    # custom_tooltip = {
+    #     text = require_tech_basic_science_lab_2
+        has_technology = tech_basic_science_lab_2
+    # }
+}
+has_gray_tech_1040_trigger = {
+    has_technology = tech_building_gray_nano_research
+}
+
+gray_tech_1041_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_research
+    # custom_tooltip = {
+    #     text = require_tech_basic_science_lab_3
+        has_technology = tech_basic_science_lab_3
+    # }
+}
+has_gray_tech_1041_trigger = {
+    has_technology = tech_building_gray_nano_research2
+}
+
+gray_tech_1042_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_research2
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_1042_trigger = {
+    has_technology = tech_building_gray_nano_research3
+}
+
+gray_tech_1043_prerequisites_trigger = {
+    has_technology = tech_building_gray_nano_research3
+}
+has_gray_tech_1043_trigger = {
+    check_variable = { which = num_gray_research_slot value >= 3 }
+}
+
+gray_tech_1045_prerequisites_trigger = {
+    custom_tooltip = {
+        fail_text = "require_tech_nano_research_slot"
+        check_variable = { which = num_gray_research_slot value > 1 }
+    }
+}
+has_gray_tech_1045_trigger = {
+    has_country_flag = tech_repeat_nano_research_produce_finish
+}
+
+gray_tech_1060_prerequisites_trigger = {
+    has_technology = tech_macro_nanorobot_technology
+    has_technology = tech_gray_nano_reactor
+    has_technology = tech_gray_nano_propulsion
+    has_technology = tech_gray_nano_jump
+    has_technology = tech_gray_nano_sensors
+    has_technology = tech_gray_nano_computer
+    has_ascension_perk = ap_graygoo_megastructures
+}
+has_gray_tech_1060_trigger = {
+    has_technology = tech_nano_construction_core
+}
+
+gray_tech_1061_prerequisites_trigger = {
+    has_technology = tech_nano_construction_core
+    # custom_tooltip = {
+    #     text = require_tech_dyson_sphere
+        has_technology = tech_dyson_sphere
+    # }
+}
+has_gray_tech_1061_trigger = {
+    has_technology = tech_nano_dyson_sphere
+}
+
+gray_tech_1062_prerequisites_trigger = {
+    has_technology = tech_nano_construction_core
+    # custom_tooltip = {
+    #     text = require_tech_matter_decompressor
+        has_technology = tech_matter_decompressor
+    # }
+}
+has_gray_tech_1062_trigger = {
+    has_technology = tech_nano_matter_decompressor
+}
+
+gray_tech_1063_prerequisites_trigger = {
+    has_technology = tech_nano_construction_core
+    # custom_tooltip = {
+    #     text = require_tech_ring_world
+        has_technology = tech_ring_world
+    # }
+}
+has_gray_tech_1063_trigger = {
+    has_technology = tech_nano_ring_world
+}
+
+gray_tech_1064_prerequisites_trigger = {
+    has_technology = tech_nano_construction_core
+    # custom_tooltip = {
+    #     text = require_tech_science_nexus
+        has_technology = tech_science_nexus
+    # }
+}
+has_gray_tech_1064_trigger = {
+    has_technology = tech_nano_science_nexus
+}
+
+gray_tech_1070_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_mega_engineering
+        has_technology = tech_mega_engineering
+    # }
+    custom_tooltip = {
+        fail_text = "require_tech_repeat_nanite_produce"
+        check_variable = { which = tech_repeat_nanite_produce value > 1 }
+    }
+    custom_tooltip = {
+        fail_text = "require_tech_repeat_nano_alloy_produce"
+        check_variable = { which = tech_repeat_nano_alloy_produce value > 1 }
+    }
+    custom_tooltip = {
+        fail_text = "require_tech_repeat_nano_consumer_goods_produce"
+        check_variable = { which = tech_repeat_nano_consumer_goods_produce value > 1 }
+    }
+    custom_tooltip = {
+        fail_text = "require_tech_repeat_nano_research_produce"
+        check_variable = { which = tech_repeat_nano_research_produce value > 1 }
+    }
+}
+has_gray_tech_1070_trigger = {
+    has_technology = tech_macro_nanorobot_technology
+}
+
+gray_tech_1071_prerequisites_trigger = {
+    has_technology = tech_macro_nanorobot_technology
+    has_ascension_perk = ap_graygoo_megastructures
+    has_ascension_perk = ap_micromechanical_revolution
+}
+has_gray_tech_1071_trigger = {
+    has_technology = tech_TMR_nanite_factory
+}
+
+gray_tech_1072_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_factory
+}
+has_gray_tech_1072_trigger = {
+    has_technology = tech_TMR_gatebuilder_core
+}
+
+gray_tech_1073_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_factory
+    has_technology = tech_gray_nano_aura
+}
+has_gray_tech_1073_trigger = {
+    has_technology = tech_R_gateway
+}
+
+#############################################################################
+# 武器科技
+#############################################################################
+gray_tech_2000_prerequisites_trigger = {
+    has_technology = tech_building_gray_nanite_factory
+    # custom_tooltip = {
+    #     text = require_tech_zero_point_power
+        has_technology = tech_zero_point_power
+    # }
+}
+has_gray_tech_2000_trigger = {
+    has_technology = tech_gray_nano_reactor
+}
+
+gray_tech_2001_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    # custom_tooltip = {
+    #     text = require_tech_ship_armor_5
+        has_technology = tech_ship_armor_5
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_shields_5
+        has_technology = tech_shields_5
+    # }
+}
+has_gray_tech_2001_trigger = {
+    has_technology = tech_gray_nanite_ia
+}
+
+gray_tech_2002_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    # custom_tooltip = {
+    #     text = require_tech_pd_tracking_3
+        has_technology = tech_pd_tracking_3
+    # }
+}
+has_gray_tech_2002_trigger = {
+    has_technology = tech_gray_weapon_p
+}
+
+gray_tech_2003_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    # custom_tooltip = {
+    #     text = require_tech_energy_torpedoes_2
+        has_technology = tech_energy_torpedoes_2
+    # }
+}
+has_gray_tech_2003_trigger = {
+    has_technology = tech_gray_weapon_g
+}
+
+gray_tech_2004_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    # custom_tooltip = {
+    #     text = require_tech_strike_craft_3
+        has_technology = tech_strike_craft_3
+    # }
+}
+has_gray_tech_2004_trigger = {
+    has_technology = tech_gray_weapon_h
+}
+
+gray_tech_2011_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_thrusters_4
+        has_technology = tech_thrusters_4
+    # }
+    has_technology = tech_gray_nano_reactor
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2011_trigger = {
+    has_technology = tech_gray_nano_propulsion
+}
+
+gray_tech_2012_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_jump_drive_1
+        has_technology = tech_jump_drive_1
+    # }
+    has_technology = tech_gray_nano_reactor
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2012_trigger = {
+    has_technology = tech_gray_nano_jump
+}
+
+gray_tech_2013_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_sensors_4
+        has_technology = tech_sensors_4
+    # }
+    has_technology = tech_gray_nano_reactor
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2013_trigger = {
+    has_technology = tech_gray_nano_sensors
+}
+
+gray_tech_2014_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_combat_computers_3
+        has_technology = tech_combat_computers_3
+    # }
+    has_technology = tech_gray_nano_reactor
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2014_trigger = {
+    has_technology = tech_gray_nano_computer
+}
+
+gray_tech_2015_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    has_technology = tech_armor_hardeners_1
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2015_trigger = {
+    has_technology = tech_gray_nano_armor_hardener
+}
+
+gray_tech_2016_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    has_technology = tech_shield_hardeners_1
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2016_trigger = {
+    has_technology = tech_gray_nano_shield_recharger
+}
+
+gray_tech_2021_prerequisites_trigger = {
+    has_ascension_perk = ap_colossus
+    has_ascension_perk = ap_become_the_gray
+    custom_tooltip = {
+        fail_text = "require_finish_colossus_project"
+        has_country_flag = colossus_project
+    }
+    has_technology = tech_gray_nano_reactor
+}
+has_gray_tech_2021_trigger = {
+    has_technology = tech_planet_killer_graygoo
+}
+
+gray_tech_2022_prerequisites_trigger = {
+    has_technology = tech_gray_nano_propulsion
+    has_technology = tech_gray_nano_jump
+    has_technology = tech_gray_nano_sensors
+    has_technology = tech_gray_nano_computer
+    # custom_tooltip = {
+    #     text = require_tech_titans
+        has_technology = tech_titans
+    # }
+}
+has_gray_tech_2022_trigger = {
+    has_technology = tech_gray_nano_aura
+}
+
+gray_tech_2031_prerequisites_trigger = {
+    has_technology = tech_TMR_nanite_factory
+    has_technology = tech_gray_nano_aura
+    # custom_tooltip = {
+    #     text = require_tech_titans
+        has_technology = tech_titans
+    # }
+}
+has_gray_tech_2031_trigger = {
+    has_technology = tech_nanitecrop_titan
+}
+
+gray_tech_2032_prerequisites_trigger = {
+    has_technology = tech_nanitecrop_titan
+}
+has_gray_tech_2032_trigger = {
+    has_technology = tech_nanitecrop_mothership
+}
+
+gray_tech_2033_prerequisites_trigger = {
+    has_technology = tech_nanitecrop_mothership
+}
+has_gray_tech_2033_trigger = {
+    has_technology = tech_nanite_storm
+}
+
+gray_tech_2034_prerequisites_trigger = {
+    has_technology = tech_nanite_storm
+}
+has_gray_tech_2034_trigger = {
+    has_technology = tech_nanitecrop_sentry
+}
+
+gray_tech_2040_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    # custom_tooltip = {
+    #     text = require_tech_lasers_5
+        has_technology = tech_lasers_5
+    # }
+}
+has_gray_tech_2040_trigger = {
+    has_technology = tech_gray_weapon_SML
+}
+
+gray_tech_2041_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_SML
+    # custom_tooltip = {
+    #     text = require_tech_kinetic_artillery_2
+        has_technology = tech_kinetic_artillery_2
+    # }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_2041_trigger = {
+    has_technology = tech_gray_weapon_l
+}
+
+gray_tech_2042_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_l
+    # custom_tooltip = {
+    #     text = require_tech_mass_accelerator_2
+        has_technology = tech_mass_accelerator_2
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_energy_lance_2
+        has_technology = tech_energy_lance_2
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_arc_emitter_2
+        has_technology = tech_arc_emitter_2
+    # }
+}
+has_gray_tech_2042_trigger = {
+    has_technology = tech_gray_weapon_x
+}
+
+gray_tech_2043_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_x
+    # custom_tooltip = {
+    #     text = require_tech_titans
+        has_technology = tech_titans
+    # }
+}
+has_gray_tech_2043_trigger = {
+    has_technology = tech_gray_weapon_t
+}
+
+gray_tech_2044_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_et
+    has_technology = tech_nanitecrop_sentry
+}
+has_gray_tech_2044_trigger = {
+    has_technology = tech_nanite_sentry_maingun
+}
+gray_tech_2050_prerequisites_trigger = {
+    has_technology = tech_gray_nano_reactor
+    has_technology = tech_mine_dark_matter
+    has_ascension_perk = ap_micromechanical_revolution
+}
+has_gray_tech_2050_trigger = {
+    has_technology = tech_dark_matter_power_core
+}
+
+gray_tech_2051_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_l
+    # custom_tooltip = {
+    #     text = require_tech_dark_matter_power_core
+        has_technology = tech_dark_matter_power_core
+    # }
+}
+has_gray_tech_2051_trigger = {
+    has_technology = tech_gray_weapon_el
+}
+
+gray_tech_2052_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_x
+    has_technology = tech_gray_weapon_el
+}
+has_gray_tech_2052_trigger = {
+    has_technology = tech_gray_weapon_ex
+}
+
+gray_tech_2053_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_t
+    has_technology = tech_gray_weapon_ex
+}
+has_gray_tech_2053_trigger = {
+    has_technology = tech_gray_weapon_et
+}
+
+gray_tech_2054_prerequisites_trigger = {
+    has_technology = tech_gray_weapon_t
+}
+has_gray_tech_2054_trigger = {
+    # 循环科技，没有最大等级
+    always = no
+}
+#############################################################################
+# 社会科技
+#############################################################################
+gray_tech_3000_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_astral_harvesting
+        has_technology = tech_astral_harvesting
+    # }
+}
+has_gray_tech_3000_trigger = {
+    has_technology = tech_psionic_theory
+}
+gray_tech_3010_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_integrated_cybernetics
+        has_technology = tech_integrated_cybernetics
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_self_aware_logic
+        has_technology = tech_self_aware_logic
+    # }
+}
+has_gray_tech_3010_trigger = {
+    check_variable = { which = tech_modularized_memory_injection value >= 3 }
+}
+gray_tech_3011_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_capacity_boosters
+    #     has_technology = tech_capacity_boosters
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_modularized_memory_injection
+    #     check_variable = { which = tech_modularized_memory_injection value > 0 }
+    # }
+    custom_tooltip_fail = {
+        text = soon
+        always = no
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3011_trigger = {
+    # has_country_flag = gray_tech_3011_researched
+    always = yes
+}
+gray_tech_3012_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     fail_text = require_nano_assembly_technology
+    #     check_variable = { which = nano_assembly_technology value >= 1 }
+    # }
+    # custom_tooltip = {
+    #     text = require_gray_tech_3011
+    #     has_country_flag = gray_tech_3011_researched
+    # }
+    custom_tooltip_fail = {
+        text = soon
+        always = no
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3012_trigger = {
+    # has_country_flag = gray_tech_3012_researched
+    always = yes
+}
+gray_tech_3013_prerequisites_trigger = {
+    custom_tooltip_fail = {
+        text = soon
+        always = no
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3013_trigger = {
+    # has_country_flag = gray_tech_3013_researched
+}
+gray_tech_3014_prerequisites_trigger = {
+    custom_tooltip_fail = {
+        text = soon
+        always = no
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3014_trigger = {
+    # has_country_flag = gray_tech_3013_researched
+}
+gray_tech_3020_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_psionic_theory
+        has_technology = tech_psionic_theory
+    # }
+}
+has_gray_tech_3020_trigger = {
+    has_country_flag = gray_tech_3020_researched
+}
+gray_tech_3021_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3020
+        has_country_flag = gray_tech_3020_researched
+    }
+}
+has_gray_tech_3021_trigger = {
+    has_country_flag = gray_tech_3021_researched
+}
+gray_tech_3022_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3021
+        has_country_flag = gray_tech_3021_researched
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3022_trigger = {
+    has_country_flag = gray_tech_3022_researched
+}
+gray_tech_3023_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3022
+        has_country_flag = gray_tech_3022_researched
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3023_trigger = {
+    has_country_flag = gray_tech_3023_researched
+}
+gray_tech_3024_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3023
+        has_country_flag = gray_tech_3023_researched
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3024_trigger = {
+    has_country_flag = tech_repeat_nano_gestalt_network_finish
+}
+gray_tech_3030_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3040
+        has_country_flag = gray_tech_3040_researched
+    }
+    has_technology = tech_building_gray_nanite_factory
+    # custom_tooltip = {
+    #     text = require_tech_colonial_bureaucracy
+        has_technology = tech_colonial_bureaucracy
+    # }
+}
+has_gray_tech_3030_trigger = {
+    has_technology = tech_building_nanite_bureaucratic
+}
+gray_tech_3031_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3030
+        check_variable = { which = tech_building_nanite_bureaucratic value > 0 }
+    }
+    # custom_tooltip = {
+    #     text = require_tech_galactic_bureaucracy
+        has_technology = tech_galactic_bureaucracy
+    # }
+    # custom_tooltip = {
+    #     text = require_tech_capital_productivity_2
+        has_technology = tech_capital_productivity_2
+    # }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3031_trigger = {
+    check_variable = { which = tech_building_nanite_bureaucratic value > 1 }
+}
+gray_tech_3032_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3041
+        check_variable = { which = tech_nano_bureaucrat_upgrade value > 0 }
+    }
+    has_technology = tech_galactic_administration
+    has_technology = tech_capital_productivity_3
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3032_trigger = {
+    check_variable = { which = tech_building_nanite_bureaucratic value > 2 }
+}
+gray_tech_3040_prerequisites_trigger = {
+    has_technology = tech_space_science_2
+    has_technology = tech_capital_productivity_3
+}
+has_gray_tech_3040_trigger = {
+    has_country_flag = gray_tech_3040_researched
+}
+gray_tech_3041_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3031
+        check_variable = { which = tech_building_nanite_bureaucratic value > 1 }
+    }
+    custom_tooltip = {
+        text = require_gray_tech_3023
+        has_country_flag = gray_tech_3023_researched
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3041_trigger = {
+    check_variable = { which = tech_nano_bureaucrat_upgrade value >= 3 }
+}
+gray_tech_3042_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_tech_3032
+        check_variable = { which = tech_building_nanite_bureaucratic value > 2 }
+    }
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3042_trigger = {
+    has_country_flag = tech_repeat_large_scale_network_manage_finish
+}
+gray_tech_3050_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_gene_tailoring
+        has_technology = tech_gene_tailoring
+    # }
+}
+has_gray_tech_3050_trigger = {
+    has_technology = tech_nano_exoskeletons
+}
+gray_tech_3051_prerequisites_trigger = {
+    has_technology = tech_nano_exoskeletons
+    has_technology = tech_building_gray_nanite_factory
+    OR = {
+        # custom_tooltip = {
+        #     text = require_tech_robomodding_points_2
+            has_technology = tech_robomodding_points_2
+        # }
+        # custom_tooltip = {
+        #     text = require_tech_gene_expressions
+            has_technology = tech_gene_expressions
+        # }
+    }
+}
+has_gray_tech_3051_trigger = {
+    has_technology = tech_nano_biomechanics
+}
+gray_tech_3052_prerequisites_trigger = {
+    has_technology = tech_nano_biomechanics
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3052_trigger = {
+    has_technology = tech_living_nano_construction
+}
+gray_tech_3053_prerequisites_trigger = {
+    has_technology = tech_living_nano_construction
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3053_trigger = {
+    # 循环科技，没有最大等级
+    always = no
+}
+gray_tech_3060_prerequisites_trigger = {
+    # custom_tooltip = {
+    #     text = require_tech_combat_training
+        has_technology = tech_combat_training
+    # }
+    has_technology = tech_building_gray_nanite_factory
+}
+has_gray_tech_3060_trigger = {
+    has_technology = tech_nano_drones
+}
+gray_tech_3061_prerequisites_trigger = {
+    has_technology = tech_nano_biomechanics
+    has_technology = tech_nano_drones
+}
+has_gray_tech_3061_trigger = {
+    has_technology = tech_nano_army
+}
+gray_tech_3062_prerequisites_trigger = {
+    custom_tooltip = {
+        text = require_gray_owner
+        has_country_flag = gray_owner
+    }
+    has_technology = tech_nano_army
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3062_trigger = {
+    has_technology = tech_army_gray_mecha
+}
+gray_tech_3070_prerequisites_trigger = {
+    has_technology = tech_centralized_command
+    has_technology = tech_global_defense_grid
+    has_technology = tech_planetary_shield_generator
+}
+has_gray_tech_3070_trigger = {
+    has_technology = tech_building_gray_nano_defence_centre
+}
+gray_tech_3071_prerequisites_trigger = {
+    has_technology = tech_centralized_command
+    has_technology = tech_global_defense_grid
+}
+has_gray_tech_3071_trigger = {
+    has_technology = tech_building_gray_fortress
+}
+
+gray_tech_3072_prerequisites_trigger = {
+    has_technology = tech_building_gray_fortress
+    has_ascension_perk = ap_become_the_gray
+}
+has_gray_tech_3072_trigger = {
+    has_technology = tech_building_gray_fortress2
+}
+
+gray_tech_3073_prerequisites_trigger = {
+    has_technology = tech_housing_1
+    has_technology = tech_hyper_entertainment_forum
+}
+has_gray_tech_3073_trigger = {
+    has_country_flag = gray_tech_3073_researched
+}
+
+

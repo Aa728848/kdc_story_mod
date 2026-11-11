@@ -1,0 +1,356 @@
+defined_text = {
+	name = GetGrayTechTitle
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1000 NAME = tech_TMR_nanite_productor
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1010 NAME = tech_building_nanoassembly_plant
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1011 NAME = tech_nanoassembly_technology
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1013 NAME = tech_nano_reconstruct
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1014 NAME = tech_building_nanite_field_manipulator
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1015 NAME = tech_repeat_nanite_produce
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1016 NAME = tech_building_gray_nanite_factory
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1017 NAME = tech_building_gray_nanite_factory2
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1018 NAME = tech_building_gray_nano_regenerator
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1020 NAME = tech_building_gray_nano_foundry
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1021 NAME = tech_building_gray_nano_rare_resource_factory
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1022 NAME = tech_building_gray_nano_foundry2
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1024 NAME = tech_nano_job_foundry_upgrade
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1025 NAME = tech_repeat_nano_alloy_produce
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1030 NAME = tech_building_gray_nano_factory
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1031 NAME = tech_building_gray_nano_factory2
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1034 NAME = tech_nano_job_artisan_upgrade
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1035 NAME = tech_repeat_nano_consumer_goods_produce
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1040 NAME = tech_building_gray_nano_research
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1041 NAME = tech_building_gray_nano_research2
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1042 NAME = tech_building_gray_nano_research3
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1043 NAME = tech_nano_research_slot
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1044 NAME = tech_nano_research_slot
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1045 NAME = tech_repeat_nano_research_produce
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1060 NAME = tech_nano_construction_core
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1061 NAME = tech_nano_dyson_sphere
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1062 NAME = tech_nano_matter_decompressor
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1063 NAME = tech_nano_ring_world
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1064 NAME = tech_nano_science_nexus
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1070 NAME = tech_macro_nanorobot_technology
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1071 NAME = tech_TMR_nanite_factory
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1072 NAME = tech_TMR_gatebuilder_core
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 1073 NAME = tech_R_gateway
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2000 NAME = tech_gray_nano_reactor
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2001 NAME = tech_gray_nanite_ia
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2002 NAME = tech_gray_weapon_p
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2003 NAME = tech_gray_weapon_g
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2004 NAME = tech_gray_weapon_h
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2011 NAME = tech_gray_nano_propulsion
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2012 NAME = tech_gray_nano_jump
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2013 NAME = tech_gray_nano_sensors
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2014 NAME = tech_gray_nano_computer
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2015 NAME = tech_gray_nano_armor_hardener
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2016 NAME = tech_gray_nano_shield_recharger
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2021 NAME = tech_planet_killer_graygoo
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2022 NAME = tech_gray_nano_aura
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2031 NAME = tech_nanitecrop_titan
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2032 NAME = tech_nanitecrop_mothership
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2033 NAME = tech_nanite_storm
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2034 NAME = tech_nanitecrop_sentry
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2040 NAME = tech_gray_weapon_SML
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2041 NAME = tech_gray_weapon_l
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2042 NAME = tech_gray_weapon_x
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2043 NAME = tech_gray_weapon_t
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2044 NAME = tech_nanite_sentry_maingun
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2050 NAME = tech_gray_dark_matter_power_core
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2051 NAME = tech_gray_weapon_el
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2052 NAME = tech_gray_weapon_ex
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2053 NAME = tech_gray_weapon_et
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 2054 NAME = tech_repeat_nanoweapon
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3000 NAME = tech_gray_psionic_theory
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3010 NAME = tech_modularized_memory_injection
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3011 NAME = tech_modularized_skill_injection
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3012 NAME = tech_nano_cloning
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3013 NAME = tech_repeat_consciousness_copy
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3014 NAME = tech_repeat_consciousness_sycn
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3020 NAME = tech_consciousness_detach
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3021 NAME = tech_consciousness_backup
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3022 NAME = tech_consciousness_create
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3023 NAME = tech_virtual_conscious_network
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3024 NAME = tech_repeat_nano_gestalt_network
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3030 NAME = tech_building_nanite_bureaucratic
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3031 NAME = tech_building_nanite_bureaucratic_2
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3032 NAME = tech_building_nanite_bureaucratic_3
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3040 NAME = tech_remote_nano_swarm
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3041 NAME = tech_nano_bureaucrat_upgrade
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3042 NAME = tech_repeat_large_scale_network_manage
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3050 NAME = tech_nano_exoskeletons
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3051 NAME = tech_nano_biomechanics
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3052 NAME = tech_living_nano_construction
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3053 NAME = tech_repeat_nano_biostructure_enhance
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3060 NAME = tech_nano_drones
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3061 NAME = tech_nano_army
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3062 NAME = tech_army_gray_mecha
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3070 NAME = tech_building_gray_nano_defence_centre
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3071 NAME = tech_building_gray_fortress
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3072 NAME = tech_building_gray_fortress2
+	}
+	inline_script = {
+		script = scripted_loc/gray_tech_name
+		ID = 3073 NAME = tech_building_gray_nano_resident
+	}
+
+}
