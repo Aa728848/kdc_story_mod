@@ -1,0 +1,156 @@
+wg_major_project_1_progress_bar_0_effect = {
+	potential = { 
+		OR = {
+			exist_mpj_step = { MPJ = wg_current_mpj MPJ_PAGE_START = wg_current_mpj_page_step_1 STEP = 1 }
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_1_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 10 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 20 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_2_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 20 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 30 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_3_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 30 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 40 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_4_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 40 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 50 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_5_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 50 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 60 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_6_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 60 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 70 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_7_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 70 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 80 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_8_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 80 }
+					check_variable = { which = wg_mpj_1_step_1_progress value <= 90 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+wg_major_project_1_progress_bar_9_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_started
+				event_target:wg_player_country = {
+					check_variable = { which = wg_mpj_1_step_1_progress value > 90 }
+					check_variable = { which = wg_mpj_1_step_1_progress value < 100 }
+				}
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}
+
+wg_major_project_1_progress_bar_10_effect = {
+	potential = { 
+		OR = {
+			AND = {
+				has_country_flag = wg_mpj_1_step_1_finished
+			}
+		}
+	}
+	allow = { }
+	effect = { }
+}

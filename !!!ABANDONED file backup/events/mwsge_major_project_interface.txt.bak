@@ -1,0 +1,605 @@
+namespace = mwsge_major_project
+country_event = {
+	id = mwsge_major_project.20001
+	hide_window = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_global_flag = initialize_mwsge_major_project }
+		is_multiplayer = no
+		is_ai = no
+		is_wg_empire = yes
+		always = no
+	}
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = initialize_mwsge_major_project
+		save_global_event_target_as = wg_player_country
+		# 设定大型项目的步骤数目
+		new_array = {
+			ARRAY = wg_mpj_steps SIZE = 5
+			i0 = 5
+			i1 = 10
+			i2 = 6
+			i3 = 4
+			i4 = 4
+		}
+		# 初始化进度变量
+		# new_array = {
+		# 	ARRAY = wg_mpj_0_progress SIZE = 10
+		# 	0 = 0 1 = 0 2 = 0 3 = 0 4 = 0 5 = 0 6 = 0 7 = 0 8 = 0 9 = 0
+		# }
+		# new_array = {
+		# 	ARRAY = wg_mpj_1_progress SIZE = 10
+		# 	0 = 0 1 = 0 2 = 0 3 = 0 4 = 0 5 = 0 6 = 0 7 = 0 8 = 0 9 = 0
+		# }
+		# new_array = {
+		# 	ARRAY = wg_mpj_2_progress SIZE = 3
+		# 	0 = 0 1 = 0 2 = 0 3 = 0 4 = 0 5 = 0
+		# }
+		# new_array = {
+		# 	ARRAY = wg_mpj_3_progress SIZE = 4
+		# 	0 = 0 1 = 0 2 = 0 3 = 0
+		# }
+		# new_array = {
+		# 	ARRAY = wg_mpj_4_progress SIZE = 4
+		# 	0 = 0 1 = 0 2 = 0 3 = 0
+		# }
+
+		# 初始化大型项目步骤类型
+		# 0x = 一次型 
+		# 1x = 循环型 
+		# 2x = 概率循环型 
+		# 3x = 常驻型
+		# 4x = 科技型
+		# 50 = 考古型
+		# 后缀：(适用于0~4)
+		# 0 = 国家限定 
+		# 1 = 物理学限定 
+		# 2 = 社会学限定 
+		# 3 = 工程学限定 
+		# 4 = 物理+社会学 
+		# 5 = 社会+工程学 
+		# 6 = 物理+工程学 
+		# 7 = 所有
+		
+		new_array = {
+			ARRAY = wg_mpj_0_steps_type SIZE = 5
+			i0 = 17 i1 = 6 i2 = 40 i3 = 2 i4 = 3 
+		}
+		new_array = {
+			ARRAY = wg_mpj_1_steps_type SIZE = 10
+			i0 = 21 i1 = 5 i2 = 1 i3 = 34 i4 = 3 i5 = 7 i6 = 7 i7 = 7 i8 = 7 i9 = 7
+		}
+		new_array = {
+			ARRAY = wg_mpj_2_steps_type SIZE = 6
+			i0 = 17 i1 = 7 i2 = 0 i3 = 2 i4 = 3 i5 = 7
+		}
+		new_array = {
+			ARRAY = wg_mpj_3_steps_type SIZE = 4
+			i0 = 17 i1 = 7 i2 = 0 i3 = 2
+		}
+		new_array = {
+			ARRAY = wg_mpj_4_steps_type SIZE = 4
+			i0 = 17 i1 = 7 i2 = 0 i3 = 2
+		}
+		set_variable = { which = wg_current_mpj value = 0 }
+	}
+}
+
+country_event = {
+	id = mwsge_major_project.20002
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+		if = {
+			limit = { check_variable = { which = wg_current_mpj value = 0 }}
+			country_event = { id = mwsge_major_project.20900 }
+		} else_if = {
+			limit = { check_variable = { which = wg_current_mpj value = 1 }}
+			country_event = { id = mwsge_major_project.20901 }
+		} else_if = {
+			limit = { check_variable = { which = wg_current_mpj value = 2 }}
+			country_event = { id = mwsge_major_project.20902 }
+		} else_if = {
+			limit = { check_variable = { which = wg_current_mpj value = 3 }}
+			country_event = { id = mwsge_major_project.20903 }
+		} else_if = {
+			limit = { check_variable = { which = wg_current_mpj value = 4 }}
+			country_event = { id = mwsge_major_project.20904 }
+		} else_if = {
+			limit = { check_variable = { which = wg_current_mpj value = 5 }}
+			country_event = { id = mwsge_major_project.20905 }
+		} else_if = {
+			limit = { check_variable = { which = wg_current_mpj value = 6 }}
+			country_event = { id = mwsge_major_project.20906 }
+		}
+	}
+}
+
+country_event = {
+	id = mwsge_major_project.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		
+	}
+
+}
+
+country_event = {
+	id = mwsge_major_project.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_variable = { which = test_var value = 0 }
+		country_event = { id = mwsge_major_project.3 }
+	}
+
+}
+
+country_event = {
+	id = mwsge_major_project.20900
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project_test"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 0 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+	option = {
+		name = option_2
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20901 }
+		}
+	}
+	option = {
+		name = option_3
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20902 }
+		}
+	}
+	option = {
+		name = option_4
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20903 }
+		}
+	}
+	option = {
+		name = option_5
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20904 }
+		}
+	}
+	option = {
+		name = option_6
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20905 }
+			
+		}
+	}
+	option = {
+		name = option_7
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20906 }
+			
+		}
+	}
+}
+country_event = {
+	id = mwsge_major_project.20901
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	trigger = {
+	}
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 1 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20900 }
+		}
+	}
+	option = {
+		name = option_2
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+	option = {
+		name = option_3
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20902 }
+		}
+	}
+	option = {
+		name = option_4
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20903 }
+		}
+	}
+	option = {
+		name = option_5
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20904 }
+		}
+	}
+	option = {
+		name = option_6
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20905 }
+		}
+	}
+	option = {
+		name = option_7
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20906 }
+		}
+	}
+}
+country_event = {
+	id = mwsge_major_project.20902
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	trigger = {
+	}
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 2 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20900 }
+			
+		}
+	}
+	option = {
+		name = option_2
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20901 }
+			
+		}
+	}
+	option = {
+		name = option_3
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+	option = {
+		name = option_4
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20903 }
+			
+		}
+	}
+	option = {
+		name = option_5
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20904 }
+			
+		}
+	}
+	option = {
+		name = option_6
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20905 }
+			
+		}
+	}
+	option = {
+		name = option_7
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20906 }
+			
+		}
+	}
+}
+country_event = {
+	id = mwsge_major_project.20903
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	trigger = {
+	}
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 3 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20900 }
+			
+		}
+	}
+	option = {
+		name = option_2
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20901 }
+			
+		}
+	}
+	option = {
+		name = option_3
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20902 }
+			
+		}
+	}
+	option = {
+		name = option_4
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+	option = {
+		name = option_5
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20904 }
+			
+		}
+	}
+	option = {
+		name = option_6
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20905 }
+			
+		}
+	}
+	option = {
+		name = option_7
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20906 }
+			
+		}
+	}
+}
+country_event = {
+	id = mwsge_major_project.20904
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	trigger = {
+	}
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 4 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20900 }
+			
+		}
+	}
+	option = {
+		name = option_2
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20901 }
+			
+		}
+	}
+	option = {
+		name = option_3
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20902 }
+			
+		}
+	}
+	option = {
+		name = option_4
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20903 }
+			
+		}
+	}
+	option = {
+		name = option_5
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+	option = {
+		name = option_6
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20905 }
+		}
+	}
+	option = {
+		name = option_7
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20906 }
+		}
+	}
+}
+country_event = {
+	id = mwsge_major_project.20905
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	trigger = {
+	}
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 5 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20900 }
+			
+		}
+	}
+	option = {
+		name = option_2
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20901 }
+			
+		}
+	}
+	option = {
+		name = option_3
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20902 }
+			
+		}
+	}
+	option = {
+		name = option_4
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20903 }
+			
+		}
+	}
+	option = {
+		name = option_5
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20904 }
+			
+		}
+	}
+	option = {
+		name = option_6
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+	option = {
+		name = option_7
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20906 }
+			
+		}
+	}
+}
+country_event = {
+	id = mwsge_major_project.20906
+	title = "mwsge_major_project"
+	desc = "mwsge_major_project_desc"
+	is_triggered_only = yes
+	trigger = {
+	}
+	diplomatic = yes
+	diplomatic_title = "mwsge_major_project"
+	custom_gui = wg_major_project_window
+	custom_gui_option = wg_major_project_category_option
+	immediate = {
+		reset_mpj_page_variable = yes
+		set_variable = { which = wg_current_mpj value = 6 }
+		get_digits = { ARRAY = wg_current_mpj VARIABLE = wg_current_mpj }
+	}
+
+	option = {
+		name = option_1
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20900 }
+			
+		}
+	}
+	option = {
+		name = option_2
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20901 }
+			
+		}
+	}
+	option = {
+		name = option_3
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20902 }
+			
+		}
+	}
+	option = {
+		name = option_4
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20903 }
+			
+		}
+	}
+	option = {
+		name = option_5
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20904 }
+			
+		}
+	}
+	option = {
+		name = option_6
+		hidden_effect = {
+			country_event = { id = mwsge_major_project.20905 }
+			
+		}
+	}
+	option = {
+		name = option_7
+		custom_gui = wg_major_project_category_option_highlighted
+		custom_tooltip = already_in_current_major_project
+		is_dialog_only = yes
+		response_text = "mwsge_major_project_desc"
+		default_hide_option = yes
+	}
+}
