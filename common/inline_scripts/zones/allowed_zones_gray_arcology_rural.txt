@@ -1,0 +1,4 @@
+include = {
+    zone_trade
+    zone_gray_arcology_nanites
+}

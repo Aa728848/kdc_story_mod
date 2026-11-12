@@ -1,0 +1,112 @@
+#建门者军队#
+TMR_gatebuilder_grey_army = {
+	health = 10
+	damage = 30
+	has_morale = no
+	morale_damage = 10.0
+	collateral_damage = 10.0
+	war_exhaustion = 4.0
+	time = 50
+	has_species = no
+	icon = GFX_army_type_assault
+	resources = {
+		category = armies
+		cost = {
+			nanites = 20
+		}
+		upkeep = { energy = 1 }
+	}
+	prerequisites = { "tech_TMR_gatebuilder_army" }
+
+	potential = {
+		owner = {
+			is_ai = no
+		}
+	}
+}
+
+gray_nano_drones = {
+	damage = 2.0
+	morale_damage = 1.0
+	collateral_damage = 0.5
+	war_exhaustion = 0.05
+	health = 1.0
+	has_morale = no
+	time = 25
+	icon = GFX_gray_nano_drones
+	has_species = no
+
+	resources = {
+		category = armies
+		cost = {
+			nanites = 10
+		}
+
+		upkeep = {
+			energy = 0.1
+		}
+	}
+
+	prerequisites = { tech_nano_drones }
+
+	potential = {
+		owner = { gray_country_trigger = yes }
+	}
+}
+
+gray_nano_army = {
+	damage = 5
+	morale = 10
+	morale_damage = 3.0
+	collateral_damage = 1.5
+	war_exhaustion = 1.00
+	health = 8
+	time = 300
+	icon = GFX_gray_nano_army
+
+	resources = {
+		category = armies
+		cost = {
+			nanites = 500
+			minerals = 500
+		}
+
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	prerequisites = { "tech_galodam" }
+	potential = {
+		owner = { gray_country_trigger = yes }
+	}
+}
+
+gray_nano_mecha = {
+	damage = 15.0
+	health = 20.0
+	morale_damage = 10.0
+	collateral_damage = 3.0
+	war_exhaustion = 4.0
+	time = 1000
+	has_species = no
+	has_morale = no
+	resources = {
+		category = armies
+		cost = {
+			nanites = 2000
+			alloys = 500
+		}
+		upkeep = {
+			nanites = 2
+			energy = 20
+		}
+	}
+	icon = GFX_gray_nano_mecha
+
+	prerequisites = { "tech_army_gray_mecha" }
+	show_tech_unlock_if = { owner = { has_country_flag = gray_owner }}
+	potential = {
+		owner = { gray_country_trigger = yes }
+	}
+}

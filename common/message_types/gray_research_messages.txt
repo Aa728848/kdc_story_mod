@@ -1,0 +1,9 @@
+message_type = {
+	key = "GRAY_RESEARCH_FINISH_MESSAGE_TYPE"
+	icon = "GFX_message_gray_research_finish"
+	icon_frame = 1
+
+	sound = "advisor_notification_research_complete"
+	sound_is_advisor = yes
+	ping = "ping_notification_green"
+}

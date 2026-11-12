@@ -1,0 +1,3 @@
+﻿l_simp_chinese:
+ kdc_unlock_all.1.title:0 "【测试】解锁全部原版科技"
+ kdc_unlock_all.1.desc:0 "已直接授予全部原版科技（用于测试 KDC 科技树前置条件）。"

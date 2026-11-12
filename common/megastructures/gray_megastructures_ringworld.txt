@@ -1,0 +1,210 @@
+gray_nano_ring_world_2_intermediate = {
+	entity = ""
+	construction_entity = "ringworld_seam_entity_01_full_entity"
+	portrait = "GFX_megastructure_construction_background"
+
+	build_time = 50
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_desc = hide
+
+	upgrade_from = {
+		gray_nano_megastructure_base_2
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		every_system_planet = {
+			limit = { is_star = no }
+			remove_planet = yes
+		}
+		set_asteroid_belt = {
+			radius = 0
+		}
+
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			name = "NAME_Ring_Section_A"
+			type = "gray_nano_ring_world_2"
+			orbit_angle = 0
+			orbit_distance = 45
+			owner = from
+			graphical_culture = fromfrom
+			planet = star
+		}
+		spawn_megastructure = {
+			name = "NAME_Ring_Section_B"
+			type = "gray_nano_ring_world_2"
+			orbit_angle = 90
+			orbit_distance = 45
+			owner = from
+			graphical_culture = fromfrom
+			planet = star
+		}
+		spawn_megastructure = {
+			name = "NAME_Ring_Section_C"
+			type = "gray_nano_ring_world_2"
+			orbit_angle = 180
+			orbit_distance = 45
+			owner = from
+			graphical_culture = fromfrom
+			planet = star
+		}
+		spawn_megastructure = {
+			name = "NAME_Ring_Section_D"
+			type = "gray_nano_ring_world_2"
+			orbit_angle = 270
+			orbit_distance = 45
+			owner = from
+			graphical_culture = fromfrom
+			planet = star
+		}
+		every_system_megastructure = {
+			limit = { is_megastructure_type = gray_nano_ring_world_2 }
+			upgrade_megastructure_to = gray_nano_ring_world_3_intermediate
+		}
+	}
+}
+
+gray_nano_ring_world_2 = {
+	entity = "ringworld_3x_seams_entity"
+	portrait = "GFX_megastructure_construction_background"
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		gray_nano_ring_world_2_intermediate
+	}
+
+	# used from script only
+	upgrade_desc = hide
+	potential = { always = no }
+}
+
+gray_nano_ring_world_3_intermediate = {
+	entity = ""
+	construction_entity = "ringworld_phase_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 50
+	resources = {
+		category = megastructures
+		cost = {
+		}
+	}
+	upgrade_desc = hide
+	upgrade_from = {
+		gray_nano_ring_world_2
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+
+		spawn_planet = {
+			class = "pc_ringworld_tech"
+			location = fromfrom
+			orbit_angle_offset = 30
+			init_effect = {
+				set_name = "NAME_Ring_Section"
+				set_planet_entity = {
+					entity = "ringworld_tech_entity_01_entity"
+					graphical_culture = fromfrom
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				set_planet_flag = megastructure
+			}
+		}
+		spawn_planet = {
+			class = "pc_ringworld_seam"
+			location = fromfrom
+			init_effect = {
+				set_name = "NAME_Ring_Section"
+				set_planet_entity = {
+					entity = "ringworld_seam_entity_01_entity"
+					graphical_culture = fromfrom
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				set_planet_flag = megastructure
+			}
+		}
+		spawn_planet = {
+			class = "pc_ringworld_habitable"
+			location = fromfrom
+			orbit_angle_offset = -30
+			init_effect = {
+				set_name = "NAME_Habitable_Section_A"
+				set_planet_entity = {
+					entity = "ringworld_habitable_entity_01_entity"
+					graphical_culture = fromfrom
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				save_event_target_as = ring_section
+				trigger_megastructure_icon = yes
+				set_planet_flag = megastructure
+			}
+		}
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		remove_megastructure = fromfrom
+		if = {
+			limit = {
+				NOT = { has_star_flag = ring_section_1 }
+			}
+			set_star_flag = ring_section_1
+			event_target:ring_section = { set_name = "NAME_Habitable_Section_A" }
+			break = yes
+		}
+		if = {
+			limit = {
+				has_star_flag = ring_section_1
+				NOT = { has_star_flag = ring_section_2 }
+			}
+			set_star_flag = ring_section_2
+			event_target:ring_section = { set_name = "NAME_Habitable_Section_B" }
+			break = yes
+		}
+		if = {
+			limit = {
+				has_star_flag = ring_section_2
+				NOT = { has_star_flag = ring_section_3 }
+			}
+			set_star_flag = ring_section_3
+			event_target:ring_section = { set_name = "NAME_Habitable_Section_C" }
+			break = yes
+		}
+		if = {
+			limit = { has_star_flag = ring_section_3 }
+			remove_star_flag = ring_section_1
+			remove_star_flag = ring_section_2
+			remove_star_flag = ring_section_3
+			event_target:ring_section = { set_name = "NAME_Habitable_Section_D" }
+			break = yes
+		}
+	}
+}

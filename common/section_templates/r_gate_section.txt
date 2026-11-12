@@ -1,0 +1,15 @@
+ship_section_template = {
+	key = "r_gate_section_entity"
+	ship_size = r_gate_entity
+	fits_on_slot = mid
+	entity = "molluscoid_01_corvette_entity"
+	icon = "GFX_ship_part_core_mid"
+}
+
+ship_section_template = {
+	key = "r_gate_section_entity2"
+	ship_size = r_gate_entity2
+	fits_on_slot = mid
+	entity = "molluscoid_01_corvette_entity"
+	icon = "GFX_ship_part_core_mid"
+}

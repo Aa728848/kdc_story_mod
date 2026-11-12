@@ -1,0 +1,70 @@
+#恒星系建设工程#
+namespace = nanitemega
+
+# 星球船坞基座
+country_event = {
+	id = nanitemega.1
+	title = nanitemega.1.name
+	desc = nanitemega.1.desc
+	picture = GFX_evt_megastructure_construction
+	is_triggered_only = yes
+	location = fromfrom
+
+	trigger = {
+		from = { is_megastructure_type = nanite_star_shipyard0 }
+	}
+
+	option = {
+		name = GOOD
+	}
+}
+
+# 行星级纳米工厂
+country_event = {
+	id = nanitemega.2
+	title = nanitemega.2.name
+	desc = nanitemega.2.desc
+	picture = GFX_evt_nanite_shipyard
+	is_triggered_only = yes
+	location = fromfrom
+
+	trigger = {
+		from = { is_megastructure_type = nanite_star_shipyard1 }
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# 星球船坞
+country_event = {
+	id = nanitemega.3
+	title = nanitemega.3.name
+	desc = nanitemega.3.desc
+	picture = GFX_evt_nanite_shipyard
+	is_triggered_only = yes
+	location = fromfrom
+
+	trigger = {
+		from = { is_megastructure_type = nanite_star_shipyard2 }
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+# 当减少灰蛊哨兵挂掉时，减少计数
+country_event = {
+	id = nanitemega.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = { is_ship_size = nanitecrop_sentry }
+	}
+
+	immediate = {
+		change_variable = { which = num_nanitecrop_sentry value = -1 }
+	}
+}

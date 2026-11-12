@@ -1,0 +1,5 @@
+# 原版钩子只追加事件，不覆盖其他 mod。
+on_ship_destroyed_perp = { events = { kdcne.1 kdcne.5 } }
+on_damage_taken = { events = { kdcne.2 kdcne.9 } }
+on_tech_increased = { events = { kdcne.3 } }
+on_ship_upgraded = { events = { kdcne.7 } }

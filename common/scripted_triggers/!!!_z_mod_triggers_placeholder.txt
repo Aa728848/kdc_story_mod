@@ -1,0 +1,120 @@
+###_MOD trigger placeholder	######################################################################
+#_[z_fw][z_lctr][ugrc]
+
+#_[z_pf]
+#_[z_pr]
+#_[aup]			非官方补丁
+#_[wsg_swg]
+#_[hfe]
+#_[sofe]
+#_[giga]
+#_[ehof]
+#_[ws]			荒野空间
+#_[pd]			√
+#_[aot]		√
+
+has_spy_wg_special_authority = {
+	always = no
+}
+
+default_vaild_country = {
+	custom_tooltip = {
+		fail_text = "not_vaild_country_or_no_communications"
+		NOT = { is_same_empire = root }
+		OR = {
+			is_default_and_fallen_empire_country = no
+			AND = {
+				NOT = { is_same_empire = root }
+				has_communications = root
+				count_system_within_border = { count > 0 }
+			}
+		}
+	}
+}
+
+is_default_and_fallen_empire_country = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+	}
+}
+
+###_[z_pf]	####################################################################
+#_cntr	[z_fw]
+z_pf_trgr_cntr_valid = { always = no }
+
+
+###_[z_pr]	####################################################################
+z_pr_trgr_cntr_valid = { always = no }	#_用于开局设定
+
+
+
+
+###_[aup]	####################################################################
+#_pop	[z_fw]
+ariphaos_patch_slaves_expel = { always = no }
+
+
+###_[wsg_swg]	####################################################################
+#_spcs
+has_wg_traits = { always = no }
+#_cntr	[ugrc]
+has_wg_special_authority = {
+	always = no
+}
+is_wg_empire = {
+	always = no
+}
+has_wg_and_uf_special_authority = {
+	always = no
+}
+#_cntr	[ugrc]
+is_khan_country_type = { always = no }
+
+
+###_[hfe]	####################################################################
+#_plnt	[z_fw]
+hfe_trigger_is_psionic = { always = no }
+#_spcs	[ugrc]
+hfe_trigger_population_procreate_housing_block_enabled = { always = no }
+#_pop	[ugrc]
+hfe_trigger_unemployed_auto_migrate = { always = no }
+#_cntr	[ugrc]
+hfe_trigger_is_human_fallen = { always = no }
+
+
+###_[sofe]	####################################################################
+#_cntr	[ugrc]
+is_progenitor_empires = { always = no }
+
+
+###_[giga]	####################################################################
+#_sys	[ugrc]
+cohesive_system = { always = no }
+urmazin_system = { always = no }
+everchanging_system = { always = no }
+katzen_jump_blocked_system = { always = no }
+
+
+###_[ehof]	####################################################################
+#_sys	[ugrc]
+ehof_cohesive_system = { always = no }
+ehof_trader_system = { always = no }
+ehof_creator_system = { always = no }
+
+
+###_[ws]	####################################################################
+#_sstm	[ugrc]
+is_ws_system = { always = no }
+
+
+###_[pd]	####################################################################
+is_pd_exotic = { always = no }
+is_pd_unique = { always = no }
+
+
+###_[aot]	####################################################################
+is_crackable_celestial_object = { always = no }
+
+is_nirvana_empire_council = { always = no }

@@ -1,0 +1,178 @@
+namespace = kdcne_cloud
+
+# Each cloud chain carries its own fixed anchor and source country through delayed events.
+system_event = {
+    id = kdcne_cloud.1
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = {
+                exists = event_target:kdcne_cloud_anchor_target
+                exists = event_target:kdcne_cloud_source
+            }
+            every_fleet_in_system = {
+                limit = { kdcne_cloud_foreign_target = yes }
+                every_owned_ship = {
+                    limit = {
+                        distance = { source = event_target:kdcne_cloud_anchor_target type = euclidean same_solar_system = yes max_distance <= 30 }
+                        kdcne_cloud_foreign_target = yes
+                        NOT = { kdcne_is_immune_to_corrosion_trigger = yes }
+                    }
+                    kdcne_cloud_expose_ship = yes
+                }
+            }
+            system_event = { id = kdcne_cloud.1 days = 1 }
+        }
+        else_if = {
+            limit = { exists = event_target:kdcne_cloud_anchor_target }
+            destroy_ambient_object = event_target:kdcne_cloud_anchor_target
+        }
+    }
+}
+# Expire only the ambient object carried by this cloud's own event chain.
+system_event = {
+    id = kdcne_cloud.5
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { exists = event_target:kdcne_cloud_anchor_target }
+            destroy_ambient_object = event_target:kdcne_cloud_anchor_target
+        }
+    }
+}
+# Legacy queued ship event: transfer to the system scheduler once, without
+# creating a second recovery chain if contact already migrated this ship.
+ship_event = {
+    id = kdcne_cloud.2
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { has_ship_flag = kdcne_cloud_managed }
+    immediate = {
+        if = {
+            limit = { NOT = { has_ship_flag = kdcne_cloud_recovery_running } }
+            kdcne_cloud_recover_ship = yes
+        }
+    }
+}
+# Recovery is independent of the affected country's standard_event_module.
+# Local target tracks the same ship across movement and save/load.
+system_event = {
+    id = kdcne_cloud.7
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { exists = event_target:kdcne_cloud_recovering_ship }
+            event_target:kdcne_cloud_recovering_ship = {
+                if = {
+                    limit = { has_ship_flag = kdcne_cloud_managed }
+                    kdcne_cloud_recover_ship = yes
+                }
+            }
+        }
+    }
+}
+ship_event = {
+    id = kdcne_cloud.3
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        # Old ship callbacks only hand off; they must not race the new system callback.
+        if = {
+            limit = { NOT = { has_ship_flag = kdcne_assimilation_pending_v2 } }
+            remove_ship_flag = kdcne_assimilation_pending
+            if = { limit = { kdcne_cloud_can_assimilate = yes } kdcne_cloud_schedule_assimilation = yes }
+        }
+    }
+}
+system_event = {
+    id = kdcne_cloud.8
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { exists = event_target:kdcne_assimilation_target }
+            event_target:kdcne_assimilation_target = {
+                if = {
+                    limit = { has_ship_flag = kdcne_assimilation_pending_v2 }
+                    remove_ship_flag = kdcne_assimilation_pending
+                    remove_ship_flag = kdcne_assimilation_pending_v2
+                    if = { limit = { kdcne_cloud_can_assimilate = yes } kdcne_cloud_assimilate_ship = yes }
+                }
+            }
+        }
+    }
+}
+# One-time bridge for .4 events already queued in older saves. New shots use .6.
+# An old callback must never erase a new shot's timer, source or visual.
+system_event = {
+    id = kdcne_cloud.4
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { NOT = { has_star_flag = kdcne_projection_loop_running } }
+            if = {
+                limit = { has_star_flag = kdcne_projection_active exists = event_target:kdcne_cloud_source }
+                event_target:kdcne_cloud_source = { save_global_event_target_as = kdcne_projection_source_@root }
+                if = {
+                    limit = { exists = event_target:kdcne_projection_visual }
+                    event_target:kdcne_projection_visual = { save_global_event_target_as = kdcne_projection_visual_@root }
+                }
+                set_star_flag = kdcne_projection_converted
+                set_star_flag = kdcne_projection_loop_running
+                system_event = { id = kdcne_cloud.6 }
+            }
+            else = {
+                remove_star_flag = kdcne_projection_active
+                remove_modifier = kdcne_projection_coverage
+            }
+        }
+        if = {
+            limit = {
+                exists = event_target:kdcne_projection_visual
+                if = {
+                    limit = { exists = event_target:kdcne_projection_visual_@root }
+                    event_target:kdcne_projection_visual = { NOT = { is_same_value = event_target:kdcne_projection_visual_@root } }
+                }
+            }
+            destroy_ambient_object = event_target:kdcne_projection_visual
+        }
+    }
+}
+system_event = {
+    id = kdcne_cloud.6
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { has_star_flag = kdcne_projection_active exists = event_target:kdcne_projection_source_@root }
+            event_target:kdcne_projection_source_@root = { save_event_target_as = kdcne_cloud_source }
+            kdcne_projection_ensure_visual = yes
+            every_fleet_in_system = {
+                limit = { kdcne_cloud_foreign_target = yes }
+                every_owned_ship = {
+                    limit = { kdcne_cloud_foreign_target = yes NOT = { kdcne_is_immune_to_corrosion_trigger = yes } }
+                    kdcne_cloud_expose_ship = yes
+                }
+            }
+            system_event = { id = kdcne_cloud.6 days = 1 }
+        }
+        else = {
+            remove_star_flag = kdcne_projection_active
+            remove_star_flag = kdcne_projection_loop_running
+            remove_modifier = kdcne_projection_coverage
+            if = {
+                limit = { exists = event_target:kdcne_projection_visual_@root }
+                destroy_ambient_object = event_target:kdcne_projection_visual_@root
+                clear_global_event_target = kdcne_projection_visual_@root
+            }
+            if = {
+                limit = { exists = event_target:kdcne_projection_source_@root }
+                clear_global_event_target = kdcne_projection_source_@root
+            }
+        }
+    }
+}

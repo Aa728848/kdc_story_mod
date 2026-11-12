@@ -1,0 +1,4 @@
+# Keep the load hook for active projector visuals and legacy save compatibility.
+on_single_player_save_game_load = {
+    events = { kdcne_stellar.2 }
+}

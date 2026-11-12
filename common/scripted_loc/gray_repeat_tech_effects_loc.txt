@@ -1,0 +1,18 @@
+defined_text = {
+    inline_script = {
+        script = scripted_loc/gray_repeat_tech_effect
+        ID = 1024 NAME = tech_nano_job_foundry_upgrade
+    }
+}
+defined_text = {
+    inline_script = {
+        script = scripted_loc/gray_repeat_tech_effect
+        ID = 1034 NAME = tech_nano_job_artisan_upgrade
+    }
+}
+defined_text = {
+    inline_script = {
+        script = scripted_loc/gray_repeat_tech_effect
+        ID = 3041 NAME = tech_nano_bureaucrat_upgrade
+    }
+}

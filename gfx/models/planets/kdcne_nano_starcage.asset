@@ -1,0 +1,10 @@
+# Planet-class prefix kdcne_nano_starcage resolves to this _01_entity.
+# A fixed culture gives the planet renderer an exact, existing Dyson sphere entity.
+entity = {
+    name = "kdcne_nano_starcage_01_entity"
+    locator = { name = "root" position = { 0 0 0 } }
+    attach = { "root" = "mammalian_01_dyson_sphere_phase_05_entity" }
+    scale = 1.0
+    cull_radius = 500
+    game_data = { size = 300 }
+}

@@ -1,0 +1,27 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 测试血牛沙包（船体设计，事件召唤用）
+# ============================================================================
+
+ship_design = {
+	name = "NAME_kdcne_test_dummy"
+	ship_size = kdcne_test_dummy
+	is_event_design = yes
+
+	section = {
+		template = "kdcne_test_dummy_section"
+		slot = "mid"
+	}
+}
+
+# 普通护卫舰：满足原版 can_capture_ship 船型白名单；无武器。
+ship_design = {
+	name = "NAME_kdcne_test_capture_dummy"
+	ship_size = corvette
+	is_event_design = yes
+	section = { template = "CORVETTE_MID_S3" slot = "mid" }
+	required_component = "HYPER_DRIVE_1"
+	required_component = "SHIP_THRUSTER_1"
+	required_component = "SENSOR_1"
+	required_component = "CORVETTE_FISSION_REACTOR"
+	required_component = "COMBAT_COMPUTER_SWARM_BASIC"
+}

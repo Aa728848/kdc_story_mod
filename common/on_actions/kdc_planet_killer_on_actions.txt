@@ -1,0 +1,15 @@
+on_destroy_planet_with_PLANET_KILLER_GRAYGOO = {
+	events = {
+		graygoo.10000
+		planet_destruction.600 # frag holy world
+		ap_wg_crisis.12
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_GRAYGOO_GRAY = {
+	events = {
+		graygoo.10000
+		planet_destruction.600 # frag holy world
+		ap_wg_crisis.12
+	}
+}

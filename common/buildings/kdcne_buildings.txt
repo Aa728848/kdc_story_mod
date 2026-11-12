@@ -1,0 +1,82 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 建筑
+# 命名 building_kdcne_*，与旧 mod 的 building_gray_*/building_nano* 区分
+# ============================================================================
+
+# --- 纳米进化实验室（研究 + 进化机制载体） ----------------------------------------
+building_kdcne_nano_evolution_lab = {
+	base_buildtime = 480
+	planet_limit = 1
+	category = research
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 500
+			nanites = 100
+		}
+		upkeep = {
+			energy = 5
+			nanites = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_kdcne_evolution_core }
+		}
+		planet_jobs_physics_research_produces_mult = 0.1
+		planet_jobs_engineering_research_produces_mult = 0.1
+	}
+
+	prerequisites = {
+		"tech_kdcne_evolution_core"
+	}
+}
+
+# --- 纳米云发生器（防御 + 纳米云载体） -------------------------------------------
+building_kdcne_nano_cloud_generator = {
+	base_buildtime = 480
+	planet_limit = 1
+	category = government
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 500
+			nanites = 100
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.25
+	}
+
+	prerequisites = {
+		"tech_kdcne_nano_cloud"
+	}
+}

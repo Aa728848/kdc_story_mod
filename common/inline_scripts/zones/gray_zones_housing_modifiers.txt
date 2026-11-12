@@ -1,0 +1,44 @@
+triggered_district_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+        NOR = {
+            is_planet_class = pc_habitat
+            is_planet_class = pc_city
+            is_planet_class = pc_machine
+            is_planet_class = pc_hive
+            is_ringworld = yes
+            is_planet_class = pc_wg_graygoo
+        }
+    }
+    planet_housing_add = @zone_urban_housing_negative
+}
+
+triggered_district_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+        OR = {
+            is_planet_class = pc_city
+            is_planet_class = pc_machine
+            is_planet_class = pc_hive
+            is_planet_class = pc_wg_graygoo
+        }
+    }
+    planet_housing_add = @zone_arcology_housing_negative
+}
+
+triggered_district_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+        is_ringworld = yes
+    }
+    planet_housing_add = @zone_ring_world_housing_negative
+}

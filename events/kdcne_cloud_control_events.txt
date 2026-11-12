@@ -1,0 +1,214 @@
+namespace = kdcne_cloud
+
+# Natural completion hands off the exact instance. No stage restoration is needed.
+country_event = {
+    id = kdcne_cloud.24
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        remove_country_flag = kdcne_projection_open_pending
+        if = {
+            limit = { kdcne_projection_window_free = yes }
+            kdcne_projection_clear_selection = yes
+            if = {
+                limit = { exists = event_target:kdcne_projection_opening_launcher }
+                event_target:kdcne_projection_opening_launcher = {
+                    if = {
+                        limit = {
+                            kdcne_projection_stage_valid = yes
+                            exists = owner
+                            if = { limit = { exists = owner } owner = { is_same_value = root } }
+                        }
+                        save_global_event_target_as = kdcne_projection_launcher_@root
+                    }
+                }
+            }
+            if = {
+                limit = { kdcne_projection_launcher_valid = { SOURCE = root } }
+                log = "KDCNE projector: completed stage bound; opening control"
+                country_event = { id = kdcne_cloud.21 }
+            }
+            else = { country_event = { id = kdcne_cloud.26 } }
+        }
+    }
+}
+country_event = {
+    id = kdcne_cloud.26
+    title = kdcne_cloud.26.title
+    desc = kdcne_cloud.26.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    option = { name = OK }
+}
+
+# Explicit maintenance for already damaged instances from earlier versions.
+# Valid stages are left intact. The replacement must be verified before removal.
+country_event = {
+    id = kdcne_cloud.25
+    title = kdcne_cloud.25.title
+    desc = kdcne_cloud.25.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    option = {
+        name = kdcne_repair_projectors
+        allow = { kdcne_projection_window_free = yes }
+        if = {
+            limit = { kdcne_projection_window_free = yes }
+            kdcne_projection_clear_selection = yes
+            every_owned_megastructure = {
+                limit = {
+                    has_megastructure_flag = kdcne_projector_ready
+                    NOR = {
+                        is_megastructure_type = kdcne_mega_cloud_projector
+                        is_megastructure_type = kdcne_mega_cloud_projector_control
+                        is_megastructure_type = kdcne_mega_cloud_projector_control_repeat
+                    }
+                    is_upgrading = no
+                    exists = planet
+                    exists = solar_system
+                    exists = owner
+                    if = { limit = { exists = owner } owner = { is_same_value = root } }
+                }
+                root = { remove_country_flag = kdcne_repair_spawned }
+                save_event_target_as = kdcne_repair_old
+                planet = { save_event_target_as = kdcne_repair_planet }
+                solar_system = {
+                    spawn_megastructure = {
+                        type = kdcne_mega_cloud_projector
+                        owner = root
+                        planet = event_target:kdcne_repair_planet
+                        coords_from = event_target:kdcne_repair_old
+                        graphical_culture = root
+                        init_effect = {
+                            set_megastructure_flag = kdcne_projector_ready
+                            save_event_target_as = kdcne_repair_new
+                            root = { set_country_flag = kdcne_repair_spawned }
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        root = { has_country_flag = kdcne_repair_spawned }
+                        exists = event_target:kdcne_repair_new
+                        if = {
+                            limit = { exists = event_target:kdcne_repair_new }
+                            event_target:kdcne_repair_new = {
+                                kdcne_projection_stage_valid = yes
+                                NOT = { is_same_value = event_target:kdcne_repair_old }
+                                exists = owner
+                                if = { limit = { exists = owner } owner = { is_same_value = root } }
+                                exists = planet
+                                if = { limit = { exists = planet } planet = { is_same_value = event_target:kdcne_repair_planet } }
+                            }
+                        }
+                    }
+                    remove_megastructure = this
+                }
+            }
+            remove_country_flag = kdcne_repair_spawned
+        }
+    }
+    option = { name = kdcne_close }
+}
+
+country_event = {
+    id = kdcne_cloud.20
+    title = kdcne_cloud.20.title
+    desc = kdcne_cloud.20.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    trigger = { is_ai = no }
+    option = {
+        name = kdcne_capture_off
+        trigger = { NOT = { has_country_flag = kdcne_assimilation_enabled } }
+        allow = { has_technology = tech_kdcne_assimilation }
+        set_country_flag = kdcne_assimilation_enabled
+        country_event = { id = kdcne_cloud.20 }
+    }
+    option = {
+        name = kdcne_capture_on
+        trigger = { has_country_flag = kdcne_assimilation_enabled }
+        remove_country_flag = kdcne_assimilation_enabled
+        country_event = { id = kdcne_cloud.20 }
+    }
+    option = { name = kdcne_close }
+}
+
+
+# THIS=map selection, FROM=player in the custom buttons.
+country_event = {
+    id = kdcne_cloud.21
+    title = kdcne_cloud.21.title
+    desc = kdcne_cloud.21.desc
+    diplomatic = yes
+    custom_gui = kdcne_projector_window
+    picture_event_data = { room = ethic_spaceship_room }
+    is_triggered_only = yes
+    option = {
+        name = kdcne_review_projection
+        custom_gui = kdcne_projector_option
+        allow = { custom_tooltip_icon = { text = kdcne_requires_target exists = event_target:kdcne_projection_target_@root } }
+        country_event = { id = kdcne_cloud.23 }
+    }
+    option = {
+        name = kdcne_close
+        custom_gui = kdcne_projector_option
+        kdcne_projection_clear_selection = yes
+    }
+}
+country_event = {
+    id = kdcne_cloud.22
+    title = kdcne_cloud.22.title
+    desc = kdcne_cloud.22.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    option = { name = kdcne_back country_event = { id = kdcne_cloud.21 } }
+    option = { name = kdcne_close kdcne_projection_clear_selection = yes }
+}
+
+# Legacy confirmation: only offer a safe exit; never debit or convert a body.
+country_event = {
+    id = kdcne_cloud.27
+    title = kdcne_cloud.27.title
+    desc = kdcne_stellar_retired_desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    option = { name = kdcne_close kdcne_projection_clear_selection = yes }
+}
+country_event = {
+    id = kdcne_cloud.23
+    title = kdcne_cloud.23.title
+    desc = {
+        trigger = { exists = event_target:kdcne_projection_target_@root }
+        text = kdcne_cloud.23.desc
+    }
+    desc = {
+        trigger = { NOT = { exists = event_target:kdcne_projection_target_@root } }
+        text = kdcne_cloud.23.no_target
+    }
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { exists = event_target:kdcne_projection_target_@root }
+            event_target:kdcne_projection_target_@root = { save_event_target_as = kdcne_projection_selected }
+        }
+    }
+    option = {
+        name = kdcne_fire_projection
+        allow = { kdcne_projection_can_fire = { SOURCE = root } }
+        if = {
+            limit = { kdcne_projection_can_fire = { SOURCE = root } }
+            log = "KDCNE projector: projection committed"
+            save_event_target_as = kdcne_cloud_source
+            add_resource = { energy = -10000 nanites = -2000 }
+            set_timed_country_flag = { flag = kdcne_projection_cooldown days = 30 }
+            add_modifier = { modifier = kdcne_projection_recharging days = 30 }
+            event_target:kdcne_projection_target_@root = { kdcne_start_projection = yes }
+            kdcne_projection_clear_selection = yes
+        }
+        else = { country_event = { id = kdcne_cloud.22 } }
+    }
+    option = { name = kdcne_back country_event = { id = kdcne_cloud.21 } }
+    option = { name = kdcne_close kdcne_projection_clear_selection = yes }
+}

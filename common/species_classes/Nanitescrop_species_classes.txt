@@ -1,0 +1,16 @@
+"NANITESCROP" = {
+	archetype = NANITES_CROP
+	playable = { has_global_flag = game_started }
+
+	randomized = no
+	gender = no
+	use_climate_preference = no
+	portrait_modding = yes
+
+	# Portrait membership moved to common/portrait_sets/kdc_nanitescrop.txt.
+	
+	# Portrait membership moved to common/portrait_sets/kdc_nanitescrop.txt.
+
+	graphical_culture = gatebuilder_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}

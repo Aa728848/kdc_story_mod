@@ -1,0 +1,8 @@
+ambient_object = {
+	name = "construction_platform_object"
+	entity = "mammalian_01_construction_platform_entity"
+	selectable = yes
+	show_name = yes
+	tooltip = "construction_platform_object_tooltip"
+	description = "construction_platform_object_desc"
+}

@@ -1,0 +1,16 @@
+ship_design = {
+	name = "NAME_nanite_core"
+	ship_size = TMR_core
+	is_event_design = yes
+
+	section = {
+		template = "nanite_core_01_key"
+		slot = "mid"
+	}
+
+	required_component = "gray_nano_jump"
+	required_component = "PLATFORM_gray_nano_REACTOR"
+	required_component = "DESTROYER_GRAY_NANO_SHIP_THRUSTER"
+	required_component = "wg_gray_computer2"
+	required_component = "GRAY_NANO_SENSOR"
+}

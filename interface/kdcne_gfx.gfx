@@ -1,0 +1,103 @@
+spriteTypes = {
+	# ============================================================================
+	# KDC 纳米机制扩展 · GFX 注册（占位：复用旧 mod 现有 DDS，后续替换 kdcne_ 专属图）
+	# ============================================================================
+
+	# 组件 tag 图标
+	spriteType = {
+		name = "GFX_kdcne_nano_torpedo"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_g.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_selfdestruct"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_ia.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_cloud_generator"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_ia.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_evolution_core"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_ia.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_aircraft"
+		texturefile = "gfx/interface/icons/ship_parts/wg_gray_h.dds"
+	}
+
+	# 修饰器图标
+	spriteType = {
+		name = "GFX_kdcne_is_nano_ship"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_evolution_level"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_corrosion"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_immune_to_nano_corrosion"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_corrosion_resistance"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_cloud_debuff"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_immune_to_nano_cloud"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_assimilation"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_nano_lifesteal"
+		texturefile = "gfx/interface/icons/resources/nanites_large.dds"
+	}
+
+	# 巨构图标
+	spriteType = {
+		name = "GFX_kdcne_mega_cloud_projector_build_icon"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_mega_cloud_projector_control_build_icon"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_mega_cloud_projector_outliner_icon"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_mega_cloud_projector_control_outliner_icon"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_mega_nanofication"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_mega_starcage"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+	spriteType = {
+		name = "GFX_kdcne_mega_shipyard"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+	}
+    spriteType = {
+        name = "GFX_kdcne_mega_cloud_projector_control_repeat_build_icon"
+        texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+    }
+    spriteType = {
+        name = "GFX_kdcne_mega_cloud_projector_control_repeat_outliner_icon"
+        texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+    }
+}

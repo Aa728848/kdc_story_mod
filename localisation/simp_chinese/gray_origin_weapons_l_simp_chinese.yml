@@ -1,0 +1,109 @@
+﻿l_simp_chinese:
+######################## 灰风起源科技
+ weapon_type_nano: "§E纳米武器§!"
+
+
+ wg_gray_h: "纳米舰载机中队"
+ wg_gray_l: "纳米重型主炮"
+ wg_gray_p: "纳米点防阵列"
+ wg_gray_t: "纳米主炮"
+ wg_gray_g: "灰风能量鱼雷"
+ wg_gray_jump: "纳米跃迁引擎"
+ wg_gray_ia: "纳米IA装甲"
+ wg_gray_computer: "灰风作战计算机"
+ wg_gray_sensor: "纳米探测器"
+ wg_gray_thruster: "纳米推进器"
+ wg_gray_reactor: "纳米反应堆"
+ mod_weapon_type_nano_weapon_damage_mult: "§E纳米武器§!攻击伤害"
+ mod_weapon_type_nano_weapon_fire_rate_mult: "§E纳米武器§!攻击速度"
+
+ graygoo.10001.name: "§Y[From.GetName]§!被灰蛊化"
+ graygoo.10001.desc: "随着大量不受控制的自增殖纳米机器被§Y[FromFrom.GetName]§!投放到§Y[From.GetName]§!上，§Y[From.GetName]§!瞬间被这些纳米机械同化，变成了一颗灰蛊星球！\n据§Y[FromFrom.GetName]§!船员的观察，§Y[From.GetName]§!整个星球从里到外每一颗原子都已经彻彻底底的变成了单纯的，没有生机的纳米机械。"
+
+ gray_weapon_SML: "通用型纳米能量炮"
+ gray_weapon_SML_DESC: "一种通用且便于维护，但极具杀伤力的能量炮。这种能量炮由炮组内无数的纳米组件产生的人工零点量子场来供能，并且发射能够穿透一切装甲护盾的纳米能量团，有效地摧毁所有来袭的舰船。"
+ gray_weapon_SML_s: "小型纳米能量炮"
+ gray_weapon_SML_m: "中型纳米能量炮"
+ gray_weapon_SML_l: "大型纳米能量炮"
+
+ gray_weapon_h: "小型无人纳米舰载机"
+ gray_weapon_h_DESC: "这些高效的小型舰载机能够钻过敌方严密的防线，将它们携带的极具破坏性的纳米能量炸弹投放到敌方舰船上，纳米能量炸弹引发的纳米能量团爆炸能够穿过敌方的装甲护盾，直接对舰船结构进行破坏。"
+
+ gray_weapon_p: "纳米速射近防炮"
+ gray_weapon_p_DESC: "这种近防炮能快速将大量破坏性的纳米机械抛洒到敌方舰载机和抛射物来袭的路上，纳米机械能够钻过装甲和护盾直接对舰载机和敌抛射物本体侵蚀其结构，使其无力化。"
+
+ gray_weapon_g: "纳米能量炸弹"
+ gray_weapon_g_DESC: "一种包裹着大量破坏性的纳米能量团的炸弹，一旦爆炸，它就会对周围舰船造成极大的伤害，而纳米能量团的性质使得它能直接穿过严密的护甲和护盾，直接破坏舰船结构。"
+
+ gray_weapon_l: "纳米能量加速炮"
+ gray_weapon_l_DESC: "$tech_gray_weapon_l_desc$"
+ gray_weapon_el: "暗物质纳米加速炮"
+ gray_weapon_el_DESC: "$tech_gray_weapon_el_desc$"
+
+ gray_weapon_x: "纳米能量光矛"
+ gray_weapon_x_DESC: "$tech_gray_weapon_x_desc$"
+ gray_weapon_ex: "暗物质纳米能量光矛"
+ gray_weapon_ex_DESC: "$tech_gray_weapon_ex_desc$"
+
+ gray_weapon_t: "纳米崩坏光矛"
+ gray_weapon_t_DESC: "通过压缩大量的纳米能量团，使得能量团周围局部空间质量提升至能够撕裂时空的地步。而这个巨炮则能够将这种能量团加速至第三宇宙速度并发射出去，湮灭其前进路上的任何已知物质。"
+
+ gray_weapon_et: "暗物质纳米崩坏光矛"
+ gray_weapon_et_DESC: "直接使用暗物质包裹发射这种极具毁灭性的纳米能量团能够压缩更多旧式巨炮的占用空间，从而全方位提升该炮的射程，射速，威力等一系列指标。"
+
+ gray_nanite_ia: "一体化纳米护甲"
+ gray_nanite_ia_DESC: "$tech_gray_nanite_ia_desc$"
+ gray_nanite_ia_s: "小型$gray_nanite_ia$"
+ gray_nanite_ia_m: "$gray_nanite_ia$"
+ gray_nanite_ia_l: "大型$gray_nanite_ia$"
+ 
+ gray_nano_armor_hardener: "$tech_gray_nano_armor_hardener$"
+ gray_nano_armor_hardener_desc: "$tech_gray_nano_armor_hardener_desc$"
+ 
+ tech_gray_nano_shield_recharger: "纳米护盾时空锚定器"
+ tech_gray_nano_shield_recharger_desc: "这种装置能够让护盾产生的能量力场锚定在某个时空节点中，令来自外部的攻击无法绕过护盾产生的能量力场。但这种制作工艺十分复杂，将明显推高舰船的造价。"
+ gray_nano_shield_recharger: "$tech_gray_nano_shield_recharger$"
+ gray_nano_shield_recharger_desc: "$tech_gray_nano_shield_recharger_desc$"
+
+ gray_nano_jump: "纳米跃迁引擎"
+
+ GRAY_NANO_SENSOR: "量子场纳米探测阵列"
+ TECH_UNLOCK_GRAY_NANO_SENSORS_TITLE: "§H解锁部件：§!$GRAY_NANO_SENSOR$"
+
+  COMBAT_COMPUTER_SWARM_NANO_GRAY: "纳米战斗计算机（集群）"
+ COMBAT_COMPUTER_PICKET_NANO_GRAY: "纳米战斗计算机（哨戒）"
+ COMBAT_COMPUTER_LINE_NANO_GRAY: "纳米战斗计算机（战列）"
+ COMBAT_COMPUTER_ARTILLERY_NANO_GRAY: "纳米战斗计算机（火炮）"
+ COMBAT_COMPUTER_CARRIER_NANO_GRAY: "纳米战斗计算机（航母）"
+ COMBAT_COMPUTER_PLATFORM_NANO_GRAY: "纳米战斗计算机（平台）"
+ CORVETTE_gray_nano_REACTOR: "纳米能量反应堆"
+
+
+ DESTROYER_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ CRUISER_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ BATTLESHIP_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ TITAN_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ COLOSSUS_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ PLATFORM_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ ION_CANNON_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ STARBASE_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+ UAV_gray_nano_REACTOR: "$CORVETTE_gray_nano_REACTOR$"
+
+ TECH_UNLOCK_GRAY_NANO_THRUSTER_TITLE: "§H解锁部件：§!$GRAY_NANO_SHIP_THRUSTER$"
+ TECH_UNLOCK_GRAY_NANO_THRUSTER_DESC: "$tech_gray_nano_propulsion_desc$"
+ GRAY_NANO_SHIP_THRUSTER: "纳米能量推进器"
+ DESTROYER_GRAY_NANO_SHIP_THRUSTER: "$GRAY_NANO_SHIP_THRUSTER$"
+ CRUISER_GRAY_NANO_SHIP_THRUSTER: "$GRAY_NANO_SHIP_THRUSTER$"
+ BATTLESHIP_GRAY_NANO_SHIP_THRUSTER: "$GRAY_NANO_SHIP_THRUSTER$"
+ TITAN_GRAY_NANO_SHIP_THRUSTER: "$GRAY_NANO_SHIP_THRUSTER$"
+ COLOSSUS_GRAY_NANO_SHIP_THRUSTER: "$GRAY_NANO_SHIP_THRUSTER$"
+ UAV_GRAY_NANO_SHIP_THRUSTER: "$GRAY_NANO_SHIP_THRUSTER$" 
+
+ SHIP_AURA_NANO_REPAIR: "纳米结构回复场"
+ aura_nano_repair: "$SHIP_AURA_NANO_REPAIR$"
+ SHIP_AURA_NANO_PENETRATE: "纳米量子穿透场"
+ aura_nano_penetrate: "$SHIP_AURA_NANO_PENETRATE$"
+ SHIP_AURA_NANO_SUPRESS: "纳米抑制场"
+ aura_nano_supress: "$SHIP_AURA_NANO_SUPRESS$"
+ SHIP_AURA_NANO_DAMPENER: "纳米风暴"
+ aura_nano_dampener: "$SHIP_AURA_NANO_DAMPENER$"

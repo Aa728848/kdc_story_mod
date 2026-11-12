@@ -1,0 +1,323 @@
+#星球船坞基座#
+nanite_star_shipyard0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"				
+	show_galactic_map_icon = no
+	entity_offset = { x = -27 y = -27 }
+	place_entity_on_planet_plane = yes
+	construction_blocks_and_blocked_by = none
+	potential = {
+		is_ai = no
+	}
+	prerequisites = { "tech_TMR_nanite_factory" }
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_maximum_five_shipyard"
+			exists = from
+			from = {
+				check_variable = { 
+					which = nanite_star_shipyard
+					value < 5
+				}
+			}	
+		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_nanite_star_shipyard"
+		# 	from = { NOT = { has_country_flag = built_nanite_star_shipyard } }
+		# }
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_pc_gray_goo"
+				planet = {
+					is_planet_class = pc_gray_goo
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 15000
+			unity = 3000
+		}
+	}
+ 
+	on_build_complete = {
+		from = {
+			change_variable = {
+				which = nanite_star_shipyard
+				value = 1
+			}
+			if = {
+				limit = { NOT = { has_country_flag = built_nanite_star_shipyard }}
+				set_country_flag = built_nanite_star_shipyard
+				if = {
+					limit = { has_global_flag = has_wsg_mod is_wg_empire = yes }
+					change_variable = { which = rankpts value = 5 }
+				}
+			}	
+		}
+		fromfrom.planet = {
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+
+#星球船坞1
+nanite_star_shipyard1 = {
+	entity = "nanite_shipyard_part_entity"
+	construction_entity = "nanite_shipyard_part_entity"
+	portrait = "GFX_megastructure_construction_background"				
+	show_galactic_map_icon = no
+	entity_offset = { x = 0 y = 0 }
+	potential = {
+		is_ai = no
+	}
+	prerequisites = { "tech_TMR_nanite_factory" }
+
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 15000
+			nanites = 5000
+			unity = 1500
+		}
+		produces = {
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+ 
+	upgrade_from = {
+		nanite_star_shipyard0
+	}
+}
+
+#星球船坞1
+nanite_star_shipyard2 = {
+	entity = "nanite_shipyard_01_entity"
+	construction_entity = "nanite_shipyard_01_entity"
+	portrait = "GFX_megastructure_construction_background"				
+	show_galactic_map_icon = no
+	entity_offset = { x = 0 y = 0 }
+	potential = {
+		is_ai = no
+	}
+	prerequisites = { "tech_TMR_nanite_factory" }
+
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 15000
+			nanites = 5000
+			unity = 1500
+		}
+		produces = {
+			nanites = 500
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+ 
+	upgrade_from = {
+		nanite_star_shipyard1
+	}
+	on_build_complete = {
+		root = { set_star_flag = nanite_star_shipyard }
+	}
+}
+ 
+#建造纳米哨兵
+nanite_star_shipyard3 = {
+	entity = "nanite_shipyard2_01_entity"
+	construction_entity = "nanite_shipyard2_01_entity"
+	portrait = "GFX_megastructure_construction_background"				
+	show_galactic_map_icon = no
+	entity_offset = { x = 0 y = 0 }
+	potential = {
+		is_ai = no
+	}
+	prerequisites = { "tech_nanitecrop_sentry" }
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			nanites = 30000
+			alloys = 30000
+			unity = 1500
+		}
+		produces = {
+			nanites = 500
+		}
+		upkeep = {
+			energy = 150
+		}
+	}
+	upgrade_from = {
+		nanite_star_shipyard2
+	}
+	possible = {
+		# custom_tooltip_fail = {
+		# 	text = nanitecrop_sentry_allow_max
+		# 	check_variable = { which = num_nanitecrop_sentry value <= 15 }
+		# }
+	}
+	on_build_start = {
+		# from = { change_variable = { which = num_nanitecrop_sentry value = 1 }}
+	}
+	on_build_complete = {
+		spawn_megastructure = {
+			type = nanite_star_shipyard2
+			planet = fromfrom.planet
+			owner = from
+		}
+		remove_megastructure = fromfrom
+		create_fleet = {
+			name = NAME_nanitecrop_sentry
+			effect = {
+				set_owner = from
+				set_location = fromfrom
+				create_ship = {
+					random_existing_design = nanitecrop_sentry
+				}
+			}
+		}
+	}
+}
+
+#星球船坞建造中#
+# nanite_star_shipyard3 = {
+# 	entity = "nanite_shipyard_01_entity"
+# 	construction_entity = "nanite_shipyard2_01_entity"
+# 	portrait = "GFX_megastructure_construction_background"				
+# 	show_galactic_map_icon = no
+# 	entity_offset = { x = 0 y = 0 }
+# 	potential = {
+# 		has_technology = tech_TMR_nanite_factory
+# 	}
+# 	build_time = 1800
+# 	resources = {
+# 		category = megastructures
+# 		cost = {
+# 			nanites = 10000
+# 			unity = 1500
+# 		}
+# 	}
+# 	upgrade_from = {
+# 		nanite_star_shipyard2
+# 	}
+# 	on_build_complete = {
+		
+# 	}
+# }
+
+
+##########################################################R型星门生产##############################################################
+
+
+#星球船坞（R星门舰）建造中#
+# nanite_star_shipyard4 = {
+# 	entity = "nanite_shipyard3_01_entity"
+# 	construction_entity = "nanite_shipyard3_01_entity"
+# 	portrait = "GFX_megastructure_construction_background"				
+# 	show_galactic_map_icon = no
+# 	entity_offset = { x = 0 y = 0 }
+# 	potential = {
+# 		has_technology = tech_TMR_nanite_factory
+# 	}
+# 	placement_rules = {
+# 		planet_possible = {
+# 			custom_tooltip = {
+# 				fail_text = "requires_pc_gray_goo"
+# 				planet = {
+# 					is_planet_class = pc_gray_goo
+# 				}
+# 			}
+# 		}
+# 	}
+# 	build_time = 380
+# 	resources = {
+# 		category = megastructures
+# 		cost = {
+# 			nanites = 2000
+# 		}
+# 	}
+# 	upgrade_from = {
+# 		nanite_star_shipyard
+# 	}
+# 	on_build_complete = {}
+# }
+
+# #星球船坞建造中#
+# nanite_star_shipyard5 = {
+# 	entity = "nanite_shipyard_01_entity"
+# 	construction_entity = "nanite_shipyard3_01_entity"
+# 	portrait = "GFX_megastructure_construction_background"				
+# 	show_galactic_map_icon = no
+# 	entity_offset = { x = 0 y = 0 }
+# 	potential = {
+# 		has_technology = tech_TMR_nanite_factory
+# 	}
+# 	placement_rules = {
+# 		planet_possible = {
+# 			custom_tooltip = {
+# 				fail_text = "requires_pc_gray_goo"
+# 				planet = {
+# 					is_planet_class = pc_gray_goo
+# 				}
+# 			}
+# 		}
+# 	}
+# 	build_time = 380
+# 	resources = {
+# 		category = megastructures
+# 		cost = {
+# 			nanites = 2000
+# 		}
+# 	}
+# 	upgrade_from = {
+# 		nanite_star_shipyard4
+# 	}
+# 	on_build_complete = {
+		
+# 	}
+# }

@@ -1,0 +1,37 @@
+namespace = kdcne_stellar
+
+# Old queued conversion callbacks are retained as harmless no-ops.
+carrier_event = {
+    id = kdcne_stellar.1
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = { }
+}
+
+# Display repair and conservative migration of uncolonized legacy cages.
+# Coverage expiry, resources, cooldown and existing colonies are untouched.
+event = {
+    id = kdcne_stellar.2
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        every_system = {
+            limit = {
+                OR = {
+                    has_star_flag = kdcne_projection_active
+                    any_system_planet = { is_planet_class = pc_kdcne_nano_star }
+                    any_system_planet = { is_planet_class = pc_nano_starcage_world }
+                }
+            }
+            every_system_planet = {
+                limit = { is_planet_class = pc_kdcne_nano_star }
+                kdcne_refresh_nano_star_model = yes
+            }
+            kdcne_repair_nano_starcage = yes
+            if = {
+                limit = { has_star_flag = kdcne_projection_active }
+                kdcne_projection_ensure_visual = yes
+            }
+        }
+    }
+}

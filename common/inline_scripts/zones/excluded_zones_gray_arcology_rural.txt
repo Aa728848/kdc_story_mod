@@ -1,0 +1,15 @@
+exclude = { # ban 原版的理想城区划
+    zone_industrial_arcology
+    zone_foundry_arcology
+    zone_factory_arcology
+    zone_research_arcology
+    zone_research_physics_arcology
+    zone_research_society_arcology
+    zone_research_engineering_arcology
+    zone_unity_arcology
+    zone_unity_spiritualist_arcology
+    zone_unity_bio_trophy_arcology
+    zone_fortress_arcology
+
+    zone_gray_arcology_urban_nanites
+}

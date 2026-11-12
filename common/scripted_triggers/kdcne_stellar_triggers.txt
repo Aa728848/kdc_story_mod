@@ -1,0 +1,13 @@
+# Retired feature. Keep callable keys to safely reject legacy UI/design orders.
+kdcne_stellar_target_valid = {
+    always = no
+}
+can_destroy_planet_with_kdcne_nano_stellar_converter = {
+    custom_tooltip = {
+        fail_text = kdcne_requires_stellar_target
+        kdcne_stellar_target_valid = yes
+    }
+}
+kdcne_stellar_projection_can_fire = {
+    always = no
+}

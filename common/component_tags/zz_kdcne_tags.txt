@@ -1,0 +1,7 @@
+# 组件 tag 使用纯标识符列表；图标在 component_sets/interface 中注册。
+# 新武器同时保留 KDC 的 weapon_type_nano，以继承纳米武器加成。
+kdcne_nano_torpedo
+kdcne_nano_selfdestruct
+kdcne_nano_cloud_generator
+kdcne_evolution_core
+kdcne_nano_aircraft

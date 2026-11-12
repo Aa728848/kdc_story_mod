@@ -1,0 +1,1448 @@
+building_nano_assembly_plant = {
+	base_buildtime = 240
+	planet_limit = 1
+	category = pop_assembly
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			is_regular_empire = yes
+			is_wg_empire = no
+			# has_ascension_perk = ap_become_the_gray
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { is_wg_empire = yes }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { check_variable = { which = nano_assembly_technology value > 0 }}
+		}
+		fake_pop_growth_mod = 3
+		mult = owner.nano_assembly_technology
+	}
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			exists = owner
+			owner = { check_variable = { which = nano_assembly_technology value > 0 }}
+		}
+		bonus_pop_growth = 3
+		mult = owner.nano_assembly_technology
+	}
+	inline_script = buildings/gray_pop_growth_buff
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			nanites = 150
+		}
+		upkeep = {
+			minerals = 15
+			energy = 15
+			nanites = 2
+		}
+		upkeep = {
+			trigger = { owner = { check_variable = { which = nano_assembly_technology value > 0 }}}
+			mult = owner.nano_assembly_technology
+			minerals = -5
+			energy = -5
+			nanites = 5
+		}
+		upkeep = {
+			trigger = {
+				growing_species = {
+					has_trait = gray_trait_nano_assembly
+				}
+			}
+			nanites = 10
+		}
+	}
+	prerequisites = {
+		"tech_building_nanoassembly_plant"
+	}
+	
+}
+#纳米制造机#
+building_TMR_nanite_productor = {
+	base_buildtime = 900
+	category = resource
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = { NOT = { has_technology = tech_building_gray_nanite_factory }}
+	}
+
+	allow = {
+		exists = owner
+		hidden_trigger = {
+			owner = { is_ai = no }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			alloys = 450
+		}
+		produces = { nanites = 50 }
+		upkeep = {
+			energy = 100
+			minerals = 200
+		}
+	}
+
+	upgrades = { "building_gray_nanite_factory" }
+
+	prerequisites = { "tech_TMR_nanite_productor" }
+}
+building_nanite_signal_control_center = {
+	base_buildtime = 900
+	can_build = yes
+	category = research
+	can_demolish = no
+	empire_limit = {
+		base = 1
+	}
+
+	building_sets = {
+		government
+		urban
+		research
+		origin
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = { 
+			has_country_flag = can_build_nanite_signal_control_center
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_physics_research_produces_mult = 0.2
+		planet_jobs_society_research_produces_mult = 0.2
+		planet_jobs_engineering_research_produces_mult = 0.2
+		job_gray_nano_researcher_add = 800
+	}
+
+		
+	destroy_trigger = {
+		NOT = { exists = owner }
+	}	
+
+	on_built = {
+		planet = { planet_event = { id = gray_origin.44 } }
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 3000
+			alloys = 450
+		}	
+		upkeep = {
+			energy = 20
+		}
+	}		
+}
+
+#消费品工厂
+building_gray_nano_factory = {
+	base_buildtime = @b1_time
+	category = manufacturing
+
+	building_sets = {
+		factory
+		industrial
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+	}
+
+	planet_modifier = {
+		job_gray_nano_artisan_add = 200
+		pop_gray_nano_artisan_bonus_workforce_mult = 0.04
+		pop_artisan_bonus_workforce_mult = 0.04
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+			nanites = 50
+		}
+		upkeep = {
+			energy = 15
+		}
+	}
+
+	prerequisites = {
+		"tech_building_gray_nano_factory"
+	}
+	upgrades = {
+		building_gray_nano_factory2
+	}
+
+
+	triggered_desc = {
+		text = job_gray_nano_artisan_effect_desc
+	}
+
+	ai_resource_production = {
+		consumer_goods = 10
+		trigger = {
+			always = yes
+		}
+	}
+}
+building_gray_nano_factory2 = {
+	base_buildtime = @b3_time
+	category = manufacturing
+	can_build = no
+
+	building_sets = {
+		factory
+		industrial
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+
+	planet_modifier = {
+		job_gray_nano_artisan_add = 400
+		pop_gray_nano_artisan_bonus_workforce_mult = 0.06
+		pop_artisan_bonus_workforce_mult = 0.06
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			nanites = 100
+		}
+		upkeep = {
+			energy = 25
+			nanites = 16
+		}
+	}
+
+	prerequisites = {
+		"tech_building_gray_nano_factory2"
+	}
+
+
+	triggered_desc = {
+		text = job_gray_nano_artisan_effect_desc
+	}
+
+	ai_resource_production = {
+		consumer_goods = 10
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+#合金厂1
+building_gray_nano_foundry = {
+	base_buildtime = @b1_time
+	category = manufacturing
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	building_sets = {
+		industrial
+		foundry
+	}
+
+	allow = {
+	}
+	
+	planet_modifier = {
+		job_gray_nano_foundry_add = 200
+		pop_gray_nano_foundry_bonus_workforce_mult = 0.04
+		pop_foundry_bonus_workforce_mult = 0.04
+	}
+
+	triggered_desc = {
+		text = job_gray_nano_foundry_effect_desc
+	}
+
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+			nanites = 50
+		}	
+		upkeep = {
+			energy = 25
+		}
+	}	
+	
+	prerequisites = {
+		"tech_building_gray_nano_foundry"
+	}
+	upgrades = {
+		building_gray_nano_foundry2
+	}
+
+	ai_resource_production = {
+		alloys = 25
+		trigger = {
+			always = yes
+		}
+	}
+}
+building_gray_nano_foundry2 = {
+	base_buildtime = @b3_time
+	category = manufacturing
+	can_build = no
+
+	building_sets = {
+		industrial
+		foundry
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	planet_modifier = {
+		job_gray_nano_foundry_add = 400
+		pop_gray_nano_foundry_bonus_workforce_mult = 0.06
+		pop_foundry_bonus_workforce_mult = 0.06
+	}
+
+	triggered_desc = {
+		text = job_gray_nano_foundry_effect_desc
+	}
+
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			nanites = 100
+		}	
+		upkeep = {
+			energy = 25
+			nanites = 10
+		}
+	}	
+	
+	prerequisites = {
+		"tech_building_gray_nano_foundry2"
+	}
+
+	ai_resource_production = {
+		alloys = 50
+		trigger = {
+			always = yes
+		}
+	}
+}
+#科研
+building_gray_nano_research = {
+	base_buildtime = 300
+	category = research
+
+	building_sets = {
+		urban
+		research
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	planet_modifier = {
+		job_gray_nano_researcher_add = 200
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 350
+			nanites = 40
+		}	
+		upkeep = {
+			energy = 8
+			nanites = 2
+		}
+	}
+	prerequisites = {
+		"tech_building_gray_nano_research"
+	}	
+			
+	upgrades = {
+		"building_gray_nano_research2"
+	}	
+	
+	triggered_desc = {
+		text = job_researcher_effect_desc
+	}
+}
+building_gray_nano_research2 = {
+	base_buildtime = 480
+	category = research
+	can_build = no
+
+	building_sets = {
+		urban
+		research
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}		
+	allow = {
+		pop_amount >= 1500
+	}
+	planet_modifier = {
+		job_gray_nano_researcher_add = 400
+		pop_gray_nano_researcher_bonus_workforce_mult = 0.04
+		pop_physicist_bonus_workforce_mult = 0.04
+		pop_biologist_bonus_workforce_mult = 0.04
+		pop_engineer_bonus_workforce_mult = 0.04
+	}
+	triggered_desc = {
+		text = job_researcher_effect_desc
+	}
+	triggered_desc = {
+		text = job_gray_nano_researcher_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 600
+			nanites = 75
+		}	
+		upkeep = {
+			energy = 15
+			nanites = 4
+		}
+	}
+	prerequisites = {
+		"tech_building_gray_nano_research2"
+	}	
+			
+	upgrades = {
+		"building_gray_nano_research3"
+	}	
+}
+building_gray_nano_research3 = {
+	base_buildtime = 720
+	category = research
+	can_build = no
+
+	building_sets = {
+		urban
+		research
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}		
+	allow = {
+		has_upgraded_capital = yes
+	}
+	# destroy_trigger = {
+	# 	exists = owner
+	# 	owner = { OR = {
+	# 		has_ascension_perk = ap_mist
+	# 		has_ascension_perk = ap_project_s
+	# 		has_ascension_perk = ap_shenhai_icebreaking
+	# 		has_ascension_perk = ap_shenhai_silent
+	# 	}}
+	# }
+
+	planet_modifier = {
+		job_gray_nano_researcher_add = 600
+		pop_gray_nano_researcher_bonus_workforce_mult = 0.06
+		pop_physicist_bonus_workforce_mult = 0.06
+		pop_biologist_bonus_workforce_mult = 0.06
+		pop_engineer_bonus_workforce_mult = 0.06
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			nanites = 100
+		}	
+		upkeep = {
+			energy = 25
+			nanites = 6
+		}
+	}
+	prerequisites = {
+		"tech_building_gray_nano_research3"
+	}	
+			
+	triggered_desc = {
+		text = job_researcher_effect_desc
+	}
+	triggered_desc = {
+		text = job_gray_nano_researcher_effect_desc
+	}
+}
+
+building_gray_nano_research_elite = 	{
+	base_buildtime = 1500
+	category = research
+	empire_limit = { base = 1 }
+	icon = building_autocurating_vault
+
+	building_sets = {
+		government
+		urban
+		research
+		origin
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = { 
+			is_regular_empire = yes
+			has_tradition = tr_nanomachanic_1
+		}
+		NOT = { has_modifier = slave_colony }
+	}		
+	allow = {
+		has_fully_upgraded_capital = yes
+	}
+
+	planet_modifier = {
+		job_gray_nano_researcher_add = 800
+		pop_researcher_bonus_workforce_mult = 0.5
+	}
+	country_modifier = {
+		custom_tooltip = building_gray_nano_research_elite_country_effect
+		pop_jobs_nano_research_points_mult = 0.5
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 2500
+			nanites = 1000
+		}	
+		upkeep = {
+			energy = 50
+			nanites = 20
+		}
+	}	
+			
+	triggered_desc = {
+		text = job_gray_nano_researcher_effect_desc
+	}
+}
+
+building_gray_nanite_factory = {
+	base_buildtime = 800
+
+	category = manufacturing
+
+	building_sets = {
+		urban
+		industrial
+		factory
+		foundry
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = { 
+			is_regular_empire = yes
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	upgrades = {
+		building_gray_nanite_factory2
+	}	
+	planet_modifier = {
+		job_gray_nanite_manufacturer_add = 400
+	}
+	triggered_desc = {
+		text = job_gray_nanite_manufacturer_effect_desc
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 400
+			minerals = 800
+		}		
+		upkeep = {
+			energy = 20
+		}
+	}	
+	
+	prerequisites = {
+		"tech_building_gray_nanite_factory"
+	}
+
+	ai_resource_production = {
+		nanites = 5
+		trigger = {
+			always = yes
+		}
+	}
+}
+building_gray_nanite_factory2 = {
+	base_buildtime = 600
+	can_build = no
+
+	building_sets = {
+		urban
+		industrial
+		factory
+		foundry
+	}
+
+	category = manufacturing
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	prerequisites = {
+		"tech_building_gray_nanite_factory2"
+	}
+
+	planet_modifier = {
+		job_gray_nanite_manufacturer_add = 1000
+	}
+	triggered_desc = {
+		text = job_gray_nanite_manufacturer_effect_desc
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 650
+		}
+		upkeep = {
+			energy = 30
+		}		
+	}	
+
+	ai_resource_production = {
+		nanites = 10
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_nanite_field_manipulator = {
+	base_buildtime = 1500
+	planet_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	category = unity
+
+	building_sets = {
+		government
+		urban
+		origin
+	}
+
+	empire_limit = {
+		base = 1
+	}
+	
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			has_ascension_perk = ap_become_the_gray
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	prerequisites = {
+		"tech_building_nanite_field_manipulator"
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+	planet_modifier = {
+		pop_happiness = 0.2
+	}
+	country_modifier = {
+		planet_buildings_nanites_upkeep_mult = -0.3
+		planet_districts_nanites_upkeep_mult = -0.3
+		planet_pops_nanites_upkeep_mult = -0.3
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			influence = 100
+			minerals = 3000
+			alloys = 1500
+			nanites = 250
+		}
+		upkeep = {
+			nanites = 30
+			energy = 100
+		}
+	}	
+}
+
+building_gray_nano_rare_resource_factory = {
+	base_buildtime = 550
+
+	category = manufacturing
+
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
+	
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = { }	
+	planet_modifier = {
+		job_gray_nano_rare_resource_manufacturer_add = 300
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			nanites = 100
+		}		
+		upkeep = {
+			energy = 20
+			nanites = 3
+		}
+	}	
+	
+	prerequisites = {
+		"tech_building_gray_nano_rare_resource_factory"
+	}
+	
+	triggered_desc = {
+		trigger = {
+			check_variable = { which = nano_building_rare_resouces_produce_type value = 0 }
+		}
+		text = job_gray_nano_rare_resource_manufacturer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			check_variable = { which = nano_building_rare_resouces_produce_type value = 1 }
+		}
+		text = job_gray_nano_rare_resource_manufacturer_effect_desc1
+	}
+	triggered_desc = {
+		trigger = {
+			check_variable = { which = nano_building_rare_resouces_produce_type value = 2 }
+		}
+		text = job_gray_nano_rare_resource_manufacturer_effect_desc2
+	}
+	triggered_desc = {
+		trigger = {
+			check_variable = { which = nano_building_rare_resouces_produce_type value = 3 }
+		}
+		text = job_gray_nano_rare_resource_manufacturer_effect_desc3
+	}
+}
+
+building_nano_reconstructor = {
+	base_buildtime = 1000
+	planet_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	building_sets = {
+		all
+	}
+
+	category = resource
+	
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = { 	
+			has_ascension_perk = ap_become_the_gray
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	prerequisites = {
+		"tech_nano_reconstruct"
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+	planet_modifier = {
+		planet_pops_consumer_goods_upkeep_mult = -0.2
+		planet_pops_energy_upkeep_mult = -0.2
+	}
+
+	triggered_desc = {
+		text = building_nano_reconstructor_effect_desc
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1200
+			nanites = 150
+		}
+		upkeep = {
+			energy = 20
+		}
+		produces = {
+			mult = trigger:pop_amount
+			nanites = 0.003
+		}
+		upkeep = {
+			mult = trigger:pop_amount
+			energy = 0.01
+		}
+	}	
+}
+
+building_nanite_bureaucratic = {
+	base_buildtime = 300
+	category = unity
+
+	building_sets = {
+		unity
+	}
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	prerequisites = { tech_building_nanite_bureaucratic }
+
+	planet_modifier = {
+		job_gray_nano_bureaucrat_add = 200
+		pop_gray_nano_bureaucrat_bonus_workforce_mult = 0.04
+		pop_bureaucrat_bonus_workforce_mult = 0.04
+	}
+
+	upgrades = { building_nanite_bureaucratic_2 }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+			nanites = 100
+		}
+		upkeep = {
+			energy = 6
+			nanites = 2
+		}
+	}
+}
+building_nanite_bureaucratic_2 = {
+	base_buildtime = 550
+	can_build = no
+	category = unity
+
+	building_sets = {
+		unity
+	}
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			check_variable = { which = tech_building_nanite_bureaucratic value > 1 }
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = {
+		job_gray_nano_bureaucrat_add = 400
+		pop_gray_nano_bureaucrat_bonus_workforce_mult = 0.06
+		pop_bureaucrat_bonus_workforce_mult = 0.06
+	}
+
+	upgrades = { building_nanite_bureaucratic_3 }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 700
+			nanites = 150
+		}
+		upkeep = {
+			energy = 8
+			nanites = 4
+		}
+	}
+}
+building_nanite_bureaucratic_3 = {
+	base_buildtime = 800
+	can_build = no
+	category = unity
+
+	building_sets = {
+		unity
+	}
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			check_variable = { which = tech_building_nanite_bureaucratic value > 2 }
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+	planet_modifier = {
+		job_gray_nano_bureaucrat_add = 600
+		pop_gray_nano_bureaucrat_bonus_workforce_mult = 0.08
+		pop_bureaucrat_bonus_workforce_mult = 0.08
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			nanites = 250
+		}
+		upkeep = {
+			energy = 10
+			nanites = 6
+		}
+	}
+}
+
+building_gray_fortress = {
+	base_buildtime = 300
+	category = army
+	planetary_ftl_inhibitor = yes
+
+	building_sets = {
+		government
+		fortress
+	}
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	prerequisites = { "tech_building_gray_fortress" }
+
+	planet_modifier = {
+		job_gray_nano_soldier_add = 250
+	}
+
+	upgrades = { building_gray_fortress2 }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+			nanites = 100
+		}
+		upkeep = {
+			energy = 6
+			nanites = 2
+		}
+	}
+}
+building_gray_fortress2 = {
+	base_buildtime = 600
+	category = army
+	can_build = no
+	planetary_ftl_inhibitor = yes
+
+	building_sets = {
+		government
+		fortress
+	}
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = { has_upgraded_capital = yes }
+
+	prerequisites = { "tech_building_gray_fortress2" }
+
+	planet_modifier = {
+		army_starting_experience_add = 200
+		planet_army_build_speed_mult = 0.05
+		job_gray_nano_soldier_add = 400
+		pop_gray_nano_soldier_bonus_workforce_mult = 0.05
+	}
+
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			nanites = 250
+		}
+		upkeep = {
+			energy = 10
+			nanites = 6
+		}
+	}
+}
+
+building_gray_nano_defence_centre = {
+	base_buildtime = 1000
+	planet_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	planetary_ftl_inhibitor = yes
+	category = army
+
+	building_sets = {
+		government
+		fortress
+	}
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	prerequisites = {
+		"tech_building_gray_nano_defence_centre"
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -1
+		planet_defense_armies_add = 10
+		army_defense_damage_mult = 1
+		army_defense_health_mult = 1
+		army_defense_morale_mult = 1
+		pop_gray_nano_soldier_bonus_workforce_mult = 0.3
+	}
+	triggered_planet_modifier = {
+		potential = { has_cosmic_storms_dlc = yes }
+		planet_storm_devastation_mult = -1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1200
+			nanites = 350
+		}
+		upkeep = {
+			energy = 20
+			nanites = 8
+		}
+	}
+}
+
+building_gray_nanite_mining = {
+	base_buildtime = 400
+
+	category = resource
+
+	building_sets = {
+		mining
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			is_regular_empire = yes
+		}
+		NOT = { has_modifier = slave_colony }
+		uses_district_set = pc_wg_graygoo
+	}
+
+
+	planet_modifier = {
+		job_pc_graygoo_nanite_manufacturer_add = 2000
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	ai_resource_production = {
+		nanites = 5
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_gray_nano_regenerator = {
+	base_buildtime = 1200
+	planet_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	building_sets = {
+		all
+	}
+
+	category = resource
+
+	potential = {
+		exists = planet
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			has_ascension_perk = ap_become_the_gray
+			has_country_flag = gray_tech_1018_researched
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_desc = {
+		text = building_gray_nano_regenerator_effect
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1200
+			nanites = 150
+		}
+		upkeep = {
+			energy = 12
+			nanites = 5
+		}
+	}
+}
+building_gray_nano_resident = {
+	base_buildtime = 480
+	planet_limit = 1
+	category = amenities
+
+	building_sets = {
+		government
+		urban
+		entertainment
+		resort
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			is_regular_empire = yes
+			is_wg_empire = no
+			has_country_flag = gray_tech_3073_researched
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { is_wg_empire = yes }
+	}
+	planet_modifier = {
+		planet_housing_add = 3000
+		planet_amenities_add = 3000
+		planet_stability_add = 5
+		pop_amenities_usage_mult = -0.2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			nanites = 150
+		}
+		upkeep = {
+			energy = 6
+			nanites = 2
+		}
+	}
+
+}
+# 未实装
+building_gray_energy_enhance = {
+	base_buildtime = 400
+	category = resource
+	planet_limit = 1
+	building_sets = {
+		origin
+		generator
+		government
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			is_regular_empire = yes
+		}
+		NOT = { has_modifier = slave_colony }
+		always = no
+	}
+
+	planet_modifier = {
+		planet_jobs_energy_produces_mult = 0.3
+		planet_buildings_energy_produces_mult = 0.3
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			nanites = 150
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+}
+building_gray_minerals_enhance = {
+	base_buildtime = 400
+	category = resource
+	planet_limit = 1
+	building_sets = {
+		origin
+		mining
+		government
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			is_regular_empire = yes
+		}
+		NOT = { has_modifier = slave_colony }
+		always = no
+	}
+
+	planet_modifier = {
+		planet_jobs_minerals_produces_mult = 0.3
+		planet_buildings_minerals_produces_mult = 0.3
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			nanites = 150
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+}
+building_gray_nanite_enhance = {
+	base_buildtime = 400
+	category = resource
+	planet_limit = 1
+	building_sets = {
+		origin
+		mining
+		government
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			free_building_slots > 0
+		}
+		owner = {
+			is_regular_empire = yes
+		}
+		NOT = { has_modifier = slave_colony }
+		always = no
+	}
+
+	planet_modifier = {
+		planet_miners_nanites_produces_mult = 0.3
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			nanites = 150
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+}

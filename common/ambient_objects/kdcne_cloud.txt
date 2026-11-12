@@ -1,0 +1,17 @@
+# Fixed visual/coordinate anchor; effects are driven by the owning event chain.
+ambient_object = {
+    name = kdcne_cloud_anchor
+    entity = "space_cloud_entity"
+    selectable = yes
+    show_name = yes
+    tooltip = kdcne_cloud_anchor_tooltip
+    description = kdcne_cloud_anchor_desc
+}
+
+# Projection is decorative. It cannot intercept planet/megastructure placement clicks.
+ambient_object = {
+    name = kdcne_projection_cloud
+    entity = "space_cloud_entity"
+    selectable = no
+    show_name = no
+}

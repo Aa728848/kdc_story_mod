@@ -1,0 +1,54 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 一次性科技按钮（纳米开发局）
+# ID 用 4xxx 区分旧 mod 的 1xxx/2xxx/3xxx
+# CAT 0 = 生产页；1 = 武器页；2 = 社会页
+# ============================================================================
+
+button_tech_kdcne_evolution_core = {
+	inline_script = {
+		script = "button_effects/gray_research_tech_button"
+		CAT = 0 ID = 4000
+		tech_points = @gray_t4_tech_points
+	}
+}
+
+button_tech_kdcne_nano_corrosion = {
+	inline_script = {
+		script = "button_effects/gray_research_tech_button"
+		CAT = 1 ID = 4001
+		tech_points = @gray_t4_tech_points
+	}
+}
+
+button_tech_kdcne_nano_cloud = {
+	inline_script = {
+		script = "button_effects/gray_research_tech_button"
+		CAT = 1 ID = 4002
+		tech_points = @gray_t4_tech_points
+	}
+}
+
+button_tech_kdcne_assimilation = {
+	inline_script = {
+		script = "button_effects/gray_research_tech_button"
+		CAT = 1 ID = 4003
+		tech_points = @gray_t4_tech_points
+	}
+}
+
+button_tech_kdcne_lifesteal = {
+	inline_script = {
+		script = "button_effects/gray_research_tech_button"
+		CAT = 1 ID = 4004
+		tech_points = @gray_t4_tech_points
+	}
+}
+
+button_tech_kdcne_system_nanofication = {
+	inline_script = {
+		script = "button_effects/gray_research_tech_button"
+		CAT = 0 ID = 4005
+		tech_points = @gray_t5_tech_points
+	}
+}
+

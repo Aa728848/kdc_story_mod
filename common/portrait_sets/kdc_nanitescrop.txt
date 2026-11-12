@@ -1,0 +1,9 @@
+# Preserve the original event-only species and all seven selectable variants.
+kdc_nanitescrop = {
+ species_class = NANITESCROP
+ conditional_portraits = {
+  randomizable = no
+  playable = { has_global_flag = game_started }
+  portraits = { "Nanitescrop" "Nanitescrop01" "Nanitescrop02" "Nanitescrop03" "Nanitescrop04" "Nanitescrop05" "Nanitescrop06" "Nanitescrop07" }
+ }
+}

@@ -1,0 +1,56 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 动态脚本值
+# 文件位置：common/script_values/zz_kdcne_values.txt
+# ----------------------------------------------------------------------------
+# 用途：把"进化倍率 / 侵蚀概率 / 侵蚀时长 / 纳米云堆叠"等做成动态 script_value，
+#       运行时结合 modifier / trigger:ship_size_multiplier 动态求值，
+#       避免写死数值（参考夸特 exe_kuat_value.txt 的范式）。
+# 命名：统一 kdcne_ 前缀。
+# 说明：scope 注释标注了每个 value 期望的作用域。
+# ============================================================================
+
+# ============================================================================
+# 一、纳米进化（战斗成长）
+# ============================================================================
+
+# scope: ship
+# 进化伤害倍率：每级 +5% 武器伤害，封顶 +100%。
+# add = modifier:kdcne_evolution_level 取出当前进化等级（0/1/2/...）。
+kdcne_evolution_damage_bonus = {
+    base = 0
+    add = modifier:kdcne_evolution_level
+    mult = 0.05
+    max = 1.0
+}
+
+# scope: ship
+# 进化船体倍率：每级 +3% 船体，封顶 +60%。用于"越战越肉"。
+kdcne_evolution_hull_bonus = {
+    base = 0
+    add = modifier:kdcne_evolution_level
+    mult = 0.03
+    max = 0.6
+}
+
+# scope: ship
+# 进化回血：每级 + 静态回船体，让纳米舰在战斗中缓慢自愈（体现纳米自修复）。
+kdcne_evolution_regen_bonus = {
+    base = 0
+    add = modifier:kdcne_evolution_level
+    mult = 2
+    max = 40
+}
+
+# ============================================================================
+# 二、纳米侵蚀抗性（云区暴露积累）
+# ============================================================================
+
+# scope: ship
+# 每天积累系数：1 - 抗性，范围 0..1；新云区数值见 kdcne_cloud_values.txt。
+kdcne_corrosion_resistance_mult = {
+    base = 1
+    subtract = modifier:kdcne_nano_corrosion_resistance
+    min = 0
+    max = 1
+}
+

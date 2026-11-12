@@ -1,0 +1,101 @@
+leader_trait_wg_gray_legend = {
+	cost = 0
+	sorting_priority = 1000
+	icon = "gfx/interface/icons/traits/wg_gray.dds"
+	icon = {
+		layer = {
+			icon = "GFX_trait_frame_destiny"
+		}
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = { NOR = {
+				has_country_flag = origin_gray_country 
+				has_country_flag = origin_gray_weaken
+			}}
+		}
+		ship_weapon_damage = 0.5
+		ship_fire_rate_mult = 0.5
+		ship_speed_mult = 0.3
+		ship_shield_mult = 0.5
+		ship_hull_mult = 1.0
+		ship_hull_regen_add_static = 10
+		ship_armor_regen_add_static = 10
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			leader_class = commander
+			owner = { 
+				has_country_flag = origin_gray_country 
+				has_country_flag = origin_gray_weaken
+			}
+		}
+		ship_weapon_damage = 0.25
+		ship_fire_rate_mult = 0.25
+		ship_speed_mult = 0.15
+		ship_shield_mult = 0.25
+		ship_hull_mult = 0.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = { NOR = {
+				has_country_flag = origin_gray_country 
+				has_country_flag = origin_gray_weaken
+			}}
+		}
+		planet_buildings_cost_mult = -0.4
+		planet_building_build_speed_mult = 0.4
+		planet_jobs_energy_produces_mult = 0.15
+		planet_jobs_minerals_produces_mult = 0.15
+		deposit_blockers_cost_mult = -0.4
+		planet_clear_blocker_speed_mult = 0.4
+	}
+	triggered_sector_modifier = {
+		potential = {
+			leader_class = official
+			owner = { NOR = {
+				has_country_flag = origin_gray_country 
+				has_country_flag = origin_gray_weaken
+			}}
+		}
+		planet_buildings_cost_mult = -0.4
+		planet_building_build_speed_mult = 0.4
+		planet_jobs_energy_produces_mult = 0.15
+		planet_jobs_minerals_produces_mult = 0.15
+		deposit_blockers_cost_mult = -0.4
+		planet_clear_blocker_speed_mult = 0.4
+	}
+	triggered_planet_modifier = {
+		potential = {
+			leader_class = official
+			owner = { 
+				has_country_flag = origin_gray_country 
+				has_country_flag = origin_gray_weaken
+			}
+		}
+		planet_jobs_energy_produces_mult = 0.15
+		planet_jobs_minerals_produces_mult = 0.15
+		deposit_blockers_cost_mult = -0.2
+		planet_clear_blocker_speed_mult = 0.2
+	}
+	triggered_sector_modifier = {
+		potential = {
+			leader_class = official
+			owner = { 
+				has_country_flag = origin_gray_country 
+				has_country_flag = origin_gray_weaken
+			}
+		}
+		planet_jobs_energy_produces_mult = 0.15
+		planet_jobs_minerals_produces_mult = 0.15
+		deposit_blockers_cost_mult = -0.2
+		planet_clear_blocker_speed_mult = 0.2
+	}
+	
+	leader_class = { commander official }
+	initial = no
+	randomized = no
+	notify_on_gained = no
+}

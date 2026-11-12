@@ -1,0 +1,7 @@
+﻿l_simp_chinese:
+ kdc_test.1.title:0 "【KDC测试】开启纳米局势科技树"
+ kdc_test.1.desc:0 "已开启纳米开发局、拉满研究槽、每月额外提供10000纳米科研点。测试后可用殖民地决议关闭加值。"
+ kdc_test.2.title:0 "【KDC测试】跑满纳米局势科技树"
+ kdc_test.2.desc:0 "已直接授予全部纳米局势科技（跳过局势研究）。"
+ kdc_test.3.title:0 "【KDC测试】跳故事链到 gray_story.4"
+ kdc_test.3.desc:0 "已设置故事链 flag + 开链并触发 gray_story.4。观察是否一路走到纳米开发局开启。"

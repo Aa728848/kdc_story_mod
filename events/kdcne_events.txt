@@ -1,0 +1,86 @@
+namespace = kdcne
+
+# on_ship_destroyed_perp：root=击杀国，fromfrom=击杀舰（脚本击杀时可能不存在）。
+country_event = {
+    id = kdcne.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { exists = fromfrom fromfrom = { kdcne_can_evolve_trigger = yes } }
+    immediate = { fromfrom = { kdcne_evolution_on_kill = yes } }
+}
+ship_event = {
+    id = kdcne.2
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { kdcne_can_evolve_trigger = yes }
+    immediate = { kdcne_evolution_death_save = yes }
+}
+country_event = {
+    id = kdcne.3
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        OR = {
+            last_increased_tech = tech_kdcne_evolution_core
+            last_increased_tech = tech_kdcne_nano_corrosion
+            last_increased_tech = tech_kdcne_nano_cloud
+            last_increased_tech = tech_kdcne_assimilation
+            last_increased_tech = tech_kdcne_lifesteal
+            last_increased_tech = tech_kdcne_system_nanofication
+        }
+    }
+    immediate = { kdcne_evolution_tech_refresh = yes }
+}
+country_event = {
+    id = kdcne.5
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        exists = fromfrom
+        fromfrom = { kdcne_is_nano_ship_trigger = yes }
+    }
+    immediate = { kdcne_resource_harvest_on_kill = yes }
+}
+# 改装后同步进化效果：拆除核心即移除加成，保留该船积累的等级。
+ship_event = {
+    id = kdcne.7
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        remove_modifier = kdcne_evolution_buff
+        if = {
+            limit = {
+                kdcne_can_evolve_trigger = yes
+                is_variable_set = kdcne_evo_lv
+            }
+            if = {
+                limit = { check_variable = { which = kdcne_evo_lv value > 20 } }
+                set_variable = { which = kdcne_evo_lv value = 20 }
+            }
+            add_modifier = { modifier = kdcne_evolution_buff multiplier = kdcne_evo_lv }
+        }
+        if = {
+            limit = { NOT = { kdcne_is_nano_ship_trigger = yes } }
+            remove_modifier = kdcne_tech_refresh_buff
+        }
+    }
+}
+# 兼容旧存档已排队的扣血事件：仅清理标记，既不扣血也不再排队。
+ship_event = {
+    id = kdcne.8
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = { remove_ship_flag = kdcne_corrosion_tick_pending }
+}
+# 过渡实现：on_damage_taken 的 root=受伤舰，from=伤害来源舰。
+# 无法区分母舰的 H 槽与其他武器；用户已接受“装载纳米舰载机的母舰伤害”判定。
+ship_event = {
+    id = kdcne.9
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        exists = from
+        from = { OR = { has_component = kdcne_nano_aircraft has_component = kdcne_nano_cloud_generator } }
+    }
+    immediate = { kdcne_spawn_hit_cloud = yes }
+}

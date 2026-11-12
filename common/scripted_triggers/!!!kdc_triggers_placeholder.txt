@@ -1,0 +1,20 @@
+has_sr_se_upkeep_trait = { always = no }
+###涅槃
+is_nirvana_empire = { always = no }
+is_nirvana_empire_council = { always = no }
+is_nirvana_empire_dragon = { always = no }
+
+is_wg_fallen_empire = { always = no }
+is_sh_fallen_empire = { always = no }
+
+wsg_can_remove_beneficial_traits = {
+    hidden_trigger = { exists = from }
+    from = {
+        OR = {
+            has_tradition = tr_genetics_resequencing
+            has_tradition = tr_cybernetics_integrated_anatomy
+            has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+            has_wsg_genemodding_tech = yes
+        }
+    }
+}

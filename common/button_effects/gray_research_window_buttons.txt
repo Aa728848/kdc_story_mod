@@ -1,0 +1,145 @@
+wg_default_show_effect = {
+	potential = { always = yes }
+	allow = { always = yes }
+	effect = { }
+}
+wg_default_hide_effect = {
+	potential = { always = no }
+	allow = { always = yes }
+	effect = { }
+}
+
+# 确认界面的纳米研究点数图标
+nanoresearch_points_tech_icon = {
+	potential = { always = yes }
+	allow = { always = yes }
+	effect = { from = {
+		custom_tooltip = "nanoresearch_points_tech_icon_tooltip"
+	}}
+}
+# 确认界面的时间图标
+nanotech_days_require_icon = {
+	potential = { always = yes }
+	allow = { always = yes }
+	effect = { 
+		custom_tooltip = "nanotech_days_require_tooltip"
+		# set_variable = { which = tech_building_nanite_bureaucratic value = 3 }
+	}
+}
+# 研究界面的纳米研究点数图标
+growing_nanoresearch_points_effect = {
+	potential = { always = yes }
+	allow = { always = yes }
+	effect = { from = {
+		custom_tooltip = "growing_nanoresearch_points_icon_tooltip"
+	}}
+}
+# 飞升图标
+icon_ap_graygoo_cat_1 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 0 }}}
+	allow = { from = { has_ascension_perk = ap_become_the_gray }}
+	effect = {}
+}
+icon_ap_graygoo_mega_cat_1 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 0 }}}
+	allow = { from = { has_ascension_perk = ap_graygoo_megastructures }}
+	effect = {}
+}
+icon_ap_micromechanical_revolution_cat_1 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 0 }}}
+	allow = { from = { has_ascension_perk = ap_micromechanical_revolution }}
+	effect = {}
+}
+icon_ap_graygoo_cat_2 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 1 }}}
+	allow = { from = { has_ascension_perk = ap_become_the_gray }}
+	effect = {}
+}
+icon_ap_graygoo_mega_and_micromechanic_cat_2 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 1 }}}
+	allow = { from = { 
+		has_ascension_perk = ap_graygoo_megastructures 
+		has_ascension_perk = ap_micromechanical_revolution
+	}}
+	effect = {}
+}
+icon_ap_micromechanic_cat_2 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 1 }}}
+	allow = { from = {
+		has_ascension_perk = ap_micromechanical_revolution
+	}}
+	effect = {}
+}
+icon_ap_graygoo_cat_3 = {
+	potential = { from = { check_variable = { which = gray_research_category_show value = 2 }}}
+	allow = { from = { has_ascension_perk = ap_become_the_gray }}
+	effect = {}
+}
+
+###########################################################################################
+# 其他按钮
+###########################################################################################
+button_gray_research_cat1 = {
+	potential = { from = { 
+		NOT = { check_variable = { which = gray_research_category_show value = 0 }}
+	}}
+	allow = {}
+	effect = { hidden_effect = { from = {
+		set_variable = { which = gray_research_category_show value = 0 }
+	}}}
+}
+button_gray_research_cat1_show = {
+	potential = { from = { 
+		check_variable = { which = gray_research_category_show value = 0 }
+	}}
+	allow = {}
+	effect = { }
+}
+button_gray_research_cat2 = {
+	potential = { from = { 
+		NOT = { check_variable = { which = gray_research_category_show value = 1 }}
+	}}
+	allow = {}
+	effect = { hidden_effect = { from = {
+		set_variable = { which = gray_research_category_show value = 1 }
+	}}}
+}
+button_gray_research_cat2_show = {
+	potential = { from = { 
+		check_variable = { which = gray_research_category_show value = 1 }
+	}}
+	allow = {}
+	effect = { }
+}
+button_gray_research_cat3 = {
+	potential = { from = { 
+		NOT = { check_variable = { which = gray_research_category_show value = 2 }}
+	}}
+	allow = {}
+	effect = { hidden_effect = { from = {
+		set_variable = { which = gray_research_category_show value = 2 }
+	}}}
+}
+button_gray_research_cat3_show = {
+	potential = { from = { 
+		check_variable = { which = gray_research_category_show value = 2 }
+	}}
+	allow = {}
+	effect = { }
+}
+button_gray_research_cat4 = {
+	potential = { from = {
+		NOT = { check_variable = { which = gray_research_category_show value = 3 }}
+	}}
+	allow = {}
+	effect = { hidden_effect = { from = {
+		set_variable = { which = gray_research_category_show value = 3 }
+	}}}
+}
+button_gray_research_cat4_show = {
+	potential = { from = {
+		check_variable = { which = gray_research_category_show value = 3 }
+	}}
+	allow = {}
+	effect = { }
+}

@@ -1,0 +1,52 @@
+# Country scope. The caller saves the selected player fleet as kdcne_test_spawn_anchor.
+# DESIGN is a global design/localisation key; ENDURANCE is yes/no.
+kdcne_spawn_local_test_target = {
+    save_event_target_as = kdcne_test_player
+    create_country = {
+        name = NAME_kdcne_test_dummy_country
+        type = pirate
+        auto_delete = no
+        species = random
+        name_list = "PRT1"
+        effect = {
+            set_country_flag = kdcne_test_dummy_country
+            set_country_flag = disable_pirate_starbase_spawning
+            save_event_target_as = kdcne_test_target_owner
+        }
+    }
+    establish_communications_no_message = event_target:kdcne_test_target_owner
+    add_intel_report = { who = event_target:kdcne_test_target_owner category = military level = 4 }
+    # Pirate has faction.hostile=yes and needs_border_access=no in vanilla.
+    # Explicit pairwise hostility also refreshes the relation cache; never declare war here.
+    set_hostile = event_target:kdcne_test_target_owner
+    event_target:kdcne_test_target_owner = { set_hostile = event_target:kdcne_test_player }
+    create_fleet = {
+        name = $DESIGN$
+        settings = {
+            garrison = yes
+            can_disband = no
+            can_upgrade = no
+            can_change_composition = no
+            uses_naval_capacity = no
+        }
+        effect = {
+            set_owner = event_target:kdcne_test_target_owner
+            set_fleet_flag = kdcne_test_dummy_fleet
+            create_ship = {
+                name = $DESIGN$
+                # The engine quotes string parameters on expansion; do not quote them twice.
+                design = $DESIGN$
+                graphical_culture = "mammalian_01"
+                effect = {
+                    if = {
+                        limit = { always = $ENDURANCE$ }
+                        add_modifier = { modifier = kdcne_test_capture_endurance }
+                        repair_ship = yes
+                    }
+                }
+            }
+            set_location = { target = event_target:kdcne_test_spawn_anchor distance = 40 angle = random }
+            set_fleet_stance = aggressive
+        }
+    }
+}

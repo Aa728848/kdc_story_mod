@@ -1,0 +1,6 @@
+kdcne_test_capture_endurance = {
+    ship_hull_add = 1000000
+    ship_armor_add = 1000000
+    ship_shield_add = 1000000
+    ship_disengage_chance_mult = -1
+}

@@ -1,0 +1,35 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 组件集（component_sets）
+# 命名 kdcne_*，与旧 mod 的 gray_*/wg_gray_* 区分
+# icon 暂复用旧 mod GFX（美术/UI 步骤再注册 kdcne_* 专属图标）
+# ============================================================================
+
+component_set = {
+	key = "kdcne_nano_torpedo"
+	icon = "GFX_wg_gray_g"
+	icon_frame = 1
+}
+
+component_set = {
+	key = "kdcne_nano_selfdestruct"
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+}
+
+component_set = {
+	key = "kdcne_nano_cloud_generator"
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+}
+
+component_set = {
+	key = "kdcne_evolution_core"
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+}
+
+component_set = {
+	key = "kdcne_nano_aircraft"
+	icon = "GFX_wg_gray_h"
+	icon_frame = 1
+}

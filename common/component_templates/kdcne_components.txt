@@ -1,0 +1,199 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 组件模板（纳米武器/组件）
+# 命名 kdcne_*，与旧 mod 的 wg_gray_*/gray_nano_* 区分
+# 每个组件挂 kdcne_ 专属 tag（见 component_tags/zz_kdcne_tags.txt），供机制精确命中
+# ============================================================================
+
+# --- 纳米鱼雷（G 槽，命中施加纳米侵蚀） -----------------------------------------
+weapon_component_template = {
+	key = "kdcne_nano_torpedo"
+	size = torpedo
+	entity = "invisible_turret_entity"
+	type = missile
+	icon = "GFX_wg_gray_g"
+	icon_frame = 1
+	component_set = "kdcne_nano_torpedo"
+	projectile_gfx = "gatebuilder_torpedo"
+	tags = { kdcne_nano_torpedo weapon_type_nano weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+
+	damage = { min = 800 max = 1600 }
+	windup = { min = 5 max = 20 }
+	total_fire_time = 130
+	range = 180.0
+	accuracy = 1.0
+	tracking = 0.5
+	power = -150
+
+	shield_penetration = 0.5
+	armor_penetration = 0.5
+	hull_damage = 1.2
+
+	# 只对当前纳米组件载舰生效，分别由对应科技解锁。
+	triggered_ship_modifier = {
+		potential = { exists = owner owner = { has_technology = tech_kdcne_lifesteal } }
+		component_lifesteal_add = 0.1
+	}
+	# Assimilation is handled only by prolonged cloud exposure and the player toggle.
+
+	missile_speed = 30
+	missile_evasion = 0.10
+	missile_shield = 50
+	missile_armor = 10
+	missile_health = 50
+	missile_retarget_range = 100
+
+	resources = {
+		category = ship_components
+		cost = { alloys = 10 nanites = 5 }
+		upkeep = { energy = 5 alloys = 1 }
+	}
+
+	# 命中生成固定云区；云区逐日累积侵蚀。
+	on_hit = {
+		custom_tooltip = "kdcne_nano_corrosion_tooltip"
+		hidden_effect = {
+			# 混装纳米舰载机时统一走受伤钩子，避免同次鱼雷伤害重复判定。
+			if = {
+				limit = { NOT = { from = { OR = { has_component = kdcne_nano_aircraft has_component = kdcne_nano_cloud_generator } } } }
+				kdcne_spawn_hit_cloud = yes
+			}
+		}
+	}
+
+	prerequisites = { "tech_kdcne_nano_corrosion" }
+
+	ai_weight = { weight = 0 }
+}
+
+# --- 旧组件兼容定义：停止新增装配，侵蚀改由鱼雷/载机母舰伤害触发 -------------
+utility_component_template = {
+	key = "kdcne_nano_selfdestruct"
+	potential = { always = no }
+	size = aux
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+	power = -100
+	component_set = "kdcne_nano_selfdestruct"
+	tags = { kdcne_nano_selfdestruct }
+
+	modifier = {
+		ship_weapon_damage = 0.10
+	}
+
+	resources = {
+		category = ship_components
+		cost = { alloys = 20 nanites = 10 }
+		upkeep = { energy = 2 }
+	}
+
+	prerequisites = { "tech_kdcne_nano_cloud" }
+
+	ai_weight = { weight = 0 }
+}
+
+# --- 纳米云发生器（A 槽，载舰伤害播撒与鱼雷相同的固定云区） ---
+utility_component_template = {
+	key = "kdcne_nano_cloud_generator"
+	size = aux
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+	power = -150
+	component_set = "kdcne_nano_cloud_generator"
+	tags = { kdcne_nano_cloud_generator }
+
+	ship_modifier = {
+		ship_weapon_range_mult = 0.05
+	}
+
+	# 伤害事件统一检测发生器；不再另挂静态光环。
+	
+
+	resources = {
+		category = ship_components
+		cost = { alloys = 30 nanites = 15 }
+		upkeep = { energy = 3 }
+	}
+
+	prerequisites = { "tech_kdcne_nano_cloud" }
+
+	ai_weight = { weight = 0 }
+}
+
+# --- 纳米进化核心（A 槽，标记"可进化的纳米舰"） ----------------------------------
+utility_component_template = {
+	key = "kdcne_evolution_core"
+	size = aux
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+	power = -80
+	component_set = "kdcne_evolution_core"
+	tags = { kdcne_evolution_core }
+	ship_limit = 1
+	ship_modifier = { kdcne_is_nano_ship = 1 }
+
+	modifier = {
+		ship_weapon_damage = 0.05
+		ship_hull_mult = 0.03
+	}
+
+	resources = {
+		category = ship_components
+		cost = { alloys = 25 nanites = 20 }
+		upkeep = { energy = 1 nanites = 1 }
+	}
+
+	prerequisites = { "tech_kdcne_evolution_core" }
+
+	ai_weight = { weight = 0 }
+}
+
+# --- 纳米舰载机（H 槽）：母舰伤害钩子过渡实现，见 kdcne.9 ---------------------
+strike_craft_component_template = {
+	key = "kdcne_nano_aircraft"
+	size = LARGE
+	entity = "gatebuilder_wsg_fighters_strikecraft_entity"
+	power = -35
+	component_set = "kdcne_nano_aircraft"
+	tags = { kdcne_nano_aircraft weapon_type_nano weapon_type_strike_craft }
+	ai_tags = { weapon_role_anti_shield }
+
+	icon = "GFX_wg_gray_h"
+	icon_frame = 1
+
+	count = 1
+	regeneration_per_day = 0.90
+	launch_time = 1.0
+
+	damage = { min = 50 max = 200 }
+	cooldown = 1.5
+	range = 40
+	accuracy = 1.0
+	tracking = 1.0
+
+	health = 50
+	armor = 30
+	shield = 40
+	evasion = 0.8
+
+	speed = 1300
+	rotation_speed = 0.8
+	acceleration = 1
+
+	shield_penetration = 0.3
+	armor_penetration = 0.3
+
+	ship_behavior = "bombers_behavior"
+	weapon_type = point_defence
+	projectile_gfx = "strike_craft_laser_3"
+
+	resources = {
+		category = ship_components
+		cost = { alloys = 50 nanites = 10 }
+		upkeep = { energy = 0.2 }
+	}
+
+	prerequisites = { "tech_kdcne_nano_cloud" }
+
+	ai_weight = { weight = 0 }
+}

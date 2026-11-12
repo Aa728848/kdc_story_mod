@@ -1,0 +1,34 @@
+gray_origin_chains_1 = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_gray_goo
+	counter = {
+		gray_origin_chains_1_counter = { max = 6 }
+	}
+}
+gray_origin_terraform_planet_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_gray_gooed_planet
+	counter = {
+		setup_satelites_on_graygooed_planets = { max = 4 }
+		terraformed_graygooed_planets = { max = 4 }
+	}
+}
+gray_origin_chain_2 = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_wsg_gray
+	counter = {
+		gray_origin_chain_2_clues = { max = 5 }
+	}
+}
+gray_ascension_upgrade_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_nanite_upgrade
+	counter = {
+		gray_ascension_upgrade_nanites_consume = {}
+	}
+}
+
+show_graygoo_planets_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_gray_gooed_planet
+}

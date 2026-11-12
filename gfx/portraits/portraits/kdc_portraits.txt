@@ -1,0 +1,8 @@
+portraits = {
+	GrayTempest01	=	{texturefile = "gfx/models/portraits/GrayTempest01.dds"  }
+	GrayTempest02	=	{texturefile = "gfx/models/portraits/GrayTempest02.dds"  }
+	GrayTempest03	=	{texturefile = "gfx/models/portraits/GrayTempest03.dds"  }
+	GrayTempest04	=	{texturefile = "gfx/models/portraits/GrayTempest04.dds"  }
+	GrayTempest05	=	{texturefile = "gfx/models/portraits/GrayTempest05.dds"  }
+	GrayTempest06	=	{texturefile = "gfx/models/portraits/GrayTempest06.dds"  }
+}

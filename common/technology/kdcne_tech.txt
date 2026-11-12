@@ -1,0 +1,76 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 一次性科技（接入纳米开发局 / gray_research 局势）
+# 这些科技通过纳米开发局研究（button_effects + 局势），不在普通科技树出现（weight = 0）
+# 命名 tech_kdcne_*，与旧 mod 的 tech_*（gray/nanite/nano/TMR 等）区分
+# ============================================================================
+
+tech_kdcne_evolution_core = {
+	cost = 5000
+	area = engineering
+	tier = 4
+	category = { computing }
+	weight = 0
+	potential = { has_country_flag = activate_gray_research }
+	ai_weight = { weight = 0 }
+}
+
+tech_kdcne_nano_corrosion = {
+	cost = 5000
+	area = physics
+	tier = 4
+	category = { particles }
+	weight = 0
+	potential = { has_country_flag = activate_gray_research }
+	ai_weight = { weight = 0 }
+}
+
+tech_kdcne_nano_cloud = {
+	cost = 5000
+	area = physics
+	tier = 4
+	category = { field_manipulation }
+	weight = 0
+	potential = { has_country_flag = activate_gray_research }
+	ai_weight = { weight = 0 }
+}
+
+tech_kdcne_assimilation = {
+	cost = 5000
+	area = society
+	tier = 4
+	category = { biology }
+	weight = 0
+	potential = { has_country_flag = activate_gray_research }
+	ai_weight = { weight = 0 }
+}
+
+tech_kdcne_lifesteal = {
+	cost = 5000
+	area = engineering
+	tier = 4
+	category = { materials }
+	weight = 0
+	potential = { has_country_flag = activate_gray_research }
+	ai_weight = { weight = 0 }
+}
+
+tech_kdcne_system_nanofication = {
+	cost = 10000
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	weight = 0
+	potential = { has_country_flag = activate_gray_research }
+	ai_weight = { weight = 0 }
+}
+
+tech_kdcne_nano_starcage = {
+	cost = 10000
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	weight = 0
+	# Retained as a key for old saves; no longer offered by the research UI.
+	potential = { always = no }
+	ai_weight = { weight = 0 }
+}

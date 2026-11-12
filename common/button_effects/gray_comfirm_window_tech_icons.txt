@@ -1,0 +1,474 @@
+# 此处的button effect为确认界面里显示的科技图标
+# 所有按钮均使用科技id作为显示条件，没有任何效果
+
+button_icon_tech_TMR_nanite_productor = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1000 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_nanoassembly_plant = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1010 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nanoassembly_technology = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1011 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_reconstruct = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1013 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_nanite_field_manipulator = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1014 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nanite_produce = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1015 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nanite_factory = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1016 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nanite_factory2 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1017 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_regenerator = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1018 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_foundry = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1020 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_rare_resource_factory = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1021 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_foundry2 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1022 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_job_foundry_upgrade = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1024 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nano_alloy_produce = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1025 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_factory = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1030 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_factory2 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1031 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_job_artisan_upgrade = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1034 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nano_consumer_goods_produce = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1035 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_research = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1040 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_research2 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1041 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_research3 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1042 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_research_slot = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1043 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nano_research_produce = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1045 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_construction_core = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1060 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_dyson_sphere = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1061 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_matter_decompressor = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1062 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_ring_world = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1063 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_science_nexus = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1064 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_macro_nanorobot_technology = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1070 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_TMR_nanite_factory = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1071 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_TMR_gatebuilder_core = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1072 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_tech_R_gateway = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 1073 }}}
+	allow = {}
+	effect = {}
+}
+####################################################################
+# 武器科技图标
+####################################################################
+button_icon_tech_gray_nano_reactor = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2000 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nanite_ia = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2001 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_p = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2002 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_g = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2003 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_h = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2004 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_propulsion = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2011 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_jump = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2012 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_sensors = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2013 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_computer = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2014 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_armor_hardener = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2015 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_shield_recharger = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2016 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_planet_killer_graygoo = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2021 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_nano_aura = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2022 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nanitecrop_titan = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2031 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nanitecrop_mothership = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2032 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nanite_storm = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2033 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nanitecrop_sentry = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2034 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_SML = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2040 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_l = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2041 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_x = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2042 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_t = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2043 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nanite_sentry_maingun = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2044 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_dark_matter_power_core = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2050 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_el = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2051 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_ex = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2052 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_gray_weapon_et = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2053 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nanoweapon = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 2054 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_psionic_theory = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3000 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_modularized_memory_injection = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3010 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_modularized_skill_injection = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3011 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_cloning = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3012 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_consciousness_copy = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3013 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_consciousness_sycn = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3014 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_consciousness_detach = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3020 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_consciousness_backup = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3021 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_consciousness_create = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3022 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_virtual_conscious_network = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3023 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nano_gestalt_network = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3024 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_nanite_bureaucratic = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3030 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_nanite_bureaucratic_2 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3031 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_nanite_bureaucratic_3 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3032 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_remote_nano_swarm = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3040 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_bureaucrat_upgrade = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3041 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_large_scale_network_manage = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3042 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_exoskeletons = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3050 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_biomechanics = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3051 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_living_nano_construction = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3052 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_repeat_nano_biostructure_enhance = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3053 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_drones = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3060 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_nano_army = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3061 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_army_gray_mecha = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3062 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_defence_centre = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3070 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_fortress = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3071 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_fortress2 = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3072 }}}
+	allow = {}
+	effect = {}
+}
+button_icon_tech_building_gray_nano_resident = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 3073 }}}
+	allow = {}
+	effect = {}
+}
+
+
+# KDC 扩展科技确认图标
+button_icon_tech_kdcne_evolution_core = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 4000 } } }
+	allow = {}
+	effect = {}
+}
+button_icon_tech_kdcne_nano_corrosion = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 4001 } } }
+	allow = {}
+	effect = {}
+}
+button_icon_tech_kdcne_nano_cloud = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 4002 } } }
+	allow = {}
+	effect = {}
+}
+button_icon_tech_kdcne_assimilation = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 4003 } } }
+	allow = {}
+	effect = {}
+}
+button_icon_tech_kdcne_lifesteal = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 4004 } } }
+	allow = {}
+	effect = {}
+}
+button_icon_tech_kdcne_system_nanofication = {
+	potential = { from = { check_variable = { which = gray_tech_id value = 4005 } } }
+	allow = {}
+	effect = {}
+}

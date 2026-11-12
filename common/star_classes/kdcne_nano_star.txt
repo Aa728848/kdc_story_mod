@@ -1,0 +1,8 @@
+# Never generated naturally; applied by the projector or Colossus.
+sc_kdcne_nano = {
+    class = g_star
+    planet = { key = pc_kdcne_nano_star }
+    spawn_odds = 0
+    num_planets = { min = 0 max = 0 }
+    arkship_picture = "arkship_class_g"
+}

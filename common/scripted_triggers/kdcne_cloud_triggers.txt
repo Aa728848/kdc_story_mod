@@ -1,0 +1,257 @@
+# Reserved blacklist for a later balancing pass. Deliberately inactive in all-target testing.
+kdcne_cloud_capture_protected = {
+    always = no
+}
+# Ship/fleet: clouds affect foreign objects without war, contact or survey requirements.
+# Never affect our own ships, including objects owned by us but controlled elsewhere.
+kdcne_cloud_foreign_target = {
+    exists = event_target:kdcne_cloud_source
+    exists = owner
+    exists = controller
+    owner = { NOT = { is_same_value = event_target:kdcne_cloud_source } }
+    controller = { NOT = { is_same_value = event_target:kdcne_cloud_source } }
+}
+# Ship: country and hull whitelists are intentionally disabled at the user's request.
+kdcne_cloud_capture_owner_allowed = {
+    exists = owner
+}
+kdcne_cloud_capture_hull = {
+    exists = owner
+    exists = controller
+    exists = fleet
+}
+# Ship: revalidate an actual cloud at delayed execution. A changed projection source,
+# expired coverage or departure must not let a stale callback capture for the old source.
+kdcne_cloud_contact_active = {
+    OR = {
+        AND = {
+            exists = event_target:kdcne_cloud_anchor_target
+            distance = { source = event_target:kdcne_cloud_anchor_target type = euclidean same_solar_system = yes max_distance <= 30 }
+        }
+        AND = {
+            exists = solar_system
+            solar_system = {
+                has_star_flag = kdcne_projection_active
+                exists = event_target:kdcne_projection_source_@this
+                if = {
+                    limit = { exists = event_target:kdcne_projection_source_@this }
+                    event_target:kdcne_projection_source_@this = { is_same_value = event_target:kdcne_cloud_source }
+                }
+            }
+        }
+    }
+}
+# Ship; source country is carried by each cloud event chain, never a shared global target.
+kdcne_cloud_can_assimilate = {
+    exists = event_target:kdcne_cloud_source
+    event_target:kdcne_cloud_source = {
+        has_country_flag = kdcne_assimilation_enabled
+        has_technology = tech_kdcne_assimilation
+    }
+    has_ship_flag = kdcne_assimilation_candidate
+    has_ship_flag = kdcne_cloud_recent
+    check_variable = { which = kdcne_cloud_exposure value >= value:kdcne_cloud_capture_threshold }
+    kdcne_cloud_capture_hull = yes
+    NOT = { kdcne_is_immune_to_corrosion_trigger = yes }
+    kdcne_cloud_foreign_target = yes
+    kdcne_cloud_contact_active = yes
+}
+# Earlier target restrictions remain commented for later, separate balancing.
+
+# TEMPORARILY DISABLED FOR UNRESTRICTED TEST: restore individually after the unrestricted fire test
+# kdcne_projection_target_valid = {
+#     custom_tooltip_icon = {
+#         text = kdcne_requires_star
+#         exists = $SYSTEM$
+#         if = {
+#             limit = { exists = $SYSTEM$ }
+#             $SYSTEM$ = {
+#                 exists = star
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_requires_unprotected_system
+#         exists = $SYSTEM$
+#         if = {
+#             limit = { exists = $SYSTEM$ }
+#             $SYSTEM$ = {
+#                 NOT = { has_special_star_flag_trigger = yes }
+#                 NOT = { has_star_flag = kdcne_no_projection }
+#                 NOT = { has_star_flag = cannot_be_hit_by_aow_starfall_spear }
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_requires_target_owner
+#         exists = $SYSTEM$
+#         if = {
+#             limit = { exists = $SYSTEM$ }
+#             $SYSTEM$ = {
+#                 if = {
+#                     limit = { exists = space_owner }
+#                     space_owner = { OR = { is_same_value = $SOURCE$ is_at_war_with = $SOURCE$ } }
+#                 }
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_requires_unprotected_star
+#         exists = $SYSTEM$
+#         if = {
+#             limit = { exists = $SYSTEM$ }
+#             $SYSTEM$ = {
+#                 exists = star
+#                 if = {
+#                     limit = { exists = star }
+#                     star = {
+#                         has_anomaly = no
+#                         NOT = { exists = archaeological_site }
+#                         NOT = { has_planet_flag = kdcne_no_projection }
+#                         NOT = { has_planet_flag = cannot_be_hit_by_aow_starfall_spear }
+#                     }
+#                 }
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_requires_no_coverage
+#         exists = $SYSTEM$
+#         if = {
+#             limit = { exists = $SYSTEM$ }
+#             $SYSTEM$ = {
+#                 NOT = { has_star_flag = kdcne_projection_active }
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_requires_free_stellar_orbit
+#         exists = $SYSTEM$
+#         if = {
+#             limit = { exists = $SYSTEM$ }
+#             $SYSTEM$ = {
+#                 NOT = {
+#                     any_system_megastructure = {
+#                         if = { limit = { exists = planet } planet = { is_star = yes } }
+#                         else = { always = no }
+#                     }
+#                 }
+#             }
+#         }
+#     }
+# }
+kdcne_projection_target_valid = {
+    custom_tooltip_icon = { text = kdcne_requires_target exists = $SYSTEM$ }
+}
+
+# TEMPORARILY DISABLED FOR UNRESTRICTED TEST: restore individually after the unrestricted fire test
+# kdcne_projection_launcher_valid = {
+#     custom_tooltip_icon = {
+#         text = kdcne_launcher_bound
+#         exists = event_target:kdcne_projection_launcher_@$SOURCE$
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_launcher_ready
+#         exists = event_target:kdcne_projection_launcher_@$SOURCE$
+#         if = {
+#             limit = { exists = event_target:kdcne_projection_launcher_@$SOURCE$ }
+#             event_target:kdcne_projection_launcher_@$SOURCE$ = {
+#                 is_megastructure_type = kdcne_mega_cloud_projector
+#                 has_megastructure_flag = kdcne_projector_ready
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_launcher_owned
+#         exists = event_target:kdcne_projection_launcher_@$SOURCE$
+#         if = {
+#             limit = { exists = event_target:kdcne_projection_launcher_@$SOURCE$ }
+#             event_target:kdcne_projection_launcher_@$SOURCE$ = {
+#                 exists = owner
+#                 if = { limit = { exists = owner } owner = { is_same_value = $SOURCE$ } }
+#             }
+#         }
+#     }
+#     custom_tooltip_icon = {
+#         text = kdcne_launcher_controlled
+#         exists = event_target:kdcne_projection_launcher_@$SOURCE$
+#         if = {
+#             limit = { exists = event_target:kdcne_projection_launcher_@$SOURCE$ }
+#             event_target:kdcne_projection_launcher_@$SOURCE$ = {
+#                 exists = space_owner
+#                 if = { limit = { exists = space_owner } space_owner = { is_same_value = $SOURCE$ } }
+#             }
+#         }
+#     }
+# }
+# Country: prevent a second operation from taking over an open window.
+kdcne_projection_window_free = {
+    NOT = { has_country_flag = kdcne_projection_open_pending }
+    NOR = {
+        has_active_event = { kdcne_cloud.21 }
+        has_active_event = { kdcne_cloud.22 }
+        has_active_event = { kdcne_cloud.23 }
+        has_active_event = { kdcne_cloud.27 }
+    }
+}
+# Megastructure: all completed stages are operational, including old control saves.
+kdcne_projection_stage_valid = {
+    OR = {
+        is_megastructure_type = kdcne_mega_cloud_projector
+        is_megastructure_type = kdcne_mega_cloud_projector_control
+        is_megastructure_type = kdcne_mega_cloud_projector_control_repeat
+    }
+    has_megastructure_flag = kdcne_projector_ready
+    is_upgrading = no
+}
+kdcne_projection_launcher_valid = {
+    custom_tooltip_icon = {
+        text = kdcne_launcher_bound
+        exists = event_target:kdcne_projection_launcher_@$SOURCE$
+    }
+    custom_tooltip_icon = {
+        text = kdcne_launcher_ready
+        exists = event_target:kdcne_projection_launcher_@$SOURCE$
+        if = {
+            limit = { exists = event_target:kdcne_projection_launcher_@$SOURCE$ }
+            event_target:kdcne_projection_launcher_@$SOURCE$ = { kdcne_projection_stage_valid = yes }
+        }
+    }
+    custom_tooltip_icon = {
+        text = kdcne_launcher_owned
+        exists = event_target:kdcne_projection_launcher_@$SOURCE$
+        if = {
+            limit = { exists = event_target:kdcne_projection_launcher_@$SOURCE$ }
+            event_target:kdcne_projection_launcher_@$SOURCE$ = {
+                exists = owner
+                if = { limit = { exists = owner } owner = { is_same_value = $SOURCE$ } }
+            }
+        }
+    }
+}
+
+# TEMPORARILY DISABLED FOR UNRESTRICTED TEST: restore individually after the unrestricted fire test
+# kdcne_projection_can_fire = {
+#     kdcne_projection_launcher_valid = { SOURCE = $SOURCE$ }
+#     custom_tooltip_icon = { text = kdcne_requires_projection_ready NOT = { has_country_flag = kdcne_projection_cooldown } }
+#     has_resource = { type = energy amount >= 10000 }
+#     has_resource = { type = nanites amount >= 2000 }
+#     custom_tooltip_icon = { text = kdcne_requires_target exists = event_target:kdcne_projection_target_@$SOURCE$ }
+#     kdcne_projection_target_valid = { SOURCE = $SOURCE$ SYSTEM = event_target:kdcne_projection_target_@$SOURCE$ }
+# }
+# Country: shared by both upgrade entries and final commit. The visible
+# country modifier also exposes the remaining time; old saves retain the flag.
+kdcne_projection_cooldown_ready = {
+    custom_tooltip = {
+        fail_text = kdcne_requires_projection_ready
+        NOT = { has_country_flag = kdcne_projection_cooldown }
+        NOT = { has_modifier = kdcne_projection_recharging }
+    }
+}
+kdcne_projection_can_fire = {
+    kdcne_projection_launcher_valid = { SOURCE = $SOURCE$ }
+    kdcne_projection_cooldown_ready = yes
+    has_resource = { type = energy amount >= 10000 }
+    has_resource = { type = nanites amount >= 2000 }
+    kdcne_projection_target_valid = { SYSTEM = event_target:kdcne_projection_target_@$SOURCE$ }
+}

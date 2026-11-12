@@ -1,0 +1,11 @@
+on_monthly_pulse_country = {
+	events = {
+		VOP_evt_FRAMEWORK.8
+	}
+}
+
+on_yearly_pulse_country = {
+	events = {
+		VOP_evt_FRAMEWORK.9
+	}
+}

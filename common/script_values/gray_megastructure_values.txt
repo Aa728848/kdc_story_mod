@@ -1,0 +1,69 @@
+mod_mega_resource_cost_value = {
+	base = 1.0
+	add = modifier:megastructures_$RESOURCE$_cost_mult
+	mult = value:mod_mega_cost_value
+	min = @gray_megastrucutre_min_cost_mult
+}
+
+# 获取巨构花费扣减
+mod_mega_alloys_value = {
+	base = 1.0
+	add = modifier:megastructures_alloys_cost_mult
+	mult = value:mod_mega_cost_value
+	min = @gray_megastrucutre_min_cost_mult
+}
+mod_mega_influence_value = {
+	base = 1.0
+	add = modifier:megastructures_influence_cost_mult
+	mult = value:mod_mega_cost_value
+	min = @gray_megastrucutre_min_cost_mult
+}
+mod_mega_unity_value = {
+	base = 1.0
+	add = modifier:megastructures_unity_cost_mult
+	mult = value:mod_mega_cost_value
+	min = @gray_megastrucutre_min_cost_mult
+}
+mod_mega_cost_value = {
+	base = 1.0
+	add = modifier:megastructures_cost_mult
+	min = @gray_megastrucutre_min_cost_mult
+}
+
+# 计算戴森球所需合金
+# 需要模组：星河奇迹 age of wonder
+# this = star
+# # root = country
+# gray_dyson_sphere_aow_cost = {
+# 	base = $BASE$
+# 	modifier = {
+# 		factor = 2.5 #戴森球O
+# 		AOW_trgr_PLNT_o_spectrum = yes
+# 	}
+# 	modifier = {
+# 		factor = 2 #戴森球B
+# 		AOW_trgr_PLNT_b_spectrum = yes
+# 	}
+# 	modifier = {
+# 		factor = 1.5 #戴森球A
+# 		AOW_trgr_PLNT_a_spectrum = yes
+# 	}
+# 	modifier = {
+# 		factor = 1.25 #戴森球F
+# 		AOW_trgr_PLNT_f_spectrum = yes
+# 	}
+# 	modifier = {
+# 		factor = 1 #戴森球G
+# 		AOW_trgr_PLNT_g_spectrum = yes
+# 	}
+# 	modifier = {
+# 		factor = 0.75 #戴森球K
+# 		AOW_trgr_PLNT_k_spectrum = yes
+# 	}
+# 	modifier = {
+# 		factor = 0.5 #戴森球M
+# 		AOW_trgr_PLNT_m_spectrum = yes
+# 	}
+# 	mult = 4 # 4阶段总共所需费用
+# 	mult = root.value:mod_mega_resource_cost_value|RESOURCE|$RESOURCE$ # 修正提供的折扣
+# }

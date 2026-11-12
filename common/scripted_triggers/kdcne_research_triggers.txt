@@ -1,0 +1,52 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 纳米开发局研究按钮触发器
+# 4000-4005 为现行科技；4006 星笼科技停用，保留拒绝入口。
+# 说明：按钮 allow 条件（default_gray_tech_button_allow_trigger）需要
+#       gray_tech_$ID$_prerequisites_trigger（前置）+ has_gray_tech_$ID$_trigger（已研究）
+# ============================================================================
+
+gray_tech_4000_prerequisites_trigger = {
+	always = yes
+}
+has_gray_tech_4000_trigger = {
+	has_technology = tech_kdcne_evolution_core
+}
+
+gray_tech_4001_prerequisites_trigger = {
+	always = yes
+}
+has_gray_tech_4001_trigger = {
+	has_technology = tech_kdcne_nano_corrosion
+}
+
+gray_tech_4002_prerequisites_trigger = {
+	always = yes
+}
+has_gray_tech_4002_trigger = {
+	has_technology = tech_kdcne_nano_cloud
+}
+
+gray_tech_4003_prerequisites_trigger = {
+	always = yes
+}
+has_gray_tech_4003_trigger = {
+	has_technology = tech_kdcne_assimilation
+}
+
+gray_tech_4004_prerequisites_trigger = {
+	always = yes
+}
+has_gray_tech_4004_trigger = {
+	has_technology = tech_kdcne_lifesteal
+}
+
+gray_tech_4005_prerequisites_trigger = {
+	always = yes
+}
+has_gray_tech_4005_trigger = {
+	has_technology = tech_kdcne_system_nanofication
+}
+
+gray_tech_4006_prerequisites_trigger = { always = no }
+has_gray_tech_4006_trigger = { has_technology = tech_kdcne_nano_starcage }
+

@@ -1,0 +1,21 @@
+ship_design = {
+	name = "NAME_R_Gate"
+	ship_size = r_gate_entity
+	is_event_design = yes
+	
+	section = {
+		template = "r_gate_section_entity"
+		slot = "mid"
+	}
+
+}
+ship_design = {
+	name = "NAME_R_Gate2"
+	ship_size = r_gate_entity2
+	is_event_design = yes
+	
+	section = {
+		template = "r_gate_section_entity2"
+		slot = "mid"
+	}
+}

@@ -1,0 +1,61 @@
+show_graygoo_planets = {
+	length = 1
+	icon = GFX_edict_type_time
+	potential = {
+		has_ascension_perk = ap_graygoo_planet_transform
+		is_ai = no
+	}
+
+	effect = {
+		hidden_effect = {
+			country_event = { id = gray_origin.2002 }
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}	
+}
+
+cancel_show_graygoo_planets = {
+	length = 1
+	icon = GFX_edict_type_time
+	potential = {
+		has_event_chain = show_graygoo_planets_chain
+		is_ai = no
+	}
+
+	effect = {
+		end_event_chain = show_graygoo_planets_chain
+	}
+	
+	ai_weight = {
+		weight = 0
+	}	
+}
+
+open_gray_research_interface = {
+	length = 1
+	icon = GFX_edict_type_time
+	potential = {
+		is_ai = no
+		OR = {
+			has_country_flag = activate_gray_research
+			has_technology = tech_TMR_nanite_productor
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "opened_gray_research_window"
+			NOT = { has_country_flag = opened_gray_research_window }
+		}
+	}
+
+	effect = {
+		hidden_effect = { country_event = { id = gray_tech.999 }}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}	
+}

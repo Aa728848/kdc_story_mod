@@ -1,0 +1,165 @@
+namespace = kdc_test
+
+# ============================================================================
+# KDC 调试用测试事件（纳米局势科技树）
+# 用法（控制台，需暂停）：
+#   event kdc_test.1  → 开启纳米开发局 + 拉满研究槽 + 每月额外10000纳米科研点（可用决议关闭）
+#   event kdc_test.2  → 直接给全部纳米局势科技（跳过局势研究，立即"跑满"科技树）
+# 仅对玩家（is_ai = no）生效；测试完可删除本文件。
+# ============================================================================
+
+# --- 测试 1：开启纳米局势科技树并加速 -------------------------------------------------
+country_event = {
+	id = kdc_test.1
+	title = kdc_test.1.title
+	desc = kdc_test.1.desc
+	hide_window = no
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+		# 开启纳米开发局
+		set_country_flag = activate_gray_research
+		remove_country_flag = opened_gray_research_window
+		# 初始化变量
+		country_event = { id = gray_tech.100 }
+		# 打开研究界面
+		country_event = { id = gray_tech.999 }
+		# 拉满研究槽位（原版上限 3）
+		set_variable = { which = num_gray_research_slot value = 3 }
+		# 持续测试来源，避免下次重算覆盖；可用殖民地决议关闭。
+		set_country_flag = kdcne_test_nanopoints_flag
+		remove_modifier = kdcne_test_nanopoints_buff
+		add_modifier = { modifier = kdcne_test_nanopoints_buff }
+		country_event = { id = gray_tech.1 }
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+# --- 测试 2：直接给全部纳米局势科技（跳过局势） -------------------------------------
+country_event = {
+	id = kdc_test.2
+	title = kdc_test.2.title
+	desc = kdc_test.2.desc
+	hide_window = no
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+		set_country_flag = activate_gray_research
+		country_event = { id = gray_tech.100 }
+		# 建筑/生产系
+		give_technology = { tech = tech_TMR_nanite_productor message = no }
+		give_technology = { tech = tech_building_gray_nanite_factory message = no }
+		give_technology = { tech = tech_building_gray_nanite_factory2 message = no }
+		give_technology = { tech = tech_building_nanoassembly_plant message = no }
+		give_technology = { tech = tech_nano_reconstruct message = no }
+		give_technology = { tech = tech_building_nanite_field_manipulator message = no }
+		give_technology = { tech = tech_building_gray_nano_foundry message = no }
+		give_technology = { tech = tech_building_gray_nano_rare_resource_factory message = no }
+		give_technology = { tech = tech_building_gray_nano_foundry2 message = no }
+		give_technology = { tech = tech_building_gray_nano_factory message = no }
+		give_technology = { tech = tech_building_gray_nano_factory2 message = no }
+		give_technology = { tech = tech_building_gray_nano_research message = no }
+		give_technology = { tech = tech_building_gray_nano_research2 message = no }
+		give_technology = { tech = tech_building_gray_nano_research3 message = no }
+		give_technology = { tech = tech_building_nanite_bureaucratic message = no }
+		# 巨构系
+		give_technology = { tech = tech_nano_construction_core message = no }
+		give_technology = { tech = tech_nano_dyson_sphere message = no }
+		give_technology = { tech = tech_nano_matter_decompressor message = no }
+		give_technology = { tech = tech_nano_ring_world message = no }
+		give_technology = { tech = tech_nano_science_nexus message = no }
+		give_technology = { tech = tech_macro_nanorobot_technology message = no }
+		give_technology = { tech = tech_TMR_nanite_factory message = no }
+		give_technology = { tech = tech_TMR_gatebuilder_core message = no }
+		give_technology = { tech = tech_R_gateway message = no }
+		# 舰船组件系
+		give_technology = { tech = tech_gray_nano_reactor message = no }
+		give_technology = { tech = tech_gray_nanite_ia message = no }
+		give_technology = { tech = tech_gray_weapon_p message = no }
+		give_technology = { tech = tech_gray_weapon_g message = no }
+		give_technology = { tech = tech_gray_weapon_h message = no }
+		give_technology = { tech = tech_gray_nano_propulsion message = no }
+		give_technology = { tech = tech_gray_nano_jump message = no }
+		give_technology = { tech = tech_gray_nano_sensors message = no }
+		give_technology = { tech = tech_gray_nano_computer message = no }
+		give_technology = { tech = tech_gray_nano_armor_hardener message = no }
+		give_technology = { tech = tech_gray_nano_shield_recharger message = no }
+		give_technology = { tech = tech_gray_nano_aura message = no }
+		give_technology = { tech = tech_gray_weapon_SML message = no }
+		give_technology = { tech = tech_gray_weapon_l message = no }
+		give_technology = { tech = tech_gray_weapon_x message = no }
+		give_technology = { tech = tech_gray_weapon_t message = no }
+		give_technology = { tech = tech_gray_weapon_el message = no }
+		give_technology = { tech = tech_gray_weapon_ex message = no }
+		give_technology = { tech = tech_gray_weapon_et message = no }
+		give_technology = { tech = tech_nanite_sentry_maingun message = no }
+		give_technology = { tech = tech_dark_matter_power_core message = no }
+		# 舰船系
+		give_technology = { tech = tech_nanitecrop_titan message = no }
+		give_technology = { tech = tech_nanitecrop_mothership message = no }
+		give_technology = { tech = tech_nanite_storm message = no }
+		give_technology = { tech = tech_nanitecrop_sentry message = no }
+		give_technology = { tech = tech_planet_killer_graygoo message = no }
+		# 陆军/其他系
+		give_technology = { tech = tech_nano_exoskeletons message = no }
+		give_technology = { tech = tech_nano_biomechanics message = no }
+		give_technology = { tech = tech_living_nano_construction message = no }
+		give_technology = { tech = tech_nano_drones message = no }
+		give_technology = { tech = tech_nano_army message = no }
+		give_technology = { tech = tech_army_gray_mecha message = no }
+		give_technology = { tech = tech_building_gray_nano_defence_centre message = no }
+		give_technology = { tech = tech_building_gray_fortress message = no }
+		give_technology = { tech = tech_building_gray_fortress2 message = no }
+		give_technology = { tech = tech_psionic_theory message = no }
+		give_technology = { tech = tech_kdcne_evolution_core message = no }
+		give_technology = { tech = tech_kdcne_nano_corrosion message = no }
+		give_technology = { tech = tech_kdcne_nano_cloud message = no }
+		give_technology = { tech = tech_kdcne_assimilation message = no }
+		give_technology = { tech = tech_kdcne_lifesteal message = no }
+		give_technology = { tech = tech_kdcne_system_nanofication message = no }
+		# 标记型科技（原代码用 flag 代替 give_technology）
+		set_country_flag = gray_tech_1018_researched
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+# --- 测试 3：模拟故事链入口，直接跳到 gray_story.4（定位断点用） ---------------------
+# 作用：跳过"异常→gray_story.1"这一段，直接设 flag + 开链 + 触发 gray_story.4。
+# 若 gray_story.4 之后能一路走到 gray_story.18（开启纳米开发局），说明断点在异常/科技触发段；
+# 若仍卡住，说明断点在 gray_story.4 之后的特殊项目/局势段。
+country_event = {
+	id = kdc_test.3
+	title = kdc_test.3.title
+	desc = kdc_test.3.desc
+	hide_window = no
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+		set_global_flag = triggered_gray_story_event
+		set_country_flag = triggered_gray_story_country
+		begin_event_chain = { event_chain = gray_story_chain_left }
+		country_event = { id = gray_story.4 }
+	}
+
+	option = {
+		name = OK
+	}
+}

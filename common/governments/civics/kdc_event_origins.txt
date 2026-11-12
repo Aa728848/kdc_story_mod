@@ -1,0 +1,20 @@
+origin_gray = {
+	is_origin = yes
+	max_once_global = yes
+	preferred_planet_class_neighbor = no
+	non_colonizable_planet_class_neighbor = yes
+	initializers = { origin_gray_force_start_system }
+	icon = "gfx/interface/icons/origins/origins_gray.dds"
+	picture = GFX_origin_gray
+	# 261112：恢复手动选择；原初始化仅支持单人玩家，AI权重仍为0。
+	possible = {
+		is_multiplayer = no
+	}
+
+	description = "origin_tooltip_origin_gray"
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}

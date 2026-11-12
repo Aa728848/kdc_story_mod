@@ -1,0 +1,15 @@
+d_kdc_blast_wall_ruins = {
+	is_for_colonizable = yes
+	icon = d_ship_debris_blocker
+	category = deposit_cat_rare
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.15
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

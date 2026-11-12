@@ -1,0 +1,47 @@
+namespace = kdc_event
+
+# 水b林雪
+country_event = {
+	id = kdc_event.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				count_system_planet = { limit = { is_star = yes } count = 1 }
+				is_star_class = sc_black_hole
+				NOT = { has_star_flag = horizonsignal_spawn }
+			}
+			set_star_flag = XuePlate_system
+			save_global_event_target_as = XuePlate_system
+		}
+	}
+}
+# 每月概率换恒星
+event = {
+	id = kdc_event.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:XuePlate_system = {
+			if = {
+				limit = { NOT = { has_star_flag = finish_XuePlate_event }}
+				star = { random_list = {
+					1 = { change_pc = pc_b_star }
+					1 = { change_pc = pc_a_star }
+					1 = { change_pc = pc_f_star }
+					1 = { change_pc = pc_g_star }
+					1 = { change_pc = pc_k_star }
+					1 = { change_pc = pc_m_star }
+					1 = { change_pc = pc_m_giant_star }
+					1 = { change_pc = pc_t_star }
+					1 = { change_pc = pc_black_hole }
+					1 = { change_pc = pc_neutron_star }
+					1 = { change_pc = pc_pulsar }
+				}}
+			}
+		}
+	}
+}

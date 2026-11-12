@@ -1,0 +1,79 @@
+multiply_var_AOW_star = {
+    optimize_memory
+    if = {
+        limit = { AOW_trgr_PLNT_hyper_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_hyper_star_prdc }
+        break = yes
+    }
+    # super stars
+    if = {
+        limit = { AOW_trgr_PLNT_o_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_o_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_b_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_b_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_a_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_a_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_f_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_f_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_g_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_g_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_k_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_k_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_m_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_m_super_star_prdc }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_o_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_o_star }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_giant_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_giant_star }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_a_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_a_star }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_f_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_f_star }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_g_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_g_star }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_k_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_k_star }
+        break = yes
+    }
+    if = {
+        limit = { AOW_trgr_PLNT_m_super_star = yes }
+        multiply_variable = { which = $VAR$ value = @AOW_var_mega_m_star }
+        break = yes
+    }
+}

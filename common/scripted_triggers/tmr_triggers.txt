@@ -1,0 +1,67 @@
+
+
+can_detonate_tmr_core_system = {
+	space_owner = {
+		hidden_trigger = { is_scope_type = country }
+		default_vaild_country = yes
+		custom_tooltip = {
+			fail_text = "is_at_war_with_target_country"
+			OR = {
+				is_default_and_fallen_empire_country = no
+				AND = {
+					has_communications = root
+					is_at_war_with = root
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "cannot_detonate_tmr_core"
+		NOR = {
+			has_star_flag = TMR_gatebuilder_core
+			has_star_flag = fgosw_rule_system_protected
+		}
+	}
+	custom_tooltip = {
+		fail_text = "kuat_requires_a_star_star_killer" 
+		NOR = { 
+			is_star_class = sc_kuat 
+			has_star_flag = kuat_military_base_system_home
+		}
+	}
+	custom_tooltip = {
+		fail_text = "too_cunning_icantbreathe_system" 
+		NOR = {
+			has_star_flag = Kuat_system
+			has_star_flag = Kuat_system_1
+			has_star_flag = Kuat_system_2
+			has_star_flag = Kuat_system_3
+			has_star_flag = kuat_initial_system
+			has_star_flag = eternal_starbase_megastructure_in_system
+		}
+		NOT = { any_ship_in_system = { OR = {
+			is_ship_size = eternal_flagship
+			is_ship_size = eternal_battleship
+		}}}
+	}
+	custom_tooltip = {
+		fail_text = "kuat_requires_no_ancient_system" 
+		NOR = {
+			has_star_flag = ag_ancient_system
+			has_star_flag = ag_gamma_station_small_in_system
+		}
+		NOT = { any_ship_in_system = { OR = {
+			is_ship_size = ag_gamma_station_hostile
+			is_ship_size = ag_gamma_station_small_hostile
+			is_ship_size = ag_gamma_station_small_moving_hostile
+		}}}
+	}
+	custom_tooltip = {
+		fail_text = "kuat_requires_no_zeta_crisis_system" 
+		NOT = { any_ship_in_system = { OR = {
+			is_ship_size = ag_zeta_crisis_portal
+			is_ship_size = ag_zeta_crisis_psionic_storm
+			is_ship_size = ag_zeta_crisis_psionic_singularity
+		}}}
+	}
+}

@@ -1,0 +1,77 @@
+# scope:star
+# 根据恒星类型设定戴森球花费
+gray_nano_core_menu_after_effect = {
+	hidden_effect = { event_target:nano_core_system = { 
+		remove_star_flag = gray_nano_core_deploying
+		every_fleet_in_system = {
+			limit = { has_fleet_flag = gray_nano_core_fleet is_owned_by = root }
+			clear_variable = num_nano_core
+			set_event_locked = no
+		}
+	}}
+}
+# 刷一艘纳米核心船
+# scope: fleet
+create_gray_nano_core_ship = {
+	create_ship = {
+		random_existing_design = gray_nano_construct_core
+		graphical_culture = owner
+		prefix = yes
+	}
+}
+
+# 删除星系内一定数目的纳米核心
+# 输入：NUM
+# this: fleet (优先删除的舰队）
+# prev: system
+# scope: fleet. Count actual core ships; never depend on the caller's PREV.
+delete_nano_core = {
+	save_event_target_as = kdc_core_payment_fleet
+	owner = { save_event_target_as = kdc_core_payment_owner }
+	solar_system = {
+		set_variable = { which = kdc_core_payment_left value = $NUM$ }
+		while = {
+			limit = {
+				check_variable = { which = kdc_core_payment_left value > 0 }
+				any_fleet_in_system = {
+					is_owned_by = event_target:kdc_core_payment_owner
+					has_fleet_flag = gray_nano_core_fleet
+					any_owned_ship = { is_ship_size = gray_nano_construct_core }
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:kdc_core_payment_fleet
+					event_target:kdc_core_payment_fleet = { any_owned_ship = { is_ship_size = gray_nano_construct_core } }
+				}
+				event_target:kdc_core_payment_fleet = { random_owned_ship = {
+					limit = { is_ship_size = gray_nano_construct_core }
+					delete_ship = this
+				} }
+			} else = {
+				random_fleet_in_system = {
+					limit = {
+						is_owned_by = event_target:kdc_core_payment_owner
+						has_fleet_flag = gray_nano_core_fleet
+						any_owned_ship = { is_ship_size = gray_nano_construct_core }
+					}
+					random_owned_ship = {
+						limit = { is_ship_size = gray_nano_construct_core }
+						delete_ship = this
+					}
+				}
+			}
+			subtract_variable = { which = kdc_core_payment_left value = 1 }
+		}
+		clear_variable = kdc_core_payment_left
+	}
+}
+
+# scope: fleet. Only construction cores count as construction material.
+kdc_count_nano_core_ships = {
+	set_variable = { which = num_nano_core value = 0 }
+	every_owned_ship = {
+		limit = { is_ship_size = gray_nano_construct_core }
+		prev = { change_variable = { which = num_nano_core value = 1 } }
+	}
+}

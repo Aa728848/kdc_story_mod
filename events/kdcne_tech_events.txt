@@ -1,0 +1,63 @@
+namespace = gray_tech
+
+# ============================================================================
+# KDC 纳米机制扩展 · 一次性科技完成效果
+# 由 on_gray_tech_increased 触发（见 gray_research_on_actions.txt）
+# ============================================================================
+
+# Retired starcage completion ID: safe for callbacks already saved in a game.
+country_event = {
+	id = gray_tech.4006
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = { }
+}
+
+country_event = {
+	id = gray_tech.4000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 4000 }}
+	immediate = { give_technology = { tech = tech_kdcne_evolution_core message = no }}
+}
+
+country_event = {
+	id = gray_tech.4001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 4001 }}
+	immediate = { give_technology = { tech = tech_kdcne_nano_corrosion message = no }}
+}
+
+country_event = {
+	id = gray_tech.4002
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 4002 }}
+	immediate = { give_technology = { tech = tech_kdcne_nano_cloud message = no }}
+}
+
+country_event = {
+	id = gray_tech.4003
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 4003 }}
+	immediate = { give_technology = { tech = tech_kdcne_assimilation message = no }}
+}
+
+country_event = {
+	id = gray_tech.4004
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 4004 }}
+	immediate = { give_technology = { tech = tech_kdcne_lifesteal message = no }}
+}
+
+country_event = {
+	id = gray_tech.4005
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { gray_tech_finish_event_trigger = { ID = 4005 }}
+	immediate = { give_technology = { tech = tech_kdcne_system_nanofication message = no }}
+}
+

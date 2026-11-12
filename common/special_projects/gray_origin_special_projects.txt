@@ -1,0 +1,448 @@
+# special_project = {
+# 	key = gray_origin_gray_omega_matter
+# 	cost = 0
+# 	days_to_research = 180
+# 	picture = GFX_evt_gray_goo
+# 	event_chain = gray_origin_chains_1
+#
+# 	event_scope = planet_event
+#
+# 	on_success = {
+# 		owner = { country_event = { id = gray_origin.3 }}
+# 	}
+# }
+
+# special_project = {
+# 	key = gray_origin_gray_omega_matter2
+# 	cost = 0
+# 	days_to_research = 180
+# 	picture = GFX_evt_nuclear_explosion
+# 	event_chain = gray_origin_chains_1
+#
+# 	event_scope = planet_event
+#
+# 	on_success = {
+# 		owner = { country_event = { id = gray_origin.11 }}
+# 	}
+# }
+
+# special_project = {
+# 	key = gray_origin_gray_large_scale_search
+# 	cost = 1500
+# 	tech_department = society_technology
+# 	picture = GFX_evt_nuclear_explosion
+
+# 	event_scope = planet_event
+# 	timelimit = 900
+
+# 	on_success = {
+# 		owner = { country_event = { id = gray_origin.13 }}
+# 	}
+# 	on_fail = {
+# 		country_event = { id = gray_origin.14 }
+# 	}
+# }
+
+# special_project = {
+# 	key = gray_origin_gray_world_eater
+# 	cost = 0
+# 	days_to_research = 180
+# 	picture = GFX_evt_desert
+# 	event_chain = gray_origin_chains_1
+#
+# 	event_scope = planet_event
+#
+# 	on_success = {
+# 		owner = { country_event = { id = gray_origin.18 }}
+# 	}
+# }
+
+special_project = {
+	key = gray_origin_destroyed_gray_warship
+	cost = 0
+	days_to_research = 120
+	picture = GFX_evt_gray_goo_ships
+	event_chain = gray_origin_chains_1
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		FROM = { 
+			if = {
+				limit = { is_scope_type = ambient_object }
+				destroy_ambient_object = this 
+			}
+		}
+		ship_event = { id = gray_origin.22 }
+	}
+}
+
+special_project = {
+	key = gray_origin_graygoo_planet
+	cost = 0
+	days_to_research = 180
+	picture = GFX_evt_gray_goo_ships
+	event_chain = gray_origin_chains_1
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = gray_origin.24 }
+	}
+}
+
+special_project = {
+	key = gray_origin_research_lgate
+	cost = 0
+	days_to_research = 180
+	picture = GFX_evt_l-gateway
+	event_chain = gray_origin_chains_1
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		owner = { country_event = { id = gray_origin.26 }}
+	}
+}
+
+# special_project = {
+# 	key = gray_origin_gray_research_hurricane
+# 	cost = 0
+# 	days_to_research = 120
+# 	picture = GFX_evt_kdc_mod_hurricane
+# 	event_chain = gray_origin_chains_1
+
+# 	event_scope = planet_event
+
+# 	on_success = {
+# 		owner = { country_event = { id = gray_origin.30 }}
+# 	}
+# }
+
+special_project = {
+	key = gray_origin_gray_global_nanite_framework
+	event_scope = planet_event
+	picture = GFX_evt_megastructure_construction
+	cost = 2500
+	tech_department = engineering_technology
+	requirements = {
+	}
+	on_success = { 
+		owner = { country_event = { id = gray_origin.43 }}
+	}
+}
+
+special_project = {
+	key = gray_origin_gray_setup_satelites
+	event_scope = ship_event
+	event_chain = gray_origin_terraform_planet_chain
+	days_to_research = 120
+	requirements = {
+		shipclass_constructor = 1
+	}
+	on_success = {
+		from = { 
+			save_event_target_as = setup_satelite_planet
+		}
+		ship_event = { id = gray_origin.49 }
+	}
+	abort_trigger = {
+		has_country_flag = origin_gray_country 
+		has_country_flag = finish_gray_storyline
+	}
+}
+
+special_project = {
+	key = gray_origin_gray_terraform_graygoo_planet
+	event_scope = ship_event
+	event_chain = gray_origin_terraform_planet_chain
+	days_to_research = 360
+	requirements = {
+		shipclass_military = 1
+		leader = commander
+		has_trait = leader_trait_wg_gray_legend
+	}
+	on_success = {
+		from = { save_event_target_as = terraformed_graygoo_planet }
+		random_list = {
+			42 = { ship_event = { id = gray_origin.50 }}
+			33 = { ship_event = { id = gray_origin.51 }}
+			25 = { ship_event = { id = gray_origin.52 }}
+		}
+	}
+	abort_trigger = {
+		has_country_flag = origin_gray_country 
+		has_country_flag = finish_gray_storyline
+	}
+}
+
+special_project = {
+	key = gray_origin_gray_recover_nanite_signal
+	event_scope = planet_event
+	picture = GFX_evt_megastructure_construction
+	cost = 1200
+	tech_department = engineering_technology
+	requirements = {
+	}
+	on_success = { 
+		owner = { country_event = { id = gray_origin.55 }}
+	}
+}
+
+special_project = {
+	key = gray_origin_gray_terraform_graygoo_planet2
+	event_scope = ship_event
+	event_chain = gray_origin_terraform_planet_chain
+	days_to_research = 900
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	on_success = {
+		from = { save_event_target_as = terraformed_graygoo_planet }
+		random_list = {
+			30 = { ship_event = { id = gray_origin.50 }}
+			55 = { ship_event = { id = gray_origin.51 }}
+			15 = { ship_event = { id = gray_origin.52 }}
+		}
+	}
+	abort_trigger = {
+		has_country_flag = origin_gray_country 
+		has_country_flag = finish_gray_storyline
+	}
+}
+
+special_project = {
+	key = gray_origin_chain2_search_clue_project
+	event_scope = ship_event
+	event_chain = gray_origin_chain_2
+	days_to_research = 90
+
+	abort_trigger = {
+		owner = {
+			check_variable = {
+				which = found_gray_origin_chain2_clue
+				value >= 5
+			}
+		}
+	}
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {  
+		random_list = {
+			50 = {
+				owner = { change_variable = { which = found_gray_origin_chain2_clue value = 1 }}
+				set_ship_flag = refuse_gray_storyline_event_chain
+				random_list = {
+					1 = { 
+						ship_event = { id = gray_origin.62 }
+						modifier = {
+							factor = 0
+							owner = { has_country_flag = triggered_gray_origin62 }
+						}
+					}
+					1 = { 
+						ship_event = { id = gray_origin.64 }
+						modifier = {
+							factor = 0
+							owner = { has_country_flag = triggered_gray_origin64 }
+						}
+					}
+					1 = { 
+						ship_event = { id = gray_origin.66 }
+						modifier = {
+							factor = 0
+							owner = { has_country_flag = triggered_gray_origin66 }
+						}
+					}
+					1 = { 
+						ship_event = { id = gray_origin.68 }
+						modifier = {
+							factor = 0
+							owner = { has_country_flag = triggered_gray_origin68 }
+						}
+					}
+					1 = { 
+						ship_event = { id = gray_origin.70 }
+						modifier = {
+							factor = 0
+							owner = { has_country_flag = triggered_gray_origin70 }
+						}
+					}
+				}
+			}
+			50 = {
+				owner = { change_variable = { which = gray_origin_chain2_clue_failed value = 1 }}
+				modifier = {
+					factor = 0
+					owner = { check_variable = {
+						which = gray_origin_chain2_clue_failed
+						value >= 3
+					}}
+				}
+			}
+		}
+	}
+}
+
+special_project = {
+	key = gray_origin_chain2_project_1
+	event_scope = ship_event
+	event_chain = gray_origin_chain_2
+	days_to_research = 180
+	desc = {
+		text = gray_origin_chain2_project_1_DESC
+		trigger = { owner = { NOT = { has_country_flag = refuse_gray_storyline }}}
+	}
+	desc = {
+		text = gray_origin_chain2_project_1_DESC_b
+		trigger = { owner = { has_country_flag = refuse_gray_storyline }}
+	}
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	on_success = {  
+		ship_event = { id = gray_origin.63 }
+	}
+}
+
+special_project = {
+	key = gray_origin_chain2_project_2
+	event_scope = ship_event
+	event_chain = gray_origin_chain_2
+	days_to_research = 180
+	desc = {
+		text = gray_origin_chain2_project_2_DESC
+		trigger = { owner = { NOT = { has_country_flag = refuse_gray_storyline }}}
+	}
+	desc = {
+		text = gray_origin_chain2_project_2_DESC_b
+		trigger = { owner = { has_country_flag = refuse_gray_storyline }}
+	}
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	on_success = {  
+		ship_event = { id = gray_origin.65 }
+	}
+}
+
+special_project = {
+	key = gray_origin_chain2_project_3
+	event_scope = ship_event
+	event_chain = gray_origin_chain_2
+	days_to_research = 180
+	desc = {
+		text = gray_origin_chain2_project_3_DESC
+		trigger = { owner = { NOT = { has_country_flag = refuse_gray_storyline }}}
+	}
+	desc = {
+		text = gray_origin_chain2_project_3_DESC_b
+		trigger = { owner = { has_country_flag = refuse_gray_storyline }}
+	}
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	on_success = {  
+		ship_event = { id = gray_origin.67 }
+	}
+}
+
+special_project = {
+	key = gray_origin_chain2_project_4
+	event_scope = ship_event
+	event_chain = gray_origin_chain_2
+	days_to_research = 180
+	desc = {
+		text = gray_origin_chain2_project_4_DESC
+		trigger = { owner = { NOT = { has_country_flag = refuse_gray_storyline }}}
+	}
+	desc = {
+		text = gray_origin_chain2_project_4_DESC_b
+		trigger = { owner = { has_country_flag = refuse_gray_storyline }}
+	}
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	on_success = {  
+		ship_event = { id = gray_origin.69 }
+	}
+}
+
+special_project = {
+	key = gray_origin_chain2_project_5
+	event_scope = ship_event
+	event_chain = gray_origin_chain_2
+	days_to_research = 180
+	desc = {
+		text = gray_origin_chain2_project_5_DESC
+		trigger = { owner = { NOT = { has_country_flag = refuse_gray_storyline }}}
+	}
+	desc = {
+		text = gray_origin_chain2_project_5_DESC_b
+		trigger = { owner = { has_country_flag = refuse_gray_storyline }}
+	}
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	on_success = {  
+		ship_event = { id = gray_origin.71 }
+	}
+}
+
+special_project = {
+	key = show_graygoo_planets
+	cost = 0
+	days_to_research = 1
+	picture = GFX_evt_gray_gooed_planet
+	event_chain = show_graygoo_planets_chain
+
+	event_scope = planet_event
+
+	abort_trigger = { 
+		NAND = {
+			exists = fromfrom
+			exists = fromfrom.solar_system.space_owner
+			fromfrom = { is_planet_class = pc_gray_goo }
+		}
+	}
+
+	on_success = {
+		if = {
+			limit = { 
+				exists = from 
+				exists = from.solar_system.space_owner
+			}
+			from = { solar_system = { space_owner = {
+				abort_special_project = {
+					type = show_graygoo_planets
+					location = prevprev
+				}
+			}}}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+namespace = kdc_leader
+country_event = {
+	id = kdc_leader.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		FROMFROM = { 
+			exists = leader
+			NOT = { has_fleet_flag = drones }
+		}
+	}
+	immediate = {
+		fromfrom = {
+			if = {
+				# 限定二改自改版大小姐，因此不需要判断其他
+				limit = { has_leader_flag = wsg_lady_leader }
+				# 交战开始第二天叠buff
+			}
+		}
+	}
+}

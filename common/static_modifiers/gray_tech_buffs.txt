@@ -1,0 +1,65 @@
+tech_repeat_nanite_produce_buff = {
+	hide_from_country_list = yes
+	planet_jobs_nanites_produces_mult = 0.1
+}
+tech_repeat_nano_alloy_produce_buff = {
+	hide_from_country_list = yes
+	planet_jobs_alloys_produces_mult = 0.1
+}
+tech_repeat_nano_consumer_goods_produce_buff = {
+	hide_from_country_list = yes
+	planet_jobs_consumer_goods_produces_mult = 0.1
+}
+tech_repeat_nano_research_produce_buff = {
+	hide_from_country_list = yes
+	all_technology_research_speed = 0.05
+	country_jobs_nano_research_points_mult = 0.05
+}
+tech_repeat_nanoweapon_buff = {
+	hide_from_country_list = yes
+	weapon_type_nano_weapon_damage_mult = 0.05
+	weapon_type_nano_weapon_fire_rate_mult = 0.05
+}
+tech_repeat_nano_gestalt_network_buff = {
+	hide_from_country_list = yes
+	species_leader_exp_gain = 0.1
+	leader_skill_levels = 1
+}
+tech_repeat_large_scale_network_manage_buff = {
+	hide_from_country_list = yes
+	planet_jobs_unity_produces_mult = 0.1
+}
+tech_repeat_nano_biostructure_enhance_buff = {
+	hide_from_country_list = yes
+	army_health = 0.1
+	army_damage_mult = 0.1
+}
+gray_tech_1043_buff = {
+	hide_from_country_list = yes
+	country_jobs_nano_research_points_mult = 0.5
+}
+gray_tech_3010_buff = {
+	hide_from_country_list = yes
+	leader_initial_skill = 1
+}
+gray_tech_3020_buff = {
+	hide_from_country_list = yes
+	country_society_tech_research_speed = 0.1
+}
+gray_tech_3021_buff = {
+	hide_from_country_list = yes
+	country_society_tech_research_speed = 0.1
+}
+gray_tech_3022_buff = {
+	hide_from_country_list = yes
+	bonus_pop_growth_mult = 0.15
+}
+gray_tech_3023_buff = {
+	hide_from_country_list = yes
+	all_technology_research_speed = 0.1
+}
+gray_tech_3040_buff = {
+	hide_from_country_list = yes
+	station_gatherers_produces_mult = 0.5
+	station_researchers_produces_mult = 0.5
+}

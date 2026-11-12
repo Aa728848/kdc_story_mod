@@ -1,0 +1,53 @@
+# Custom map buttons: THIS=selection, FROM=player.
+kdcne_cloud_select_target = {
+    potential = { always = yes }
+    allow = {
+        kdcne_projection_launcher_valid = { SOURCE = from }
+        custom_tooltip_icon = { text = kdcne_requires_spatial_selection exists = solar_system }
+    }
+    effect = {
+        # Target range remains permissive; revalidate the actual bound launcher.
+        if = {
+            limit = { exists = solar_system kdcne_projection_launcher_valid = { SOURCE = from } }
+            log = "KDCNE projector: target selected"
+            if = {
+                limit = { exists = event_target:kdcne_projection_star_@from }
+                clear_global_event_target = kdcne_projection_star_@from
+            }
+            solar_system = { save_global_event_target_as = kdcne_projection_target_@from }
+        }
+    }
+}
+kdcne_cloud_clear_target = {
+    potential = { always = yes }
+    allow = { always = yes }
+    effect = {
+        if = {
+            limit = { exists = event_target:kdcne_projection_star_@from }
+            clear_global_event_target = kdcne_projection_star_@from
+        }
+        if = {
+            limit = { exists = event_target:kdcne_projection_target_@from }
+            clear_global_event_target = kdcne_projection_target_@from
+        }
+    }
+}
+kdcne_cloud_target_empty = {
+    potential = { NOT = { exists = event_target:kdcne_projection_target_@from } }
+    allow = { always = yes }
+    effect = { custom_tooltip = kdcne_requires_target }
+}
+kdcne_cloud_target_selected = {
+    potential = {
+        exists = event_target:kdcne_projection_target_@from
+        NOT = { exists = event_target:kdcne_projection_star_@from }
+    }
+    allow = { always = yes }
+    effect = {
+        if = {
+            limit = { exists = event_target:kdcne_projection_target_@from }
+            event_target:kdcne_projection_target_@from = { custom_tooltip = kdcne_target_name }
+        }
+    }
+}
+

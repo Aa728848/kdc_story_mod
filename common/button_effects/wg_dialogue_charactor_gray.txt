@@ -1,0 +1,334 @@
+#######################################################################
+# 本mod附带的灰风立绘文件拥有者为 “上古复读机”（b站同名）并已授权本KDC mod组使用。
+# 若要使用此灰风立绘并公布mod，请先自行咨询其本人意见。
+# 本mod仅用于Stellais modder群内作交流学习之用，请勿擅自传播，后果自负。
+# 若发现有任何未经原作者同意或未取得授权的情况下随意使用本mod及本mod内容的情况
+# 本人将考虑停止维护并制作类似工具界面并公开于群内，请自重。
+# KDC mod组，vvlolicon，2021/6/9
+#######################################################################
+
+# 立绘差分通过调整变量改变（本mod中为wg_dialogue_gray_portrait变量）
+# 切换至其他人视角时变暗效果则通过加flag来切换立绘明暗效果
+# （本mod中为wg_dialogue_charactor_lost_focus的flag效果）
+# 立绘正常状态的potential条件必然为
+# check_variable = { which = 变量名 value = x }
+# NOT = { has_country_flag = xxx }
+# 变暗状态则将country flag条件的not去掉即可，参照下方的button effect
+
+#######################################################################
+
+# 立绘可用dtx3压缩，请尽量将立绘置于中间
+# 具体增加方法为：
+# 1. 用ps通过黑白效果制作一个变暗的立绘
+# 2. 在gfx里写好sprite
+# 3. 复制以下任一项button effect以及在变暗效果的button effect，并更改名字和变量判断的数值
+# 4. 于00_WG_dialogue.gui和00_WG_dialogue_no_option.gui文件的人物立绘处复制加上一项effect button type
+# 5. 将复制的effect button type的quadTextureSprite修改为在gfx文件里写好的sprite
+# 6. 将复制的effect button type的effect修改为在本文件新增的button effect
+# 7. 若你使用自定义立绘，请最好直接复制并修改上述两个gui文件，并将立绘的effect button type清空替换至你的button effect
+# 同时最好也复制修改背景和立绘的button effect和控制变量以防与本mod内容冲突
+
+# 人物立绘（灰风）
+wg_dialogue_gray_portrait_diff1_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 1 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff2_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 2 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff3_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 3 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff4_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 4 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff5_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 5 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff6_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 6 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff7_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 7 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff8_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 8 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff9_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 9 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff10_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 10 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff11_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 11 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff12_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 12 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff13_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 13 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff14_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 14 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff15_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 15 }
+			NOT = { has_country_flag = wg_dialogue_charactor_lost_focus }
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+##############################################
+# 切换至其他视角时变暗的立绘
+##############################################
+wg_dialogue_gray_portrait_diff1_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 1 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff2_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 2 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff3_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 3 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff4_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 4 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff5_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 5 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff6_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 6 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff7_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 7 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff8_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 8 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff9_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 9 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff10_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 10 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff11_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 11 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff12_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 12 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff13_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 13 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff14_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 14 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}
+wg_dialogue_gray_portrait_diff15_lost_focus_effect = {
+	potential = {
+		FROM = { 
+			check_variable = { which = wg_dialogue_gray_portrait value = 15 }
+			has_country_flag = wg_dialogue_charactor_lost_focus
+		}
+	}
+	allow = { always = yes }
+	effect = {}
+}

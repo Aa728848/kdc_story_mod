@@ -1,0 +1,253 @@
+# KDC 纳米巨构。复用原版模型，不额外依赖微械革命。
+# possible: system/from=建造国；on_build_complete: system/from=建造国/fromfrom=巨构。
+
+kdcne_mega_nanofication = {
+    entity = "dyson_sphere_phase_01_entity"
+    construction_entity = "construction_platform_entity"
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -27 y = -27 }
+    construction_blocks_and_blocked_by = self_type
+    show_galactic_map_icon = yes
+    build_time = 3600
+    prerequisites = { "tech_kdcne_system_nanofication" }
+    potential = { has_country_flag = activate_gray_research }
+    resources = {
+        category = megastructures
+        cost = { alloys = 30000 nanites = 5000 }
+        upkeep = { energy = 50 }
+    }
+    possible = {
+        exists = starbase
+        custom_tooltip = { fail_text = requires_no_existing_megastructure has_no_non_gate_megastructure = yes }
+        custom_tooltip = { fail_text = requires_inside_border is_inside_border = from }
+        custom_tooltip = {
+            fail_text = requires_surveyed_system
+            NOT = { any_system_planet = { is_surveyed = { who = prev.from status = no } } }
+        }
+        custom_tooltip = {
+            fail_text = kdcne_requires_unique_mega
+            NOT = { any_system_megastructure = { is_megastructure_type = kdcne_mega_nanofication } }
+        }
+        custom_tooltip = { fail_text = kdcne_requires_nanofication_target any_system_planet = { kdcne_can_nanofy_planet_trigger = yes } }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = { fail_text = must_build_around_star is_star = yes }
+            custom_tooltip = { fail_text = requires_no_anomaly has_anomaly = no }
+        }
+    }
+    on_build_complete = {
+        kdcne_convert_system_to_nano = yes
+    }
+    ai_weight = { factor = 0 }
+}
+
+# Only nano stars support a cage; old nano stars are accepted without save migration.
+kdcne_mega_starcage = {
+    entity = "construction_platform_entity"
+    construction_entity = "construction_platform_entity"
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = yes
+    # No XY offset: the completed world must share the selected star's position.
+    construction_blocks_and_blocked_by = self_type
+    show_galactic_map_icon = yes
+    build_time = 5400
+    prerequisites = { "tech_kdcne_nano_starcage" }
+    # Retired feature: keep the definition for old saves, but expose no new build entry.
+    potential = { always = no }
+    resources = {
+        category = megastructures
+        cost = { alloys = 50000 nanites = 10000 }
+        upkeep = { energy = 80 }
+    }
+    possible = {
+        always = no # Also reject legacy/queued construction requests.
+        exists = starbase
+        custom_tooltip = { fail_text = requires_no_existing_megastructure has_no_non_gate_megastructure = yes }
+        custom_tooltip = { fail_text = requires_inside_border is_inside_border = from }
+        custom_tooltip = {
+            fail_text = requires_surveyed_system
+            NOT = { any_system_planet = { is_surveyed = { who = prev.from status = no } } }
+        }
+        custom_tooltip = {
+            fail_text = kdcne_requires_unique_mega
+            NOT = { any_system_megastructure = { is_megastructure_type = kdcne_mega_starcage } }
+            NOT = { has_star_flag = kdcne_starcage_created }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = { fail_text = must_build_around_star is_star = yes }
+            custom_tooltip = { fail_text = kdcne_requires_nano_star is_planet_class = pc_kdcne_nano_star }
+            custom_tooltip = { fail_text = requires_no_anomaly has_anomaly = no }
+        }
+    }
+    on_build_complete = {
+        kdcne_build_nano_starcage = yes
+    }
+    ai_weight = { factor = 0 }
+}
+
+kdcne_mega_shipyard = {
+    entity = "mega_shipyard_01_stage_3_entity"
+    construction_entity = "construction_platform_entity"
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -27 y = -27 }
+    construction_blocks_and_blocked_by = self_type
+    show_galactic_map_icon = yes
+    build_time = 3600
+    prerequisites = { "tech_kdcne_system_nanofication" }
+    # Retired extension feature. The base mod's existing shipyard chain is separate.
+    potential = { always = no }
+    resources = {
+        category = megastructures
+        cost = { alloys = 40000 nanites = 8000 }
+        upkeep = { energy = 60 }
+    }
+    possible = {
+        always = no # Also reject legacy/queued construction requests.
+        exists = starbase
+        custom_tooltip = { fail_text = requires_no_existing_megastructure has_no_non_gate_megastructure = yes }
+        custom_tooltip = { fail_text = requires_inside_border is_inside_border = from }
+        custom_tooltip = {
+            fail_text = requires_surveyed_system
+            NOT = { any_system_planet = { is_surveyed = { who = prev.from status = no } } }
+        }
+        custom_tooltip = {
+            fail_text = kdcne_requires_unique_mega
+            NOT = { any_system_megastructure = { is_megastructure_type = kdcne_mega_shipyard } }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = { fail_text = must_build_around_star is_star = yes }
+            custom_tooltip = { fail_text = requires_no_anomaly has_anomaly = no }
+        }
+    }
+    # 仅本船坞：20 个造船槽，+25% 建造速度，不给帝国所有船坞加成。
+    station_modifier = {
+        starbase_shipyard_capacity_add = 20
+        starbase_shipyard_build_speed_mult = 0.25
+    }
+    ai_weight = { factor = 0 }
+}
+
+
+# Remote projector. Its own operation opens the targeting window; the edict only controls assimilation.
+kdcne_mega_cloud_projector = {
+    entity = "dyson_sphere_phase_01_entity"
+    construction_entity = "construction_platform_entity"
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -27 y = -27 }
+    construction_blocks_and_blocked_by = self_type
+    show_galactic_map_icon = yes
+    build_time = 5400
+    prerequisites = { "tech_kdcne_system_nanofication" }
+    potential = { has_country_flag = activate_gray_research }
+    resources = {
+        category = megastructures
+        cost = { alloys = 50000 nanites = 10000 }
+        upkeep = { energy = 100 }
+    }
+    possible = {
+        exists = starbase
+        custom_tooltip = { fail_text = requires_no_existing_megastructure has_no_non_gate_megastructure = yes }
+        custom_tooltip = { fail_text = requires_inside_border is_inside_border = from }
+        custom_tooltip = {
+            fail_text = requires_surveyed_system
+            NOT = { any_system_planet = { is_surveyed = { who = prev.from status = no } } }
+        }
+        custom_tooltip = {
+            fail_text = kdcne_requires_unique_mega
+            NOT = { any_system_megastructure = { is_megastructure_type = kdcne_mega_cloud_projector } }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = { fail_text = must_build_around_star is_star = yes }
+            custom_tooltip = { fail_text = requires_no_anomaly has_anomaly = no }
+        }
+    }
+    on_build_complete = {
+        fromfrom = { set_megastructure_flag = kdcne_projector_ready }
+    }
+    ai_weight = { factor = 0 }
+}
+
+
+# Both operation stages finish naturally and remain valid launchers. Each has
+# one outgoing operation, so repeated use never needs a scripted reverse upgrade.
+kdcne_mega_cloud_projector_control = {
+    entity = "dyson_sphere_phase_01_entity"
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -27 y = -27 }
+    construction_blocks_and_blocked_by = none
+    show_galactic_map_icon = yes
+    build_time = 1
+    resources = { category = megastructures upkeep = { energy = 100 } }
+    upgrade_from = { kdcne_mega_cloud_projector kdcne_mega_cloud_projector_control_repeat }
+    upgrade_desc = hide
+    potential = { is_ai = no }
+    possible = {
+        custom_tooltip = {
+            fail_text = kdcne_requires_no_projection_window
+            from = { kdcne_projection_window_free = yes }
+        }
+        from = { kdcne_projection_cooldown_ready = yes }
+    }
+    on_build_complete = {
+        fromfrom = {
+            set_megastructure_flag = kdcne_projector_ready
+            save_event_target_as = kdcne_projection_opening_launcher
+            if = {
+                limit = { exists = owner }
+                owner = {
+                    set_timed_country_flag = { flag = kdcne_projection_open_pending days = 2 }
+                    country_event = { id = kdcne_cloud.24 days = 1 }
+                }
+            }
+        }
+    }
+    ai_weight = { factor = 0 }
+}
+
+# Both operation stages finish naturally and remain valid launchers. Each has
+# one outgoing operation, so repeated use never needs a scripted reverse upgrade.
+kdcne_mega_cloud_projector_control_repeat = {
+    entity = "dyson_sphere_phase_01_entity"
+    portrait = "GFX_megastructure_construction_background"
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -27 y = -27 }
+    construction_blocks_and_blocked_by = none
+    show_galactic_map_icon = yes
+    build_time = 1
+    resources = { category = megastructures upkeep = { energy = 100 } }
+    upgrade_from = { kdcne_mega_cloud_projector_control }
+    upgrade_desc = hide
+    potential = { is_ai = no }
+    possible = {
+        custom_tooltip = {
+            fail_text = kdcne_requires_no_projection_window
+            from = { kdcne_projection_window_free = yes }
+        }
+        from = { kdcne_projection_cooldown_ready = yes }
+    }
+    on_build_complete = {
+        fromfrom = {
+            set_megastructure_flag = kdcne_projector_ready
+            save_event_target_as = kdcne_projection_opening_launcher
+            if = {
+                limit = { exists = owner }
+                owner = {
+                    set_timed_country_flag = { flag = kdcne_projection_open_pending days = 2 }
+                    country_event = { id = kdcne_cloud.24 days = 1 }
+                }
+            }
+        }
+    }
+    ai_weight = { factor = 0 }
+}

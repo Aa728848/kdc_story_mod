@@ -1,0 +1,30 @@
+gray_story_anomaly_1 = {
+	desc = gray_story_anomaly_1_desc
+	picture = GFX_evt_gray_goo
+	level = 5
+	max_once = yes
+	max_once_global = yes
+	
+	spawn_chance = {
+		modifier = {
+			add = 100
+			uninhabitable_regular_planet = yes
+			FROM.owner = { 
+				is_ai = no
+			}
+		}
+		modifier = {
+			factor = 0
+			FROM.owner = { OR = {
+				has_country_flag = origin_gray_country
+				has_tech_option = tech_quantum_field_nanocybernetics
+				has_technology = tech_quantum_field_nanocybernetics
+				has_event_chain = gray_story_chain_left
+			}}
+		}
+	}
+
+	on_success = {
+		1 = gray_story.1
+	}
+}

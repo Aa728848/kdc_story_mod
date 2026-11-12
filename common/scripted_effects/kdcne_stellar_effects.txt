@@ -1,0 +1,78 @@
+# Planet. Both the W-slot callback and remote confirmation enter here.
+# The script retains the selected object; companion orbital stability needs engine testing.
+kdcne_convert_selected_star = {
+    # RETIRED 2026-11-11: no-op compatibility entry. Previous implementation:
+    #     if = {
+    #         limit = { kdcne_stellar_target_valid = yes exists = event_target:kdcne_cloud_source }
+    #         save_event_target_as = kdcne_stellar_kept_star
+    #         solar_system = {
+    #             # set_star_class also changes the primary body's class. Do this while
+    #             # that body still exists; the exact selected body is changed separately.
+    #             if = { limit = { exists = star } set_star_class = sc_kdcne_nano }
+    #             event_target:kdcne_stellar_kept_star = {
+    #                 change_pc = pc_kdcne_nano_star
+    #                 kdcne_refresh_nano_star_model = yes
+    #                 clear_deposits = yes
+    #             }
+    #             # Remove structures anchored to disappearing bodies before their anchors.
+    #             every_system_megastructure = {
+    #                 limit = {
+    #                     OR = {
+    #                         is_megastructure_type = kdcne_mega_starcage
+    #                         AND = {
+    #                             exists = planet
+    #                             planet = { NOT = { is_same_value = event_target:kdcne_stellar_kept_star } }
+    #                         }
+    #                     }
+    #                 }
+    #                 remove_megastructure = this
+    #             }
+    #             # Satellites first, then remaining non-stars, then companion stars.
+    #             every_system_planet = {
+    #                 limit = { is_moon = yes NOT = { is_same_value = event_target:kdcne_stellar_kept_star } }
+    #                 kdcne_remove_stellar_body = yes
+    #             }
+    #             every_system_planet = {
+    #                 limit = { is_star = no NOT = { is_same_value = event_target:kdcne_stellar_kept_star } }
+    #                 kdcne_remove_stellar_body = yes
+    #             }
+    #             every_system_planet = {
+    #                 limit = { NOT = { is_same_value = event_target:kdcne_stellar_kept_star } }
+    #                 kdcne_remove_stellar_body = yes
+    #             }
+    #             set_asteroid_belt = { radius = 0 }
+    #             # A previous cage world may have been among the removed bodies.
+    #             remove_star_flag = kdcne_starcage_created
+    #             set_star_flag = kdcne_projection_converted
+    #             # Retarget any existing visual before the removed primary's scope can go stale.
+    #             if = {
+    #                 limit = { exists = event_target:kdcne_projection_visual_@this }
+    #                 destroy_ambient_object = event_target:kdcne_projection_visual_@this
+    #                 clear_global_event_target = kdcne_projection_visual_@this
+    #             }
+    #             if = {
+    #                 limit = { exists = event_target:kdcne_cloud_source }
+    #                 kdcne_start_projection = yes
+    #             }
+    #             log = "KDCNE stellar: selected star retained; conversion completed"
+    #         }
+    #     }
+}
+# Planet: also used on save load; changes only the rendered entity, never the body/class.
+kdcne_refresh_nano_star_model = {
+    set_planet_entity = {
+        entity = "black_hole_entity"
+        picture = "pc_wg_graygoo"
+        atmosphere_color = { 0.6 0.6 0.6 }
+        atmosphere_intensity = 1.0
+        atmosphere_width = 0.5
+    }
+}
+# Planet: artificial worlds are included. Do not leave orbital fleets on removed bodies.
+kdcne_remove_stellar_body = {
+    if = { limit = { exists = orbital_station } orbital_station = { dismantle = yes } }
+    if = { limit = { exists = orbital_defence } destroy_fleet = orbital_defence }
+    if = { limit = { is_colony = yes } destroy_colony = yes }
+    clear_deposits = yes
+    remove_planet = yes
+}

@@ -1,0 +1,101 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 循环科技（纳米开发局局势树，不进普通科技池）
+# 文件位置：common/technology/zz_kdcne_technology.txt
+# ----------------------------------------------------------------------------
+# 用途：这些循环科技的"科技定义"（供纳米开发局的 give_technology 授予）。
+#       实际研究入口在纳米开发局（button_effects + 局势），见 gray_research_* 文件。
+# ----------------------------------------------------------------------------
+# 关键改动点：
+#   - weight = 0        ：不进普通科技池（只在纳米开发局局势树里研究）
+#   - levels=-1 ：可反复研究（循环科技）
+# ----------------------------------------------------------------------------
+# 说明：cost/tier 用 KDC 既有的 @tierXcostY 变量。研究完成后由纳米开发局
+#       gray_tech.XXXX 完成事件给 modifier（本文件的 modifier 仅为兜底）。
+# ============================================================================
+
+# --- 循环·纳米产出 -----------------------------------------------------------
+tech_repeat_nanite_produce = {
+    area = physics
+    category = { particles }
+    cost = @tier5cost1
+    tier = 5
+    levels = -1
+    cost_per_level = 5000
+    weight = 0
+    potential = { has_country_flag = activate_gray_research }
+    modifier = { country_nanites_produces_mult = 0.1 }
+    ai_weight = { weight = 100 }
+}
+
+# --- 循环·合金产出 -----------------------------------------------------------
+tech_repeat_nano_alloy_produce = {
+    area = engineering
+    category = { materials }
+    cost = @tier5cost1
+    tier = 5
+    levels = -1
+    cost_per_level = 5000
+    weight = 0
+    potential = { has_country_flag = activate_gray_research }
+    modifier = { country_alloys_produces_mult = 0.1 }
+    ai_weight = { weight = 100 }
+}
+
+# --- 循环·消费品产出 ---------------------------------------------------------
+tech_repeat_nano_consumer_goods_produce = {
+    area = engineering
+    category = { materials }
+    cost = @tier5cost1
+    tier = 5
+    levels = -1
+    cost_per_level = 5000
+    weight = 0
+    potential = { has_country_flag = activate_gray_research }
+    modifier = { country_consumer_goods_produces_mult = 0.1 }
+    ai_weight = { weight = 100 }
+}
+
+# --- 循环·科研产出 -----------------------------------------------------------
+tech_repeat_nano_research_produce = {
+    area = physics
+    category = { computing }
+    cost = @tier5cost1
+    tier = 5
+    levels = -1
+    cost_per_level = 5000
+    weight = 0
+    potential = { has_country_flag = activate_gray_research }
+    modifier = { all_technology_research_speed = 0.05 }
+    ai_weight = { weight = 100 }
+}
+
+# --- 循环·纳米武器 -----------------------------------------------------------
+tech_repeat_nanoweapon = {
+    area = physics
+    category = { particles }
+    cost = @tier5cost1
+    tier = 5
+    levels = -1
+    cost_per_level = 5000
+    weight = 0
+    potential = { has_country_flag = activate_gray_research }
+    modifier = {
+        weapon_type_nano_weapon_damage_mult = 0.05
+        weapon_type_nano_weapon_fire_rate_mult = 0.05
+    }
+    ai_weight = { weight = 100 }
+}
+
+# --- 循环·凝聚力 -------------------------------------------------------------
+tech_repeat_large_scale_network_manage = {
+    area = society
+    category = { statecraft }
+    cost = @tier5cost1
+    tier = 5
+    levels = -1
+    cost_per_level = 5000
+    weight = 0
+    potential = { has_country_flag = activate_gray_research }
+    modifier = { country_unity_produces_mult = 0.1 }
+    ai_weight = { weight = 100 }
+}

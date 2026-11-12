@@ -1,0 +1,286 @@
+# Ship (victim), from=attacker. One spawn per attacking fleet per 3 days.
+# Ambient object stays at the hit position even if attacker/victim subsequently dies or moves.
+kdcne_spawn_hit_cloud = {
+    if = {
+        limit = {
+            exists = from
+            from = { exists = controller exists = fleet fleet = { NOT = { has_fleet_flag = kdcne_cloud_spawn_cooldown } } }
+            exists = controller
+            controller = { is_hostile = from.controller }
+        }
+        from.controller = { save_event_target_as = kdcne_cloud_source }
+        from.fleet = { set_timed_fleet_flag = { flag = kdcne_cloud_spawn_cooldown days = 3 } }
+        # Bound per-system scan cost even when many separate fleets fight at once.
+        if = {
+            limit = {
+                solar_system = {
+                    count_system_ambient_object = {
+                        limit = { has_ambient_object_flag = kdcne_cloud_owner_@event_target:kdcne_cloud_source }
+                        count < 24
+                    }
+                }
+            }
+            create_ambient_object = {
+                type = kdcne_cloud_anchor
+                location = this
+                scale = 2
+                effect = {
+                    save_event_target_as = kdcne_cloud_anchor_target
+                    set_ambient_object_flag = kdcne_cloud_owner_@event_target:kdcne_cloud_source
+                }
+            }
+            solar_system = {
+                # This game build rejects set_timed_ambient_object_flag on ambient objects.
+                # A delayed system event owns expiry and carries this cloud's saved target.
+                system_event = { id = kdcne_cloud.5 days = 30 }
+                system_event = { id = kdcne_cloud.1 }
+            }
+        }
+    }
+}
+# Ship: shared by local clouds and system-wide projection; never more than one gain per day.
+kdcne_cloud_expose_ship = {
+    if = {
+        limit = {
+            NOT = { has_ship_flag = kdcne_cloud_daily_tick }
+            NOT = { kdcne_is_immune_to_corrosion_trigger = yes }
+        }
+        if = {
+            limit = { NOT = { has_ship_flag = kdcne_cloud_managed } }
+            set_variable = { which = kdcne_cloud_exposure value = 0 }
+            set_ship_flag = kdcne_cloud_managed
+        }
+        # Some special countries do not run ship events. Schedule recovery on
+        # the system instead, carrying the exact ship even after it moves away.
+        # This also repairs managed ships from older saves on their next contact.
+        if = {
+            limit = { NOT = { has_ship_flag = kdcne_cloud_recovery_running } }
+            kdcne_cloud_schedule_recovery = yes
+        }
+        # Re-evaluate existing affected ships too: old wildlife never received a candidate flag.
+        # Country, hull and arbitrary flags do not restrict this all-target test phase.
+        if = {
+            limit = {
+                NOT = { has_ship_flag = kdcne_assimilation_candidate }
+                kdcne_cloud_capture_hull = yes
+            }
+            set_ship_flag = kdcne_assimilation_candidate
+        }
+        set_timed_ship_flag = { flag = kdcne_cloud_daily_tick days = 1 }
+        set_timed_ship_flag = { flag = kdcne_cloud_recent days = 2 }
+        change_variable = { which = kdcne_cloud_exposure value = value:kdcne_cloud_daily_gain }
+        if = {
+            limit = { check_variable = { which = kdcne_cloud_exposure value > 30 } }
+            set_variable = { which = kdcne_cloud_exposure value = 30 }
+        }
+        kdcne_cloud_refresh_severity = yes
+        if = {
+            limit = { kdcne_cloud_can_assimilate = yes NOT = { has_ship_flag = kdcne_assimilation_pending_v2 } }
+            kdcne_cloud_schedule_assimilation = yes
+        }
+    }
+}
+# Ship: defer mutation outside fleet iteration, hosted by the system even for wildlife.
+# Timed markers also recover older saves with a permanently stuck .3 pending flag.
+kdcne_cloud_schedule_assimilation = {
+    if = {
+        limit = { exists = solar_system }
+        save_event_target_as = kdcne_assimilation_target
+        set_timed_ship_flag = { flag = kdcne_assimilation_pending days = 3 }
+        set_timed_ship_flag = { flag = kdcne_assimilation_pending_v2 days = 3 }
+        solar_system = { system_event = { id = kdcne_cloud.8 days = 1 } }
+        log = "KDCNE cloud: assimilation queued on system after exposure threshold"
+    }
+}
+kdcne_cloud_schedule_recovery = {
+    save_event_target_as = kdcne_cloud_recovering_ship
+    if = {
+        limit = { exists = solar_system }
+        set_timed_ship_flag = { flag = kdcne_cloud_recovery_running days = 3 }
+        solar_system = {
+            save_event_target_as = kdcne_cloud_recovery_system
+            system_event = { id = kdcne_cloud.7 days = 1 }
+        }
+    }
+    else_if = {
+        # Keep the last system as scheduler while the ship is in transit/MIA.
+        limit = { exists = event_target:kdcne_cloud_recovery_system }
+        set_timed_ship_flag = { flag = kdcne_cloud_recovery_running days = 3 }
+        event_target:kdcne_cloud_recovery_system = { system_event = { id = kdcne_cloud.7 days = 1 } }
+    }
+    else = {
+        # Only an old .2 timer can arrive without a spatial anchor. Keep that
+        # existing timer until a system becomes available for migration.
+        ship_event = { id = kdcne_cloud.2 days = 1 }
+    }
+}
+kdcne_cloud_recover_ship = {
+    if = {
+        limit = { kdcne_is_immune_to_corrosion_trigger = yes }
+        kdcne_cloud_clear_ship = yes
+    }
+    else = {
+        if = {
+            limit = { NOT = { has_ship_flag = kdcne_cloud_recent } }
+            change_variable = { which = kdcne_cloud_exposure value = -1 }
+        }
+        if = {
+            limit = { check_variable = { which = kdcne_cloud_exposure value > 0 } }
+            kdcne_cloud_refresh_severity = yes
+            kdcne_cloud_schedule_recovery = yes
+        }
+        else = { kdcne_cloud_clear_ship = yes }
+    }
+}
+kdcne_cloud_refresh_severity = {
+    # Do not remove and re-add an identical shield/armor modifier every day.
+    # At the severity cap it remains attached; repair a missing modifier too.
+    if = {
+        limit = { NOT = { is_variable_set = kdcne_cloud_severity } }
+        set_variable = { which = kdcne_cloud_severity value = -1 }
+    }
+    if = {
+        limit = {
+            OR = {
+                NOT = { check_variable = { which = kdcne_cloud_severity value = value:kdcne_cloud_severity } }
+                NOT = { has_modifier = kdcne_nano_corrosion_debuff }
+            }
+        }
+        set_variable = { which = kdcne_cloud_severity value = value:kdcne_cloud_severity }
+        remove_modifier = kdcne_nano_corrosion_debuff
+        add_modifier = { modifier = kdcne_nano_corrosion_debuff multiplier = kdcne_cloud_severity }
+    }
+}
+kdcne_cloud_clear_ship = {
+    remove_modifier = kdcne_nano_corrosion_debuff
+    remove_ship_flag = kdcne_cloud_managed
+    remove_ship_flag = kdcne_cloud_daily_tick
+    remove_ship_flag = kdcne_cloud_recent
+    remove_ship_flag = kdcne_cloud_recovery_running
+    remove_ship_flag = kdcne_assimilation_candidate
+    remove_ship_flag = kdcne_assimilation_pending
+    remove_ship_flag = kdcne_assimilation_pending_v2
+    clear_variable = kdcne_cloud_exposure
+    clear_variable = kdcne_cloud_severity
+}
+# Ship: user-approved design-copy assimilation, not preservation of the original identity.
+kdcne_cloud_assimilate_ship = {
+    save_event_target_as = kdcne_assimilation_victim
+    controller = { save_event_target_as = kdcne_assimilation_old_owner }
+    # Initialize the success sentinel to the victim; create_ship replaces it only on success.
+    save_event_target_as = kdcne_assimilation_copy
+    event_target:kdcne_cloud_source = {
+        create_fleet = {
+            name = NAME_kdcne_assimilated_fleet
+            effect = {
+                set_owner = event_target:kdcne_cloud_source
+                set_location = event_target:kdcne_assimilation_victim
+                create_ship = {
+                    name = event_target:kdcne_assimilation_victim
+                    design = event_target:kdcne_assimilation_victim
+                    graphical_culture = event_target:kdcne_assimilation_old_owner
+                    effect = {
+                        save_event_target_as = kdcne_assimilation_copy
+                        set_ship_flag = kdcne_assimilated
+                    }
+                }
+            }
+        }
+    }
+    # Failure to create a replacement must never delete the target.
+    if = {
+        limit = {
+            exists = event_target:kdcne_assimilation_copy
+            event_target:kdcne_assimilation_copy = {
+                NOT = { is_same_value = event_target:kdcne_assimilation_victim }
+                owner = { is_same_value = event_target:kdcne_cloud_source }
+            }
+        }
+        log = "KDCNE cloud: assimilation copy verified; removing original ship"
+        delete_ship = this
+    }
+    else = { log = "KDCNE cloud: assimilation copy failed; original ship kept" }
+}
+# Country, ROOT=country. Shared by close, successful commit and a fresh handoff.
+kdcne_projection_clear_selection = {
+    if = {
+        limit = { exists = event_target:kdcne_projection_star_@root }
+        clear_global_event_target = kdcne_projection_star_@root
+    }
+    if = {
+        limit = { exists = event_target:kdcne_projection_target_@root }
+        clear_global_event_target = kdcne_projection_target_@root
+    }
+    if = {
+        limit = { exists = event_target:kdcne_projection_launcher_@root }
+        clear_global_event_target = kdcne_projection_launcher_@root
+    }
+}
+# System. Latest shot owns the coverage; refresh its 360 days without another scan.
+# The running flag is separate from expiry so a shot on the expiry day is safe.
+kdcne_start_projection = {
+    save_event_target_as = kdcne_projection_system
+    event_target:kdcne_cloud_source = {
+        save_global_event_target_as = kdcne_projection_source_@event_target:kdcne_projection_system
+    }
+    set_timed_star_flag = { flag = kdcne_projection_active days = 360 }
+    remove_modifier = kdcne_projection_coverage
+    add_modifier = { modifier = kdcne_projection_coverage days = 360 }
+    kdcne_projection_ensure_visual = yes
+    if = {
+        limit = { NOT = { has_star_flag = kdcne_projection_loop_running } }
+        set_star_flag = kdcne_projection_loop_running
+        system_event = { id = kdcne_cloud.6 }
+    }
+}
+# System: replace old central/selectable clouds without refreshing the coverage timer.
+kdcne_projection_ensure_visual = {
+    save_event_target_as = kdcne_projection_system
+    if = {
+        limit = {
+            exists = event_target:kdcne_projection_visual_@this
+            if = {
+                limit = { exists = event_target:kdcne_projection_visual_@this }
+                event_target:kdcne_projection_visual_@this = {
+                    NOT = { has_ambient_object_flag = kdcne_projection_visual_v2 }
+                }
+            }
+        }
+        destroy_ambient_object = event_target:kdcne_projection_visual_@this
+        clear_global_event_target = kdcne_projection_visual_@this
+    }
+    if = {
+        limit = { NOT = { exists = event_target:kdcne_projection_visual_@this } }
+        if = {
+            limit = { exists = event_target:kdcne_stellar_kept_star }
+            kdcne_spawn_projection_visual = { ANCHOR = event_target:kdcne_stellar_kept_star }
+        }
+        else = {
+            if = {
+                limit = { exists = star }
+                kdcne_spawn_projection_visual = { ANCHOR = star }
+            }
+            else = {
+                # Converted binary systems may no longer expose the old primary scope.
+                random_system_planet = {
+                    limit = { is_star = yes }
+                    kdcne_spawn_projection_visual = { ANCHOR = this }
+                }
+            }
+        }
+    }
+}
+# System or planet. Small offset cloud; actual coverage still spans the whole system.
+kdcne_spawn_projection_visual = {
+    create_ambient_object = {
+        type = kdcne_projection_cloud
+        location = $ANCHOR$
+        scale = 2
+        entity_offset = { min = 70 max = 70 }
+        entity_offset_angle = { min = 45 max = 45 }
+        effect = {
+            set_ambient_object_flag = kdcne_projection_visual_v2
+            save_global_event_target_as = kdcne_projection_visual_@event_target:kdcne_projection_system
+        }
+    }
+}

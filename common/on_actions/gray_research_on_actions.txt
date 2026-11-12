@@ -1,0 +1,113 @@
+
+# 科研局势完成时会触发该on action
+# this = country
+# from = situation
+on_gray_tech_increased = {
+	events = {
+		gray_tech.1000
+		gray_tech.1010
+		gray_tech.1011
+		gray_tech.1013
+		gray_tech.1014
+		gray_tech.1015
+		gray_tech.1016
+		gray_tech.1017
+		gray_tech.1018
+		gray_tech.1020
+		gray_tech.1021
+		gray_tech.1022
+		gray_tech.1024
+		gray_tech.1025
+		gray_tech.1030
+		gray_tech.1031
+		gray_tech.1034
+		gray_tech.1035
+		gray_tech.1040
+		gray_tech.1041
+		gray_tech.1042
+		gray_tech.1043
+		gray_tech.1045
+		gray_tech.1060
+		gray_tech.1061
+		gray_tech.1062
+		gray_tech.1063
+		gray_tech.1064
+		gray_tech.1070
+		gray_tech.1071
+		gray_tech.1072
+		gray_tech.1073
+		gray_tech.2000
+		gray_tech.2001
+		gray_tech.2002
+		gray_tech.2003
+		gray_tech.2004
+		gray_tech.2011
+		gray_tech.2012
+		gray_tech.2013
+		gray_tech.2014
+		gray_tech.2015
+		gray_tech.2016
+		gray_tech.2021
+		gray_tech.2022
+		gray_tech.2031
+		gray_tech.2032
+		gray_tech.2033
+		gray_tech.2034
+		gray_tech.2040
+		gray_tech.2041
+		gray_tech.2042
+		gray_tech.2043
+		gray_tech.2044
+		gray_tech.2050
+		gray_tech.2051
+		gray_tech.2052
+		gray_tech.2053
+		gray_tech.2054
+		gray_tech.3000
+		gray_tech.3010
+		# gray_tech.3011
+		# gray_tech.3012
+		# gray_tech.3013
+		# gray_tech.3014
+		gray_tech.3020
+		gray_tech.3021
+		gray_tech.3022
+		gray_tech.3023
+		gray_tech.3024
+		gray_tech.3030
+		gray_tech.3031
+		gray_tech.3032
+		gray_tech.3040
+		gray_tech.3041
+		gray_tech.3042
+		gray_tech.3050
+		gray_tech.3051
+		gray_tech.3052
+		gray_tech.3053
+		gray_tech.3060
+		gray_tech.3061
+		gray_tech.3062
+		gray_tech.3070
+		gray_tech.3071
+		gray_tech.3072
+		gray_tech.3073
+		gray_tech.4000
+		gray_tech.4001
+		gray_tech.4002
+		gray_tech.4003
+		gray_tech.4004
+		gray_tech.4005
+	}
+}
+
+VOP_on_monthly_pulse_country = {
+	events = {
+		gray_tech.1
+	}
+}
+
+on_game_start = {
+	events = {
+		gray_tech.99
+	}
+}

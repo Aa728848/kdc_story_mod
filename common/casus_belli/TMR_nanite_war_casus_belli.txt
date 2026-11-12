@@ -1,0 +1,38 @@
+#战争借口#
+
+#灰蛊战争#
+cb_gray_goo_invade = {
+	show_in_diplomacy = no
+	show_notification = yes
+	potential = {
+		is_default_country_wg = yes
+	}
+	is_valid = {
+		has_total_war_cb = no
+		has_ascension_perk = ap_become_the_gray		
+	}
+}
+
+#灰蛊毁灭战争#
+cb_gray_goo_clear = {
+	show_in_diplomacy = no
+	show_notification = yes
+	potential = {
+		is_default_country_wg = yes
+	}
+	is_valid = {
+		has_total_war_cb = no
+		from = { 
+			is_country_type = default
+			has_ascension_perk = ap_become_the_gray
+		}	
+		NOR = { 
+			has_ascension_perk = ap_become_the_gray
+			is_overlord_to = FROM 
+		}
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}		
+	}
+}

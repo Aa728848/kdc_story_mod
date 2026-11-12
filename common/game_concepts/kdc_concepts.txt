@@ -1,0 +1,21 @@
+concept_trait_gray_origin = {
+	icon = "gfx/interface/icons/traits/wg_gray.dds"
+}
+concept_gray_planet_debuff = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_unknown.dds"
+}
+concept_building_gray_nanite_factory = {
+	icon = "gfx/interface/icons/buildings/building_gray_nanite_factory.dds"
+}
+concept_building_nanite_signal_control_center = {
+	icon = "gfx/interface/icons/buildings/building_nanite_signal_control_center.dds"
+}
+concept_gray_repeatable_tech = {}
+
+concept_policy_gray_research_policy = {}
+
+concept_gray_origin_lv1_species_traits = {}
+concept_gray_origin_lv2_species_traits = {}
+concept_gray_origin_lv3_species_traits = {}
+
+concept_gray_jobs = {}

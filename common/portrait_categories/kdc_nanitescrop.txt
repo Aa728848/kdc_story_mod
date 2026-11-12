@@ -1,0 +1,4 @@
+kdc_nanitescrop = {
+ name = NANITESCROP
+ sets = { kdc_nanitescrop }
+}

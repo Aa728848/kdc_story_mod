@@ -1,0 +1,234 @@
+spriteTypes = {
+	#舰船#
+	spriteType = {
+		name = "GFX_ship_part_nanitelasers_1"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanitelasers_1.dds"		
+	}
+	spriteType = {
+		name = "GFX_ship_part_nanitelasers_2"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanitelasers_2.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_nanite_sentry_maingun"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanite_sentry_maingun.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_small_nano_combat_unit"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_small_nano_combat_unit.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_nanitepower_structure"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanitepower_structure.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_supernanitepower_structure"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_supernanitepower_structure.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_gatebuilder_thruster"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_gatebuilder_thruster.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_stargate_drive"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_stargate_drive.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_gatebuilder_reactor"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_gatebuilder_reactor.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_nanite_battle_computer"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanite_battle_computer.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_distar_sensor"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_distar_sensor.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_nanite_cluster_aura"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanite_cluster_aura.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_nanite_storm_aura"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanite_storm_aura.dds"
+    }
+	spriteType = {
+		name = "GFX_ship_part_nanite_energeshoots"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanite_energeshoots.png"
+    }
+	spriteType = {
+		name = "GFX_planet_type_active_nanite"
+		texturefile = "gfx/interface/icons/planet_type_active_nanite.dds"
+    }
+	#飞升#
+	spriteType = {
+		name = "GFX_ap_become_the_gray"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_become_the_gray.dds"
+    }
+	spriteType = {
+		name = "GFX_ap_micromechanical_revolution"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_micromechanical_revolution.dds"
+    }
+	spriteType = {
+		name = "GFX_ap_distance_stars"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_distance_stars.dds"
+    }
+	#战争#
+	spriteType = {
+		name = "GFX_wg_gray_goo_invade"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_nanite_war.dds"
+		noOfFrames = 2
+	}	
+	spriteType = {
+		name = "GFX_wg_gray_goo_clear"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_nanite_war.dds"
+		noOfFrames = 2
+	}	
+	spriteType = {
+		name = "GFX_wg_end_nanite_crisis"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_nanite_war.dds"
+		noOfFrames = 2
+	}	
+	#纳米飞升#
+	spriteType = {
+		name = "GFX_evt_nanite_upgrade"
+		texturefile = "gfx/event_pictures/ascension/nanite_upgrade.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_micromechanical_revolution"
+		texturefile = "gfx/event_pictures/ascension/micromechanical_revolution.dds"
+	}	
+	spriteType = {
+		name = "GFX_evt_nanite_shipyard"
+		texturefile = "gfx/event_pictures/nanite_shipyard.dds"
+	}	
+	#############	 
+	spriteType = {
+		name = "GFX_spaceport_module_nanite_star_shipyard"
+		texturefile = "gfx/interface/icons/modules/sb_nanite_shipyard.dds"
+	}
+
+
+	#建门者核心#
+	spriteType = {
+		name = "GFX_evt_no_video_feed_room"
+		texturefile = "gfx/event_pictures/wsg_no_video.dds"
+	}	
+	
+	#轨道轰炸#
+	spriteType = { #纳米警戒轰炸#
+		name = "GFX_fleet_order_button_ground_support_nanite_warn_bomb"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_nanite_warn_bomb_action.dds"
+		effectFile = "gfx/FX/buttonstate.shader"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"       #add, multiply, overlay
+			animationtype = "scrolling"      #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	spriteType = { #纳米警戒轰炸#
+		name = "GFX_fleet_order_button_ground_support_nanite_warn_bomb_selected"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_nanite_warn_bomb_selected.dds"
+		effectFile = "gfx/FX/buttonstate.shader"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"       #add, multiply, overlay
+			animationtype = "scrolling"      #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	spriteType = { #纳米战争轰炸#
+		name = "GFX_fleet_order_button_ground_support_nanite_war_bomb"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_nanite_war_bomb_action.dds"
+		effectFile = "gfx/FX/buttonstate.shader"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"       #add, multiply, overlay
+			animationtype = "scrolling"      #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	spriteType = { #纳米战争轰炸#
+		name = "GFX_fleet_order_button_ground_support_nanite_war_bomb_selected"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_nanite_war_bomb_selected.dds"
+		effectFile = "gfx/FX/buttonstate.shader"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"       #add, multiply, overlay
+			animationtype = "scrolling"      #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	#星球#
+	spriteType = {
+		name = "GFX_planet_type_nanite_city"
+		texturefile = "gfx/portraits/environments/pc_nanite_city.dds"
+	}	
+	spriteType = {
+		name = "GFX_evt_nanite_arcology_project"
+		texturefile = "gfx/event_pictures/planet/nanite_arcology_project.png"
+	}	
+
+	#法令#
+	spriteType = {
+		name = "GFX_edict_type_TMR_policy"
+		texturefile = "gfx/interface/icons/menu_icon_TMR_edicts.png"
+	}	
+
+	#工作#
+	spriteType = {
+		name = "GFX_job_nanite_system"
+		texturefile = "gfx/interface/icons/jobs/job_nanite_system_stood.png"
+	}
+
+	# 界面
+	spriteType = {
+		name = "GFX_gatebuilder_core_menu_bg"
+		texturefile = "gfx/interface/TMR_ui/gatebuilder_core/bg.dds"
+	}
+	spriteType = {
+		name = "GFX_gatebuilder_core_menu_cancel"
+		texturefile = "gfx/interface/TMR_ui/gatebuilder_core/cancel.dds"
+		effectFile = "gfx/FX/buttonstate.shader"
+		noOfFrames = 3
+	}
+	spriteType = {
+		name = "GFX_gatebuilder_core_menu_option"
+		texturefile = "gfx/interface/TMR_ui/gatebuilder_core/option.dds"
+		effectFile = "gfx/FX/buttonstate.shader"
+		noOfFrames = 3
+	}
+}

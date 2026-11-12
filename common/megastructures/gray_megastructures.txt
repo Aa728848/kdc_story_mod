@@ -1,0 +1,244 @@
+# 临时用的建造基座的巨构
+gray_nano_megastructure_base = {
+	entity = ""
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	construction_blocks_and_blocked_by = none
+	show_galactic_map_icon = no
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+			# unity = 100
+		}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = { if = {
+			limit = { exists = orbital_station }
+			orbital_station = {
+				dismantle = yes
+			}
+		}}
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+gray_nano_megastructure_base_2 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	entity_offset = { x = -7 y = -7 }
+	place_entity_on_planet_plane = no
+	construction_blocks_and_blocked_by = none
+	show_galactic_map_icon = no
+
+	build_time = 1800
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		gray_nano_megastructure_base
+	}
+}
+
+#Dyson Sphere Frame
+gray_nano_dyson_sphere_1 = {
+	entity = "dyson_sphere_phase_01_entity"
+	construction_entity = "dyson_sphere_frame_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		gray_nano_megastructure_base_2
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom = { if = {
+			limit = { has_global_flag = AOW_installed }
+			if = {
+				limit = { planet = { AOW_trgr_PLNT_o_spectrum = yes }}
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Ostar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_O
+			}
+			else_if = {
+				limit = { planet = { AOW_trgr_PLNT_b_spectrum = yes } }
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Bstar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_B
+			}
+			else_if = {
+				limit = { planet = { AOW_trgr_PLNT_a_spectrum = yes } }
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Astar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_A
+			}
+			else_if = {
+				limit = { planet = { AOW_trgr_PLNT_f_spectrum = yes } }
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Fstar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_F
+			}
+			else_if = {
+				limit = { planet = { AOW_trgr_PLNT_g_spectrum = yes } }
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Gstar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_G
+			}
+			else_if = {
+				limit = { planet = { AOW_trgr_PLNT_k_spectrum = yes } }
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Kstar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_K
+			}
+			else_if = {
+				limit = { planet = { AOW_trgr_PLNT_m_spectrum = yes } }
+				set_variable = { which = AOW_var_mega value = @AOW_var_mega_Mstar }
+				upgrade_megastructure_to = gray_dyson_sphere_5_M
+			} else = {
+				upgrade_megastructure_to = gray_nano_dyson_sphere 
+			}
+		} else = {
+			upgrade_megastructure_to = gray_nano_dyson_sphere 
+		}}
+	}
+}
+
+gray_nano_dyson_sphere = {
+	entity = "dyson_sphere_phase_05_entity"
+	construction_entity = "dyson_sphere_part_4_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 14400
+	resources = {
+		category = megastructures
+
+		produces = {
+			energy = 2500
+		}
+		upkeep = {
+			nanites = 20
+		}
+	}
+
+	upgrade_from = {
+		gray_nano_dyson_sphere_1
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			country_event = { id = utopia.4005 scopes = { from = prev.fromfrom }}
+		}
+		every_system_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_molten
+					is_planet_class = pc_toxic
+				}
+			}
+			change_pc = pc_frozen
+		}
+		every_system_planet = {
+			limit = {
+				is_planet_class = pc_barren
+			}
+			change_pc = pc_barren_cold
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		
+	}
+}
+
+# Matter Decompressor
+gray_nano_matter_decompressor = {
+	entity = "matter_decompressor_stage_4_entity"
+	construction_entity = "matter_decompressor_stage_4_construction_entity"
+	portrait = "GFX_megastructure_matter_decompressor_background"
+	entity_offset = { x = -20 y = -20 }
+	rotate_to_center = yes
+	scale_offset = yes
+	place_entity_on_planet_plane = no
+	build_time = 14400
+	resources = {
+		category = megastructures
+		produces = {
+			minerals = 1250
+		}
+
+		upkeep = {
+			energy = 100
+			nanites = 20
+		}
+	}
+
+	upgrade_from = {
+		gray_nano_megastructure_base_2
+	}
+
+	on_build_complete = {
+		set_star_flag = matter_decompressor_built
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			country_event = { id = mega.9013 }
+		}
+	}
+}
+
+gray_nano_think_tank = {
+	entity = "thinktank_phase_03_entity"
+	construction_entity = "thinktank_phase_03_entity"
+	portrait = "GFX_megastructure_think_tank_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = 0 y = 20 }
+	build_time = 10800
+	resources = {
+		category = megastructures
+
+		upkeep = {
+			energy = 75
+			nanites = 20
+		}
+
+		produces = {
+			society_research = 500
+			engineering_research = 500
+			physics_research = 500
+		}
+	}
+
+	upgrade_from = {
+		gray_nano_megastructure_base_2
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+	}
+
+	country_modifier = {
+		all_technology_research_speed = 0.035
+	}
+}

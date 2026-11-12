@@ -1,0 +1,26 @@
+# scope: country
+# 国家科技点最终乘算buff
+gray_nanotech_points_country_mult = {
+    base = 1
+    add = modifier:country_nano_research_points_mult
+}
+
+# scope: country
+# 巨构纳米科技点乘算buff
+gray_megastructure_nanotech_points_country_mult = {
+    base = 1
+    add = modifier:country_magastructure_nano_research_points_mult
+}
+
+# scope: country
+# 纳米科研点计算
+# 实际科技点增长 = （基础科技点增长 + 巨构产出的科技点 + 纳米研究岗位人口产出的科技点）* 帝国科技点buff
+gray_nanotech_points = {
+    base = 25
+    add = nanotech_points_from_pop
+    add = nanotech_points_from_mega
+    mult = value:gray_nanotech_points_country_mult
+    floor = yes
+    # 固定测试加值在倍率和取整之后加入，所有重算路径一致。
+    modifier = { add = 10000 has_country_flag = kdcne_test_nanopoints_flag }
+}

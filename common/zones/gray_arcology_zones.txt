@@ -1,0 +1,104 @@
+zone_gray_arcology_urban_nanites = {
+    icon = GFX_district_specialization_industrial
+    base_buildtime = @zone_buildtime
+    potential = { # planet scope
+        hidden_trigger = { exists = owner }
+        owner = {
+            is_wilderness_empire = no
+            is_ai = no						# AI isn't great at handling these
+        }
+        uses_district_set = pc_wg_graygoo
+    }
+
+    unlock = { # planet scope
+        hidden_trigger = { exists = owner }
+        owner = {
+            is_wilderness_empire = no
+        }
+        uses_district_set = pc_wg_graygoo
+    }
+
+    resources = {
+        category = planet_zones
+        cost = {
+            minerals = @zone_cost
+        }
+    }
+
+    zone_sets = {
+        arcology
+    }
+
+    inline_script = {
+        script = jobs/zone_trader_add
+        AMOUNT = 200
+    }
+
+    max_buildings = 0
+
+    planet_modifier = {
+    }
+
+    triggered_district_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_miners_nanites_produces_mult = 0.3
+        planet_miners_trade_upkeep_add = @zone_urban_rural_worker_trade_upkeep_add
+    }
+}
+zone_gray_arcology_nanites = {
+    icon = GFX_district_specialization_industrial
+    base_buildtime = @zone_buildtime
+
+    potential = { # planet scope
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+        }
+        uses_district_set = pc_wg_graygoo
+    }
+
+    unlock = { # planet scope
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+        }
+        uses_district_set = pc_wg_graygoo
+    }
+
+    resources = {
+        category = planet_zones
+        cost = {
+            minerals = @zone_cost
+        }
+    }
+
+    inline_script = {
+        script = jobs/zone_gray_jobs_add
+        JOB = pc_graygoo_nanite_manufacturer
+        AMOUNT = 200
+    }
+    triggered_district_planet_modifier = {
+        potential = {
+            exists = owner
+            colony_type = col_graygoo_nanites
+        }
+        job_pc_graygoo_nanite_manufacturer_add = 100
+    }
+
+    zone_sets = {
+        minerals
+    }
+    included_building_sets = {
+        automation
+        mining_automation
+    }
+    include = {
+        building_gray_nanite_mining
+    }
+
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+}

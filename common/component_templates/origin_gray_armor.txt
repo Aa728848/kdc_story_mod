@@ -1,0 +1,107 @@
+utility_component_template = {
+	key = "gray_nanite_ia_s"
+	size = small
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+	power = -50
+	modifier = {
+		ship_armor_add = 250
+		ship_hull_add = 200
+		ship_shield_add = 200
+		ship_shield_regen_add_static = 5
+		ship_armor_regen_add_static = 5
+	}
+	prerequisites = { "tech_gray_nanite_ia" }
+	component_set = "gray_nanite_ia"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+			nanites = 2
+		}		
+		upkeep = {
+			energy = 1.0
+			alloys = 0.5
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 1000
+			is_ai = no
+		}
+	}
+}
+
+utility_component_template = {
+	key = "gray_nanite_ia_m"
+	size = medium
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+	power = -120
+	modifier = {
+		ship_armor_add = 700
+		ship_hull_add = 600
+		ship_shield_add = 600
+		ship_shield_regen_add_static = 10
+		ship_armor_regen_add_static = 10
+	}
+	prerequisites = { "tech_gray_nanite_ia" }
+	component_set = "gray_nanite_ia"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+			nanites = 2
+		}		
+		upkeep = {
+			energy = 1.0
+			alloys = 0.5
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 1000
+			is_ai = no
+		}
+	}
+}
+
+utility_component_template = {
+	key = "gray_nanite_ia_l"
+	size = large
+	icon = "GFX_wg_gray_ia"
+	icon_frame = 1
+	power = -120
+	modifier = {
+		ship_armor_add = 1600
+		ship_hull_add = 1450
+		ship_shield_add = 1450
+		ship_shield_regen_add_static = 20
+		ship_armor_regen_add_static = 20
+	}
+	prerequisites = { "tech_gray_nanite_ia" }
+	component_set = "gray_nanite_ia"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+			nanites = 2
+		}		
+		upkeep = {
+			energy = 1.0
+			alloys = 0.5
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 1000
+			is_ai = no
+		}
+	}
+}

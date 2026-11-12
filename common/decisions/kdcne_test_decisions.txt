@@ -1,0 +1,38 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 测试决议（殖民地）
+# 用途：测试用，给永久 buff，每月 +10000 纳米研究点
+# ============================================================================
+
+kdcne_test_nanopoints = {
+	potential = {
+		is_colony = yes
+		owner = { is_ai = no has_country_flag = activate_gray_research }
+	}
+	allow = {
+		owner = { NOT = { has_country_flag = kdcne_test_nanopoints_flag } }
+	}
+	effect = {
+		owner = {
+			set_country_flag = kdcne_test_nanopoints_flag
+			add_modifier = { modifier = kdcne_test_nanopoints_buff }
+			country_event = { id = gray_tech.1 }
+		}
+	}
+	ai_weight = { weight = 0 }
+}
+
+# 可关闭，避免测试加成永久残留。
+kdcne_test_nanopoints_disable = {
+    potential = {
+        is_colony = yes
+        owner = { is_ai = no has_country_flag = kdcne_test_nanopoints_flag }
+    }
+    effect = {
+        owner = {
+            remove_country_flag = kdcne_test_nanopoints_flag
+            remove_modifier = kdcne_test_nanopoints_buff
+            country_event = { id = gray_tech.1 }
+        }
+    }
+    ai_weight = { weight = 0 }
+}

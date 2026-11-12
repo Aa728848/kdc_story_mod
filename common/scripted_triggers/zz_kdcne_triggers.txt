@@ -1,0 +1,68 @@
+# KDC 纳米机制扩展：ship 作用域；国家触发器单独注明。
+kdcne_is_nano_ship_trigger = {
+    check_modifier_value = { modifier = kdcne_is_nano_ship value > 0 }
+}
+kdcne_is_nano_weapon_trigger = {
+    OR = {
+        has_component = kdcne_nano_torpedo
+        has_component = kdcne_nano_aircraft
+    }
+}
+# 装备核心只是标记；还需完成进化科技。
+kdcne_can_evolve_trigger = {
+    kdcne_is_nano_ship_trigger = yes
+    has_component = kdcne_evolution_core
+    exists = owner
+    owner = { kdcne_has_unlocked_evolution_trigger = yes }
+}
+kdcne_has_kill_counter_trigger = {
+    check_variable = { which = kdcne_kill_count value > 0 }
+}
+kdcne_is_low_hp_trigger = {
+    has_hp_percentage < 0.2
+}
+# country：直接检查科技，兼容控制台授予和已有存档。
+kdcne_has_unlocked_evolution_trigger = {
+    has_technology = tech_kdcne_evolution_core
+}
+kdcne_is_immune_to_corrosion_trigger = {
+    OR = {
+        check_modifier_value = { modifier = kdcne_nano_corrosion_resistance value >= 1 }
+        check_modifier_value = { modifier = kdcne_immune_to_nano_corrosion value >= 1 }
+        has_ship_flag = kdcne_immune_corrosion_flag
+        # 统一旧自爆云与侵蚀后，原有纳米云免疫亦可抵抗命中侵蚀。
+        check_modifier_value = { modifier = kdcne_immune_to_nano_cloud value > 0 }
+    }
+}
+kdcne_has_corrosion_trigger = {
+    has_modifier = kdcne_nano_corrosion_debuff
+}
+kdcne_is_immune_to_cloud_trigger = {
+    check_modifier_value = { modifier = kdcne_immune_to_nano_cloud value > 0 }
+}
+# planet：仅转换普通、未殖民的自然岩质世界，保留剧情/人工世界。
+kdcne_can_nanofy_planet_trigger = {
+    NOT = { exists = owner }
+    has_anomaly = no
+    NOT = { exists = archaeological_site }
+    NOT = { has_planet_flag = megastructure }
+    is_terraforming = no
+    OR = {
+        is_planet_class = pc_desert
+        is_planet_class = pc_arid
+        is_planet_class = pc_savannah
+        is_planet_class = pc_tropical
+        is_planet_class = pc_continental
+        is_planet_class = pc_ocean
+        is_planet_class = pc_tundra
+        is_planet_class = pc_arctic
+        is_planet_class = pc_alpine
+        is_planet_class = pc_nuked
+        is_planet_class = pc_barren
+        is_planet_class = pc_barren_cold
+        is_planet_class = pc_frozen
+        is_planet_class = pc_molten
+        is_planet_class = pc_toxic
+        is_planet_class = pc_gray_goo
+    }
+}

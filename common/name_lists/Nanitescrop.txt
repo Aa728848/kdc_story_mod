@@ -1,0 +1,190 @@
+﻿###TMR
+
+Nanitecrop = {
+
+	#language = "l_simp_chinese"
+	category = "Nanites"
+
+	ship_names = {
+
+		generic = {
+			灰色风暴
+        }
+		corvette = {
+			灰色风暴
+		}
+		
+		destroyer = {
+			灰色风暴
+		}
+		
+		cruiser = {
+			灰色风暴
+		}
+		
+		battleship = {
+			灰色风暴
+		}
+
+		titan = {
+            大汇流
+		}
+
+		colossus = {
+		}
+
+        juggernaut = {
+		}
+		
+		science = {
+		}
+		
+		colonizer = {
+		}
+		
+		constructor = {
+		}
+
+		transport = {
+		}
+	
+		military_station_small = {
+		}
+
+		ion_cannon = {
+		}
+	}
+
+	fleet_names = {
+		random_names = {
+            "纳米风暴"
+		}
+		sequential_name = "nanite_fleet_name"
+	}
+	
+	army_names = {
+
+		machine_defense = {
+			sequential_name = "nanite_fleet_name"
+		}
+		
+		machine_assault_1 = {
+			sequential_name = "nanite_fleet_name"
+		}
+		
+		machine_assault_2 = {
+			sequential_name = "nanite_fleet_name"
+		}
+		
+		machine_assault_3 = {
+			sequential_name = "nanite_fleet_name"
+		}
+
+		defense_army = {
+			sequential_name = "nanite_fleet_name"
+		}
+		gatebuilder_grey_army = {
+			sequential_name = "nanite_fleet_name"
+		}
+		assault_army = {
+			sequential_name = "nanite_fleet_name"
+		}
+	}
+	planet_names = {
+
+		generic = {
+			names = {
+				纳米工厂
+			}
+		}
+		
+		pc_desert = {
+			names = {
+			}
+		}
+		
+		pc_tropical = {
+			names = {
+			}
+		}
+		
+		pc_arid = {
+			names = {
+			}
+		}
+		
+		pc_continental = {
+			names = {
+			}
+		}
+		
+		pc_ocean = {
+			names = {
+			}
+		}
+		
+		pc_tundra = {
+			names = {
+			}
+		}
+		
+		pc_arctic = {
+			names = {
+			}
+		}
+
+		pc_savannah = {
+			names = {
+			}
+		}
+
+		pc_alpine = {
+			names = {
+			}
+		}
+		pc_city = {
+			names = { 
+				灰蛊都市
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			# A complete name
+			full_names = { 
+			    纳米聚合体
+			}
+			
+			# Always combined with a second name
+			first_names_male = {
+				
+			}
+
+			first_names_female = {
+				
+			}
+
+			# Always combined with a first name
+			second_names = {
+				领航员 研究者 建门者工程师 怀旧个体
+ 				A9 B8 C7 D6 E5 F4 G3 H2 I1 J0 K1 L2 M3 N4 O5 P6 Q7 R8 S9 T0 U1 V2 W3 X4 Y5 Z6
+				4A 5B 6C 7D 8E 9F 1G 2H 3I 4J 5K 6L 7M 8N 9O 0P 1Q 2R 3S 4T 5U 6V 7W 1X 2Y 3Z
+				XA XE XO XI XY XU VR VH VN VC VT VQ NA NE NO NI NY NU ZF ZG ZJ ZP ZM ZB RA RE RO RI RY RU SB  
+			}
+			
+			regnal_first_names_female = {
+				
+			}
+
+			regnal_first_names_male = {
+				
+			}
+			
+			regnal_second_names = {
+				建门者系统
+				
+			}
+		}
+	}
+}

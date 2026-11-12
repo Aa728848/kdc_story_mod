@@ -1,0 +1,15 @@
+# Nanites
+nanites = {
+    tradable = no
+    category = rare
+
+    visibility_prerequisite = { always = yes }
+    deficit_modifier = nanites_deficit #found in static modifiers
+    deficit_trade_conversion_mult = -0.25
+
+    culling_conversion_value = 2
+
+    ai_weight = {
+        weight = 100
+    }
+}

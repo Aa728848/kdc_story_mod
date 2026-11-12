@@ -1,0 +1,196 @@
+# KDC 纳米机制扩展：效果入口与作用域。
+# ship：5 击杀升一级，最高 20 级；满级后击杀仍可储存为修复燃料。
+kdcne_evolution_on_kill = {
+    if = {
+        limit = { kdcne_can_evolve_trigger = yes }
+        if = {
+            limit = { NOT = { is_variable_set = kdcne_kill_count } }
+            set_variable = { which = kdcne_kill_count value = 0 }
+        }
+        if = {
+            limit = { NOT = { is_variable_set = kdcne_evo_lv } }
+            set_variable = { which = kdcne_evo_lv value = 0 }
+        }
+        change_variable = { which = kdcne_kill_count value = 1 }
+        if = {
+            limit = {
+                check_variable = { which = kdcne_kill_count value >= 5 }
+                check_variable = { which = kdcne_evo_lv value < 20 }
+            }
+            change_variable = { which = kdcne_kill_count value = -5 }
+            kdcne_evo_lv_up = yes
+        }
+    }
+}
+# ship：升级入口自身也封顶，避免直接调用突破上限。
+kdcne_evo_lv_up = {
+    if = {
+        limit = { NOT = { is_variable_set = kdcne_evo_lv } }
+        set_variable = { which = kdcne_evo_lv value = 0 }
+    }
+    if = {
+        limit = { check_variable = { which = kdcne_evo_lv value < 20 } }
+        change_variable = { which = kdcne_evo_lv value = 1 }
+    }
+    if = {
+        limit = { check_variable = { which = kdcne_evo_lv value > 20 } }
+        set_variable = { which = kdcne_evo_lv value = 20 }
+    }
+    remove_modifier = kdcne_evolution_buff
+    add_modifier = { modifier = kdcne_evolution_buff multiplier = kdcne_evo_lv }
+}
+# ship：仅在受击后仍存活且船体低于 20% 时修复，不保证抵挡致命一击。
+kdcne_evolution_death_save = {
+    if = {
+        limit = {
+            kdcne_can_evolve_trigger = yes
+            kdcne_is_low_hp_trigger = yes
+            kdcne_has_kill_counter_trigger = yes
+            has_hp > 0
+        }
+        change_variable = { which = kdcne_kill_count value = -1 }
+        repair_ship = yes
+    }
+}
+# country：只由扩展纳米科技触发；不叠加重复 buff。
+kdcne_evolution_tech_refresh = {
+    every_owned_ship = {
+        limit = { kdcne_is_nano_ship_trigger = yes }
+        remove_modifier = kdcne_tech_refresh_buff
+        add_modifier = { modifier = kdcne_tech_refresh_buff days = 30 }
+    }
+}
+# Legacy entry redirects to the new hit-cloud mechanism.
+kdcne_apply_nano_corrosion = { kdcne_spawn_hit_cloud = yes }
+# solar_system（巨构 on_build_complete）：不改变已殖民/特殊世界。
+kdcne_convert_system_to_nano = {
+    every_system_planet = {
+        limit = { kdcne_can_nanofy_planet_trigger = yes }
+        change_pc = pc_wg_graygoo
+    }
+}
+# solar_system；from = 建造国，fromfrom = 完工巨构。
+# 直接锚定目标天体，避免继承旧存档中施工平台的偏移。
+kdcne_build_nano_starcage = {
+    # RETIRED 2026-11-11: no-op compatibility entry. Previous implementation:
+    #     if = {
+    #         limit = {
+    #             NOT = { has_star_flag = kdcne_starcage_created }
+    #             exists = fromfrom
+    #             fromfrom = { exists = planet planet = { is_planet_class = pc_kdcne_nano_star } }
+    #         }
+    #         fromfrom.planet = { save_event_target_as = kdcne_starcage_anchor }
+    #         kdcne_spawn_centered_starcage = yes
+    #         if = {
+    #             limit = { has_star_flag = kdcne_starcage_spawned }
+    #             # Only remove the base after the new world's init_effect has run.
+    #             remove_megastructure = fromfrom
+    #         }
+    #         remove_star_flag = kdcne_starcage_spawned
+    #     }
+}
+# solar_system; local event target kdcne_starcage_anchor = retained nano star.
+kdcne_spawn_centered_starcage = {
+    remove_star_flag = kdcne_starcage_spawned
+    spawn_planet = {
+        class = pc_nano_starcage_world
+        location = event_target:kdcne_starcage_anchor
+        orbit_distance_offset = 0
+        orbit_angle_offset = 0
+        # The overlap with the central body is intentional, as in a starcage.
+        check_overlap = no
+        has_ring = no
+        size = 10
+        init_effect = {
+            set_name = NAME_kdcne_nano_starcage
+            set_planet_flag = megastructure
+            set_planet_flag = kdcne_nano_starcage
+            set_planet_flag = kdcne_starcage_centered_v2
+            kdcne_refresh_nano_starcage_model = yes
+            if = {
+                limit = { solar_system = { exists = owner } }
+                set_surveyed = { surveyed = yes surveyor = solar_system.owner }
+            }
+            clear_blockers = yes
+            trigger_megastructure_icon = yes
+            solar_system = {
+                set_star_flag = kdcne_starcage_created
+                set_star_flag = kdcne_starcage_spawned
+            }
+        }
+    }
+}
+# Planet: exact entity override also repairs old saves with the invalid shared prefix.
+kdcne_refresh_nano_starcage_model = {
+    set_planet_entity = { entity = "kdcne_nano_starcage_01_entity" picture = "pc_wg_graygoo" }
+}
+# solar_system: reposition only untouched, uncolonized legacy worlds.
+# The engine has no documented planet relocation effect; occupied worlds retain their identity.
+kdcne_repair_nano_starcage = {
+    every_system_planet = {
+        limit = { is_planet_class = pc_nano_starcage_world }
+        kdcne_refresh_nano_starcage_model = yes
+        save_event_target_as = kdcne_legacy_starcage_world
+        if = {
+            limit = {
+                has_planet_flag = kdcne_nano_starcage
+                NOT = { has_planet_flag = kdcne_starcage_centered_v2 }
+                is_colony = no
+                is_under_colonization = no
+                NOT = { exists = orbital_station }
+                NOT = { exists = orbital_defence }
+                solar_system = {
+                    any_system_planet = { is_planet_class = pc_kdcne_nano_star }
+                    NOT = {
+                        any_system_megastructure = {
+                            exists = planet
+                            planet = { is_same_value = event_target:kdcne_legacy_starcage_world }
+                        }
+                    }
+                }
+            }
+            solar_system = {
+                random_system_planet = {
+                    limit = { is_planet_class = pc_kdcne_nano_star }
+                    save_event_target_as = kdcne_starcage_anchor
+                }
+                kdcne_spawn_centered_starcage = yes
+                if = {
+                    limit = { has_star_flag = kdcne_starcage_spawned }
+                    event_target:kdcne_legacy_starcage_world = { remove_planet = yes }
+                }
+                remove_star_flag = kdcne_starcage_spawned
+            }
+        }
+    }
+    # A world already exists: remove only this feature's leftover construction base.
+    if = {
+        limit = { any_system_planet = { is_planet_class = pc_nano_starcage_world } }
+        set_star_flag = kdcne_starcage_created
+        every_system_megastructure = {
+            limit = { is_megastructure_type = kdcne_mega_starcage }
+            remove_megastructure = this
+        }
+    }
+}
+# country：调用方必须检查击杀舰的纳米标记。
+kdcne_resource_harvest_on_kill = {
+    add_resource = { nanites = 1 }
+}
+# country：实验室替换预留入口，本轮未接入自动研究钩子。
+kdcne_replace_shipgirl_labs = {
+    every_owned_planet = {
+        if = { limit = { has_building = building_wsg_research3 }
+            remove_building = building_wsg_research3
+            add_building = building_gray_nano_research }
+        if = { limit = { has_building = building_sh_research3 }
+            remove_building = building_sh_research3
+            add_building = building_gray_nano_research }
+        if = { limit = { has_building = building_uf_research_3 }
+            remove_building = building_uf_research_3
+            add_building = building_gray_nano_research }
+        if = { limit = { has_building = building_sep_research3 }
+            remove_building = building_sep_research3
+            add_building = building_gray_nano_research }
+    }
+}

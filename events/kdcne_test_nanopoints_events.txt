@@ -1,0 +1,100 @@
+namespace = kdcne_test
+
+# Monthly research-point test remains a country event.
+country_event = {
+    id = kdcne_test.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { has_country_flag = kdcne_test_nanopoints_flag }
+    immediate = { country_event = { id = gray_tech.1 } }
+}
+
+# Select ONE player fleet in the desired system, then run event kdcne_test.2/5/6.
+# Fleet scope has no capital fallback: camera position is not a script scope.
+
+fleet_event = {
+    id = kdcne_test.2
+    title = kdcne_test.2.title
+    desc = kdcne_test.2.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    trigger = { exists = solar_system exists = controller controller = { is_ai = no } }
+    immediate = {
+        save_event_target_as = kdcne_test_spawn_anchor
+        controller = {
+            kdcne_spawn_local_test_target = { DESIGN = NAME_kdcne_test_dummy ENDURANCE = no }
+        }
+    }
+    option = { name = OK }
+}
+
+fleet_event = {
+    id = kdcne_test.5
+    title = kdcne_test.5.title
+    desc = kdcne_test.5.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    trigger = { exists = solar_system exists = controller controller = { is_ai = no } }
+    immediate = {
+        save_event_target_as = kdcne_test_spawn_anchor
+        controller = {
+            kdcne_spawn_local_test_target = { DESIGN = NAME_kdcne_test_capture_dummy ENDURANCE = no }
+        }
+    }
+    option = { name = OK }
+}
+
+fleet_event = {
+    id = kdcne_test.6
+    title = kdcne_test.6.title
+    desc = kdcne_test.6.desc
+    picture = GFX_evt_landing_ship
+    is_triggered_only = yes
+    trigger = { exists = solar_system exists = controller controller = { is_ai = no } }
+    immediate = {
+        save_event_target_as = kdcne_test_spawn_anchor
+        controller = {
+            kdcne_spawn_local_test_target = { DESIGN = NAME_kdcne_test_capture_dummy ENDURANCE = yes }
+        }
+    }
+    option = { name = OK }
+}
+
+# Select a player fleet; only delete flagged test-country fleets in THAT system.
+# Captured player ships and targets in other systems are untouched.
+fleet_event = {
+    id = kdcne_test.3
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { exists = solar_system exists = controller controller = { is_ai = no } }
+    immediate = {
+        solar_system = {
+            every_fleet_in_system = {
+                limit = {
+                    has_fleet_flag = kdcne_test_dummy_fleet
+                    owner = { has_country_flag = kdcne_test_dummy_country }
+                }
+                delete_fleet = this
+            }
+        }
+    }
+}
+
+# 已有靶舰无需重生：event kdcne_test.4 刷新所有专用靶舰国家的军事情报。
+country_event = {
+    id = kdcne_test.4
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { is_ai = no }
+    immediate = {
+        every_country = {
+            limit = { has_country_flag = kdcne_test_dummy_country }
+            save_event_target_as = kdcne_dummy_inspection_owner
+            root = {
+                establish_communications_no_message = event_target:kdcne_dummy_inspection_owner
+                add_intel_report = { who = event_target:kdcne_dummy_inspection_owner category = military level = 4 }
+            }
+        }
+    }
+}
+

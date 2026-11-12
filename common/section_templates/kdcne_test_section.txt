@@ -1,0 +1,12 @@
+# ============================================================================
+# KDC 纳米机制扩展 · 测试血牛沙包（船段，无武器纯靶）
+# ============================================================================
+
+ship_section_template = {
+	key = "kdcne_test_dummy_section"
+	ship_size = kdcne_test_dummy
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "gatebuilder_01_cruiser_section_entity"
+	icon = "GFX_ship_part_core_mid"
+}

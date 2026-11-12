@@ -1,0 +1,85 @@
+﻿l_simp_chinese:
+ # ============================================================================
+ # KDC 纳米机制扩展 · 本地化（占位文本，后续补正式文本）
+ # ============================================================================
+
+ # 巨构名
+ kdcne_mega_nanofication:0 "星系纳米化巨构"
+ kdcne_mega_starcage:0 "纳米星笼世界"
+ kdcne_mega_shipyard:0 "纳米恒星船坞"
+
+ # 行星类
+ pc_nano_starcage_world:0 "纳米星笼世界"
+ pc_nano_starcage_world_desc:0 "由纳米星笼世界巨构生成的宜居纳米巨构。"
+
+ # 脚本修饰器（category = ship）
+ kdcne_is_nano_ship:0 "纳米舰"
+ kdcne_evolution_level:0 "纳米进化等级"
+ kdcne_nano_corrosion:0 "纳米侵蚀层数"
+ kdcne_immune_to_nano_corrosion:0 "免疫纳米侵蚀"
+ kdcne_nano_corrosion_resistance:0 "纳米侵蚀抗性"
+ kdcne_nano_cloud_debuff:0 "纳米云压制"
+ kdcne_immune_to_nano_cloud:0 "免疫纳米云"
+ kdcne_nano_assimilation:0 "纳米同化"
+ kdcne_nano_lifesteal:0 "纳米吸血"
+
+ # 静态修饰器
+ kdcne_evolution_buff:0 "纳米进化"
+ kdcne_tech_refresh_buff:0 "纳米科技刷新"
+ kdcne_nano_corrosion_debuff:0 "纳米侵蚀"
+ # 测试决议/修饰器
+ kdcne_test_nanopoints:0 "测试：每月+10000纳米研究点"
+ kdcne_test_nanopoints_buff:0 "测试纳米研究点（每月+10000）"
+ # 血牛沙包
+ NAME_kdcne_test_dummy:0 "血牛沙包"
+ kdcne_test.2.title:0 "【测试】召唤血牛沙包"
+ kdcne_test.2.desc:0 "已在所选己方舰队附近生成敌对血牛沙包（30万船体、10万护盾、10万装甲），无需宣战，并开放最高军事情报。沙包无武器，可查看血量和属性修正。此自定义船型不能同化；同化测试请选中己方舰队运行 event kdcne_test.6。event kdcne_test.3 清理所选舰队所在星系的靶舰；event kdcne_test.4 刷新靶国情报。"
+ # 组件效果 tooltip
+ kdcne_nano_corrosion_tooltip:0 "命中在目标当前位置播撒半径30、持续30天的纳米云；每支攻击舰队每3天最多播撒一次。敌舰在云内逐日累积侵蚀，重叠云每天只结算一次。"
+ kdcne_nano_torpedo:0 "纳米侵蚀鱼雷"
+ kdcne_nano_torpedo_DESC:0 "命中留下固定位置的纳米云。侵蚀逐渐削弱伤害、航速、装甲、护盾、闪避和双穿；拥有同化科技并开启夺舰后，长时间暴露的合规目标可被逐舰同化。"
+ kdcne_nano_selfdestruct:0 "纳米侵蚀载荷（旧组件）"
+ kdcne_nano_selfdestruct_DESC:0 "旧组件已停止新增装配与阵亡触发，请更换为纳米侵蚀鱼雷或纳米舰载机。"
+ kdcne_nano_cloud_generator:0 "纳米云发生器"
+ kdcne_nano_cloud_generator_DESC:0 "载舰造成伤害时播撒与鱼雷相同的固定纳米云，所有来源共用每舰队3天的播撒间隔。不再另挂固定压制光环。"
+ kdcne_evolution_core:0 "纳米进化核心"
+ kdcne_evolution_core_DESC:0 "装备后标记为纳米舰；研究进化科技后，每5次击杀提升1级，最高20级。存活船体低于20%时消耗1次剩余击杀修复船体。"
+ kdcne_nano_aircraft:0 "纳米舰载机"
+ kdcne_nano_aircraft_DESC:0 "装备本组件的母舰造成伤害时播撒纳米云；过渡实现也计入母舰其他武器。云区固定在命中位置，每支舰队每3天最多播撒一次。"
+ kdcne_nano_cloud_aura:0 "纳米云压制"
+ NAME_kdcne_nano_starcage:0 "纳米星笼"
+ kdcne_requires_unique_mega:0 "该星系不能已有同类纳米巨构或星笼世界。"
+ kdcne_requires_nanofication_target:0 "该星系需要至少一颗无殖民地、无异常和遗迹的普通岩质星球。"
+ kdcne_mega_nanofication_DESC:0 "将本星系符合条件的未殖民自然岩质星球改造为纳米星球。保留恒星、气态巨行星、小行星、人工世界和剧情地点。"
+ kdcne_mega_nanofication_MEGASTRUCTURE_DETAILS:0 "完工时一次性转换本星系符合条件的星球。"
+ kdcne_mega_starcage_DESC:0 "此扩展功能已停用，保留已有星笼的存档定义；施工基址不再生成新世界。"
+ kdcne_mega_starcage_MEGASTRUCTURE_DETAILS:0 "新建入口已关闭，已有星笼世界保留旧存档兼容。"
+ kdcne_mega_shipyard_DESC:0 "提供20个造船槽，本船坞建造速度+25%。"
+ kdcne_mega_shipyard_MEGASTRUCTURE_DETAILS:0 "独立纳米造船设施；不向全帝国其他船坞提供加成。"
+ kdcne_test_nanopoints_desc:0 "开启固定纳米科研点测试加值，可用关闭决议恢复。"
+ kdcne_test_nanopoints_disable:0 "测试：关闭纳米科研点加值"
+ kdcne_test_nanopoints_disable_desc:0 "关闭每月额外10000纳米科研点，并立即重算研究速度。"
+ kdcne_test_dummy:0 "血牛沙包"
+ kdcne_test_dummy_plural:0 "血牛沙包"
+ kdcne_test_dummy_section:0 "测试沙包核心"
+ building_kdcne_nano_evolution_lab:0 "纳米进化实验室"
+ building_kdcne_nano_evolution_lab_desc:0 "提升本星球物理学与工程学研究产出。"
+ building_kdcne_nano_cloud_generator:0 "行星纳米防护设施"
+ building_kdcne_nano_cloud_generator_desc:0 "降低25%轨道轰炸伤害。此建筑不产生舰船纳米云。"
+ NAME_kdcne_test_dummy_country:0 "纳米武器试验靶场"
+
+ # 自定义修饰器显示名必须使用 mod_ 前缀。
+ mod_kdcne_is_nano_ship:0 "$kdcne_is_nano_ship$"
+ mod_kdcne_evolution_level:0 "$kdcne_evolution_level$"
+ mod_kdcne_nano_corrosion:0 "$kdcne_nano_corrosion$"
+ mod_kdcne_immune_to_nano_corrosion:0 "$kdcne_immune_to_nano_corrosion$"
+ mod_kdcne_nano_corrosion_resistance:0 "$kdcne_nano_corrosion_resistance$"
+ mod_kdcne_nano_cloud_debuff:0 "$kdcne_nano_cloud_debuff$"
+ mod_kdcne_immune_to_nano_cloud:0 "$kdcne_immune_to_nano_cloud$"
+ mod_kdcne_nano_assimilation:0 "$kdcne_nano_assimilation$"
+ mod_kdcne_nano_lifesteal:0 "$kdcne_nano_lifesteal$"
+ kdcne_nano_corrosion_debuff_desc:0 "每层：伤害-5%、航速-4%、装甲与护盾上限-5%、闪避-3个百分点、双穿乘数-5%；20层封顶。脱离云区约2天后每天消退1个暴露日。累计30个有效暴露日可尝试同化。"
+
+ NAME_kdcne_test_capture_dummy:0 "夺舰测试靶舰"
+ kdcne_test.5.title:0 "【测试】召唤夺舰靶舰"
+ kdcne_test.5.desc:0 "已在所选己方舰队附近生成无武器的敌对护卫舰，无需宣战。测试国与舰队带专用标记，可测试长期暴露同化。请在纳米云控制窗口开启同化，持续覆盖30个有效暴露日。低耐久目标可能提前被击毁，建议改用 event kdcne_test.6。"

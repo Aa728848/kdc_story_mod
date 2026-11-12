@@ -1,0 +1,5 @@
+# Test balance, ship scope. Radius/lifetime/cooldown are engine literal fields;
+# change their matching definitions in effects/events as documented in idea/纳米云机制.md.
+kdcne_cloud_daily_gain = { base = 1 mult = value:kdcne_corrosion_resistance_mult }
+kdcne_cloud_severity = { base = 0 add = kdcne_cloud_exposure max = 20 }
+kdcne_cloud_capture_threshold = { base = 30 }

@@ -1,0 +1,92 @@
+nanite_ring_world_shaper = {
+	entity = "nanite_ring_world_01_entity"
+	portrait = "GFX_megastructure_construction_background"
+	entity_offset = { x = 0 y = 0 }
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+		nanites = 3000
+		}
+
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	potential = {
+		always = no
+		has_ascension_perk = ap_become_the_gray
+	}
+	country_modifier = {
+		megastructure_build_speed_mult = 1
+		starbase_building_build_speed_mult = 1
+		starbase_module_build_speed_mult = 1
+		starbase_upgrade_speed_mult = 1
+		counpotry_naval_cap_add = 250
+		country_starbase_capacity_add = 25
+	}
+
+	prerequisites = { "tech_ring_world" }
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+	
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_pc_ringworld_tech"
+				is_planet_class = pc_ringworld_tech
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 1
+	}
+
+	on_build_start = {} 
+	on_build_cancel = {}
+	on_build_complete = {
+		set_global_flag = nanite_ring_world_building
+	}
+}

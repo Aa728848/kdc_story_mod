@@ -1,0 +1,29 @@
+# Inactive art candidate: still invisible in the user's engine test.
+# Active nano stars use vanilla black_hole_entity until this candidate is repaired.
+# Dedicated stellar entity: the brown-dwarf shader supports a solid textured star.
+# Reuse the KDC nano surface without the shared entity's city attachments/name collision.
+entity = {
+    name = "kdcne_nano_star_entity"
+    pdxmesh = "planet_clouded_mesh"
+    meshsettings = {
+        name = "planet_geosphereShape"
+        texture_diffuse = "wg_gray_goo_planet_01_diffuse.dds"
+        texture_normal = "wg_gray_goo_planet_01_normal.dds"
+        texture_specular = "tropical_03_spec.dds"
+        shader = "PdxMeshPlanetEmissive"
+    }
+    meshsettings = {
+        name = "clouds_geosphereShape"
+        texture_diffuse = "clouds_medium_diffuse.dds"
+        texture_normal = "clouds_medium_normal.dds"
+        texture_specular = "clouds_medium_specular.dds"
+    }
+    meshsettings = {
+        name = "clouds_shadow_geosphereShape"
+        texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+        texture_normal = "nonormal.dds"
+        texture_specular = "nospec.dds"
+    }
+    default_state = "idle"
+    state = { name = "idle" animation = "idle" }
+}

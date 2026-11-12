@@ -1,0 +1,64 @@
+# wsg_lady_admiral_skill1_state1 = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/wg_lady_admiral_skill1_state1.dds"
+# 	modifier = {}
+# 	leader_trait = { admiral }
+# 	leader_class = { admiral }
+# 	initial = no
+# 	randomized = no
+# }
+# wsg_lady_admiral_skill1_state2 = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/wg_lady_admiral_skill1_state1.dds"
+# 	modifier = {
+# 		ship_fire_rate_mult = 0.08
+# 	}
+# 	leader_trait = { admiral }
+# 	leader_class = { admiral }
+# 	initial = no
+# 	randomized = no
+# }
+# wsg_lady_admiral_skill1_state3 = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/wg_lady_admiral_skill1_state1.dds"
+# 	modifier = {
+# 		ship_fire_rate_mult = 0.16
+# 	}
+# 	leader_trait = { admiral }
+# 	leader_class = { admiral }
+# 	initial = no
+# 	randomized = no
+# }
+# wsg_lady_admiral_skill1_state4 = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/wg_lady_admiral_skill1_state1.dds"
+# 	modifier = {
+# 		ship_fire_rate_mult = 0.24
+# 	}
+# 	leader_trait = { admiral }
+# 	leader_class = { admiral }
+# 	initial = no
+# 	randomized = no
+# }
+# wsg_lady_admiral_skill1_state5 = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/wg_lady_admiral_skill1_state1.dds"
+# 	modifier = {
+# 		ship_fire_rate_mult = 0.32
+# 	}
+# 	leader_trait = { admiral }
+# 	leader_class = { admiral }
+# 	initial = no
+# 	randomized = no
+# }
+# wsg_lady_admiral_skill1_state6 = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/wg_lady_admiral_skill1_state1.dds"
+# 	modifier = {
+# 		ship_fire_rate_mult = 0.40
+# 	}
+# 	leader_trait = { admiral }
+# 	leader_class = { admiral }
+# 	initial = no
+# 	randomized = no
+# }

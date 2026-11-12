@@ -1,0 +1,27 @@
+# 每级 +5% 伤害、+3% 船体；multiplier 与 kdcne_evo_lv 同步。
+kdcne_evolution_buff = {
+    kdcne_evolution_level = 1
+    ship_weapon_damage = 0.05
+    ship_hull_mult = 0.03
+}
+kdcne_tech_refresh_buff = {
+    ship_weapon_damage = 0.2
+    ship_shield_regen_add_perc = 0.5
+    ship_armor_regen_add_perc = 0.5
+}
+# 每层压制，最高 20 层。双穿为乘数削减；与其他加法乘数合算，不保证抵消任意其他 Mod 加成。
+kdcne_nano_corrosion_debuff = {
+    icon = "gfx/interface/icons/modifiers/mod_ship_evasion_add.dds"
+    kdcne_nano_corrosion = 1
+    ship_weapon_damage = -0.05
+    ship_speed_mult = -0.04
+    ship_armor_mult = -0.05
+    ship_shield_mult = -0.05
+    ship_evasion_add = -3
+    ship_armor_penetration_mult = -0.05
+    ship_shield_penetration_mult = -0.05
+}
+# System display marker; actual effects select only ships hostile to the projecting country.
+kdcne_projection_coverage = { icon = "gfx/interface/icons/modifiers/mod_ship_evasion_add.dds" }
+# Country display marker. Both this timer and the legacy flag gate new shots.
+kdcne_projection_recharging = { icon = "gfx/interface/icons/resources/nanites_large.dds" }
