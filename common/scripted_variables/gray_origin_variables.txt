@@ -1,1 +1,0 @@
-@gray_zone_nanites_cost = 250

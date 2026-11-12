@@ -1,2 +1,0 @@
-PR_eft_plnt_JOB_deposit_WSG = {}
-add_wg_crisis_points = {}

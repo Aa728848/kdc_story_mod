@@ -1,8 +1,0 @@
-is_habitat_wg = {
-    OR = {
-        is_planet_class = pc_habitat
-        # gigastructure
-        uses_district_set = habitat
-        has_planet_flag = megastructure
-    }
-}
